@@ -230,7 +230,7 @@ const getHomeProducts = () => {
       <button className="closeButton sideMenuCls">
         <i className="far fa-times" />
       </button>
-      <div className="widget  ">
+      <div className="widget">
         <div className="th-widget-about">
           <div className="about-logo">
             <a href="home-newspaper.html">
@@ -269,7 +269,7 @@ const getHomeProducts = () => {
           </div>
         </div>
       </div>
-      <div className="widget  ">
+      <div className="widget">
         <h3 className="widget_title">Recent Posts</h3>
         <div className="recent-post-wrap">
           <div className="recent-post">
@@ -366,7 +366,7 @@ const getHomeProducts = () => {
           </div>
         </div>
       </div>
-      <div className="widget newsletter-widget  ">
+      <div className="widget newsletter-widget">
         <h3 className="widget_title">Subscribe</h3>
         <p className="footer-text">
           Sign up to get update about us. Don't be hasitate your email is safe.
