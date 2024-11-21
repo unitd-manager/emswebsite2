@@ -17,173 +17,7 @@ import logosvg from "../assets/img/logo.svg"
 const Contact = () => {
     return (
 <>
-  <meta charSet="utf-8" />
-  <meta httpEquiv="x-ua-compatible" content="ie=edge" />
-  <title>Tnews - News &amp; Magazine HTML Template - Contact Us</title>
-  <meta name="author" content="Tnews" />
-  <meta name="description" content="Tnews - News & Magazine HTML Template" />
-  <meta name="keywords" content="Tnews - News & Magazine HTML Template" />
-  <meta name="robots" content="INDEX,FOLLOW" />
-  {/* Mobile Specific Metas */}
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, shrink-to-fit=no"
-  />
-  {/* Favicons - Place favicon.ico in the root directory */}
-  <link
-    rel="apple-touch-icon"
-    sizes="57x57"
-    href="assets/img/favicons/apple-icon-57x57.png"
-  />
-  <link
-    rel="apple-touch-icon"
-    sizes="60x60"
-    href="assets/img/favicons/apple-icon-60x60.png"
-  />
-  <link
-    rel="apple-touch-icon"
-    sizes="72x72"
-    href="assets/img/favicons/apple-icon-72x72.png"
-  />
-  <link
-    rel="apple-touch-icon"
-    sizes="76x76"
-    href="assets/img/favicons/apple-icon-76x76.png"
-  />
-  <link
-    rel="apple-touch-icon"
-    sizes="114x114"
-    href="assets/img/favicons/apple-icon-114x114.png"
-  />
-  <link
-    rel="apple-touch-icon"
-    sizes="120x120"
-    href="assets/img/favicons/apple-icon-120x120.png"
-  />
-  <link
-    rel="apple-touch-icon"
-    sizes="144x144"
-    href="assets/img/favicons/apple-icon-144x144.png"
-  />
-  <link
-    rel="apple-touch-icon"
-    sizes="152x152"
-    href="assets/img/favicons/apple-icon-152x152.png"
-  />
-  <link
-    rel="apple-touch-icon"
-    sizes="180x180"
-    href="assets/img/favicons/apple-icon-180x180.png"
-  />
-  <link
-    rel="icon"
-    type="image/png"
-    sizes="192x192"
-    href="assets/img/favicons/android-icon-192x192.png"
-  />
-  <link
-    rel="icon"
-    type="image/png"
-    sizes="32x32"
-    href="assets/img/favicons/favicon-32x32.png"
-  />
-  <link
-    rel="icon"
-    type="image/png"
-    sizes="96x96"
-    href="assets/img/favicons/favicon-96x96.png"
-  />
-  <link
-    rel="icon"
-    type="image/png"
-    sizes="16x16"
-    href="assets/img/favicons/favicon-16x16.png"
-  />
-  <link rel="manifest" href="assets/img/favicons/manifest.json" />
-  <meta name="msapplication-TileColor" content="#ffffff" />
-  <meta
-    name="msapplication-TileImage"
-    content="assets/img/favicons/ms-icon-144x144.png"
-  />
-  <meta name="theme-color" content="#ffffff" />
-  {/*==============================
-	  Google Fonts
-	============================== */}
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700;800;900&family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap"
-    rel="stylesheet"
-  />
-  {/*==============================
-	    All CSS File
-	============================== */}
-  {/* Bootstrap */}
-  <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-  {/* Fontawesome Icon */}
-  <link rel="stylesheet" href="assets/css/fontawesome.min.css" />
-  {/* Magnific Popup */}
-  <link rel="stylesheet" href="assets/css/magnific-popup.min.css" />
-  {/* Slick Slider */}
-  <link rel="stylesheet" href="assets/css/slick.min.css" />
-  {/* Theme Custom CSS */}
-  <link rel="stylesheet" href="assets/css/style.css" />
-  {/*[if lte IE 9]>
-    	<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-  	<![endif]*/}
-  {/*********************************
-   		Code Start From Here 
-	******************************** */}
-  {/*==============================
-     Preloader
-  ==============================*/}
-  {/* <div className="preloader ">
-    <button className="th-btn preloaderCls">Cancel Preloader </button>
-    <div className="preloader-inner">
-      <span className="loader" />
-    </div>
-  </div>
-  <div className="popup-subscribe-area">
-    <div className="container">
-      <div className="popup-subscribe">
-        <div className="box-img">
-          <img src="assets/img/normal/popup_subscribe.jpg" alt="Image" />
-        </div>
-        <div className="box-content">
-          <button className="simple-icon popupClose">
-            <i className="fal fa-times" />
-          </button>
-          <div className="widget newsletter-widget footer-widget">
-            <h3 className="widget_title">Subscribe</h3>
-            <p className="footer-text">
-              Sign up to get update about us. Don't be hasitate your email is
-              safe.
-            </p>
-            <form className="newsletter-form">
-              <input
-                className="form-control"
-                type="email"
-                placeholder="Enter Email"
-                required=""
-              />
-              <button type="submit" className="icon-btn">
-                <i className="fa-solid fa-paper-plane" />
-              </button>
-            </form>
-            <div className="mt-30">
-              <input type="checkbox" id="destroyPopup" />
-              <label htmlFor="destroyPopup">
-                I don't want to see this popup again.
-              </label>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> */}
-  {/*==============================
-    Sidemenu
-============================== */}
+
   <div className="sidemenu-wrapper cart-side-menu d-none d-lg-block ">
     <div className="sidemenu-content">
       <button className="closeButton sideMenuCls">
@@ -322,14 +156,14 @@ const Contact = () => {
               <img
                 className="light-img"
                 src={logoFooterBlack}
-                alt="Tnews"
+                alt="Ems Media"
               />
             </a>
             <a href="home-newspaper.html">
               <img
                 className="dark-img"
                 src={logoFooter}
-                alt="Tnews"
+                alt="Ems Media"
               />
             </a>
           </div>
@@ -498,7 +332,7 @@ const Contact = () => {
       </button>
       <div className="mobile-logo">
         <a href="home-newspaper.html">
-          <img src={logosvg} alt="Tnews" />
+          <img src={logosvg} alt="Ems Media" />
         </a>
       </div>
       <div className="th-mobile-menu">
@@ -689,14 +523,14 @@ const Contact = () => {
                   <img
                     className="light-img"
                     src={logosvg}
-                    alt="Tnews"
+                    alt="Ems Media"
                   />
                 </a>
                 <a href="home-newspaper.html">
                   <img
                     className="dark-img"
                     src={logwhite}
-                    alt="Tnews"
+                    alt="Ems Media"
                   />
                 </a>
               </div>
@@ -729,7 +563,7 @@ const Contact = () => {
             <div className="col-auto d-lg-none d-block">
               <div className="header-logo">
                 <a href="home-newspaper.html">
-                  <img src={logwhite} alt="Tnews" />
+                  <img src={logwhite} alt="Ems Media" />
                 </a>
               </div>
             </div>
@@ -1043,7 +877,7 @@ Contact Area
               <div className="th-widget-about">
                 <div className="about-logo">
                   <a href="home-newspaper.html">
-                    <img src={logoFooter} alt="Tnews" />
+                    <img src={logoFooter} alt="Ems Media" />
                   </a>
                 </div>
                 <p className="about-text">
@@ -1176,7 +1010,7 @@ Contact Area
           <div className="col-lg-5">
             <p className="copyright-text">
               Copyright <i className="fal fa-copyright" /> 2023{" "}
-              <a href="home-newspaper.html">Tnews</a>. All Rights Reserved.
+              <a href="home-newspaper.html">Ems Media</a>. All Rights Reserved.
             </p>
           </div>
           <div className="col-lg-auto ms-auto d-none d-lg-block">

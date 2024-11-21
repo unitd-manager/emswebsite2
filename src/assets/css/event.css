@@ -321,5 +321,49 @@
     height: auto;
   }
   
+  .sidemenu-wrapper {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Hidden by default */
+    width: 300px;
+    height: 100%;
+    background: #fff;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    z-index: 1000;
+  }
+  
+  .sidemenu-wrapper.open {
+    right: 0; /* Visible when 'open' class is added */
+  }
+  
+  .closeButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .cartToggler {
+    position: relative;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .cartToggler .badge {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background: red;
+    color: #fff;
+    border-radius: 50%;
+    padding: 5px 8px;
+    font-size: 12px;
+  }
   
     

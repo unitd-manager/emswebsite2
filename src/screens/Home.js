@@ -35,22 +35,37 @@ import '../assets/css/event.css'
 const Home = () => {
 
   const [magazine, setMagazine] = useState([]);
+  const [magazineRead, setMagazineRead] = useState([]);
 
   useEffect(() => {
     getMagazine();
+    getMagazineMostRead();
   }, []);
 
   const getMagazine = () => {
     api
       .get("/content/getMagazine")
       .then((res) => {
-        const firstTenRecords = res.data.data.slice(0, 10); // Extract the first 10 records
+        const firstTenRecords = res.data.data.slice(0, 9); // Extract the first 10 records
         setMagazine(firstTenRecords);
       })
       .catch((err) => {
         console.error("Error fetching magazine data", err);
       });
   };
+
+  const getMagazineMostRead = () => {
+    api
+      .get("/content/getMagazine")
+      .then((res) => {
+        const firstTenRecords = res.data.data.slice(0, 5); // Extract the first 10 records
+        setMagazineRead(firstTenRecords);
+      })
+      .catch((err) => {
+        console.error("Error fetching magazine data", err);
+      });
+  };
+  
   
 
    
@@ -92,19 +107,6 @@ const Home = () => {
       });
   };
 
-  const [marquee, setMarquee] = useState([]);
-  const getMarquee = () => {
-    api
-      .get('/setting/getSettingsForQuizInfoText')
-      .then(res => {
-        setMarquee(res.data.data);
-      })
-      .catch(error => {
-        console.log("error",error)
-      });
-
-  };
-  const marqueeValue =marquee && marquee[0]?.value
 
   const [events, setEvents] = useState([]);
 
@@ -146,13 +148,8 @@ const getHomeProducts = () => {
 
 
   useEffect(() => {
-    // getBannerImages();
-    // getVideoUrls();
     getBanners();
-    getMarquee();
     getEvent ();
-
-    // getHomeLink();
     getHomeProducts();
   }, []);
 
@@ -237,14 +234,14 @@ const getHomeProducts = () => {
               <img
                 className="light-img"
                 src={logoFooterBlack}
-                alt="Tnews"
+                alt="Ems Media"
               />
             </a>
             <a href="home-newspaper.html">
               <img
                 className="dark-img"
                 src={logoFooter}
-                alt="Tnews"
+                alt="Ems Media"
               />
             </a>
           </div>
@@ -539,7 +536,7 @@ const getHomeProducts = () => {
       </button>
       <div className="mobile-logo">
         <a href="home-newspaper.html">
-          <img src={logosvg} alt="Tnews" />
+          <img src={logosvg} alt="Ems Media" />
         </a>
       </div>
       <div className="th-mobile-menu">
@@ -665,234 +662,6 @@ const getHomeProducts = () => {
       </button>
     </div>
   </div>
-  {/*==============================
-	Header Area
-==============================*/}
-  <header className="th-header header-layout5 dark-theme">
-    <div className="sticky-wrapper">
-      <div className="container">
-        <div className="row gx-0">
-          <div className="col-lg-2 d-none d-lg-inline-block">
-            <div className="header-logo">
-              <a href="home-newspaper.html">
-                <img src={logwhite} alt="Tnews" />
-              </a>
-            </div>
-          </div>
-          <div className="col-lg-10">
-            <div className="header-top">
-              <div className="row align-items-center">
-                <div className="col-xl-9">
-                  <div className="news-area">
-                    <div className="title">Ems News :</div>
-                    <div className="news-wrap">
-                <Marquee speed={50} gradient={false} pauseOnHover className="slick-marquee">
-                  <div className="col-auto">
-                    <a href="blog-details.html" className="breaking-news">
-                    {marqueeValue}
-                    </a>
-                  </div>
-                  <div className="col-auto">
-                    <a href="blog-details.html" className="breaking-news">
-                    {marqueeValue}
-                    </a>
-                  </div>
-                </Marquee>
-              </div>
-                  </div>
-                </div>
-                <div className="col-xl-3 text-end d-none d-xl-block">
-                  <div className="social-links">
-                    <span className="social-title">Follow Us :</span>
-                    <a href="https://www.facebook.com/">
-                      <i className="fab fa-facebook-f" />
-                    </a>
-                    <a href="https://www.twitter.com/">
-                      <i className="fab fa-twitter" />
-                    </a>
-                    <a href="https://www.linkedin.com/">
-                      <i className="fab fa-linkedin-in" />
-                    </a>
-                    <a href="https://www.instagram.com/">
-                      <i className="fab fa-instagram" />
-                    </a>
-                    <a href="https://www.youtube.com/">
-                      <i className="fab fa-youtube" />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* Main Menu Area */}
-            <div className="menu-area">
-              <div className="row align-items-center justify-content-between">
-                <div className="col-auto d-none d-xl-block">
-                  <div className="toggle-icon">
-                    <a href="#" className="simple-icon sideMenuToggler">
-                      <i className="far fa-bars" />
-                    </a>
-                  </div>
-                </div>
-                <div className="col-auto d-lg-none d-block">
-                  <div className="header-logo">
-                    <a href="home-newspaper.html">
-                      <img
-                        className="light-img"
-                        src={logosvg}
-                        alt="Tnews"
-                      />
-                    </a>
-                    <a href="home-newspaper.html">
-                      <img
-                        className="dark-img"
-                        src={logwhite}
-                        alt="Tnews"
-                      />
-                    </a>
-                  </div>
-                </div>
-                <div className="col-auto">
-                  <nav className="main-menu d-none d-lg-inline-block">
-                    <ul>
-                      <li className="menu-item-has-children">
-                        <Link  to ="/">Home</Link>
-                        
-                      </li>
-                      <li>
-                        <a href="about.html">About Us</a>
-                      </li>
-                      <li className="menu-item-has-children">
-                        <a href="#">Category</a>
-                        <ul className="sub-menu">
-                          <li>
-                            <a href="category.html">Category</a>
-                          </li>
-                          <li>
-                            <a href="blog-three-column.html">Three Column</a>
-                          </li>
-                          <li>
-                            <a href="blog-three-column-sidebar.html">
-                              Three Column Sidebar
-                            </a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li className="menu-item-has-children">
-                        <a href="#">Pages</a>
-                        <ul className="sub-menu">
-                          <li className="menu-item-has-children">
-                            <a href="#">Shop</a>
-                            <ul className="sub-menu">
-                              <li>
-                                <a href="shop.html">Shop</a>
-                              </li>
-                              <li>
-                                <a href="shop-details.html">Shop Details</a>
-                              </li>
-                              <li>
-                                <a href="cart.html">Cart Page</a>
-                              </li>
-                              <li>
-                                <a href="checkout.html">Checkout</a>
-                              </li>
-                              <li>
-                                <a href="wishlist.html">Wishlist</a>
-                              </li>
-                            </ul>
-                          </li>
-                          <li>
-                            <a href="team.html">Team</a>
-                          </li>
-                          <li>
-                            <a href="author.html">Author</a>
-                          </li>
-                          <li>
-                            <a href="error.html">Error Page</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li className="menu-item-has-children">
-                        <a href="#">Blog</a>
-                        <ul className="sub-menu">
-                          <li>
-                            <a href="blog.html">Blog Standard</a>
-                          </li>
-                          <li>
-                            <a href="blog-masonary.html">Blog Masonary</a>
-                          </li>
-                          <li>
-                            <a href="blog-list.html">Blog List</a>
-                          </li>
-                          <li>
-                            <a href="blog-details.html">Blog Details</a>
-                          </li>
-                          <li>
-                            <a href="blog-details-video.html">
-                              Blog Details Video
-                            </a>
-                          </li>
-                          <li>
-                            <a href="blog-details-audio.html">
-                              Blog Details Audio
-                            </a>
-                          </li>
-                          <li>
-                            <a href="blog-details-nosidebar.html">
-                              Blog Details Nosidebar
-                            </a>
-                          </li>
-                          <li>
-                            <a href="blog-details-full-img.html">
-                              Blog Details Full Image
-                            </a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li>
-                      <Link to="/contact">Contact</Link>
-                      </li>
-                    </ul>
-                  </nav>
-                </div>
-                <div className="col-auto">
-                  <div className="header-button">
-                    <button
-                      type="button"
-                      className="simple-icon searchBoxToggler"
-                    >
-                      <i className="far fa-search" />
-                    </button>
-                    <button
-                      type="button"
-                      className="simple-icon d-none d-lg-block cartToggler"
-                    >
-                      <i className="far fa-cart-shopping" />
-                      <span className="badge">5</span>
-                    </button>
-                    {/* <a href="/contact" className="th-btn style3">
-                      Contact Us
-                    </a> */}
-                    <Link to="/contact" className="th-btn style3">Contact</Link>
-                    <button
-                      type="button"
-                      className="th-menu-toggle d-block d-lg-none"
-                    >
-                      <i className="far fa-bars" />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
-  {/*==============================
-Hero Area
-==============================*/}
-
-
 
         <div className="bannerImage">
       {/* Main Banner Slider */}
@@ -944,7 +713,7 @@ Hero Area
     </div>
   
     {/* <div className="container space-top">
-    <a href="https://themeforest.net/user/themeholy/portfolio">
+    <a href="/">
       <img className="light-img" src={no1Banner} alt="ads" />
       <img className="dark-img" src="../assets/img/logo-footer.svg" alt="ads" />
     </a>
@@ -988,7 +757,7 @@ Hero Area
       </div>
       <div className="col-sm-auto mt-5 mt-sm-0">
         <a
-          href="https://www.youtube.com/watch?v=_sI_Ps7JSEk"
+          href="https://www.youtube.com/watch?v=lDxhMaNF7Qk"
           className="play-btn style2 popup-video"
         >
           <i className="fas fa-play" />
@@ -1001,7 +770,7 @@ Hero Area
 
 <section class="space">
         <div class="container">
-        <h2 className="sec-title has-line">About</h2>
+        <h2 className="sec-title has-line">எங்களைப் பற்றி</h2>
             <div class="row">
                 <div class="col-xl-3">
                     <div class="row gy-4">
@@ -1306,7 +1075,7 @@ Hero Area
         <div className="sidebar-area">
           <div className="widget mb-30">
             <div className="widget-ads">
-              <a href="https://themeforest.net/user/themeholy/portfolio">
+              <a href="/">
                 <img
                   className="w-100"
                   src={college2}
@@ -1317,7 +1086,7 @@ Hero Area
           </div>
           <div className="widget mb-30">
             <div className="widget-ads">
-              <a href="https://themeforest.net/user/themeholy/portfolio">
+              <a href="/">
                 <img
                   className="w-100"
                   src={collegeMain}
@@ -1328,7 +1097,7 @@ Hero Area
           </div>
           <div className="widget mb-30">
             <div className="widget-ads">
-              <a href="https://themeforest.net/user/themeholy/portfolio">
+              <a href="/">
                 <img
                   className="w-100"
                   src={college3}
@@ -1428,6 +1197,12 @@ Hero Area
                 {item.title}
               </a>
             </h3>
+            <div >
+              <a href="blog.html">
+                Rs:
+                     <span style={{color:'green',marginLeft:5,}}>{item.price}</span>
+              </a>
+              </div>
             <div className="blog-meta">
               <a href="blog.html">
                 <i className="fal fa-calendar-days" />
@@ -1569,6 +1344,11 @@ Blog Area
                           <i className="fal fa-calendar-days" /> {blog.date}
                         </a>
                       </div>
+                      <div className="blog-meta" style={{marginTop:10}}>
+                      <Link to ="/" className="th-btn style2">
+                        Read More <i className="fas fa-arrow-up-right ms-2" />
+                      </Link>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1576,7 +1356,7 @@ Blog Area
             </div>
 
             <div className="space">
-              <a href="https://themeforest.net/user/themeholy/portfolio">
+              <a href="/">
                 <img
                   className="w-100 light-img"
                   src={no2Banner}
@@ -1591,7 +1371,7 @@ Blog Area
             </div>
 
             {/* Featured News */}
-            <h2 className="sec-title has-line">Popular Magazines</h2>
+            {/* <h2 className="sec-title has-line">Popular Magazines</h2>
             <div className="mbn-24">
               {magazine.map((featuredBlog, index) => (
                 <div className="mb-4" key={index}>
@@ -1627,7 +1407,7 @@ Blog Area
                   </div>
                 </div>
               ))}
-            </div>
+            </div> */}
           </div>
 
           {/* Sidebar */}
@@ -1636,7 +1416,7 @@ Blog Area
               {/* Sidebar Ads */}
               <div className="widget">
                 <div className="widget-ads">
-                  <a href="https://themeforest.net/user/themeholy/portfolio">
+                  <a href="/">
                     <img
                       className="w-100 light-img"
                       src={about}
@@ -1655,7 +1435,7 @@ Blog Area
               <div className="widget">
                 <h2 className="sec-title fs-20 has-line">Most Read</h2>
                 <div className="row gy-4">
-                  {magazine.map((blog, index) => (
+                  {magazineRead.map((blog, index) => (
                     <div className="col-xl-12 col-md-6" key={index}>
                       <div className="blog-style2">
                         <div className="blog-img img-big">
@@ -1687,7 +1467,7 @@ Blog Area
               </div>
 
               {/* Newsletter */}
-              <div
+              {/* <div
                 className="widget newsletter-widget3"
                 data-bg-src="assets/img/bg/line_bg_1.png"
               >
@@ -1706,190 +1486,13 @@ Blog Area
                     <i className="fa-solid fa-paper-plane" />
                   </button>
                 </form>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
       </div>
     </section>
-  {/*==============================
-	Footer Area
-==============================*/}
-  <footer
-    className="footer-wrapper footer-layout1"
-    data-bg-src="assets/img/bg/footer_bg_1.png"
-  >
-    <div className="widget-area">
-      <div className="container">
-        <div className="row justify-content-between">
-          <div className="col-md-6 col-xl-3">
-            <div className="widget footer-widget">
-              <div className="th-widget-about">
-                <div className="about-logo">
-                  <a href="home-newspaper.html">
-                    <img src={logoFooter} alt="Tnews" />
-                  </a>
-                </div>
-                <p className="about-text">
-                  Magazines cover a wide subjects, including not limited to
-                  fashion, lifestyle, health, politics, business, Entertainment,
-                  sports, science,
-                </p>
-                <div className="th-social style-black">
-                  <a href="https://www.facebook.com/">
-                    <i className="fab fa-facebook-f" />
-                  </a>
-                  <a href="https://www.twitter.com/">
-                    <i className="fab fa-twitter" />
-                  </a>
-                  <a href="https://www.linkedin.com/">
-                    <i className="fab fa-linkedin-in" />
-                  </a>
-                  <a href="https://www.whatsapp.com/">
-                    <i className="fab fa-whatsapp" />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-6 col-xl-auto">
-            <div className="widget widget_nav_menu footer-widget">
-              <h3 className="widget_title">Categories</h3>
-              <div className="menu-all-pages-container">
-                <ul className="menu">
-                  <li>
-                    <a href="blog.html">Political</a>
-                  </li>
-                  <li>
-                    <a href="blog.html">Business</a>
-                  </li>
-                  <li>
-                    <a href="blog.html">Health</a>
-                  </li>
-                  <li>
-                    <a href="blog.html">Technology</a>
-                  </li>
-                  <li>
-                    <a href="blog.html">Sports</a>
-                  </li>
-                  <li>
-                    <a href="blog.html">Entertainment</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-6 col-xl-auto">
-            <div className="widget widget_nav_menu footer-widget">
-              <h3 className="widget_title">Use links</h3>
-              <div className="menu-all-pages-container">
-                <ul className="menu">
-                  <li>
-                    <a href="home-newspaper.html">Home</a>
-                  </li>
-                  <li>
-                    <a href="about.html">About Us</a>
-                  </li>
-                  <li>
-                    <a href="authors.html">Authors</a>
-                  </li>
-                  <li>
-                    <a href="category.html">Category</a>
-                  </li>
-                  <li>
-                    <a href="shop.html">Shop</a>
-                  </li>
-                  <li>
-                  <Link to="/contact">Contact</Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-6 col-xl-auto">
-            <div className="widget footer-widget">
-              <h3 className="widget_title">Recent Posts</h3>
-              <div className="recent-post-wrap">
-                <div className="recent-post">
-                  <div className="media-img">
-                    <a href="blog-details.html">
-                      <img
-                        src="assets/img/blog/recent-post-2-1.jpg"
-                        alt="Blog Image"
-                      />
-                    </a>
-                  </div>
-                  <div className="media-body">
-                    <h4 className="post-title">
-                      <a className="hover-line" href="blog-details.html">
-                        Equality and justice for Every citizen
-                      </a>
-                    </h4>
-                    <div className="recent-post-meta">
-                      <a href="blog.html">
-                        <i className="fal fa-calendar-days" />
-                        21 June, 2023
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div className="recent-post">
-                  <div className="media-img">
-                    <a href="blog-details.html">
-                      <img
-                        src="assets/img/blog/recent-post-2-2.jpg"
-                        alt="Blog Image"
-                      />
-                    </a>
-                  </div>
-                  <div className="media-body">
-                    <h4 className="post-title">
-                      <a className="hover-line" href="blog-details.html">
-                        Key eyes on the latest update of technology
-                      </a>
-                    </h4>
-                    <div className="recent-post-meta">
-                      <a href="blog.html">
-                        <i className="fal fa-calendar-days" />
-                        22 June, 2023
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div className="copyright-wrap">
-      <div className="container">
-        <div className="row jusity-content-between align-items-center">
-          <div className="col-lg-5">
-            <p className="copyright-text">
-              Copyright <i className="fal fa-copyright" /> 2023{" "}
-              <Link to="/">EMS Media</Link>. All Rights Reserved.
-            </p>
-          </div>
-          <div className="col-lg-auto ms-auto d-none d-lg-block">
-            <div className="footer-links">
-              <ul>
-                <li>
-                  <a href="about.html">Privacy Policy</a>
-                </li>
-                <li>
-                  <a href="about.html">Terms &amp; Conditions</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
-  {/*********************************
-			Code End  Here 
-	******************************** */}
+ 
   {/* Scroll To Top */}
   <div className="scroll-top">
     <svg
