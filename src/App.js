@@ -61,7 +61,7 @@ import '../src/assets/sass/base/_variable.scss'
 
 // import '../src/assets/sass/reset/_mobilemenu.scss'
 // import '../src/assets/sass/reset/_slick-slider.scss'
-import "@fortawesome/fontawesome-free/css/all.min.css";
+// import "@fortawesome/fontawesome-free/css/all.min.css";
 
 import '../src/assets/sass/spacing/_margin.scss'
 import '../src/assets/sass/spacing/_padding.scss'

@@ -3,41 +3,52 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Navigation, Pagination } from "swiper/modules";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import api from "../constants/api";
 
-const stripHtmlTags = (htmlString) => {
-  const doc = new DOMParser().parseFromString(htmlString, "text/html");
-  return doc.body.textContent || "";
+// Function to extract YouTube video ID
+const extractYouTubeId = (url) => {
+  const match = url.match(
+    /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
+  );
+  return match ? match[1] : null;
 };
 
 const VideoPlaylist = () => {
-  const [videoData, setVideoUrls] = useState([]);
+  const [videoData, setVideoData] = useState([]); // Store video data for tabs
   const [activeIndex, setActiveIndex] = useState(0); // Track the active tab index
-  const [videos, setVideos] = useState([]); // Ensure the variable is plural for clarity
-
-  console.log('videos', videos);
+  const [loading, setLoading] = useState(true); // Track loading state
+  const [videos, setVideos] = useState([]); // Videos for the Swiper
+  const [modalVideo, setModalVideo] = useState(null); // Track video for the modal
 
   useEffect(() => {
-    const getVideoUrls = () => {
-      api
-        .post("/content/getVideoUrls")
-        .then((res) => {
-          const fetchedVideos = res.data.data || [];
-          setVideoUrls(fetchedVideos); // Set videoData
-          setVideos(fetchedVideos); // Set videos for slider
-          console.log("Fetched Videos:", fetchedVideos);
-        })
-        .catch((err) => {
-          console.error("Error fetching videos:", err);
-        });
-    };
-
-    getVideoUrls();
+    // Fetch video data from API
+    api
+      .post("/content/getVideoUrls")
+      .then((res) => {
+        const fetchedVideos = res.data.data || [];
+        setVideoData(fetchedVideos);
+        setVideos(fetchedVideos);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Error fetching videos:", err);
+        setLoading(false);
+      });
   }, []);
 
+  // Show loading spinner
+  if (loading) {
+    return <div className="spinner">Loading...</div>;
+  }
+
+  // Show error message if no videos are available
+  if (!loading && videoData.length === 0) {
+    return <div className="error-message">No videos available at the moment.</div>;
+  }
+
   return (
-    <div className="space dark-theme bg-title-dark">
+    <div className="space dark-theme bg-title-dark" style={{marginTop:100}}>
       <div className="container">
         <h2 className="sec-title has-line">Latest Video Playlist</h2>
         <div className="row">
@@ -51,7 +62,7 @@ const VideoPlaylist = () => {
                   isActive={index === activeIndex}
                   onClick={() => {
                     setActiveIndex(index);
-                    setVideos([video]); // Optionally set the active video if needed
+                    setVideos([video]); // Optionally set the active video
                   }}
                 />
               ))}
@@ -61,90 +72,110 @@ const VideoPlaylist = () => {
           {/* Slider on the Right */}
           <div className="col-xl-8 col-lg-10">
             <Swiper
-              modules={[Navigation, Pagination]}
+              modules={[Navigation, Pagination, Autoplay]}
+              autoplay={{ delay: 7000 }}
               navigation
               pagination={{ clickable: true }}
               spaceBetween={30}
               slidesPerView={1}
-              onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)} // Sync tab when slide changes
+              onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
               initialSlide={activeIndex}
             >
               {videos.map((video, index) => (
                 <SwiperSlide key={index}>
-                  <VideoCard video={video} />
+                  <VideoCard video={video} onPlay={() => setModalVideo(video)} />
                 </SwiperSlide>
               ))}
             </Swiper>
           </div>
         </div>
       </div>
+
+      {/* Modal for YouTube Video */}
+      {modalVideo && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <button className="modal-close" onClick={() => setModalVideo(null)}>
+              ×
+            </button>
+            <h3>{modalVideo.title || "Untitled Video"}</h3>
+            <div className="video-container">
+              {modalVideo.description && extractYouTubeId(modalVideo.description) ? (
+                <iframe
+                  width="100%"
+                  height="400"
+                  src={`https://www.youtube.com/embed/${extractYouTubeId(modalVideo.description)}`}
+                  title={modalVideo.title || "YouTube Video"}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              ) : (
+                <p>Invalid YouTube URL</p>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
 
-
+// Tab Button Component
 const TabButton = React.memo(({ video, isActive, onClick }) => (
   <div
     className={`tab-btn ${isActive ? "active" : ""}`}
-    onClick={onClick} // Trigger tab change on click
+    onClick={onClick}
+    role="tab"
+    aria-selected={isActive}
+ 
   >
     <div className="blog-style2">
       <div className="blog-img img-100">
         <img
           src={`https://emsmedia.net/storage/uploads/${video.file_name}`}
-          alt="blog image"
+          alt={video.title || "Video Thumbnail"}
         />
         <div className="icon">
           <i className="fal fa-waveform-lines" />
         </div>
-        <a
-          href={stripHtmlTags(video.description)}
-          className="play-btn popup-video"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <i className="fas fa-play" />
-        </a>
       </div>
       <div className="blog-content">
-        <a
+        {/* <a
           data-theme-color={video.categoryColor || "#000"}
           href="blog.html"
           className="category"
         >
           {video.category || "Unknown Category"}
-        </a>
+        </a> */}
         <h3 className="box-title-20">
           <a className="hover-line" href="blog-details.html">
             {video.title || "Untitled"}
           </a>
         </h3>
         <div className="blog-meta">
-          <a href="blog.html">
-            <i className="fal fa-calendar-days" />
-            {video.date || "Unknown Date"}
-          </a>
-        </div>
+         <a href="blog.html">
+        <i className="fal fa-calendar-days" />
+        {video.content_date ? new Date(video.content_date).toLocaleDateString('en-GB') : "Unknown Date"}
+      </a>
+</div>
+
       </div>
     </div>
   </div>
 ));
 
-const VideoCard = React.memo(({ video }) => (
-  <div className="blog-style8">
+// Video Card Component
+const VideoCard = React.memo(({ video, onPlay }) => (
+  <div className="blog-style8" >
     <div className="blog-img">
       <img
         src={`https://emsmedia.net/storage/uploads/${video.file_name}`}
-        alt="blog image"
+        alt={video.title || "Video Thumbnail"}
       />
-      <a
-        href={stripHtmlTags(video.description)}
-        className="play-btn popup-video"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <button className="play-btn" onClick={onPlay}>
         <i className="fas fa-play" />
-      </a>
+      </button>
     </div>
     <h3 className="box-title-30">
       <a className="hover-line" href="blog-details.html">
@@ -160,12 +191,12 @@ const VideoCard = React.memo(({ video }) => (
         {video.category || "Unknown Category"}
       </a>
       <a href="author.html">
-        <i className="far fa-user" /> By - Tnews
+        <i className="far fa-user" /> By - EMS Media
       </a>
       <a href="blog.html">
-        <i className="fal fa-calendar-days" />
-        {video.date || "Unknown Date"}
-      </a>
+    <i className="fal fa-calendar-days" />
+    {video.content_date ? new Date(video.content_date).toLocaleDateString('en-GB') : "Unknown Date"}
+  </a>
     </div>
   </div>
 ));

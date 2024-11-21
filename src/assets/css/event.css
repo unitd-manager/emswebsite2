@@ -105,6 +105,7 @@
 /* Background color for the whole banner container */
 .bannerImage {
     background-color: #5e5e5e;
+    height: 600px;
   }
   
   /* Main Slider Image */
@@ -245,4 +246,80 @@
     color: inherit;
     text-decoration: none;
   }
+  .blog-tab {
+    max-height: 600px; /* Set an appropriate height */
+    overflow-y: auto;  /* Enable vertical scrolling */
+    scrollbar-width: thin; /* Optional for thinner scrollbar */
+    scrollbar-color: #888 transparent; /* Optional for custom scrollbar colors */
+  }
+  
+  .blog-tab::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+  }
+  
+  .blog-tab::-webkit-scrollbar-thumb {
+    background: #888; /* Scrollbar thumb color */
+    border-radius: 4px; /* Rounded edges */
+  }
+  
+  .blog-tab::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Thumb color on hover */
+  }
+  @media (max-width: 768px) {
+    .col-xl-4, .col-lg-2 {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+    .col-xl-8, .col-lg-10 {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+  }
+  .tab-btn:focus {
+    outline: 2px solid #007bff;
+    outline-offset: 2px;
+  }
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    position: relative;
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .video-container {
+    margin-top: 20px;
+  }
+  
+  .video-player {
+    width: 100%;
+    height: auto;
+  }
+  
+  
     

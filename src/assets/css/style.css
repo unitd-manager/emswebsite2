@@ -1342,13 +1342,20 @@ textarea.is-invalid {
     opacity: 1;
     -webkit-transform: rotate(0deg);
             transform: rotate(0deg);
-    box-shadow: 0 0 0 -0.5em currentcolor, 0 0 0 -0.5em currentcolor, 0 0 0 -0.5em currentcolor, 0 0 0 -0.5em currentcolor, 0 0 0 -0.5em currentcolor, 0 0 0 -0.5em currentcolor, 0 0 0 -0.5em currentcolor, 0 0 0 -0.5em currentcolor;
+    box-shadow: 0 0 0 -0.5em currentcolor, 0 0 0 -0.5em currentcolor,
+ 0 0 0 -0.5em currentcolor, 0 0 0 -0.5em currentcolor,
+ 0 0 0 -0.5em currentcolor, 0 0 0 -0.5em currentcolor,
+ 0 0 0 -0.5em currentcolor, 0 0 0 -0.5em currentcolor;
   }
   100% {
     opacity: 0;
     -webkit-transform: rotate(180deg);
             transform: rotate(180deg);
-    box-shadow: -1em -1em 0 -0.35em currentcolor, 0 -1.5em 0 -0.35em currentcolor, 1em -1em 0 -0.35em currentcolor, -1.5em 0 0 -0.35em currentcolor, 1.5em -0 0 -0.35em currentcolor, -1em 1em 0 -0.35em currentcolor, 0 1.5em 0 -0.35em currentcolor, 1em 1em 0 -0.35em currentcolor;
+    box-shadow: -1em -1em 0 -0.35em currentcolor,
+ 0 -1.5em 0 -0.35em currentcolor, 1em -1em 0 -0.35em currentcolor,
+ -1.5em 0 0 -0.35em currentcolor, 1.5em -0 0 -0.35em currentcolor,
+ -1em 1em 0 -0.35em currentcolor, 0 1.5em 0 -0.35em currentcolor,
+ 1em 1em 0 -0.35em currentcolor;
   }
 }
 
@@ -1357,13 +1364,20 @@ textarea.is-invalid {
     opacity: 1;
     -webkit-transform: rotate(0deg);
             transform: rotate(0deg);
-    box-shadow: 0 0 0 -0.5em currentcolor, 0 0 0 -0.5em currentcolor, 0 0 0 -0.5em currentcolor, 0 0 0 -0.5em currentcolor, 0 0 0 -0.5em currentcolor, 0 0 0 -0.5em currentcolor, 0 0 0 -0.5em currentcolor, 0 0 0 -0.5em currentcolor;
+    box-shadow: 0 0 0 -0.5em currentcolor, 0 0 0 -0.5em currentcolor,
+ 0 0 0 -0.5em currentcolor, 0 0 0 -0.5em currentcolor,
+ 0 0 0 -0.5em currentcolor, 0 0 0 -0.5em currentcolor,
+ 0 0 0 -0.5em currentcolor, 0 0 0 -0.5em currentcolor;
   }
   100% {
     opacity: 0;
     -webkit-transform: rotate(180deg);
             transform: rotate(180deg);
-    box-shadow: -1em -1em 0 -0.35em currentcolor, 0 -1.5em 0 -0.35em currentcolor, 1em -1em 0 -0.35em currentcolor, -1.5em 0 0 -0.35em currentcolor, 1.5em -0 0 -0.35em currentcolor, -1em 1em 0 -0.35em currentcolor, 0 1.5em 0 -0.35em currentcolor, 1em 1em 0 -0.35em currentcolor;
+    box-shadow: -1em -1em 0 -0.35em currentcolor,
+ 0 -1.5em 0 -0.35em currentcolor, 1em -1em 0 -0.35em currentcolor,
+ -1.5em 0 0 -0.35em currentcolor, 1.5em -0 0 -0.35em currentcolor,
+ -1em 1em 0 -0.35em currentcolor, 0 1.5em 0 -0.35em currentcolor,
+ 1em 1em 0 -0.35em currentcolor;
   }
 }
 
@@ -6280,6 +6294,12 @@ blockquote.has-very-dark-gray-color {
   padding: 56.25% 0 0 0;
 }
 
+.blog5{
+  height: 301px;
+}
+.blog6{
+  height: 650px;
+}
 .blog-audio .vimeo-video iframe,
 .blog-img .vimeo-video iframe,
 .blog-video .vimeo-video iframe {
@@ -7918,7 +7938,7 @@ table.woocommerce-product-attributes {
   padding: 11px 39px;
   font-size: 18px;
   font-weight: 500;
-  border-radius: 15px ​15px 0;
+  border-radius: 15px  15px 0;
 }
 
 .login-tab button.nav-link.active {

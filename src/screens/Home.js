@@ -10,13 +10,49 @@ import logoFooter  from "../assets/img/logo-footer.svg"
 import logoFooterBlack from "../assets/img/logo-footer-black.svg"
 import logwhite from "../assets/img/logo Ems.png"
 import logosvg from "../assets/img/logo.svg"
-import emsbanner from "../assets/img/hero/hero_1_6.jpg"
+import emsbanner from "../assets/img/EmsBanner.jpg"
+import quran3 from "../assets/img/quran3.jpg"
+import magazine from "../assets/img/magazine.jpg"
+import about from "../assets/img/Vappa nayagam.png"
+import about1 from "../assets/img/thanthai.png"
+import about2 from "../assets/img/Appa.jpg"
+import about3 from "../assets/img/EmsIcon1.png"
+import about4 from "../assets/img/EmsIcon2.png"
+import bannerImage from "../assets/img/banner image.png"
+import no2Banner from "../assets/img/115497_2.png"
+import collegeMain1 from "../assets/img/collegemain1.png"
+import collegeMain2 from "../assets/img/collegemain2.png"
+import collegeMain from "../assets/img/collegemain.jpeg"
+import college1 from "../assets/img/college1.jpeg"
+import college2 from "../assets/img/college2.jpeg"
+import college3 from "../assets/img/college3.jpeg"
+import college4 from "../assets/img/college4.jpeg"
 
 import api from "../constants/api";
 import '../assets/css/event.css'
 
 
 const Home = () => {
+
+  const [magazine, setMagazine] = useState([]);
+
+  useEffect(() => {
+    getMagazine();
+  }, []);
+
+  const getMagazine = () => {
+    api
+      .get("/content/getMagazine")
+      .then((res) => {
+        const firstTenRecords = res.data.data.slice(0, 10); // Extract the first 10 records
+        setMagazine(firstTenRecords);
+      })
+      .catch((err) => {
+        console.error("Error fetching magazine data", err);
+      });
+  };
+  
+
    
 
   const mainSlider = useRef(null);
@@ -83,17 +119,31 @@ const Home = () => {
       });
   };
 
-    const getHomeProducts = () => {
-    api
-      .get("/product/getProductBookList")
-      .then((res) => {
-        setHomeProducts(res.data.data);
-        console.log("edit Line Item", res.data.data);
-      })
-      .catch(() => {
-        // Handle error
+  const allowedCategories = ["ஞான விளக்க நூற்கள்", "மௌலித் நூற்கள்", "கவிதை நூற்கள்", "அகராதி"];
+
+const getHomeProducts = () => {
+  api
+    .get("/product/getProductBookList")
+    .then((res) => {
+     
+      const filteredProducts = [];
+      
+      // Loop through allowedCategories and collect matching products
+      allowedCategories.forEach((category) => {
+        const matchingProducts = res.data.data.filter(
+          (item) => item.category_title?.trim() === category.trim()
+        );
+        filteredProducts.push(...matchingProducts);
       });
-  };
+
+      setHomeProducts(filteredProducts);
+      console.log("Filtered Products", filteredProducts);
+    })
+    .catch((error) => {
+      console.error("Error fetching products", error);
+    });
+};
+
 
   useEffect(() => {
     // getBannerImages();
@@ -108,141 +158,13 @@ const Home = () => {
 
   const [activeTab, setActiveTab] = useState('*');
 
-  // List of blog items
-  const blogItems = [
-    { id: 1, category: 'cat1', title: 'Your life, upgraded - gadgets Make it extraordinary', image: '../assets/img/logo.svg', date: '23 Mar, 2023' },
-    { id: 2, category: 'cat1', title: 'Gadgets Elevating lifes moments, effortlessly.', image: 'assets/img/blog/blog_3_3_1.jpg', date: '19 Mar, 2023' },
-    { id: 3, category: 'cat2', title: 'Efficiency meets style - embrace gadgets charm', image: 'assets/img/blog/blog_3_3_2.jpg', date: '20 Mar, 2023' },
-    { id: 4, category: 'cat2', title: 'Upgrade living, unleash gadget magic now.', image: 'assets/img/blog/blog_3_3_3.jpg', date: '29 Mar, 2023' },
-    { id: 5, category: 'cat3', title: 'Smart tech, brighter future embrace gadgets.', image: 'assets/img/blog/blog_3_3_4.jpg', date: '10 Mar, 2023' },
-    { id: 6, category: 'cat3', title: 'Tech wonders, where possibilities gadgets.', image: 'assets/img/blog/blog_3_3_5.jpg', date: '16 Mar, 2023' },
-    { id: 7, category: 'cat1', title: 'Where innovation meets everyday brilliance.', image: 'assets/img/blog/blog_3_3_6.jpg', date: '17 Mar, 2023' }
-  ];
+  const categories = [...new Set(homeProducts.map((item) => item.category_title))];
 
-  // Filter items based on activeTab
-  const filteredItems = activeTab === '*' ? blogItems : blogItems.filter(item => item.category === activeTab);
-
-
-  const newsData = [
-    {
-      id: 1,
-      title: "Tech on the go, laptop Redefines mobility.",
-      category: "Laptop",
-      image: "assets/img/blog/blog_5_2_21.jpg",
-      date: "27 Mar, 2023",
-    },
-    {
-      id: 2,
-      title: "Tech brilliance, where Possibilities unfold.",
-      category: "Tech",
-      image: "assets/img/blog/blog_5_2_22.jpg",
-      date: "23 Mar, 2023",
-    },
-    {
-      id: 3,
-      title: "Elevate life, redefine Human potential.",
-      category: "VR Glass",
-      image: "assets/img/blog/blog_5_2_23.jpg",
-      date: "11 Mar, 2023",
-    },
-    {
-      id: 4,
-      title: "Gadgets: Simplify life, elevate your experience.",
-      category: "Camera",
-      image: "assets/img/blog/blog_5_2_24.jpg",
-      date: "19 Mar, 2023",
-    },
-    {
-      id: 5,
-      title: "New gadget can unblock some of your future.",
-      category: "Gadget",
-      image: "assets/img/blog/blog_5_2_25.jpg",
-      date: "27 Mar, 2023",
-    },
-  ];
-
-  const videoData = [
-    {
-      imgSrc: "assets/img/blog/blog_3_9.jpg",
-      videoUrl: "https://www.youtube.com/watch?v=_sI_Ps7JSEk",
-      category: "Animals",
-      categoryColor: "#019D9E",
-      title: "Cat-tastic updates, keeping you feline fine",
-      date: "30 Mar, 2023",
-    },
-    {
-      imgSrc: "assets/img/blog/blog_3_10.jpg",
-      videoUrl: "https://www.youtube.com/watch?v=_sI_Ps7JSEk",
-      category: "Health",
-      categoryColor: "#00D084",
-      title: "Holistic Living: Balancing Mind, Body, and Soul",
-      date: "27 Mar, 2023",
-    },
-    {
-      imgSrc: "assets/img/blog/blog_3_11.jpg",
-      videoUrl: "https://www.youtube.com/watch?v=_sI_Ps7JSEk",
-      category: "Fitness",
-      categoryColor: "#FF1D50",
-      title: "Sweat and Success: Tales of Dedication in Fitness",
-      date: "24 Mar, 2023",
-    },
-    {
-      imgSrc: "assets/img/blog/blog_3_12.jpg",
-      videoUrl: "https://www.youtube.com/watch?v=_sI_Ps7JSEk",
-      category: "Technology",
-      categoryColor: "#007BFF",
-      title: "Tech Horizons: Navigating the Digital Landscape",
-      date: "18 Mar, 2023",
-    },
-  ];
-
-  const settings1 = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 4000,
-    spacing: 10, // Adjust the spacing value as needed
-    responsive: [
-      {
-        breakpoint: 1140,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1,
-        },
-      },
-      
-    ],
-  };
-  // const bannersettings = {
-  //   dots: true,
-  //   speed: 500,
-  //   slidesToShow: 1, // Display three slides at a time
-  //   slidesToScroll: 1, // Scroll one slide at a time
-  //   autoplay: true,
-  //   responsive: [
-  //     {
-  //       breakpoint: 1140,
-  //       settings: {
-  //         slidesToShow: 1,
-  //       },
-  //     },
-  //     {
-  //       breakpoint: 768,
-  //       settings: {
-  //         slidesToShow: 1,
-  //       },
-  //     },
-  //   ],
-  // };
-
+  // Filter items based on the active tab
+  const filteredItems =
+    activeTab === "*"
+      ? homeProducts
+      : homeProducts.filter((item) => item.category_title === activeTab);
 
   const bannersettings = {
     dots: true,
@@ -354,7 +276,7 @@ const Home = () => {
             <div className="media-img">
               <a href="blog-details.html">
                 <img
-                  src="assets/img/blog/recent-post-1-1.jpg"
+                  src={emsbanner}
                   alt="Blog Image"
                 />
               </a>
@@ -772,17 +694,7 @@ const Home = () => {
                   </div>
                   <div className="col-auto">
                     <a href="blog-details.html" className="breaking-news">
-                      From health to fashion, lifestyle news curated.
-                    </a>
-                  </div>
-                  <div className="col-auto">
-                    <a href="blog-details.html" className="breaking-news">
-                      Sun, sand, and luxury at our resort.
-                    </a>
-                  </div>
-                  <div className="col-auto">
-                    <a href="blog-details.html" className="breaking-news">
-                      Relaxation redefined, your beach resort sanctuary.
+                    {marqueeValue}
                     </a>
                   </div>
                 </Marquee>
@@ -843,24 +755,8 @@ const Home = () => {
                   <nav className="main-menu d-none d-lg-inline-block">
                     <ul>
                       <li className="menu-item-has-children">
-                        <a href="home-newspaper.html">Home</a>
-                        <ul className="sub-menu">
-                          <li>
-                            <a href="home-newspaper.html">Home Newspaper</a>
-                          </li>
-                          <li>
-                            <a href="home-magazine.html">Home Magazine</a>
-                          </li>
-                          <li>
-                            <a href="home-sports.html">Home Sports</a>
-                          </li>
-                          <li>
-                            <a href="home-movie.html">Home Movie</a>
-                          </li>
-                          <li>
-                            <a href="home-gadget.html">Home Gadget</a>
-                          </li>
-                        </ul>
+                        <Link  to ="/">Home</Link>
+                        
                       </li>
                       <li>
                         <a href="about.html">About Us</a>
@@ -1047,56 +943,507 @@ Hero Area
       </Slider>
     </div>
   
-    <div className="container space-top">
+    {/* <div className="container space-top">
     <a href="https://themeforest.net/user/themeholy/portfolio">
-      <img className="light-img" src="../assets/img/logo-footer.svg" alt="ads" />
+      <img className="light-img" src={no1Banner} alt="ads" />
       <img className="dark-img" src="../assets/img/logo-footer.svg" alt="ads" />
     </a>
-  </div>
+  </div> */}
 
-  <section
-    className="bg-fixed dark-theme"
-    data-bg-src="assets/img/blog/blog_full_1.jpg"
-    data-overlay="black"
-    data-opacity={7}
-  >
-    <div className="container">
-      <div className="blog-bg-style1 row">
-        <div className="col-md-9 col-sm">
-          <a data-theme-color="#6234AC" href="blog.html" className="category">
-            Technology
+<section
+  className="bg-fixed dark-theme"
+  data-bg-src="../assets/img/logo-footer-black.svg"
+  data-overlay="black"
+  data-opacity={7}
+  style={{ marginTop: 100 }}
+>
+  <div className="container">
+    <div className="blog-bg-style1 row">
+      <div className="col-md-9 col-sm">
+     
+        <img
+          src={bannerImage}
+          alt="Blog Title Image"
+          style={{ width: "25%", maxHeight: "250px", objectFit: "cover", marginBottom: "20px" }}
+        />
+         <a data-theme-color="#6234AC" href="blog.html" className="category"  style={{ marginLeft: "20px" }}>
+        வாப்பா நாயகம்</a>
+         <h3 className="box-title-20">
+          <a className="hover-line" href="blog-details.html">
+          என்று அனைவராலும் அன்போடு அழைக்கப்படும் அஸ்ஸெய்யித் கலீல் அவ்ன் மௌலானா 
+          அவர்கள் அத்தரிகத்துல் ஹக்கிகத்துல் காதிரியா தரிக்காவின் ஆன்மீக தலைவராவார்கள்.
           </a>
-          <h3 className="box-title-50">
-            <a className="hover-line" href="blog-details.html">
-              From vision to reality, technology Pioneers progress
-            </a>
-          </h3>
-          <div className="blog-meta">
-            <a href="author.html">
-              <i className="far fa-user" />
-              By - Tnews
-            </a>
-            <a href="blog.html">
-              <i className="fal fa-calendar-days" />
-              20 Mar, 2023
-            </a>
+        </h3>
+       
+        <div className="blog-meta">
+          <a href="author.html">
+          குதுபுல் அக்தாப், சாஹிபுல் வக்த், ஷ‌ம்ஸுல் வுஜூத், அஷ்ஷெய்கு ஜமாலிய்யா 
+          அஸ்ஸய்யித் கலீல் அவ்ன் மௌலானா அல்ஹஸனிய்யுல் ஹுஸைனிய்யுல் ஹாஷிமிய் நாயகம்
+          </a>
+          {/* <a href="blog.html">
+            <i className="fal fa-calendar-days" />
+            20 Mar, 2023
+          </a> */}
+        </div>
+      </div>
+      <div className="col-sm-auto mt-5 mt-sm-0">
+        <a
+          href="https://www.youtube.com/watch?v=_sI_Ps7JSEk"
+          className="play-btn style2 popup-video"
+        >
+          <i className="fas fa-play" />
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="space">
+        <div class="container">
+        <h2 className="sec-title has-line">About</h2>
+            <div class="row">
+                <div class="col-xl-3">
+                    <div class="row gy-4">
+                        <div class="col-xl-12 col-sm-6 border-blog dark-theme img-overlay2">
+                            <div class="blog-style3">
+                                <div class="blog-img blog5">
+                                    <img src={about2} alt="blog image"/>
+                                </div>
+                                <div class="blog-content">
+                                    <a data-theme-color="#00D084" style={{backgroundColor:'#00D084'}} href="blog.html" class="category">அப்பா நாயகம்</a>
+                                    <h3 class="box-title-20"><a class="hover-line" href="blog-details.html">யாஸீன் மௌலானா நாயகம் அவர்களின் தவமிகு தந்தையார்</a></h3>
+                                    <div class="blog-meta">
+                                        <a href="author.html"><i class="far fa-user"></i>By - EMS Media</a>
+                                        {/* <a href="blog.html"><i class="fal fa-calendar-days"></i>13 Mar, 2023</a> */}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-12 col-sm-6 border-blog dark-theme img-overlay2">
+                            <div class="blog-style3">
+                                <div class="blog-img blog5">
+                                    <img src={about1} alt="blog image"/>
+                                </div>
+                                <div class="blog-content">
+                                    <a data-theme-color="#4E4BD0" style={{backgroundColor:'#4E4BD0'}}  href="blog.html" class="category">தந்தை நாயகம்</a>
+                                    <h3 class="box-title-20"><a class="hover-line" href="blog-details.html">ஜமாலிய்யா அஸ்ஸெய்யித் யாஸீன் மௌலானா </a></h3>
+                                    <div class="blog-meta">
+                                        <a href="author.html"><i class="far fa-user"></i>By - EMS Media</a>
+                                        {/* <a href="blog.html"><i class="fal fa-calendar-days"></i>10 Mar, 2023</a> */}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 mt-4 mt-xl-0">
+                    <div class="dark-theme img-overlay2">
+                        <div class="blog-style3">
+                            <div class="blog-img blog6">
+                                <img src={about} alt="blog image"/>
+                            </div>
+                            <div class="blog-content">
+                                <a data-theme-color="#FF9500" style={{backgroundColor:'#FF9500'}} href="blog.html" class="category">வாப்பா நாயகம்</a>
+                                <h3 class="box-title-30"><a class="hover-line" href="blog-details.html">அஸ்ஸெய்யித் கலீல் அவ்ன் மௌலானா</a></h3>
+                                <div class="blog-meta">
+                                    <a href="author.html"><i class="far fa-user"></i>By - EMS Media</a>
+                                    {/* <a href="blog.html"><i class="fal fa-calendar-days"></i>10 Mar, 2023</a> */}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 mt-35 mt-xl-0">
+                    <div class="nav tab-menu indicator-active" role="tablist">
+                        <button class="tab-btn" type="button" style={{backgroundColor:'#00D084',fontSize:'25px'}}>கொள்கைகள்</button>
+                        {/* <button class="tab-btn" type="button" style={{color:'red'}} >Read More</button> */}
+                    </div>
+                    
+                    <div class="tab-content">
+                      
+                        <div class="tab-pane fade show active" id="nav-one" role="tabpanel" aria-labelledby="nav-one-tab">
+                            <div class="row gy-4">
+                                <div class="col-xl-12 col-md-6 border-blog">
+                                    <div class="blog-style2">
+                                        <div class="blog-img">
+                                            <img src={about3} alt="blog image"/>
+                                        </div>
+                                        <div class="blog-content">
+                                            <a data-theme-color="#FF9500" href="blog.html" class="category">1</a>
+                                            {/* <h3 class="box-title-18"><a class="hover-line" href="blog-details.html">பொது நல சேவைப் புரிதல்.</a></h3> */}
+                                            <div class="blog-meta">
+                                                <a href="blog.html">பொது நல சேவைப் புரிதல்.</a>
+                                                
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-12 col-md-6 border-blog">
+                                    <div class="blog-style2">
+                                        <div class="blog-img">
+                                            <img src={bannerImage}  alt="blog image"/>
+                                        </div>
+                                        <div class="blog-content">
+                                            <a data-theme-color="#007BFF" href="blog.html" class="category">2</a>
+                                            {/* <h3 class="box-title-18"><a class="hover-line" href="blog-details.html">மெய்ஞ்ஞான விளக்கம் நல்கி இறைவனை அறிய வழிக் காட்டுதல்.</a></h3> */}
+                                            <div class="blog-meta">
+                                                <a href="blog.html">மெய்ஞ்ஞான விளக்கம் நல்கி இறைவனை அறிய வழிக் காட்டுதல்.</a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-12 col-md-6 border-blog">
+                                    <div class="blog-style2">
+                                        <div class="blog-img">
+                                            <img src={about4}  alt="blog image"/>
+                                        </div>
+                                        <div class="blog-content">
+                                            <a data-theme-color="#00D084" href="blog.html" class="category">3</a>
+                                            {/* <h3 class="box-title-18"><a class="hover-line" href="blog-details.html">மெய்ஞ்ஞான நூல்கள் வெளியிடல்.</a></h3> */}
+                                            <div class="blog-meta">
+                                                <a href="blog.html">மெய்ஞ்ஞான நூல்கள் வெளியிடல்.</a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-12 col-md-6 border-blog">
+                                    <div class="blog-style2">
+                                        <div class="blog-img">
+                                            <img src={bannerImage}  alt="blog image"/>
+                                        </div>
+                                        <div class="blog-content">
+                                            <a data-theme-color="#4E4BD0" href="blog.html" class="category">4</a>
+                                            {/* <h3 class="box-title-18"><a class="hover-line" href="blog-details.html">Score big with the Latest sports news.</a></h3> */}
+                                            <div class="blog-meta">
+                                                <a href="blog.html">நாட்டுப் பற்றுடன் வாழ உதவுதல்.</a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <a href="#" className="th-btn style3">
+                                 Read More <i className="fas fa-arrow-up-right ms-2" />
+                                   </a>
+                                  </div>
+                                  </div>
+                      
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+ 
+
+<section className="space">
+  <div className="container">
+    <div className="row">
+      <div className="col-xl-9">
+        <div className="row align-items-center">
+          <div className="col">
+            <h2 className="sec-title has-line">கல்வி</h2>
+          </div>
+          
+        </div>
+        <div className="filter-active">
+          <div className="border-blog2 filter-item cat1">
+            <div className="blog-style4">
+              <div className="blog-img">
+                <img src={collegeMain1} alt="blog image" />
+              </div>
+              <div className="blog-content">
+                <a
+                  data-theme-color="#007BFF"
+                  href="blog.html"
+                  className="category"
+                  style={{backgroundColor:"#007BFF"}}
+                >
+                About Us
+                </a>
+                <h3 className="box-title-24">
+                  <a className="hover-line" href="blog-details.html">
+                  This Institution founded by His Holiness Jamaliya Syed Khaleel Awn Mowlana
+                  Al Hassani wal Hussaini Ai Hashimi from the Progeny of Prophet Muhammad(PBUH)
+                  </a>
+                </h3>
+                {/* <p className="blog-text">
+                This Institution founded by His Holiness Jamaliya Syed Khaleel Awn Mowlana
+                  Al Hassani wal Hussaini Ai Hashimi from the Progeny of Prophet Muhammad(PBUH)
+                </p> */}
+                <div className="blog-meta">
+                  <a href="author.html">
+                    <i className="far fa-user" />
+                    By - EMS Media
+                  </a>
+                </div>
+                <a href="#" className="th-btn style2">
+                    Read More
+                 </a>
+              </div>
+            </div>
+          </div>
+          <div className="border-blog2 filter-item cat4">
+            <div className="blog-style4">
+              <div className="blog-img">
+                <img src={college1} alt="blog image" />
+              </div>
+              <div className="blog-content">
+                <a
+                  data-theme-color="#59C2D6"
+                  href="blog.html"
+                  className="category"
+                  style={{backgroundColor:"#59C2D6"}}
+                >
+                  Vision
+                </a>
+                <h3 className="box-title-24">
+                  <a className="hover-line" href="blog-details.html">
+                  To develop into a full fledged University
+                  </a>
+                </h3>
+                {/* <p className="blog-text">
+                  Quisque eget ex rutrum, consequat odio in, tempor purus.
+                  Mauris neque quam, Tellentesque sit amet rutrum ut, gravida
+                  sit amet felis.
+                </p> */}
+                <div className="blog-meta">
+                  <a href="author.html">
+                    <i className="far fa-user" />
+                    By - EMS Media
+                  </a>
+                </div>
+                <a href="#" className="th-btn style2">
+                    Read More
+                 </a>
+              </div>
+            </div>
+          </div>
+          <div className="border-blog2 filter-item cat2">
+            <div className="blog-style4">
+              <div className="blog-img">
+                <img src={collegeMain2} alt="blog image" />
+              </div>
+              <div className="blog-content">
+                <a
+                  data-theme-color="#FF9500"
+                  href="blog.html"
+                  className="category"
+                  style={{backgroundColor:"#FF9500"}}
+                >
+                Objectives
+                </a>
+                <h3 className="box-title-24">
+                  <a className="hover-line" href="blog-details.html">
+                  Our Founder wished to form a younger generation who can be self dependant
+                 and can serve their community / fellow human beings.
+                  </a>
+                </h3>
+                {/* <p className="blog-text">
+                  Quisque eget ex rutrum, consequat odio in, tempor purus.
+                  Mauris neque quam, Tellentesque sit amet rutrum ut, gravida
+                  sit amet felis.
+                </p> */}
+                <div className="blog-meta">
+                  <a href="author.html">
+                    <i className="far fa-user" />
+                    By - EMS Media
+                  </a>
+                </div>
+                <a href="#" className="th-btn style2">
+                    Read More
+                 </a>
+              </div>
+            </div>
+          </div>
+          <div className="border-blog2 filter-item cat1">
+            <div className="blog-style4">
+              <div className="blog-img">
+                <img src={college4} alt="blog image" />
+              </div>
+              <div className="blog-content">
+                <a
+                  data-theme-color="#007BFF"
+                  href="blog.html"
+                  className="category"
+                  style={{backgroundColor:"#007BFF"}}
+                >
+                    Courses Offered
+                </a>
+                <h3 className="box-title-24">
+                  <a className="hover-line" href="blog-details.html">
+                  To Provide Islamic and formal general eduaction
+                  with strong focus on technical trainings
+                  </a>
+                </h3>
+                {/* <p className="blog-text">
+                  Quisque eget ex rutrum, consequat odio in, tempor purus.
+                  Mauris neque quam, Tellentesque sit amet rutrum ut, gravida
+                  sit amet felis.
+                </p> */}
+                <div className="blog-meta">
+                  <a href="author.html">
+                    <i className="far fa-user" />
+                    By - EMS Media
+                  </a>
+                </div>
+                <a href="#" className="th-btn style2">
+                    Read More
+                 </a>
+              </div>
+            </div>
           </div>
         </div>
-        <div className="col-sm-auto mt-5 mt-sm-0">
-          <a
-            href="https://www.youtube.com/watch?v=_sI_Ps7JSEk"
-            className="play-btn style2 popup-video"
+      </div>
+      <div className="col-xl-3 mt-35 mt-xl-0 mb-10 sidebar-wrap">
+        <div className="sidebar-area">
+          <div className="widget mb-30">
+            <div className="widget-ads">
+              <a href="https://themeforest.net/user/themeholy/portfolio">
+                <img
+                  className="w-100"
+                  src={college2}
+                  alt="ads"
+                />
+              </a>
+            </div>
+          </div>
+          <div className="widget mb-30">
+            <div className="widget-ads">
+              <a href="https://themeforest.net/user/themeholy/portfolio">
+                <img
+                  className="w-100"
+                  src={collegeMain}
+                  alt="ads"
+                />
+              </a>
+            </div>
+          </div>
+          <div className="widget mb-30">
+            <div className="widget-ads">
+              <a href="https://themeforest.net/user/themeholy/portfolio">
+                <img
+                  className="w-100"
+                  src={college3}
+                  alt="ads"
+                />
+              </a>
+            </div>
+          </div>
+          <div
+            className="widget newsletter-widget2 mb-30"
+            data-bg-src="assets/img/bg/particle_bg_1.png"
           >
-            <i className="fas fa-play" />
-          </a>
+            <h3 className="box-title-24">Contact Us</h3>
+            <form className="newsletter-form">
+              <input
+                className="form-control"
+                type="email"
+                placeholder="Enter Email"
+                required=""
+              />
+              <button type="submit" className="th-btn btn-fw">
+                Send Mail
+              </button>
+            </form>
+          </div>
+         
         </div>
       </div>
     </div>
-  </section>
-  {/*==============================
-Blog Area  
-==============================*/}
-<div className="space-top" >
+  </div>
+</section>
+
+<VideoPlaylist></VideoPlaylist>
+  
+
+<section className="space" style={{marginTop:100}}>
+      <div className="container">
+        <div className="row align-items-center">
+          <div className="col">
+            <h2 className="sec-title has-line">Books Shop</h2>
+          </div>
+          <div className="col-auto">
+            <div className="sec-btn">
+              <div className="filter-menu filter-menu-active">
+                {/* Render ALL Tab */}
+                <button
+                  onClick={() => setActiveTab('*')}
+                  className={`tab-btn ${activeTab === '*' ? 'active' : ''}`}
+                  type="button"
+                >
+                  ALL
+                </button>
+
+                {/* Render category tabs dynamically */}
+                {categories.map((category) => (
+                  <button
+                    key={category}
+                    onClick={() => setActiveTab(category)}
+                    className={`tab-btn ${activeTab === category ? 'active' : ''}`}
+                    type="button"
+                  >
+                    {category}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="row gy-24 filter-active mbn-24">
+  {/* Render filtered items */}
+  {filteredItems.map((item) => {
+    const imageUrl = item.images
+      ? `https://emsmedia.net/storage/uploads/${item.images}`
+      : "https://via.placeholder.com/300"; // Fallback placeholder image
+    console.log("Image URL:", imageUrl); // Log image URL
+
+    return (
+      <div
+        key={item.product_id}
+        className={`col-xl-4 col-md-6 filter-item ${item.category}`}
+      >
+        <div className="blog-style2">
+          <div className="blog-img img-big">
+            <img src={imageUrl} alt={item.title || "blog image"} />
+          </div>
+          <div className="blog-content">
+            <a
+              href="blog.html"
+              className="category"
+              data-theme-color="#6234AC"
+            >
+              {item.category_title}
+            </a>
+            <h3 className="box-title-20">
+              <a className="hover-line" href="blog-details.html">
+                {item.title}
+              </a>
+            </h3>
+            <div className="blog-meta">
+              <a href="blog.html">
+                <i className="fal fa-calendar-days" />
+                {item.year}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  })}
+</div>
+
+      </div>
+    </section>
+    <div className="space-top" >
 
     <div className="container">
       <div className="row align-items-center">
@@ -1146,36 +1493,6 @@ Blog Area
       </Slider>
       <div className=" col-lg-19 dark-theme">
      
-     {/* <Slider {...settings}>
-       {events.map((item) => (
-         <div key={item.content_id} className="blog-style3">
-           <div className="blog-img">
-                        <img
-                           src={`https://emsmedia.net/storage/uploads/${item.file_name}`}
-                           alt="Event"
-                           width="100%"
-                           height="270px"
-                         />
-           </div>
-           <div className="blog-content">
-             <a href="blog.html" className="category">
-               {item.category}
-             </a>
-             <h3 className="box-title-20">
-               <a className="hover-line" href="blog-details.html">{item.title}</a>
-             </h3>
-             <div className="blog-meta">
-               <span>
-                 <i className="far fa-user"></i>  Read more
-               </span>
-               <span>
-                 <i className="fal fa-calendar-days"></i> {item.date}
-               </span>
-             </div>
-           </div>
-         </div>
-       ))}
-     </Slider> */}
      </div>
     </div>
     </div>
@@ -1183,598 +1500,218 @@ Blog Area
     </div>
     </div>
 
-<VideoPlaylist></VideoPlaylist>
-  
-
-<section className="space">
-      <div className="container">
-        <div className="row align-items-center">
-          <div className="col">
-            <h2 className="sec-title has-line">Books Shop</h2>
-          </div>
-          <div className="col-auto">
-            <div className="sec-btn">
-              <div className="filter-menu filter-menu-active">
-                <button
-                  onClick={() => setActiveTab('*')}
-                  className={`tab-btn ${activeTab === '*' ? 'active' : ''}`}
-                  type="button"
-                >
-                  ALL
-                </button>
-                <button
-                  onClick={() => setActiveTab('cat1')}
-                  className={`tab-btn ${activeTab === 'cat1' ? 'active' : ''}`}
-                  type="button"
-                >
-                  Gadget
-                </button>
-                <button
-                  onClick={() => setActiveTab('cat2')}
-                  className={`tab-btn ${activeTab === 'cat2' ? 'active' : ''}`}
-                  type="button"
-                >
-                  Phone
-                </button>
-                <button
-                  onClick={() => setActiveTab('cat3')}
-                  className={`tab-btn ${activeTab === 'cat3' ? 'active' : ''}`}
-                  type="button"
-                >
-                  Electronic
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="row gy-24 filter-active mbn-24">
-          {homeProducts.map((item) => (
-            <div key={item.product_id} className={`col-xl-4 col-md-6 filter-item ${item.category}`}>
-              <div className="blog-style2">
-                <div className="blog-img img-big">
-                  <img src={`https://emsmedia.net/storage/uploads/${item.file_name}`} alt="blog image" />
-                </div>
-                <div className="blog-content">
-                  <a href="blog.html" className="category" data-theme-color="#6234AC">
-                    {/* {item.category === 'cat1' ? 'Gadget' : item.category === 'cat2' ? 'Phone' : 'Electronic'} */}
-                    {item.category_title}
-                  </a>
-                  <h3 className="box-title-20">
-                    <a className="hover-line" href="blog-details.html">
-                      {item.title}
-                    </a>
-                  </h3>
-                  <div className="blog-meta">
-                    <a href="blog.html">
-                      <i className="fal fa-calendar-days" />
-                      {item.date}
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
   {/*==============================
 Blog Area  
 ==============================*/}
-  <section className="space-bottom">
-    <div className="container">
-      <div className="row">
-        <div className="col-xl-8">
-          <h2 className="sec-title has-line">Popular News</h2>
-          <div className="mb-4">
-            <div className="dark-theme img-overlay2 space-40 ">
-              <div className="blog-style3">
-                <div className="blog-img">
-                  <img src="assets/img/blog/blog_5_15.jpg" alt="blog image" />
-                </div>
-                <div className="blog-content">
-                  <a
-                    data-theme-color="#6234AC"
-                    href="blog.html"
-                    className="category"
-                  >
-                    Technology
-                  </a>
-                  <h3 className="box-title-40">
-                    <a className="hover-line" href="blog-details.html">
-                      Tech Unleash possibilities, shape a brighter future.
-                    </a>
-                  </h3>
-                  <div className="blog-meta">
-                    <a href="author.html">
-                      <i className="far fa-user" />
-                      By - Tnews
-                    </a>
-                    <a href="blog.html">
-                      <i className="fal fa-calendar-days" />
-                      26 Mar, 2023
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="row gy-4">
-            <div className="col-md-6 ">
-              <div className="blog-style2">
-                <div className="blog-img img-big">
-                  <img src="assets/img/blog/blog_3_3_7.jpg" alt="blog image" />
-                </div>
-                <div className="blog-content">
-                  <a
-                    data-theme-color="#6234AC"
-                    href="blog.html"
-                    className="category"
-                  >
-                    Robotic
-                  </a>
-                  <h3 className="box-title-20">
-                    <a className="hover-line" href="blog-details.html">
-                      Smarter living, gadgets make your world.
-                    </a>
-                  </h3>
-                  <div className="blog-meta">
-                    <a href="blog.html">
-                      <i className="fal fa-calendar-days" />
-                      10 Mar, 2023
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-6 ">
-              <div className="blog-style2">
-                <div className="blog-img img-big">
-                  <img src="assets/img/blog/blog_3_3_8.jpg" alt="blog image" />
-                </div>
-                <div className="blog-content">
-                  <a
-                    data-theme-color="#6234AC"
-                    href="blog.html"
-                    className="category"
-                  >
-                    Tech
-                  </a>
-                  <h3 className="box-title-20">
-                    <a className="hover-line" href="blog-details.html">
-                      From dreams to reality, tech pioneers
-                    </a>
-                  </h3>
-                  <div className="blog-meta">
-                    <a href="blog.html">
-                      <i className="fal fa-calendar-days" />
-                      22 Mar, 2023
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-6 ">
-              <div className="blog-style2">
-                <div className="blog-img img-big">
-                  <img src="assets/img/blog/blog_3_3_9.jpg" alt="blog image" />
-                </div>
-                <div className="blog-content">
-                  <a
-                    data-theme-color="#6234AC"
-                    href="blog.html"
-                    className="category"
-                  >
-                    Gadget
-                  </a>
-                  <h3 className="box-title-20">
-                    <a className="hover-line" href="blog-details.html">
-                      Technology drives the digital revolution
-                    </a>
-                  </h3>
-                  <div className="blog-meta">
-                    <a href="blog.html">
-                      <i className="fal fa-calendar-days" />
-                      23 Mar, 2023
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-6 ">
-              <div className="blog-style2">
-                <div className="blog-img img-big">
-                  <img src="assets/img/blog/blog_3_3_10.jpg" alt="blog image" />
-                </div>
-                <div className="blog-content">
-                  <a
-                    data-theme-color="#6234AC"
-                    href="blog.html"
-                    className="category"
-                  >
-                    VR Glass
-                  </a>
-                  <h3 className="box-title-20">
-                    <a className="hover-line" href="blog-details.html">
-                      Where possibility meet boundless feelings
-                    </a>
-                  </h3>
-                  <div className="blog-meta">
-                    <a href="blog.html">
-                      <i className="fal fa-calendar-days" />
-                      13 Mar, 2023
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="space">
-            <a href="https://themeforest.net/user/themeholy/portfolio">
-              <img
-                className="w-100 light-img"
-                src="assets/img/ads/ads_6.jpg"
-                alt="ads"
-              />
-              <img
-                className="w-100 dark-img"
-                src="assets/img/ads/ads_6_dark.jpg"
-                alt="ads"
-              />
-            </a>
-          </div>
-          <h2 className="sec-title has-line">Featured News</h2>
-          <div className="mbn-24">
-            <div className="mb-4 ">
-              <div className="blog-style4">
-                <div className="blog-img w-270">
-                  <img src="assets/img/blog/blog_6_3_1.jpg" alt="blog image" />
-                </div>
-                <div className="blog-content">
-                  <a
-                    data-theme-color="#6234AC"
-                    href="blog.html"
-                    className="category"
-                  >
-                    Gadget
-                  </a>
-                  <h3 className="box-title-22">
-                    <a className="hover-line" href="blog-details.html">
-                      Tech brilliance, forging a path to a smarter connected
-                      universe.
-                    </a>
-                  </h3>
-                  <div className="blog-meta">
-                    <a href="author.html">
-                      <i className="far fa-user" />
-                      By - Tnews
-                    </a>
-                    <a href="blog.html">
-                      <i className="fal fa-calendar-days" />
-                      21 Mar, 2023
-                    </a>
-                  </div>
-                  <a href="blog-details.html" className="th-btn style2">
-                    Read More
-                    <i className="fas fa-arrow-up-right ms-2" />
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="mb-4 ">
-              <div className="blog-style4">
-                <div className="blog-img w-270">
-                  <img src="assets/img/blog/blog_6_3_2.jpg" alt="blog image" />
-                </div>
-                <div className="blog-content">
-                  <a
-                    data-theme-color="#6234AC"
-                    href="blog.html"
-                    className="category"
-                  >
-                    Technology
-                  </a>
-                  <h3 className="box-title-22">
-                    <a className="hover-line" href="blog-details.html">
-                      where possibilities blossom, and lives thrive with
-                      technology.
-                    </a>
-                  </h3>
-                  <div className="blog-meta">
-                    <a href="author.html">
-                      <i className="far fa-user" />
-                      By - Tnews
-                    </a>
-                    <a href="blog.html">
-                      <i className="fal fa-calendar-days" />
-                      27 Mar, 2023
-                    </a>
-                  </div>
-                  <a href="blog-details.html" className="th-btn style2">
-                    Read More
-                    <i className="fas fa-arrow-up-right ms-2" />
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="mb-4 ">
-              <div className="blog-style4">
-                <div className="blog-img w-270">
-                  <img src="assets/img/blog/blog_6_3_3.jpg" alt="blog image" />
-                </div>
-                <div className="blog-content">
-                  <a
-                    data-theme-color="#6234AC"
-                    href="blog.html"
-                    className="category"
-                  >
-                    Robotic
-                  </a>
-                  <h3 className="box-title-22">
-                    <a className="hover-line" href="blog-details.html">
-                      Robotics empowers progress, reshaping industries with
-                      ingenuity.
-                    </a>
-                  </h3>
-                  <div className="blog-meta">
-                    <a href="author.html">
-                      <i className="far fa-user" />
-                      By - Tnews
-                    </a>
-                    <a href="blog.html">
-                      <i className="fal fa-calendar-days" />
-                      20 Mar, 2023
-                    </a>
-                  </div>
-                  <a href="blog-details.html" className="th-btn style2">
-                    Read More
-                    <i className="fas fa-arrow-up-right ms-2" />
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="mb-4 ">
-              <div className="blog-style4">
-                <div className="blog-img w-270">
-                  <img src="assets/img/blog/blog_6_3_4.jpg" alt="blog image" />
-                </div>
-                <div className="blog-content">
-                  <a
-                    data-theme-color="#6234AC"
-                    href="blog.html"
-                    className="category"
-                  >
-                    Desk
-                  </a>
-                  <h3 className="box-title-22">
-                    <a className="hover-line" href="blog-details.html">
-                      where gadgets enhance your life effortlessly and
-                      beautifully.
-                    </a>
-                  </h3>
-                  <div className="blog-meta">
-                    <a href="author.html">
-                      <i className="far fa-user" />
-                      By - Tnews
-                    </a>
-                    <a href="blog.html">
-                      <i className="fal fa-calendar-days" />
-                      26 Mar, 2023
-                    </a>
-                  </div>
-                  <a href="blog-details.html" className="th-btn style2">
-                    Read More
-                    <i className="fas fa-arrow-up-right ms-2" />
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="mb-4 ">
-              <div className="blog-style4">
-                <div className="blog-img w-270">
-                  <img src="assets/img/blog/blog_6_3_5.jpg" alt="blog image" />
-                </div>
-                <div className="blog-content">
-                  <a
-                    data-theme-color="#6234AC"
-                    href="blog.html"
-                    className="category"
-                  >
-                    VR Glass
-                  </a>
-                  <h3 className="box-title-22">
-                    <a className="hover-line" href="blog-details.html">
-                      Elevate life, redefine human potential with virtual
-                      reality.
-                    </a>
-                  </h3>
-                  <div className="blog-meta">
-                    <a href="author.html">
-                      <i className="far fa-user" />
-                      By - Tnews
-                    </a>
-                    <a href="blog.html">
-                      <i className="fal fa-calendar-days" />
-                      30 Mar, 2023
-                    </a>
-                  </div>
-                  <a href="blog-details.html" className="th-btn style2">
-                    Read More
-                    <i className="fas fa-arrow-up-right ms-2" />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-xl-4 mt-35 mt-xl-0 sidebar-wrap mb-10">
-          <div className="sidebar-area">
-            <div className="widget">
-              <div className="widget-ads">
-                <a href="https://themeforest.net/user/themeholy/portfolio">
-                  <img
-                    className="w-100 light-img"
-                    src="assets/img/ads/siderbar_ads_3.jpg"
-                    alt="ads"
-                  />
-                  <img
-                    className="w-100 dark-img"
-                    src="assets/img/ads/siderbar_ads_3_dark.jpg"
-                    alt="ads"
-                  />
-                </a>
-              </div>
-            </div>
-            <div className="widget">
-              <h2 className="sec-title fs-20 has-line">Most Read</h2>
-              <div className="row gy-4">
-                <div className="col-xl-12 col-md-6 ">
-                  <div className="blog-style2">
-                    <div className="blog-img img-big">
-                      <img
-                        src="assets/img/blog/blog_3_3_11.jpg"
-                        alt="blog image"
-                      />
+   <section className="space-bottom" style={{marginTop:101}}>
+      <div className="container">
+        <div className="row">
+          {/* Main Content */}
+          <div className="col-xl-8">
+            {/* Popular News */}
+            <h2 className="sec-title has-line">Magazine</h2>
+            <div className="mb-4">
+              {magazine.length > 0 && (
+                <div className="dark-theme img-overlay2 space-40">
+                  <div className="blog-style3">
+                    <div className="blog-img">
+                      <img src={emsbanner} alt="blog" />
                     </div>
                     <div className="blog-content">
                       <a
                         data-theme-color="#6234AC"
-                        href="blog.html"
+                        href={magazine[0].categoryLink}
                         className="category"
                       >
-                        Gadget
+                        {magazine[0].category}
                       </a>
-                      <h3 className="box-title-20">
-                        <a className="hover-line" href="blog-details.html">
-                          Gadgets amaze, connect inspire you.
+                      <h3 className="box-title-40">
+                        <a className="hover-line" href={magazine[0].link}>
+                        மறைஞானப் பேழை
                         </a>
                       </h3>
                       <div className="blog-meta">
-                        <a href="blog.html">
-                          <i className="fal fa-calendar-days" />
-                          15 Mar, 2023
+                        <a href={magazine[0].authorLink}>
+                          <i className="far fa-user" /> By -EMS Media
+                        </a>
+                        <a href={magazine[0].dateLink}>
+                         
                         </a>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="col-xl-12 col-md-6 ">
-                  <div className="blog-style2">
-                    <div className="blog-img img-big">
-                      <img
-                        src="assets/img/blog/blog_3_3_12.jpg"
-                        alt="blog image"
-                      />
-                    </div>
-                    <div className="blog-content">
-                      <a
-                        data-theme-color="#6234AC"
-                        href="blog.html"
-                        className="category"
-                      >
-                        Phone
-                      </a>
-                      <h3 className="box-title-20">
-                        <a className="hover-line" href="blog-details.html">
-                          Tech at your fingertips, phone redefines
-                        </a>
-                      </h3>
-                      <div className="blog-meta">
-                        <a href="blog.html">
-                          <i className="fal fa-calendar-days" />
-                          25 Mar, 2023
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-xl-12 col-md-6 ">
-                  <div className="blog-style2">
-                    <div className="blog-img img-big">
-                      <img
-                        src="assets/img/blog/blog_3_3_13.jpg"
-                        alt="blog image"
-                      />
-                    </div>
-                    <div className="blog-content">
-                      <a
-                        data-theme-color="#6234AC"
-                        href="blog.html"
-                        className="category"
-                      >
-                        VR Glass
-                      </a>
-                      <h3 className="box-title-20">
-                        <a className="hover-line" href="blog-details.html">
-                          Elevate life, embrace modern technology.
-                        </a>
-                      </h3>
-                      <div className="blog-meta">
-                        <a href="blog.html">
-                          <i className="fal fa-calendar-days" />
-                          12 Mar, 2023
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-xl-12 col-md-6 ">
-                  <div className="blog-style2">
-                    <div className="blog-img img-big">
-                      <img
-                        src="assets/img/blog/blog_3_3_14.jpg"
-                        alt="blog image"
-                      />
-                    </div>
-                    <div className="blog-content">
-                      <a
-                        data-theme-color="#6234AC"
-                        href="blog.html"
-                        className="category"
-                      >
-                        Robotic
-                      </a>
-                      <h3 className="box-title-20">
-                        <a className="hover-line" href="blog-details.html">
-                          Robotic wonders redefine possibilities.
-                        </a>
-                      </h3>
-                      <div className="blog-meta">
-                        <a href="blog.html">
-                          <i className="fal fa-calendar-days" />
-                          21 Mar, 2023
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              )}
             </div>
-            <div
-              className="widget newsletter-widget3  "
-              data-bg-src="assets/img/bg/line_bg_1.png"
-            >
-              <div className="mb-4">
-                <img src="assets/img/bg/newsletter_img_2.png" alt="Icon" />
-              </div>
-              <h3 className="box-title-24 mb-20">Subscribe Now</h3>
-              <form className="newsletter-form">
-                <input
-                  className="form-control"
-                  type="email"
-                  placeholder="Enter Email"
-                  required=""
+
+            <div className="row gy-4">
+              {magazine.slice(1).map((blog, index) => (
+                <div className="col-md-6" key={index}>
+                  <div className="blog-style2">
+                    <div className="blog-img img-big">
+                      <img src={`https://emsmedia.net/storage/uploads/${blog.file_name}`} alt="blog" />
+                    </div>
+                    <div className="blog-content">
+                      <a
+                        data-theme-color="#6234AC"
+                        href={blog.categoryLink}
+                        className="category"
+                      >
+                        {blog.category}
+                      </a>
+                      <h3 className="box-title-20">
+                        <a className="hover-line" href={blog.link}>
+                          {blog.title}
+                        </a>
+                      </h3>
+                      <div className="blog-meta">
+                        <a href={blog.dateLink}>
+                          <i className="fal fa-calendar-days" /> {blog.date}
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="space">
+              <a href="https://themeforest.net/user/themeholy/portfolio">
+                <img
+                  className="w-100 light-img"
+                  src={no2Banner}
+                  alt="ads"
                 />
-                <button type="submit" className="icon-btn">
-                  <i className="fa-solid fa-paper-plane" />
-                </button>
-              </form>
+                <img
+                  className="w-100 dark-img"
+                  src={no2Banner}
+                  alt="ads"
+                />
+              </a>
+            </div>
+
+            {/* Featured News */}
+            <h2 className="sec-title has-line">Popular Magazines</h2>
+            <div className="mbn-24">
+              {magazine.map((featuredBlog, index) => (
+                <div className="mb-4" key={index}>
+                  <div className="blog-style4">
+                    <div className="blog-img w-270">
+                      <img src={`https://emsmedia.net/storage/uploads/${featuredBlog.file_name}`} alt="blog" />
+                    </div>
+                    <div className="blog-content">
+                      <a
+                        data-theme-color="#6234AC"
+                        href={featuredBlog.categoryLink}
+                        className="category"
+                      >
+                        {featuredBlog.category}
+                      </a>
+                      <h3 className="box-title-22">
+                        <a className="hover-line" href={featuredBlog.link}>
+                          {featuredBlog.title}
+                        </a>
+                      </h3>
+                      <div className="blog-meta">
+                        <a href={featuredBlog.authorLink}>
+                          <i className="far fa-user" /> By - {featuredBlog.author}
+                        </a>
+                        <a href={featuredBlog.dateLink}>
+                          <i className="fal fa-calendar-days" /> {featuredBlog.date}
+                        </a>
+                      </div>
+                      <a href={featuredBlog.link} className="th-btn style2">
+                        Read More <i className="fas fa-arrow-up-right ms-2" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Sidebar */}
+          <div className="col-xl-4 mt-35 mt-xl-0 sidebar-wrap mb-10">
+            <div className="sidebar-area">
+              {/* Sidebar Ads */}
+              <div className="widget">
+                <div className="widget-ads">
+                  <a href="https://themeforest.net/user/themeholy/portfolio">
+                    <img
+                      className="w-100 light-img"
+                      src={about}
+                      alt="ads"
+                    />
+                    <img
+                      className="w-100 dark-img"
+                      src={about}
+                      alt="ads"
+                    />
+                  </a>
+                </div>
+              </div>
+
+              {/* Most Read */}
+              <div className="widget">
+                <h2 className="sec-title fs-20 has-line">Most Read</h2>
+                <div className="row gy-4">
+                  {magazine.map((blog, index) => (
+                    <div className="col-xl-12 col-md-6" key={index}>
+                      <div className="blog-style2">
+                        <div className="blog-img img-big">
+                          <img src={`https://emsmedia.net/storage/uploads/${blog.file_name}`} alt="blog" />
+                        </div>
+                        <div className="blog-content">
+                          <a
+                            data-theme-color="#6234AC"
+                            href={blog.categoryLink}
+                            className="category"
+                          >
+                            {blog.category}
+                          </a>
+                          <h3 className="box-title-20">
+                            <a className="hover-line" href={blog.link}>
+                              {blog.title}
+                            </a>
+                          </h3>
+                          <div className="blog-meta">
+                            <a href={blog.dateLink}>
+                              <i className="fal fa-calendar-days" /> {blog.date}
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Newsletter */}
+              <div
+                className="widget newsletter-widget3"
+                data-bg-src="assets/img/bg/line_bg_1.png"
+              >
+                <div className="mb-4">
+                  <img src="assets/img/bg/newsletter_img_2.png" alt="Icon" />
+                </div>
+                <h3 className="box-title-24 mb-20">Subscribe Now</h3>
+                <form className="newsletter-form">
+                  <input
+                    className="form-control"
+                    type="email"
+                    placeholder="Enter Email"
+                    required
+                  />
+                  <button type="submit" className="icon-btn">
+                    <i className="fa-solid fa-paper-plane" />
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
   {/*==============================
 	Footer Area
 ==============================*/}
@@ -1931,7 +1868,7 @@ Blog Area
           <div className="col-lg-5">
             <p className="copyright-text">
               Copyright <i className="fal fa-copyright" /> 2023{" "}
-              <a href="home-newspaper.html">Tnews</a>. All Rights Reserved.
+              <Link to="/">EMS Media</Link>. All Rights Reserved.
             </p>
           </div>
           <div className="col-lg-auto ms-auto d-none d-lg-block">
