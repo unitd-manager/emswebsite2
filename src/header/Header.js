@@ -49,14 +49,14 @@ const Home = () => {
           <div className="widget">
             <div className="th-widget-about">
               <div className="about-logo">
-                <a href="home-newspaper.html">
+                <a href="/">
                   <img
                     className="light-img"
                     src={logoFooterBlack}
                     alt="Ems Media"
                   />
                 </a>
-                <a href="home-newspaper.html">
+                <a href="/">
                   <img className="dark-img" src={logoFooter} alt="Ems Media" />
                 </a>
               </div>
@@ -86,18 +86,18 @@ const Home = () => {
             <div className="recent-post-wrap">
               <div className="recent-post">
                 <div className="media-img">
-                  <a href="blog-details.html">
+                  <a href="/">
                     <img src={emsbanner} alt="Blog Image" />
                   </a>
                 </div>
                 <div className="media-body">
                   <h4 className="post-title">
-                    <a className="hover-line" href="blog-details.html">
+                    <a className="hover-line" href="/">
                       Fitness: Your journey to Better, stronger you.
                     </a>
                   </h4>
                   <div className="recent-post-meta">
-                    <a href="blog.html">
+                    <a href="/">
                       <i className="fal fa-calendar-days" />
                       21 June, 2023
                     </a>
@@ -106,7 +106,7 @@ const Home = () => {
               </div>
               <div className="recent-post">
                 <div className="media-img">
-                  <a href="blog-details.html">
+                  <a href="/">
                     <img
                       src="assets/img/blog/recent-post-1-2.jpg"
                       alt="Blog Image"
@@ -115,12 +115,12 @@ const Home = () => {
                 </div>
                 <div className="media-body">
                   <h4 className="post-title">
-                    <a className="hover-line" href="blog-details.html">
+                    <a className="hover-line" href="/">
                       Embrace the game Ignite your sporting
                     </a>
                   </h4>
                   <div className="recent-post-meta">
-                    <a href="blog.html">
+                    <a href="/">
                       <i className="fal fa-calendar-days" />
                       22 June, 2023
                     </a>
@@ -129,7 +129,7 @@ const Home = () => {
               </div>
               <div className="recent-post">
                 <div className="media-img">
-                  <a href="blog-details.html">
+                  <a href="/">
                     <img
                       src="assets/img/blog/recent-post-1-3.jpg"
                       alt="Blog Image"
@@ -138,12 +138,12 @@ const Home = () => {
                 </div>
                 <div className="media-body">
                   <h4 className="post-title">
-                    <a className="hover-line" href="blog-details.html">
+                    <a className="hover-line" href="/">
                       Revolutionizing lives Through technology
                     </a>
                   </h4>
                   <div className="recent-post-meta">
-                    <a href="blog.html">
+                    <a href="/">
                       <i className="fal fa-calendar-days" />
                       23 June, 2023
                     </a>
@@ -152,7 +152,7 @@ const Home = () => {
               </div>
               <div className="recent-post">
                 <div className="media-img">
-                  <a href="blog-details.html">
+                  <a href="/">
                     <img
                       src="assets/img/blog/recent-post-1-4.jpg"
                       alt="Blog Image"
@@ -161,12 +161,12 @@ const Home = () => {
                 </div>
                 <div className="media-body">
                   <h4 className="post-title">
-                    <a className="hover-line" href="blog-details.html">
+                    <a className="hover-line" href="/">
                       Enjoy the Virtual Reality embrace the
                     </a>
                   </h4>
                   <div className="recent-post-meta">
-                    <a href="blog.html">
+                    <a href="/">
                       <i className="fal fa-calendar-days" />
                       25 June, 2023
                     </a>
@@ -196,7 +196,7 @@ const Home = () => {
               <input type="checkbox" id="Agree2" />
               <label htmlFor="Agree2">
                 I have read and accept the{" "}
-                <a href="about.html">Terms &amp; Policy</a>
+                <a href="/">Terms &amp; Policy</a>
               </label>
             </div>
           </div>
@@ -328,10 +328,10 @@ const Home = () => {
                 </span>
               </p>
               <p className="woocommerce-mini-cart__buttons buttons">
-                <a href="cart.html" className="th-btn wc-forward">
+                <a href="/" className="th-btn wc-forward">
                   View cart
                 </a>
-                <a href="checkout.html" className="th-btn checkout wc-forward">
+                <a href="/" className="th-btn checkout wc-forward">
                   Checkout
                 </a>
               </p>
@@ -359,46 +359,46 @@ const Home = () => {
             <i className="fal fa-times" />
           </button>
           <div className="mobile-logo">
-            <a href="home-newspaper.html">
+            <a href="/">
               <img src={logosvg} alt="Ems Media" />
             </a>
           </div>
           <div className="th-mobile-menu">
             <ul>
               <li className="menu-item-has-children">
-                <a href="home-newspaper.html">Home</a>
+                <a href="/">Home</a>
                 <ul className="sub-menu">
                   <li>
-                    <a href="home-newspaper.html">Home Newspaper</a>
+                    <a href="/">Home Newspaper</a>
                   </li>
                   <li>
-                    <a href="home-magazine.html">Home Magazine</a>
+                    <a href="/">Home Magazine</a>
                   </li>
                   <li>
-                    <a href="home-sports.html">Home Sports</a>
+                    <a href="/">Home Sports</a>
                   </li>
                   <li>
-                    <a href="home-movie.html">Home Movie</a>
+                    <a href="/">Home Movie</a>
                   </li>
                   <li>
-                    <a href="home-gadget.html">Home Gadget</a>
+                    <a href="/">Home Gadget</a>
                   </li>
                 </ul>
               </li>
               <li>
-                <a href="about.html">About Us</a>
+                <a href="/">About Us</a>
               </li>
               <li className="menu-item-has-children">
                 <a href="#">Category</a>
                 <ul className="sub-menu">
                   <li>
-                    <a href="category.html">Category</a>
+                    <a href="/">Category</a>
                   </li>
                   <li>
-                    <a href="blog-three-column.html">Three Column</a>
+                    <a href="/">Three Column</a>
                   </li>
                   <li>
-                    <a href="blog-three-column-sidebar.html">
+                    <a href="/">
                       Three Column Sidebar
                     </a>
                   </li>
@@ -411,30 +411,30 @@ const Home = () => {
                     <a href="#">Shop</a>
                     <ul className="sub-menu">
                       <li>
-                        <a href="shop.html">Shop</a>
+                        <a href="/">Shop</a>
                       </li>
                       <li>
-                        <a href="shop-details.html">Shop Details</a>
+                        <a href="/">Shop Details</a>
                       </li>
                       <li>
-                        <a href="cart.html">Cart Page</a>
+                        <a href="/">Cart Page</a>
                       </li>
                       <li>
-                        <a href="checkout.html">Checkout</a>
+                        <a href="/">Checkout</a>
                       </li>
                       <li>
-                        <a href="wishlist.html">Wishlist</a>
+                        <a href="/">Wishlist</a>
                       </li>
                     </ul>
                   </li>
                   <li>
-                    <a href="team.html">Team</a>
+                    <a href="/">Team</a>
                   </li>
                   <li>
-                    <a href="author.html">Author</a>
+                    <a href="/">Author</a>
                   </li>
                   <li>
-                    <a href="error.html">Error Page</a>
+                    <a href="/">Error Page</a>
                   </li>
                 </ul>
               </li>
@@ -442,30 +442,30 @@ const Home = () => {
                 <a href="#">Blog</a>
                 <ul className="sub-menu">
                   <li>
-                    <a href="blog.html">Blog Standard</a>
+                    <a href="/">Blog Standard</a>
                   </li>
                   <li>
-                    <a href="blog-masonary.html">Blog Masonary</a>
+                    <a href="/">Blog Masonary</a>
                   </li>
                   <li>
-                    <a href="blog-list.html">Blog List</a>
+                    <a href="/">Blog List</a>
                   </li>
                   <li>
-                    <a href="blog-details.html">Blog Details</a>
+                    <a href="/">Blog Details</a>
                   </li>
                   <li>
-                    <a href="blog-details-video.html">Blog Details Video</a>
+                    <a href="/">Blog Details Video</a>
                   </li>
                   <li>
-                    <a href="blog-details-audio.html">Blog Details Audio</a>
+                    <a href="/">Blog Details Audio</a>
                   </li>
                   <li>
-                    <a href="blog-details-nosidebar.html">
+                    <a href="/">
                       Blog Details Nosidebar
                     </a>
                   </li>
                   <li>
-                    <a href="blog-details-full-img.html">
+                    <a href="/">
                       Blog Details Full Image
                     </a>
                   </li>
@@ -520,7 +520,7 @@ const Home = () => {
                           >
                             <div className="col-auto">
                               <a
-                                href="blog-details.html"
+                                href="/"
                                 className="breaking-news"
                               >
                                 {marqueeValue}
@@ -528,7 +528,7 @@ const Home = () => {
                             </div>
                             <div className="col-auto">
                               <a
-                                href="blog-details.html"
+                                href="/"
                                 className="breaking-news"
                               >
                                 {marqueeValue}
@@ -572,14 +572,14 @@ const Home = () => {
                     </div>
                     <div className="col-auto d-lg-none d-block">
                       <div className="header-logo">
-                        <a href="home-newspaper.html">
+                        <a href="/">
                           <img
                             className="light-img"
                             src={logosvg}
                             alt="Ems Media"
                           />
                         </a>
-                        <a href="home-newspaper.html">
+                        <a href="/">
                           <img
                             className="dark-img"
                             src={logwhite}
@@ -626,10 +626,10 @@ const Home = () => {
                                     <a href="shop-details.html">Shop Details</a>
                                   </li>
                                   <li>
-                                    <a href="cart.html">Cart Page</a>
+                                    <a href="/">Cart Page</a>
                                   </li>
                                   <li>
-                                    <a href="checkout.html">Checkout</a>
+                                    <a href="/">Checkout</a>
                                   </li>
                                   <li>
                                     <a href="wishlist.html">Wishlist</a>
@@ -651,7 +651,7 @@ const Home = () => {
                             <a href="#">நூற்கள்</a>
                             {/* <ul className="sub-menu">
                               <li>
-                                <a href="blog.html">Blog Standard</a>
+                                <a href="/">Blog Standard</a>
                               </li>
                               <li>
                                 <a href="blog-masonary.html">Blog Masonary</a>
@@ -660,7 +660,7 @@ const Home = () => {
                                 <a href="blog-list.html">Blog List</a>
                               </li>
                               <li>
-                                <a href="blog-details.html">Blog Details</a>
+                                <a href="/">Blog Details</a>
                               </li>
                               <li>
                                 <a href="blog-details-video.html">
@@ -688,7 +688,7 @@ const Home = () => {
                             <Link to="/contact">கல்வி</Link>
                           </li>
                           <li>
-                            <a href="about.html">மனிதா</a>
+                            <a href="/">மனிதா</a>
                           </li>
                         </ul>
                       </nav>
@@ -735,7 +735,7 @@ const Home = () => {
               <ul>
                 <li>
                   <i className="fal fa-calendar-days" />
-                  <a href="blog.html">{currentDate}</a>
+                  <a href="/">{currentDate}</a>
                 </li>
               </ul>
             </div>
