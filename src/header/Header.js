@@ -597,6 +597,15 @@ const Home = () => {
                           
                           <li className="menu-item-has-children">
                             <a href="#">வஹ்தத்துல் வுஜூத்</a>
+                            <ul className="sub-menu">
+                              <li>
+                              <Link to="/vahthathulvujooth">அனுப்பப்பட்ட பரிசு</Link>
+                              </li>
+                            
+                              <li>
+                              <Link to="/oreyUllamai">ஒரே உள்ளமை</Link>
+                              </li>
+                              </ul>
                             {/* <ul className="sub-menu">
                               <li>
                                 <a href="category.html">Category</a>
