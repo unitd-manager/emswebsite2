@@ -561,7 +561,7 @@ const Home = () => {
                   </div>
                 </div>
                 {/* Main Menu Area */}
-                <div className="menu-area">
+                <div className="menu-area m">
                   <div className="row align-items-center justify-content-between">
                     <div className="col-auto d-none d-xl-block">
                       <div className="toggle-icon">
@@ -740,14 +740,18 @@ const Home = () => {
               </ul>
             </div>
           </div>
+         
           <div className="col-auto">
             <div className="header-links">
               <ul>
                 <li className="d-none d-sm-inline-block">
                   <i className="far fa-user" />
-                  <a href="blog.html">Login / register</a>
+                  <a href="/">Login / register</a>
                 </li>
-                
+                <li>
+                  <i className="far fa-envelope" />
+                  <a href="/">info@emsmedia.net</a>
+                </li>
               </ul>
             </div>
           </div>

@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 
-import EmsLogo from "../assets/img/media1.png"
+import EmsLogo from "../assets/img/logo Ems.png"
 import about from "../assets/img/Vappa nayagam.png"
 import about1 from "../assets/img/thanthai.png"
 
@@ -26,13 +26,13 @@ const Home = () => {
                       <Link to="/">
                         <img src={EmsLogo} alt="Ems Media" />
                       </Link>
-                    </div>
-                    <p className="about-text">
-                      Magazines cover a wide subjects, including not limited to
-                      fashion, lifestyle, health, politics, business,
-                      Entertainment, sports, science,
+                      <p className="about-text"style={{marginLeft:20}}>
+                    ஏகத்துவ மெய்ஞ்ஞான சபை
                     </p>
-                    <div className="th-social style-black">
+                    </div>
+                   
+                  
+                    <div className="th-social style-black" style={{marginLeft:50}}>
                       <a href="https://www.facebook.com/">
                         <i className="fab fa-facebook-f" />
                       </a>
