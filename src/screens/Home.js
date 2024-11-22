@@ -230,14 +230,14 @@ const getHomeProducts = () => {
       <div className="widget">
         <div className="th-widget-about">
           <div className="about-logo">
-            <a href="home-newspaper.html">
+            <a href="/">
               <img
                 className="light-img"
                 src={logoFooterBlack}
                 alt="Ems Media"
               />
             </a>
-            <a href="home-newspaper.html">
+            <a href="/">
               <img
                 className="dark-img"
                 src={logoFooter}
@@ -271,7 +271,7 @@ const getHomeProducts = () => {
         <div className="recent-post-wrap">
           <div className="recent-post">
             <div className="media-img">
-              <a href="blog-details.html">
+              <a href="/">
                 <img
                   src={emsbanner}
                   alt="Blog Image"
@@ -280,12 +280,12 @@ const getHomeProducts = () => {
             </div>
             <div className="media-body">
               <h4 className="post-title">
-                <a className="hover-line" href="blog-details.html">
+                <a className="hover-line" href="/">
                   Fitness: Your journey to Better, stronger you.
                 </a>
               </h4>
               <div className="recent-post-meta">
-                <a href="blog.html">
+                <a href="/">
                   <i className="fal fa-calendar-days" />
                   21 June, 2023
                 </a>
@@ -294,7 +294,7 @@ const getHomeProducts = () => {
           </div>
           <div className="recent-post">
             <div className="media-img">
-              <a href="blog-details.html">
+              <a href="/">
                 <img
                   src="assets/img/blog/recent-post-1-2.jpg"
                   alt="Blog Image"
@@ -303,12 +303,12 @@ const getHomeProducts = () => {
             </div>
             <div className="media-body">
               <h4 className="post-title">
-                <a className="hover-line" href="blog-details.html">
+                <a className="hover-line" href="/">
                   Embrace the game Ignite your sporting
                 </a>
               </h4>
               <div className="recent-post-meta">
-                <a href="blog.html">
+                <a href="/">
                   <i className="fal fa-calendar-days" />
                   22 June, 2023
                 </a>
@@ -317,7 +317,7 @@ const getHomeProducts = () => {
           </div>
           <div className="recent-post">
             <div className="media-img">
-              <a href="blog-details.html">
+              <a href="/">
                 <img
                   src="assets/img/blog/recent-post-1-3.jpg"
                   alt="Blog Image"
@@ -326,12 +326,12 @@ const getHomeProducts = () => {
             </div>
             <div className="media-body">
               <h4 className="post-title">
-                <a className="hover-line" href="blog-details.html">
+                <a className="hover-line" href="/">
                   Revolutionizing lives Through technology
                 </a>
               </h4>
               <div className="recent-post-meta">
-                <a href="blog.html">
+                <a href="/">
                   <i className="fal fa-calendar-days" />
                   23 June, 2023
                 </a>
@@ -340,7 +340,7 @@ const getHomeProducts = () => {
           </div>
           <div className="recent-post">
             <div className="media-img">
-              <a href="blog-details.html">
+              <a href="/">
                 <img
                   src="assets/img/blog/recent-post-1-4.jpg"
                   alt="Blog Image"
@@ -349,12 +349,12 @@ const getHomeProducts = () => {
             </div>
             <div className="media-body">
               <h4 className="post-title">
-                <a className="hover-line" href="blog-details.html">
+                <a className="hover-line" href="/">
                   Enjoy the Virtual Reality embrace the
                 </a>
               </h4>
               <div className="recent-post-meta">
-                <a href="blog.html">
+                <a href="/">
                   <i className="fal fa-calendar-days" />
                   25 June, 2023
                 </a>
@@ -383,7 +383,7 @@ const getHomeProducts = () => {
           <input type="checkbox" id="Agree2" />
           <label htmlFor="Agree2">
             I have read and accept the{" "}
-            <a href="about.html">Terms &amp; Policy</a>
+            <a href="/">Terms &amp; Policy</a>
           </label>
         </div>
       </div>
@@ -504,10 +504,10 @@ const getHomeProducts = () => {
             </span>
           </p>
           <p className="woocommerce-mini-cart__buttons buttons">
-            <a href="cart.html" className="th-btn wc-forward">
+            <a href="/" className="th-btn wc-forward">
               View cart
             </a>
-            <a href="checkout.html" className="th-btn checkout wc-forward">
+            <a href="/" className="th-btn checkout wc-forward">
               Checkout
             </a>
           </p>
@@ -535,46 +535,46 @@ const getHomeProducts = () => {
         <i className="fal fa-times" />
       </button>
       <div className="mobile-logo">
-        <a href="home-newspaper.html">
+        <a href="/">
           <img src={logosvg} alt="Ems Media" />
         </a>
       </div>
       <div className="th-mobile-menu">
         <ul>
           <li className="menu-item-has-children">
-            <a href="home-newspaper.html">Home</a>
+            <a href="/">Home</a>
             <ul className="sub-menu">
               <li>
-                <a href="home-newspaper.html">Home Newspaper</a>
+                <a href="/">Home Newspaper</a>
               </li>
               <li>
-                <a href="home-magazine.html">Home Magazine</a>
+                <a href="#">Home Magazine</a>
               </li>
               <li>
-                <a href="home-sports.html">Home Sports</a>
+                <a href="#">Home Sports</a>
               </li>
               <li>
-                <a href="home-movie.html">Home Movie</a>
+                <a href="#">Home Movie</a>
               </li>
               <li>
-                <a href="home-gadget.html">Home Gadget</a>
+                <a href="#">Home Gadget</a>
               </li>
             </ul>
           </li>
           <li>
-            <a href="about.html">About Us</a>
+            <a href="/">About Us</a>
           </li>
           <li className="menu-item-has-children">
             <a href="#">Category</a>
             <ul className="sub-menu">
               <li>
-                <a href="category.html">Category</a>
+                <a href="#">Category</a>
               </li>
               <li>
-                <a href="blog-three-column.html">Three Column</a>
+                <a href="#">Three Column</a>
               </li>
               <li>
-                <a href="blog-three-column-sidebar.html">
+                <a href="#">
                   Three Column Sidebar
                 </a>
               </li>
@@ -587,30 +587,30 @@ const getHomeProducts = () => {
                 <a href="#">Shop</a>
                 <ul className="sub-menu">
                   <li>
-                    <a href="shop.html">Shop</a>
+                    <a href="/">Shop</a>
                   </li>
                   <li>
-                    <a href="shop-details.html">Shop Details</a>
+                    <a href="/">Shop Details</a>
                   </li>
                   <li>
-                    <a href="cart.html">Cart Page</a>
+                    <a href="/">Cart Page</a>
                   </li>
                   <li>
-                    <a href="checkout.html">Checkout</a>
+                    <a href="/">Checkout</a>
                   </li>
                   <li>
-                    <a href="wishlist.html">Wishlist</a>
+                    <a href="/">Wishlist</a>
                   </li>
                 </ul>
               </li>
               <li>
-                <a href="team.html">Team</a>
+                <a href="/">Team</a>
               </li>
               <li>
-                <a href="author.html">Author</a>
+                <a href="/">Author</a>
               </li>
               <li>
-                <a href="error.html">Error Page</a>
+                <a href="/">Error Page</a>
               </li>
             </ul>
           </li>
@@ -618,28 +618,28 @@ const getHomeProducts = () => {
             <a href="#">Blog</a>
             <ul className="sub-menu">
               <li>
-                <a href="blog.html">Blog Standard</a>
+                <a href="/">Blog Standard</a>
               </li>
               <li>
-                <a href="blog-masonary.html">Blog Masonary</a>
+                <a href="/">Blog Masonary</a>
               </li>
               <li>
-                <a href="blog-list.html">Blog List</a>
+                <a href="/">Blog List</a>
               </li>
               <li>
-                <a href="blog-details.html">Blog Details</a>
+                <a href="/">Blog Details</a>
               </li>
               <li>
-                <a href="blog-details-video.html">Blog Details Video</a>
+                <a href="/">Blog Details Video</a>
               </li>
               <li>
-                <a href="blog-details-audio.html">Blog Details Audio</a>
+                <a href="/">Blog Details Audio</a>
               </li>
               <li>
-                <a href="blog-details-nosidebar.html">Blog Details Nosidebar</a>
+                <a href="/">Blog Details Nosidebar</a>
               </li>
               <li>
-                <a href="blog-details-full-img.html">Blog Details Full Image</a>
+                <a href="/">Blog Details Full Image</a>
               </li>
             </ul>
           </li>
@@ -735,21 +735,21 @@ const getHomeProducts = () => {
           alt="Blog Title Image"
           style={{ width: "25%", maxHeight: "250px", objectFit: "cover", marginBottom: "20px" }}
         />
-         <a data-theme-color="#6234AC" href="blog.html" className="category"  style={{ marginLeft: "20px" }}>
+         <a data-theme-color="#6234AC" href="/" className="category"  style={{ marginLeft: "20px" }}>
         வாப்பா நாயகம்</a>
          <h3 className="box-title-20">
-          <a className="hover-line" href="blog-details.html">
+          <a className="hover-line" href="/">
           என்று அனைவராலும் அன்போடு அழைக்கப்படும் அஸ்ஸெய்யித் கலீல் அவ்ன் மௌலானா 
           அவர்கள் அத்தரிகத்துல் ஹக்கிகத்துல் காதிரியா தரிக்காவின் ஆன்மீக தலைவராவார்கள்.
           </a>
         </h3>
        
         <div className="blog-meta">
-          <a href="author.html">
+          <a href="/">
           குதுபுல் அக்தாப், சாஹிபுல் வக்த், ஷ‌ம்ஸுல் வுஜூத், அஷ்ஷெய்கு ஜமாலிய்யா 
           அஸ்ஸய்யித் கலீல் அவ்ன் மௌலானா அல்ஹஸனிய்யுல் ஹுஸைனிய்யுல் ஹாஷிமிய் நாயகம்
           </a>
-          {/* <a href="blog.html">
+          {/* <a href="/">
             <i className="fal fa-calendar-days" />
             20 Mar, 2023
           </a> */}
@@ -780,11 +780,11 @@ const getHomeProducts = () => {
                                     <img src={about2} alt="blog image"/>
                                 </div>
                                 <div class="blog-content">
-                                    <a data-theme-color="#00D084" style={{backgroundColor:'#00D084'}} href="blog.html" class="category">அப்பா நாயகம்</a>
-                                    <h3 class="box-title-20"><a class="hover-line" href="blog-details.html">யாஸீன் மௌலானா நாயகம் அவர்களின் தவமிகு தந்தையார்</a></h3>
+                                    <a data-theme-color="#00D084" style={{backgroundColor:'#00D084'}} href="/" class="category">அப்பா நாயகம்</a>
+                                    <h3 class="box-title-20"><a class="hover-line" href="/">யாஸீன் மௌலானா நாயகம் அவர்களின் தவமிகு தந்தையார்</a></h3>
                                     <div class="blog-meta">
-                                        <a href="author.html"><i class="far fa-user"></i>By - EMS Media</a>
-                                        {/* <a href="blog.html"><i class="fal fa-calendar-days"></i>13 Mar, 2023</a> */}
+                                        <a href="/"><i class="far fa-user"></i>By - EMS Media</a>
+                                        {/* <a href="/"><i class="fal fa-calendar-days"></i>13 Mar, 2023</a> */}
                                     </div>
                                 </div>
                             </div>
@@ -795,11 +795,11 @@ const getHomeProducts = () => {
                                     <img src={about1} alt="blog image"/>
                                 </div>
                                 <div class="blog-content">
-                                    <a data-theme-color="#4E4BD0" style={{backgroundColor:'#4E4BD0'}}  href="blog.html" class="category">தந்தை நாயகம்</a>
-                                    <h3 class="box-title-20"><a class="hover-line" href="blog-details.html">ஜமாலிய்யா அஸ்ஸெய்யித் யாஸீன் மௌலானா </a></h3>
+                                    <a data-theme-color="#4E4BD0" style={{backgroundColor:'#4E4BD0'}}  href="/" class="category">தந்தை நாயகம்</a>
+                                    <h3 class="box-title-20"><a class="hover-line" href="/">ஜமாலிய்யா அஸ்ஸெய்யித் யாஸீன் மௌலானா </a></h3>
                                     <div class="blog-meta">
-                                        <a href="author.html"><i class="far fa-user"></i>By - EMS Media</a>
-                                        {/* <a href="blog.html"><i class="fal fa-calendar-days"></i>10 Mar, 2023</a> */}
+                                        <a href="/"><i class="far fa-user"></i>By - EMS Media</a>
+                                        {/* <a href="/"><i class="fal fa-calendar-days"></i>10 Mar, 2023</a> */}
                                     </div>
                                 </div>
                             </div>
@@ -813,11 +813,11 @@ const getHomeProducts = () => {
                                 <img src={about} alt="blog image"/>
                             </div>
                             <div class="blog-content">
-                                <a data-theme-color="#FF9500" style={{backgroundColor:'#FF9500'}} href="blog.html" class="category">வாப்பா நாயகம்</a>
-                                <h3 class="box-title-30"><a class="hover-line" href="blog-details.html">அஸ்ஸெய்யித் கலீல் அவ்ன் மௌலானா</a></h3>
+                                <a data-theme-color="#FF9500" style={{backgroundColor:'#FF9500'}} href="/" class="category">வாப்பா நாயகம்</a>
+                                <h3 class="box-title-30"><a class="hover-line" href="/">அஸ்ஸெய்யித் கலீல் அவ்ன் மௌலானா</a></h3>
                                 <div class="blog-meta">
-                                    <a href="author.html"><i class="far fa-user"></i>By - EMS Media</a>
-                                    {/* <a href="blog.html"><i class="fal fa-calendar-days"></i>10 Mar, 2023</a> */}
+                                    <a href="/"><i class="far fa-user"></i>By - EMS Media</a>
+                                    {/* <a href="/"><i class="fal fa-calendar-days"></i>10 Mar, 2023</a> */}
                                 </div>
                             </div>
                         </div>
@@ -839,10 +839,10 @@ const getHomeProducts = () => {
                                             <img src={about3} alt="blog image"/>
                                         </div>
                                         <div class="blog-content">
-                                            <a data-theme-color="#FF9500" href="blog.html" class="category">1</a>
-                                            {/* <h3 class="box-title-18"><a class="hover-line" href="blog-details.html">பொது நல சேவைப் புரிதல்.</a></h3> */}
+                                            <a data-theme-color="#FF9500" href="/" class="category">1</a>
+                                            {/* <h3 class="box-title-18"><a class="hover-line" href="/">பொது நல சேவைப் புரிதல்.</a></h3> */}
                                             <div class="blog-meta">
-                                                <a href="blog.html">பொது நல சேவைப் புரிதல்.</a>
+                                                <a href="/">பொது நல சேவைப் புரிதல்.</a>
                                                 
                                             </div>
                                         </div>
@@ -856,10 +856,10 @@ const getHomeProducts = () => {
                                             <img src={bannerImage}  alt="blog image"/>
                                         </div>
                                         <div class="blog-content">
-                                            <a data-theme-color="#007BFF" href="blog.html" class="category">2</a>
-                                            {/* <h3 class="box-title-18"><a class="hover-line" href="blog-details.html">மெய்ஞ்ஞான விளக்கம் நல்கி இறைவனை அறிய வழிக் காட்டுதல்.</a></h3> */}
+                                            <a data-theme-color="#007BFF" href="/" class="category">2</a>
+                                            {/* <h3 class="box-title-18"><a class="hover-line" href="/">மெய்ஞ்ஞான விளக்கம் நல்கி இறைவனை அறிய வழிக் காட்டுதல்.</a></h3> */}
                                             <div class="blog-meta">
-                                                <a href="blog.html">மெய்ஞ்ஞான விளக்கம் நல்கி இறைவனை அறிய வழிக் காட்டுதல்.</a>
+                                                <a href="/">மெய்ஞ்ஞான விளக்கம் நல்கி இறைவனை அறிய வழிக் காட்டுதல்.</a>
                                             </div>
                                         </div>
 
@@ -872,10 +872,10 @@ const getHomeProducts = () => {
                                             <img src={about4}  alt="blog image"/>
                                         </div>
                                         <div class="blog-content">
-                                            <a data-theme-color="#00D084" href="blog.html" class="category">3</a>
-                                            {/* <h3 class="box-title-18"><a class="hover-line" href="blog-details.html">மெய்ஞ்ஞான நூல்கள் வெளியிடல்.</a></h3> */}
+                                            <a data-theme-color="#00D084" href="/" class="category">3</a>
+                                            {/* <h3 class="box-title-18"><a class="hover-line" href="/">மெய்ஞ்ஞான நூல்கள் வெளியிடல்.</a></h3> */}
                                             <div class="blog-meta">
-                                                <a href="blog.html">மெய்ஞ்ஞான நூல்கள் வெளியிடல்.</a>
+                                                <a href="/">மெய்ஞ்ஞான நூல்கள் வெளியிடல்.</a>
                                             </div>
                                         </div>
 
@@ -888,10 +888,10 @@ const getHomeProducts = () => {
                                             <img src={bannerImage}  alt="blog image"/>
                                         </div>
                                         <div class="blog-content">
-                                            <a data-theme-color="#4E4BD0" href="blog.html" class="category">4</a>
-                                            {/* <h3 class="box-title-18"><a class="hover-line" href="blog-details.html">Score big with the Latest sports news.</a></h3> */}
+                                            <a data-theme-color="#4E4BD0" href="/" class="category">4</a>
+                                            {/* <h3 class="box-title-18"><a class="hover-line" href="/">Score big with the Latest sports news.</a></h3> */}
                                             <div class="blog-meta">
-                                                <a href="blog.html">நாட்டுப் பற்றுடன் வாழ உதவுதல்.</a>
+                                                <a href="/">நாட்டுப் பற்றுடன் வாழ உதவுதல்.</a>
                                             </div>
                                         </div>
 
@@ -931,14 +931,14 @@ const getHomeProducts = () => {
               <div className="blog-content">
                 <a
                   data-theme-color="#007BFF"
-                  href="blog.html"
+                  href="/"
                   className="category"
                   style={{backgroundColor:"#007BFF"}}
                 >
                 About Us
                 </a>
                 <h3 className="box-title-24">
-                  <a className="hover-line" href="blog-details.html">
+                  <a className="hover-line" href="/">
                   This Institution founded by His Holiness Jamaliya Syed Khaleel Awn Mowlana
                   Al Hassani wal Hussaini Ai Hashimi from the Progeny of Prophet Muhammad(PBUH)
                   </a>
@@ -948,7 +948,7 @@ const getHomeProducts = () => {
                   Al Hassani wal Hussaini Ai Hashimi from the Progeny of Prophet Muhammad(PBUH)
                 </p> */}
                 <div className="blog-meta">
-                  <a href="author.html">
+                  <a href="/">
                     <i className="far fa-user" />
                     By - EMS Media
                   </a>
@@ -967,14 +967,14 @@ const getHomeProducts = () => {
               <div className="blog-content">
                 <a
                   data-theme-color="#59C2D6"
-                  href="blog.html"
+                  href="/"
                   className="category"
                   style={{backgroundColor:"#59C2D6"}}
                 >
                   Vision
                 </a>
                 <h3 className="box-title-24">
-                  <a className="hover-line" href="blog-details.html">
+                  <a className="hover-line" href="/">
                   To develop into a full fledged University
                   </a>
                 </h3>
@@ -984,7 +984,7 @@ const getHomeProducts = () => {
                   sit amet felis.
                 </p> */}
                 <div className="blog-meta">
-                  <a href="author.html">
+                  <a href="/">
                     <i className="far fa-user" />
                     By - EMS Media
                   </a>
@@ -1003,14 +1003,14 @@ const getHomeProducts = () => {
               <div className="blog-content">
                 <a
                   data-theme-color="#FF9500"
-                  href="blog.html"
+                  href="/"
                   className="category"
                   style={{backgroundColor:"#FF9500"}}
                 >
                 Objectives
                 </a>
                 <h3 className="box-title-24">
-                  <a className="hover-line" href="blog-details.html">
+                  <a className="hover-line" href="/">
                   Our Founder wished to form a younger generation who can be self dependant
                  and can serve their community / fellow human beings.
                   </a>
@@ -1021,7 +1021,7 @@ const getHomeProducts = () => {
                   sit amet felis.
                 </p> */}
                 <div className="blog-meta">
-                  <a href="author.html">
+                  <a href="/">
                     <i className="far fa-user" />
                     By - EMS Media
                   </a>
@@ -1040,14 +1040,14 @@ const getHomeProducts = () => {
               <div className="blog-content">
                 <a
                   data-theme-color="#007BFF"
-                  href="blog.html"
+                  href="/"
                   className="category"
                   style={{backgroundColor:"#007BFF"}}
                 >
                     Courses Offered
                 </a>
                 <h3 className="box-title-24">
-                  <a className="hover-line" href="blog-details.html">
+                  <a className="hover-line" href="/">
                   To Provide Islamic and formal general eduaction
                   with strong focus on technical trainings
                   </a>
@@ -1058,7 +1058,7 @@ const getHomeProducts = () => {
                   sit amet felis.
                 </p> */}
                 <div className="blog-meta">
-                  <a href="author.html">
+                  <a href="/">
                     <i className="far fa-user" />
                     By - EMS Media
                   </a>
@@ -1186,25 +1186,25 @@ const getHomeProducts = () => {
           </div>
           <div className="blog-content">
             <a
-              href="blog.html"
+              href="/"
               className="category"
               data-theme-color="#6234AC"
             >
               {item.category_title}
             </a>
             <h3 className="box-title-20">
-              <a className="hover-line" href="blog-details.html">
+              <a className="hover-line" href="/">
                 {item.title}
               </a>
             </h3>
             <div >
-              <a href="blog.html">
+              <a href="/">
                 Rs:
                      <span style={{color:'green',marginLeft:5,}}>{item.price}</span>
               </a>
               </div>
             <div className="blog-meta">
-              <a href="blog.html">
+              <a href="/">
                 <i className="fal fa-calendar-days" />
                 {item.year}
               </a>
@@ -1247,11 +1247,11 @@ const getHomeProducts = () => {
                 />
               </div>
               <div className="event-content">
-                <a href="blog.html" className="event-category">
+                <a href="/" className="event-category">
                   Event
                 </a>
                 <h3 className="box-title-20">
-               <a className="hover-line" href="blog-details.html">{item.title}</a>
+               <a className="hover-line" href="/">{item.title}</a>
              </h3>
                 <div className="event-meta">
                   <span className="event-meta-item">
