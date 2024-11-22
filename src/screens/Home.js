@@ -66,9 +66,16 @@ const Home = () => {
       });
   };
   
+  function extractYouTubeId(url) {
+    const regex = /(?:https?:\/\/(?:www\.)?youtube\.com\/(?:[^\/\n\s]+\/\S+\/|\S*?[?&]v=|v%3D|.+?\/)\/?(\S+)|youtu\.be\/(\S+))/;
+    const match = url.match(regex);
+    return match ? match[1] || match[2] : null;
+  }
+  
   
 
-   
+  const [modalVideo, setModalVideo] = useState(null);
+  console.log(modalVideo)
 
   const mainSlider = useRef(null);
   const thumbSlider = useRef(null);
@@ -757,14 +764,52 @@ const getHomeProducts = () => {
       </div>
       <div className="col-sm-auto mt-5 mt-sm-0">
         <a
-          href="https://www.youtube.com/watch?v=lDxhMaNF7Qk"
+          onClick={(e) => {
+            e.preventDefault(); // Prevent the default link behavior
+            setModalVideo({
+              title: "Sample Video Title",
+              description: "https://www.youtube.com/watch?v=lDxhMaNF7Qk", // The URL or any other description
+            });
+          }}
           className="play-btn style2 popup-video"
         >
           <i className="fas fa-play" />
+          
         </a>
+        
       </div>
+      
     </div>
+    
+      {/* Modal for YouTube Video */}
+      {modalVideo && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <button className="modal-close" onClick={() => setModalVideo(null)}>
+              ×
+            </button>
+            <h3>{modalVideo.title || "Untitled Video"}</h3>
+            <div className="video-container">
+              {/* Checking if YouTube ID can be extracted and rendered */}
+              {modalVideo.description && extractYouTubeId(modalVideo.description) ? (
+                <iframe
+                  width="100%"
+                  height="400"
+                  src={`https://www.youtube.com/embed/${extractYouTubeId(modalVideo.description)}`}
+                  title={modalVideo.title || "YouTube Video"}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              ) : (
+                <p>Invalid YouTube URL</p>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
   </div>
+  
 </section>
 
 
