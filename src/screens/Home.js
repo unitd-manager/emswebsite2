@@ -35,22 +35,37 @@ import '../assets/css/event.css'
 const Home = () => {
 
   const [magazine, setMagazine] = useState([]);
+  const [magazineRead, setMagazineRead] = useState([]);
 
   useEffect(() => {
     getMagazine();
+    getMagazineMostRead();
   }, []);
 
   const getMagazine = () => {
     api
       .get("/content/getMagazine")
       .then((res) => {
-        const firstTenRecords = res.data.data.slice(0, 10); // Extract the first 10 records
+        const firstTenRecords = res.data.data.slice(0, 9); // Extract the first 10 records
         setMagazine(firstTenRecords);
       })
       .catch((err) => {
         console.error("Error fetching magazine data", err);
       });
   };
+
+  const getMagazineMostRead = () => {
+    api
+      .get("/content/getMagazine")
+      .then((res) => {
+        const firstTenRecords = res.data.data.slice(0, 5); // Extract the first 10 records
+        setMagazineRead(firstTenRecords);
+      })
+      .catch((err) => {
+        console.error("Error fetching magazine data", err);
+      });
+  };
+  
   
 
    
@@ -92,19 +107,6 @@ const Home = () => {
       });
   };
 
-  const [marquee, setMarquee] = useState([]);
-  const getMarquee = () => {
-    api
-      .get('/setting/getSettingsForQuizInfoText')
-      .then(res => {
-        setMarquee(res.data.data);
-      })
-      .catch(error => {
-        console.log("error",error)
-      });
-
-  };
-  const marqueeValue =marquee && marquee[0]?.value
 
   const [events, setEvents] = useState([]);
 
@@ -146,13 +148,8 @@ const getHomeProducts = () => {
 
 
   useEffect(() => {
-    // getBannerImages();
-    // getVideoUrls();
     getBanners();
-    getMarquee();
     getEvent ();
-
-    // getHomeLink();
     getHomeProducts();
   }, []);
 
@@ -233,18 +230,18 @@ const getHomeProducts = () => {
       <div className="widget">
         <div className="th-widget-about">
           <div className="about-logo">
-            <a href="home-newspaper.html">
+            <a href="/">
               <img
                 className="light-img"
                 src={logoFooterBlack}
-                alt="Tnews"
+                alt="Ems Media"
               />
             </a>
-            <a href="home-newspaper.html">
+            <a href="/">
               <img
                 className="dark-img"
                 src={logoFooter}
-                alt="Tnews"
+                alt="Ems Media"
               />
             </a>
           </div>
@@ -274,7 +271,7 @@ const getHomeProducts = () => {
         <div className="recent-post-wrap">
           <div className="recent-post">
             <div className="media-img">
-              <a href="blog-details.html">
+              <a href="/">
                 <img
                   src={emsbanner}
                   alt="Blog Image"
@@ -283,12 +280,12 @@ const getHomeProducts = () => {
             </div>
             <div className="media-body">
               <h4 className="post-title">
-                <a className="hover-line" href="blog-details.html">
+                <a className="hover-line" href="/">
                   Fitness: Your journey to Better, stronger you.
                 </a>
               </h4>
               <div className="recent-post-meta">
-                <a href="blog.html">
+                <a href="/">
                   <i className="fal fa-calendar-days" />
                   21 June, 2023
                 </a>
@@ -297,7 +294,7 @@ const getHomeProducts = () => {
           </div>
           <div className="recent-post">
             <div className="media-img">
-              <a href="blog-details.html">
+              <a href="/">
                 <img
                   src="assets/img/blog/recent-post-1-2.jpg"
                   alt="Blog Image"
@@ -306,12 +303,12 @@ const getHomeProducts = () => {
             </div>
             <div className="media-body">
               <h4 className="post-title">
-                <a className="hover-line" href="blog-details.html">
+                <a className="hover-line" href="/">
                   Embrace the game Ignite your sporting
                 </a>
               </h4>
               <div className="recent-post-meta">
-                <a href="blog.html">
+                <a href="/">
                   <i className="fal fa-calendar-days" />
                   22 June, 2023
                 </a>
@@ -320,7 +317,7 @@ const getHomeProducts = () => {
           </div>
           <div className="recent-post">
             <div className="media-img">
-              <a href="blog-details.html">
+              <a href="/">
                 <img
                   src="assets/img/blog/recent-post-1-3.jpg"
                   alt="Blog Image"
@@ -329,12 +326,12 @@ const getHomeProducts = () => {
             </div>
             <div className="media-body">
               <h4 className="post-title">
-                <a className="hover-line" href="blog-details.html">
+                <a className="hover-line" href="/">
                   Revolutionizing lives Through technology
                 </a>
               </h4>
               <div className="recent-post-meta">
-                <a href="blog.html">
+                <a href="/">
                   <i className="fal fa-calendar-days" />
                   23 June, 2023
                 </a>
@@ -343,7 +340,7 @@ const getHomeProducts = () => {
           </div>
           <div className="recent-post">
             <div className="media-img">
-              <a href="blog-details.html">
+              <a href="/">
                 <img
                   src="assets/img/blog/recent-post-1-4.jpg"
                   alt="Blog Image"
@@ -352,12 +349,12 @@ const getHomeProducts = () => {
             </div>
             <div className="media-body">
               <h4 className="post-title">
-                <a className="hover-line" href="blog-details.html">
+                <a className="hover-line" href="/">
                   Enjoy the Virtual Reality embrace the
                 </a>
               </h4>
               <div className="recent-post-meta">
-                <a href="blog.html">
+                <a href="/">
                   <i className="fal fa-calendar-days" />
                   25 June, 2023
                 </a>
@@ -386,7 +383,7 @@ const getHomeProducts = () => {
           <input type="checkbox" id="Agree2" />
           <label htmlFor="Agree2">
             I have read and accept the{" "}
-            <a href="about.html">Terms &amp; Policy</a>
+            <a href="/">Terms &amp; Policy</a>
           </label>
         </div>
       </div>
@@ -507,10 +504,10 @@ const getHomeProducts = () => {
             </span>
           </p>
           <p className="woocommerce-mini-cart__buttons buttons">
-            <a href="cart.html" className="th-btn wc-forward">
+            <a href="/" className="th-btn wc-forward">
               View cart
             </a>
-            <a href="checkout.html" className="th-btn checkout wc-forward">
+            <a href="/" className="th-btn checkout wc-forward">
               Checkout
             </a>
           </p>
@@ -538,46 +535,46 @@ const getHomeProducts = () => {
         <i className="fal fa-times" />
       </button>
       <div className="mobile-logo">
-        <a href="home-newspaper.html">
-          <img src={logosvg} alt="Tnews" />
+        <a href="/">
+          <img src={logosvg} alt="Ems Media" />
         </a>
       </div>
       <div className="th-mobile-menu">
         <ul>
           <li className="menu-item-has-children">
-            <a href="home-newspaper.html">Home</a>
+            <a href="/">Home</a>
             <ul className="sub-menu">
               <li>
-                <a href="home-newspaper.html">Home Newspaper</a>
+                <a href="/">Home Newspaper</a>
               </li>
               <li>
-                <a href="home-magazine.html">Home Magazine</a>
+                <a href="#">Home Magazine</a>
               </li>
               <li>
-                <a href="home-sports.html">Home Sports</a>
+                <a href="#">Home Sports</a>
               </li>
               <li>
-                <a href="home-movie.html">Home Movie</a>
+                <a href="#">Home Movie</a>
               </li>
               <li>
-                <a href="home-gadget.html">Home Gadget</a>
+                <a href="#">Home Gadget</a>
               </li>
             </ul>
           </li>
           <li>
-            <a href="about.html">About Us</a>
+            <a href="/">About Us</a>
           </li>
           <li className="menu-item-has-children">
             <a href="#">Category</a>
             <ul className="sub-menu">
               <li>
-                <a href="category.html">Category</a>
+                <a href="#">Category</a>
               </li>
               <li>
-                <a href="blog-three-column.html">Three Column</a>
+                <a href="#">Three Column</a>
               </li>
               <li>
-                <a href="blog-three-column-sidebar.html">
+                <a href="#">
                   Three Column Sidebar
                 </a>
               </li>
@@ -590,30 +587,30 @@ const getHomeProducts = () => {
                 <a href="#">Shop</a>
                 <ul className="sub-menu">
                   <li>
-                    <a href="shop.html">Shop</a>
+                    <a href="/">Shop</a>
                   </li>
                   <li>
-                    <a href="shop-details.html">Shop Details</a>
+                    <a href="/">Shop Details</a>
                   </li>
                   <li>
-                    <a href="cart.html">Cart Page</a>
+                    <a href="/">Cart Page</a>
                   </li>
                   <li>
-                    <a href="checkout.html">Checkout</a>
+                    <a href="/">Checkout</a>
                   </li>
                   <li>
-                    <a href="wishlist.html">Wishlist</a>
+                    <a href="/">Wishlist</a>
                   </li>
                 </ul>
               </li>
               <li>
-                <a href="team.html">Team</a>
+                <a href="/">Team</a>
               </li>
               <li>
-                <a href="author.html">Author</a>
+                <a href="/">Author</a>
               </li>
               <li>
-                <a href="error.html">Error Page</a>
+                <a href="/">Error Page</a>
               </li>
             </ul>
           </li>
@@ -621,28 +618,28 @@ const getHomeProducts = () => {
             <a href="#">Blog</a>
             <ul className="sub-menu">
               <li>
-                <a href="blog.html">Blog Standard</a>
+                <a href="/">Blog Standard</a>
               </li>
               <li>
-                <a href="blog-masonary.html">Blog Masonary</a>
+                <a href="/">Blog Masonary</a>
               </li>
               <li>
-                <a href="blog-list.html">Blog List</a>
+                <a href="/">Blog List</a>
               </li>
               <li>
-                <a href="blog-details.html">Blog Details</a>
+                <a href="/">Blog Details</a>
               </li>
               <li>
-                <a href="blog-details-video.html">Blog Details Video</a>
+                <a href="/">Blog Details Video</a>
               </li>
               <li>
-                <a href="blog-details-audio.html">Blog Details Audio</a>
+                <a href="/">Blog Details Audio</a>
               </li>
               <li>
-                <a href="blog-details-nosidebar.html">Blog Details Nosidebar</a>
+                <a href="/">Blog Details Nosidebar</a>
               </li>
               <li>
-                <a href="blog-details-full-img.html">Blog Details Full Image</a>
+                <a href="/">Blog Details Full Image</a>
               </li>
             </ul>
           </li>
@@ -665,234 +662,6 @@ const getHomeProducts = () => {
       </button>
     </div>
   </div>
-  {/*==============================
-	Header Area
-==============================*/}
-  <header className="th-header header-layout5 dark-theme">
-    <div className="sticky-wrapper">
-      <div className="container">
-        <div className="row gx-0">
-          <div className="col-lg-2 d-none d-lg-inline-block">
-            <div className="header-logo">
-              <a href="home-newspaper.html">
-                <img src={logwhite} alt="Tnews" />
-              </a>
-            </div>
-          </div>
-          <div className="col-lg-10">
-            <div className="header-top">
-              <div className="row align-items-center">
-                <div className="col-xl-9">
-                  <div className="news-area">
-                    <div className="title">Ems News :</div>
-                    <div className="news-wrap">
-                <Marquee speed={50} gradient={false} pauseOnHover className="slick-marquee">
-                  <div className="col-auto">
-                    <a href="blog-details.html" className="breaking-news">
-                    {marqueeValue}
-                    </a>
-                  </div>
-                  <div className="col-auto">
-                    <a href="blog-details.html" className="breaking-news">
-                    {marqueeValue}
-                    </a>
-                  </div>
-                </Marquee>
-              </div>
-                  </div>
-                </div>
-                <div className="col-xl-3 text-end d-none d-xl-block">
-                  <div className="social-links">
-                    <span className="social-title">Follow Us :</span>
-                    <a href="https://www.facebook.com/">
-                      <i className="fab fa-facebook-f" />
-                    </a>
-                    <a href="https://www.twitter.com/">
-                      <i className="fab fa-twitter" />
-                    </a>
-                    <a href="https://www.linkedin.com/">
-                      <i className="fab fa-linkedin-in" />
-                    </a>
-                    <a href="https://www.instagram.com/">
-                      <i className="fab fa-instagram" />
-                    </a>
-                    <a href="https://www.youtube.com/">
-                      <i className="fab fa-youtube" />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* Main Menu Area */}
-            <div className="menu-area">
-              <div className="row align-items-center justify-content-between">
-                <div className="col-auto d-none d-xl-block">
-                  <div className="toggle-icon">
-                    <a href="#" className="simple-icon sideMenuToggler">
-                      <i className="far fa-bars" />
-                    </a>
-                  </div>
-                </div>
-                <div className="col-auto d-lg-none d-block">
-                  <div className="header-logo">
-                    <a href="home-newspaper.html">
-                      <img
-                        className="light-img"
-                        src={logosvg}
-                        alt="Tnews"
-                      />
-                    </a>
-                    <a href="home-newspaper.html">
-                      <img
-                        className="dark-img"
-                        src={logwhite}
-                        alt="Tnews"
-                      />
-                    </a>
-                  </div>
-                </div>
-                <div className="col-auto">
-                  <nav className="main-menu d-none d-lg-inline-block">
-                    <ul>
-                      <li className="menu-item-has-children">
-                        <Link  to ="/">Home</Link>
-                        
-                      </li>
-                      <li>
-                        <a href="about.html">About Us</a>
-                      </li>
-                      <li className="menu-item-has-children">
-                        <a href="#">Category</a>
-                        <ul className="sub-menu">
-                          <li>
-                            <a href="category.html">Category</a>
-                          </li>
-                          <li>
-                            <a href="blog-three-column.html">Three Column</a>
-                          </li>
-                          <li>
-                            <a href="blog-three-column-sidebar.html">
-                              Three Column Sidebar
-                            </a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li className="menu-item-has-children">
-                        <a href="#">Pages</a>
-                        <ul className="sub-menu">
-                          <li className="menu-item-has-children">
-                            <a href="#">Shop</a>
-                            <ul className="sub-menu">
-                              <li>
-                                <a href="shop.html">Shop</a>
-                              </li>
-                              <li>
-                                <a href="shop-details.html">Shop Details</a>
-                              </li>
-                              <li>
-                                <a href="cart.html">Cart Page</a>
-                              </li>
-                              <li>
-                                <a href="checkout.html">Checkout</a>
-                              </li>
-                              <li>
-                                <a href="wishlist.html">Wishlist</a>
-                              </li>
-                            </ul>
-                          </li>
-                          <li>
-                            <a href="team.html">Team</a>
-                          </li>
-                          <li>
-                            <a href="author.html">Author</a>
-                          </li>
-                          <li>
-                            <a href="error.html">Error Page</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li className="menu-item-has-children">
-                        <a href="#">Blog</a>
-                        <ul className="sub-menu">
-                          <li>
-                            <a href="blog.html">Blog Standard</a>
-                          </li>
-                          <li>
-                            <a href="blog-masonary.html">Blog Masonary</a>
-                          </li>
-                          <li>
-                            <a href="blog-list.html">Blog List</a>
-                          </li>
-                          <li>
-                            <a href="blog-details.html">Blog Details</a>
-                          </li>
-                          <li>
-                            <a href="blog-details-video.html">
-                              Blog Details Video
-                            </a>
-                          </li>
-                          <li>
-                            <a href="blog-details-audio.html">
-                              Blog Details Audio
-                            </a>
-                          </li>
-                          <li>
-                            <a href="blog-details-nosidebar.html">
-                              Blog Details Nosidebar
-                            </a>
-                          </li>
-                          <li>
-                            <a href="blog-details-full-img.html">
-                              Blog Details Full Image
-                            </a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li>
-                      <Link to="/contact">Contact</Link>
-                      </li>
-                    </ul>
-                  </nav>
-                </div>
-                <div className="col-auto">
-                  <div className="header-button">
-                    <button
-                      type="button"
-                      className="simple-icon searchBoxToggler"
-                    >
-                      <i className="far fa-search" />
-                    </button>
-                    <button
-                      type="button"
-                      className="simple-icon d-none d-lg-block cartToggler"
-                    >
-                      <i className="far fa-cart-shopping" />
-                      <span className="badge">5</span>
-                    </button>
-                    {/* <a href="/contact" className="th-btn style3">
-                      Contact Us
-                    </a> */}
-                    <Link to="/contact" className="th-btn style3">Contact</Link>
-                    <button
-                      type="button"
-                      className="th-menu-toggle d-block d-lg-none"
-                    >
-                      <i className="far fa-bars" />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
-  {/*==============================
-Hero Area
-==============================*/}
-
-
 
         <div className="bannerImage">
       {/* Main Banner Slider */}
@@ -944,7 +713,7 @@ Hero Area
     </div>
   
     {/* <div className="container space-top">
-    <a href="https://themeforest.net/user/themeholy/portfolio">
+    <a href="/">
       <img className="light-img" src={no1Banner} alt="ads" />
       <img className="dark-img" src="../assets/img/logo-footer.svg" alt="ads" />
     </a>
@@ -966,21 +735,21 @@ Hero Area
           alt="Blog Title Image"
           style={{ width: "25%", maxHeight: "250px", objectFit: "cover", marginBottom: "20px" }}
         />
-         <a data-theme-color="#6234AC" href="blog.html" className="category"  style={{ marginLeft: "20px" }}>
+         <a data-theme-color="#6234AC" href="/" className="category"  style={{ marginLeft: "20px" }}>
         வாப்பா நாயகம்</a>
          <h3 className="box-title-20">
-          <a className="hover-line" href="blog-details.html">
+          <a className="hover-line" href="/">
           என்று அனைவராலும் அன்போடு அழைக்கப்படும் அஸ்ஸெய்யித் கலீல் அவ்ன் மௌலானா 
           அவர்கள் அத்தரிகத்துல் ஹக்கிகத்துல் காதிரியா தரிக்காவின் ஆன்மீக தலைவராவார்கள்.
           </a>
         </h3>
        
         <div className="blog-meta">
-          <a href="author.html">
+          <a href="/">
           குதுபுல் அக்தாப், சாஹிபுல் வக்த், ஷ‌ம்ஸுல் வுஜூத், அஷ்ஷெய்கு ஜமாலிய்யா 
           அஸ்ஸய்யித் கலீல் அவ்ன் மௌலானா அல்ஹஸனிய்யுல் ஹுஸைனிய்யுல் ஹாஷிமிய் நாயகம்
           </a>
-          {/* <a href="blog.html">
+          {/* <a href="/">
             <i className="fal fa-calendar-days" />
             20 Mar, 2023
           </a> */}
@@ -988,7 +757,7 @@ Hero Area
       </div>
       <div className="col-sm-auto mt-5 mt-sm-0">
         <a
-          href="https://www.youtube.com/watch?v=_sI_Ps7JSEk"
+          href="https://www.youtube.com/watch?v=lDxhMaNF7Qk"
           className="play-btn style2 popup-video"
         >
           <i className="fas fa-play" />
@@ -1001,7 +770,7 @@ Hero Area
 
 <section class="space">
         <div class="container">
-        <h2 className="sec-title has-line">About</h2>
+        <h2 className="sec-title has-line">எங்களைப் பற்றி</h2>
             <div class="row">
                 <div class="col-xl-3">
                     <div class="row gy-4">
@@ -1011,11 +780,11 @@ Hero Area
                                     <img src={about2} alt="blog image"/>
                                 </div>
                                 <div class="blog-content">
-                                    <a data-theme-color="#00D084" style={{backgroundColor:'#00D084'}} href="blog.html" class="category">அப்பா நாயகம்</a>
-                                    <h3 class="box-title-20"><a class="hover-line" href="blog-details.html">யாஸீன் மௌலானா நாயகம் அவர்களின் தவமிகு தந்தையார்</a></h3>
+                                    <a data-theme-color="#00D084" style={{backgroundColor:'#00D084'}} href="/" class="category">அப்பா நாயகம்</a>
+                                    <h3 class="box-title-20"><a class="hover-line" href="/">யாஸீன் மௌலானா நாயகம் அவர்களின் தவமிகு தந்தையார்</a></h3>
                                     <div class="blog-meta">
-                                        <a href="author.html"><i class="far fa-user"></i>By - EMS Media</a>
-                                        {/* <a href="blog.html"><i class="fal fa-calendar-days"></i>13 Mar, 2023</a> */}
+                                        <a href="/"><i class="far fa-user"></i>By - EMS Media</a>
+                                        {/* <a href="/"><i class="fal fa-calendar-days"></i>13 Mar, 2023</a> */}
                                     </div>
                                 </div>
                             </div>
@@ -1026,11 +795,11 @@ Hero Area
                                     <img src={about1} alt="blog image"/>
                                 </div>
                                 <div class="blog-content">
-                                    <a data-theme-color="#4E4BD0" style={{backgroundColor:'#4E4BD0'}}  href="blog.html" class="category">தந்தை நாயகம்</a>
-                                    <h3 class="box-title-20"><a class="hover-line" href="blog-details.html">ஜமாலிய்யா அஸ்ஸெய்யித் யாஸீன் மௌலானா </a></h3>
+                                    <a data-theme-color="#4E4BD0" style={{backgroundColor:'#4E4BD0'}}  href="/" class="category">தந்தை நாயகம்</a>
+                                    <h3 class="box-title-20"><a class="hover-line" href="/">ஜமாலிய்யா அஸ்ஸெய்யித் யாஸீன் மௌலானா </a></h3>
                                     <div class="blog-meta">
-                                        <a href="author.html"><i class="far fa-user"></i>By - EMS Media</a>
-                                        {/* <a href="blog.html"><i class="fal fa-calendar-days"></i>10 Mar, 2023</a> */}
+                                        <a href="/"><i class="far fa-user"></i>By - EMS Media</a>
+                                        {/* <a href="/"><i class="fal fa-calendar-days"></i>10 Mar, 2023</a> */}
                                     </div>
                                 </div>
                             </div>
@@ -1044,11 +813,11 @@ Hero Area
                                 <img src={about} alt="blog image"/>
                             </div>
                             <div class="blog-content">
-                                <a data-theme-color="#FF9500" style={{backgroundColor:'#FF9500'}} href="blog.html" class="category">வாப்பா நாயகம்</a>
-                                <h3 class="box-title-30"><a class="hover-line" href="blog-details.html">அஸ்ஸெய்யித் கலீல் அவ்ன் மௌலானா</a></h3>
+                                <a data-theme-color="#FF9500" style={{backgroundColor:'#FF9500'}} href="/" class="category">வாப்பா நாயகம்</a>
+                                <h3 class="box-title-30"><a class="hover-line" href="/">அஸ்ஸெய்யித் கலீல் அவ்ன் மௌலானா</a></h3>
                                 <div class="blog-meta">
-                                    <a href="author.html"><i class="far fa-user"></i>By - EMS Media</a>
-                                    {/* <a href="blog.html"><i class="fal fa-calendar-days"></i>10 Mar, 2023</a> */}
+                                    <a href="/"><i class="far fa-user"></i>By - EMS Media</a>
+                                    {/* <a href="/"><i class="fal fa-calendar-days"></i>10 Mar, 2023</a> */}
                                 </div>
                             </div>
                         </div>
@@ -1070,10 +839,10 @@ Hero Area
                                             <img src={about3} alt="blog image"/>
                                         </div>
                                         <div class="blog-content">
-                                            <a data-theme-color="#FF9500" href="blog.html" class="category">1</a>
-                                            {/* <h3 class="box-title-18"><a class="hover-line" href="blog-details.html">பொது நல சேவைப் புரிதல்.</a></h3> */}
+                                            <a data-theme-color="#FF9500" href="/" class="category">1</a>
+                                            {/* <h3 class="box-title-18"><a class="hover-line" href="/">பொது நல சேவைப் புரிதல்.</a></h3> */}
                                             <div class="blog-meta">
-                                                <a href="blog.html">பொது நல சேவைப் புரிதல்.</a>
+                                                <a href="/">பொது நல சேவைப் புரிதல்.</a>
                                                 
                                             </div>
                                         </div>
@@ -1087,10 +856,10 @@ Hero Area
                                             <img src={bannerImage}  alt="blog image"/>
                                         </div>
                                         <div class="blog-content">
-                                            <a data-theme-color="#007BFF" href="blog.html" class="category">2</a>
-                                            {/* <h3 class="box-title-18"><a class="hover-line" href="blog-details.html">மெய்ஞ்ஞான விளக்கம் நல்கி இறைவனை அறிய வழிக் காட்டுதல்.</a></h3> */}
+                                            <a data-theme-color="#007BFF" href="/" class="category">2</a>
+                                            {/* <h3 class="box-title-18"><a class="hover-line" href="/">மெய்ஞ்ஞான விளக்கம் நல்கி இறைவனை அறிய வழிக் காட்டுதல்.</a></h3> */}
                                             <div class="blog-meta">
-                                                <a href="blog.html">மெய்ஞ்ஞான விளக்கம் நல்கி இறைவனை அறிய வழிக் காட்டுதல்.</a>
+                                                <a href="/">மெய்ஞ்ஞான விளக்கம் நல்கி இறைவனை அறிய வழிக் காட்டுதல்.</a>
                                             </div>
                                         </div>
 
@@ -1103,10 +872,10 @@ Hero Area
                                             <img src={about4}  alt="blog image"/>
                                         </div>
                                         <div class="blog-content">
-                                            <a data-theme-color="#00D084" href="blog.html" class="category">3</a>
-                                            {/* <h3 class="box-title-18"><a class="hover-line" href="blog-details.html">மெய்ஞ்ஞான நூல்கள் வெளியிடல்.</a></h3> */}
+                                            <a data-theme-color="#00D084" href="/" class="category">3</a>
+                                            {/* <h3 class="box-title-18"><a class="hover-line" href="/">மெய்ஞ்ஞான நூல்கள் வெளியிடல்.</a></h3> */}
                                             <div class="blog-meta">
-                                                <a href="blog.html">மெய்ஞ்ஞான நூல்கள் வெளியிடல்.</a>
+                                                <a href="/">மெய்ஞ்ஞான நூல்கள் வெளியிடல்.</a>
                                             </div>
                                         </div>
 
@@ -1119,10 +888,10 @@ Hero Area
                                             <img src={bannerImage}  alt="blog image"/>
                                         </div>
                                         <div class="blog-content">
-                                            <a data-theme-color="#4E4BD0" href="blog.html" class="category">4</a>
-                                            {/* <h3 class="box-title-18"><a class="hover-line" href="blog-details.html">Score big with the Latest sports news.</a></h3> */}
+                                            <a data-theme-color="#4E4BD0" href="/" class="category">4</a>
+                                            {/* <h3 class="box-title-18"><a class="hover-line" href="/">Score big with the Latest sports news.</a></h3> */}
                                             <div class="blog-meta">
-                                                <a href="blog.html">நாட்டுப் பற்றுடன் வாழ உதவுதல்.</a>
+                                                <a href="/">நாட்டுப் பற்றுடன் வாழ உதவுதல்.</a>
                                             </div>
                                         </div>
 
@@ -1162,14 +931,14 @@ Hero Area
               <div className="blog-content">
                 <a
                   data-theme-color="#007BFF"
-                  href="blog.html"
+                  href="/"
                   className="category"
                   style={{backgroundColor:"#007BFF"}}
                 >
                 About Us
                 </a>
                 <h3 className="box-title-24">
-                  <a className="hover-line" href="blog-details.html">
+                  <a className="hover-line" href="/">
                   This Institution founded by His Holiness Jamaliya Syed Khaleel Awn Mowlana
                   Al Hassani wal Hussaini Ai Hashimi from the Progeny of Prophet Muhammad(PBUH)
                   </a>
@@ -1179,7 +948,7 @@ Hero Area
                   Al Hassani wal Hussaini Ai Hashimi from the Progeny of Prophet Muhammad(PBUH)
                 </p> */}
                 <div className="blog-meta">
-                  <a href="author.html">
+                  <a href="/">
                     <i className="far fa-user" />
                     By - EMS Media
                   </a>
@@ -1198,14 +967,14 @@ Hero Area
               <div className="blog-content">
                 <a
                   data-theme-color="#59C2D6"
-                  href="blog.html"
+                  href="/"
                   className="category"
                   style={{backgroundColor:"#59C2D6"}}
                 >
                   Vision
                 </a>
                 <h3 className="box-title-24">
-                  <a className="hover-line" href="blog-details.html">
+                  <a className="hover-line" href="/">
                   To develop into a full fledged University
                   </a>
                 </h3>
@@ -1215,7 +984,7 @@ Hero Area
                   sit amet felis.
                 </p> */}
                 <div className="blog-meta">
-                  <a href="author.html">
+                  <a href="/">
                     <i className="far fa-user" />
                     By - EMS Media
                   </a>
@@ -1234,14 +1003,14 @@ Hero Area
               <div className="blog-content">
                 <a
                   data-theme-color="#FF9500"
-                  href="blog.html"
+                  href="/"
                   className="category"
                   style={{backgroundColor:"#FF9500"}}
                 >
                 Objectives
                 </a>
                 <h3 className="box-title-24">
-                  <a className="hover-line" href="blog-details.html">
+                  <a className="hover-line" href="/">
                   Our Founder wished to form a younger generation who can be self dependant
                  and can serve their community / fellow human beings.
                   </a>
@@ -1252,7 +1021,7 @@ Hero Area
                   sit amet felis.
                 </p> */}
                 <div className="blog-meta">
-                  <a href="author.html">
+                  <a href="/">
                     <i className="far fa-user" />
                     By - EMS Media
                   </a>
@@ -1271,14 +1040,14 @@ Hero Area
               <div className="blog-content">
                 <a
                   data-theme-color="#007BFF"
-                  href="blog.html"
+                  href="/"
                   className="category"
                   style={{backgroundColor:"#007BFF"}}
                 >
                     Courses Offered
                 </a>
                 <h3 className="box-title-24">
-                  <a className="hover-line" href="blog-details.html">
+                  <a className="hover-line" href="/">
                   To Provide Islamic and formal general eduaction
                   with strong focus on technical trainings
                   </a>
@@ -1289,7 +1058,7 @@ Hero Area
                   sit amet felis.
                 </p> */}
                 <div className="blog-meta">
-                  <a href="author.html">
+                  <a href="/">
                     <i className="far fa-user" />
                     By - EMS Media
                   </a>
@@ -1306,7 +1075,7 @@ Hero Area
         <div className="sidebar-area">
           <div className="widget mb-30">
             <div className="widget-ads">
-              <a href="https://themeforest.net/user/themeholy/portfolio">
+              <a href="/">
                 <img
                   className="w-100"
                   src={college2}
@@ -1317,7 +1086,7 @@ Hero Area
           </div>
           <div className="widget mb-30">
             <div className="widget-ads">
-              <a href="https://themeforest.net/user/themeholy/portfolio">
+              <a href="/">
                 <img
                   className="w-100"
                   src={collegeMain}
@@ -1328,7 +1097,7 @@ Hero Area
           </div>
           <div className="widget mb-30">
             <div className="widget-ads">
-              <a href="https://themeforest.net/user/themeholy/portfolio">
+              <a href="/">
                 <img
                   className="w-100"
                   src={college3}
@@ -1417,19 +1186,25 @@ Hero Area
           </div>
           <div className="blog-content">
             <a
-              href="blog.html"
+              href="/"
               className="category"
               data-theme-color="#6234AC"
             >
               {item.category_title}
             </a>
             <h3 className="box-title-20">
-              <a className="hover-line" href="blog-details.html">
+              <a className="hover-line" href="/">
                 {item.title}
               </a>
             </h3>
+            <div >
+              <a href="/">
+                Rs:
+                     <span style={{color:'green',marginLeft:5,}}>{item.price}</span>
+              </a>
+              </div>
             <div className="blog-meta">
-              <a href="blog.html">
+              <a href="/">
                 <i className="fal fa-calendar-days" />
                 {item.year}
               </a>
@@ -1472,11 +1247,11 @@ Hero Area
                 />
               </div>
               <div className="event-content">
-                <a href="blog.html" className="event-category">
+                <a href="/" className="event-category">
                   Event
                 </a>
                 <h3 className="box-title-20">
-               <a className="hover-line" href="blog-details.html">{item.title}</a>
+               <a className="hover-line" href="/">{item.title}</a>
              </h3>
                 <div className="event-meta">
                   <span className="event-meta-item">
@@ -1569,6 +1344,11 @@ Blog Area
                           <i className="fal fa-calendar-days" /> {blog.date}
                         </a>
                       </div>
+                      <div className="blog-meta" style={{marginTop:10}}>
+                      <Link to ="/" className="th-btn style2">
+                        Read More <i className="fas fa-arrow-up-right ms-2" />
+                      </Link>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1576,7 +1356,7 @@ Blog Area
             </div>
 
             <div className="space">
-              <a href="https://themeforest.net/user/themeholy/portfolio">
+              <a href="/">
                 <img
                   className="w-100 light-img"
                   src={no2Banner}
@@ -1591,7 +1371,7 @@ Blog Area
             </div>
 
             {/* Featured News */}
-            <h2 className="sec-title has-line">Popular Magazines</h2>
+            {/* <h2 className="sec-title has-line">Popular Magazines</h2>
             <div className="mbn-24">
               {magazine.map((featuredBlog, index) => (
                 <div className="mb-4" key={index}>
@@ -1627,7 +1407,7 @@ Blog Area
                   </div>
                 </div>
               ))}
-            </div>
+            </div> */}
           </div>
 
           {/* Sidebar */}
@@ -1636,7 +1416,7 @@ Blog Area
               {/* Sidebar Ads */}
               <div className="widget">
                 <div className="widget-ads">
-                  <a href="https://themeforest.net/user/themeholy/portfolio">
+                  <a href="/">
                     <img
                       className="w-100 light-img"
                       src={about}
@@ -1655,7 +1435,7 @@ Blog Area
               <div className="widget">
                 <h2 className="sec-title fs-20 has-line">Most Read</h2>
                 <div className="row gy-4">
-                  {magazine.map((blog, index) => (
+                  {magazineRead.map((blog, index) => (
                     <div className="col-xl-12 col-md-6" key={index}>
                       <div className="blog-style2">
                         <div className="blog-img img-big">
@@ -1687,7 +1467,7 @@ Blog Area
               </div>
 
               {/* Newsletter */}
-              <div
+              {/* <div
                 className="widget newsletter-widget3"
                 data-bg-src="assets/img/bg/line_bg_1.png"
               >
@@ -1706,190 +1486,13 @@ Blog Area
                     <i className="fa-solid fa-paper-plane" />
                   </button>
                 </form>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
       </div>
     </section>
-  {/*==============================
-	Footer Area
-==============================*/}
-  <footer
-    className="footer-wrapper footer-layout1"
-    data-bg-src="assets/img/bg/footer_bg_1.png"
-  >
-    <div className="widget-area">
-      <div className="container">
-        <div className="row justify-content-between">
-          <div className="col-md-6 col-xl-3">
-            <div className="widget footer-widget">
-              <div className="th-widget-about">
-                <div className="about-logo">
-                  <a href="home-newspaper.html">
-                    <img src={logoFooter} alt="Tnews" />
-                  </a>
-                </div>
-                <p className="about-text">
-                  Magazines cover a wide subjects, including not limited to
-                  fashion, lifestyle, health, politics, business, Entertainment,
-                  sports, science,
-                </p>
-                <div className="th-social style-black">
-                  <a href="https://www.facebook.com/">
-                    <i className="fab fa-facebook-f" />
-                  </a>
-                  <a href="https://www.twitter.com/">
-                    <i className="fab fa-twitter" />
-                  </a>
-                  <a href="https://www.linkedin.com/">
-                    <i className="fab fa-linkedin-in" />
-                  </a>
-                  <a href="https://www.whatsapp.com/">
-                    <i className="fab fa-whatsapp" />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-6 col-xl-auto">
-            <div className="widget widget_nav_menu footer-widget">
-              <h3 className="widget_title">Categories</h3>
-              <div className="menu-all-pages-container">
-                <ul className="menu">
-                  <li>
-                    <a href="blog.html">Political</a>
-                  </li>
-                  <li>
-                    <a href="blog.html">Business</a>
-                  </li>
-                  <li>
-                    <a href="blog.html">Health</a>
-                  </li>
-                  <li>
-                    <a href="blog.html">Technology</a>
-                  </li>
-                  <li>
-                    <a href="blog.html">Sports</a>
-                  </li>
-                  <li>
-                    <a href="blog.html">Entertainment</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-6 col-xl-auto">
-            <div className="widget widget_nav_menu footer-widget">
-              <h3 className="widget_title">Use links</h3>
-              <div className="menu-all-pages-container">
-                <ul className="menu">
-                  <li>
-                    <a href="home-newspaper.html">Home</a>
-                  </li>
-                  <li>
-                    <a href="about.html">About Us</a>
-                  </li>
-                  <li>
-                    <a href="authors.html">Authors</a>
-                  </li>
-                  <li>
-                    <a href="category.html">Category</a>
-                  </li>
-                  <li>
-                    <a href="shop.html">Shop</a>
-                  </li>
-                  <li>
-                  <Link to="/contact">Contact</Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-6 col-xl-auto">
-            <div className="widget footer-widget">
-              <h3 className="widget_title">Recent Posts</h3>
-              <div className="recent-post-wrap">
-                <div className="recent-post">
-                  <div className="media-img">
-                    <a href="blog-details.html">
-                      <img
-                        src="assets/img/blog/recent-post-2-1.jpg"
-                        alt="Blog Image"
-                      />
-                    </a>
-                  </div>
-                  <div className="media-body">
-                    <h4 className="post-title">
-                      <a className="hover-line" href="blog-details.html">
-                        Equality and justice for Every citizen
-                      </a>
-                    </h4>
-                    <div className="recent-post-meta">
-                      <a href="blog.html">
-                        <i className="fal fa-calendar-days" />
-                        21 June, 2023
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div className="recent-post">
-                  <div className="media-img">
-                    <a href="blog-details.html">
-                      <img
-                        src="assets/img/blog/recent-post-2-2.jpg"
-                        alt="Blog Image"
-                      />
-                    </a>
-                  </div>
-                  <div className="media-body">
-                    <h4 className="post-title">
-                      <a className="hover-line" href="blog-details.html">
-                        Key eyes on the latest update of technology
-                      </a>
-                    </h4>
-                    <div className="recent-post-meta">
-                      <a href="blog.html">
-                        <i className="fal fa-calendar-days" />
-                        22 June, 2023
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div className="copyright-wrap">
-      <div className="container">
-        <div className="row jusity-content-between align-items-center">
-          <div className="col-lg-5">
-            <p className="copyright-text">
-              Copyright <i className="fal fa-copyright" /> 2023{" "}
-              <Link to="/">EMS Media</Link>. All Rights Reserved.
-            </p>
-          </div>
-          <div className="col-lg-auto ms-auto d-none d-lg-block">
-            <div className="footer-links">
-              <ul>
-                <li>
-                  <a href="about.html">Privacy Policy</a>
-                </li>
-                <li>
-                  <a href="about.html">Terms &amp; Conditions</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
-  {/*********************************
-			Code End  Here 
-	******************************** */}
+ 
   {/* Scroll To Top */}
   <div className="scroll-top">
     <svg

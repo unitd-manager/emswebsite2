@@ -2,6 +2,10 @@ import React from "react";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import Home from "../src/screens/Home";
 import Contact from "./screens/contact.js";
+import Vahthathul from "./Vahthathulvujooth/vahthathulvujooth.js";
+import OreyUllamai from "./Vahthathulvujooth/oreyUllamai.js";
+import Footer from "./header/Footer"
+import Header from "./header/Header"
 
 import '../src/assets/css/bootstrap.min.css'
 import '../src/assets/css/fontawesome.min.css'
@@ -9,7 +13,6 @@ import '../src/assets/css/magnific-popup.min.css'
 import '../src/assets/css/slick.min.css'
 import '../src/assets/css/style.css'
 import '../src/assets/css/style.css.map'
-
 import '../src/assets/fonts/fontawesome/fa-brands-400.ttf'
 import '../src/assets/fonts/fontawesome/fa-brands-400.eot'
 import '../src/assets/fonts/fontawesome/fa-brands-400.woff'
@@ -81,19 +84,23 @@ function App() {
     <>
      
       <HashRouter>
-        {/* <Header /> */}
+        <Header />
         
      
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/contact" element={<Contact/>} />
+          <Route path="/vahthathulvujooth" element={<Vahthathul/>} />
+          <Route path="/oreyUllamai" element={<OreyUllamai/>} />
+
+
           
         </Routes>
-        {/* <Footer /> */}
+        <Footer />
       </HashRouter>
     </>
   );
 }
 
-export default App;
+export default App;
