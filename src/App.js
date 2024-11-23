@@ -1,6 +1,9 @@
 import React from "react";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import Home from "../src/screens/Home";
+import Engalaipatri from "../src/screens/engalaipatri.js";
+import DetailPage from "../src/screens/DetailPage";
+
 import Contact from "./screens/contact.js";
 import Vahthathul from "./Vahthathulvujooth/vahthathulvujooth.js";
 import OreyUllamai from "./Vahthathulvujooth/oreyUllamai.js";
@@ -93,6 +96,8 @@ function App() {
           <Route path="/contact" element={<Contact/>} />
           <Route path="/vahthathulvujooth" element={<Vahthathul/>} />
           <Route path="/oreyUllamai" element={<OreyUllamai/>} />
+          <Route path="/எங்களைப் பற்றி/:id" element={<Engalaipatri/>} />
+          <Route path="/details/:contentId" element={<DetailPage />} />
 
 
           
