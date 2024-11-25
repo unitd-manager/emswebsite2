@@ -3,16 +3,16 @@ import { useParams } from "react-router-dom"; // For getting route parameters
 import api from "../constants/api";
 
 const DetailPage = () => {
-  const { contentId } = useParams(); // Get the `content_id` from the URL
+  const { subCategoryId } = useParams(); // Get the `content_id` from the URL
   const [content, setContent] = useState(null);
 
   useEffect(() => {
     const fetchContentDetails =  () => {
      
         api
-          .post('/content/getContentById',{content_id: contentId})
+          .post('/content/getEngalaiPatriSubContent',{sub_category_id: subCategoryId})
           .then((res) => {
-            setContent(res.data.data);
+            setContent(res.data.data[0]);
             console.log('edit Line Item',res.data.data)
           })
           .catch(() => {
@@ -21,7 +21,7 @@ const DetailPage = () => {
       };
 
     fetchContentDetails();
-  }, [contentId]);
+  }, [subCategoryId]);
 
  
 
@@ -41,13 +41,7 @@ const DetailPage = () => {
                         <a href="blog.html"><i className="fal fa-calendar-days"></i>{content.content_date}</a>
                         <span><i className="far fa-book-open"></i>5 Mins Read</span>
                     </div>
-                    <div className="blog-img mb-40">
-                        <img
-                src={`https://emsmedia.net/storage/uploads/${content.file_name}`}
-                alt={content.title}
-               
-              />
-                    </div>
+                  
                 </div>
                 <div className="col-xxl-9 col-lg-10">
                     <div className="th-blog blog-single">
