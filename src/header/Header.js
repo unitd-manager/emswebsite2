@@ -596,7 +596,7 @@ const Home = () => {
                           </li>
                           
                           <li className="menu-item-has-children">
-                            <a href="#">வஹ்தத்துல் வுஜூத்</a>
+                          <Link to="/vahthathulvujooth1">வஹ்தத்துல் வுஜூத்</Link>
                             <ul className="sub-menu">
                               <li>
                               <Link to="/vahthathulvujooth">அனுப்பப்பட்ட பரிசு</Link>
