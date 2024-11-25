@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Marquee from "react-fast-marquee";
+import NavMenu from "../components/NavMenu";
 
 import logoFooter from "../assets/img/logo-footer.svg";
 import logoFooterBlack from "../assets/img/logo-footer-black.svg";
 import logwhite from "../assets/img/logo Ems.png";
 import logosvg from "../assets/img/logo.svg";
-import emsbanner from "../assets/img/EmsBanner.jpg";
 
 import api from "../constants/api";
 import "../assets/css/event.css";
@@ -39,11 +39,32 @@ const Home = () => {
     getMarquee();
   }, []);
 
+
+  const [isMenuOpen, setMenuOpen] = useState(false);
+
+  // Function to toggle the menu
+  const toggleMenu = (e) => {
+    e.preventDefault();
+    setMenuOpen(!isMenuOpen);
+  };
+
+  // Function to close the menu
+  const closeMenu = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setMenuOpen(false);
+  };
+
+  // Prevent propagation when clicking inside the menu
+  const stopPropagation = (e) => {
+    e.stopPropagation();
+  };
+
   return (
     <>
-      <div className="sidemenu-wrapper sidemenu-1 d-none d-md-block ">
-        <div className="sidemenu-content">
-          <button className="closeButton sideMenuCls">
+     <div className={`sidemenu-wrapper sidemenu-1 ${isMenuOpen ? 'show' : 'd-none d-md-block'}`}>
+        <div className="sidemenu-content" onClick={closeMenu}>
+          <button className="closeButton sideMenuCls" onClick={closeMenu}>
             <i className="far fa-times" />
           </button>
           <div className="widget">
@@ -82,124 +103,120 @@ const Home = () => {
             </div>
           </div>
           <div className="widget">
-            <h3 className="widget_title">Recent Posts</h3>
-            <div className="recent-post-wrap">
-              <div className="recent-post">
-                <div className="media-img">
-                  <a href="/">
-                    <img src={emsbanner} alt="Blog Image" />
-                  </a>
-                </div>
-                <div className="media-body">
-                  <h4 className="post-title">
-                    <a className="hover-line" href="/">
-                      Fitness: Your journey to Better, stronger you.
-                    </a>
-                  </h4>
-                  <div className="recent-post-meta">
-                    <a href="/">
-                      <i className="fal fa-calendar-days" />
-                      21 June, 2023
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div className="recent-post">
-                <div className="media-img">
-                  <a href="/">
-                    <img
-                      src="assets/img/blog/recent-post-1-2.jpg"
-                      alt="Blog Image"
-                    />
-                  </a>
-                </div>
-                <div className="media-body">
-                  <h4 className="post-title">
-                    <a className="hover-line" href="/">
-                      Embrace the game Ignite your sporting
-                    </a>
-                  </h4>
-                  <div className="recent-post-meta">
-                    <a href="/">
-                      <i className="fal fa-calendar-days" />
-                      22 June, 2023
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div className="recent-post">
-                <div className="media-img">
-                  <a href="/">
-                    <img
-                      src="assets/img/blog/recent-post-1-3.jpg"
-                      alt="Blog Image"
-                    />
-                  </a>
-                </div>
-                <div className="media-body">
-                  <h4 className="post-title">
-                    <a className="hover-line" href="/">
-                      Revolutionizing lives Through technology
-                    </a>
-                  </h4>
-                  <div className="recent-post-meta">
-                    <a href="/">
-                      <i className="fal fa-calendar-days" />
-                      23 June, 2023
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div className="recent-post">
-                <div className="media-img">
-                  <a href="/">
-                    <img
-                      src="assets/img/blog/recent-post-1-4.jpg"
-                      alt="Blog Image"
-                    />
-                  </a>
-                </div>
-                <div className="media-body">
-                  <h4 className="post-title">
-                    <a className="hover-line" href="/">
-                      Enjoy the Virtual Reality embrace the
-                    </a>
-                  </h4>
-                  <div className="recent-post-meta">
-                    <a href="/">
-                      <i className="fal fa-calendar-days" />
-                      25 June, 2023
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="widget newsletter-widget">
-            <h3 className="widget_title">Subscribe</h3>
-            <p className="footer-text">
-              Sign up to get update about us. Don't be hasitate your email is
-              safe.
-            </p>
-            <form className="newsletter-form">
-              <input
-                className="form-control"
-                type="email"
-                placeholder="Enter Email"
-                required=""
-              />
-              <button type="submit" className="icon-btn">
-                <i className="fa-solid fa-paper-plane" />
-              </button>
-            </form>
-            <div className="mt-30">
-              <input type="checkbox" id="Agree2" />
-              <label htmlFor="Agree2">
-                I have read and accept the{" "}
-                <a href="/">Terms &amp; Policy</a>
-              </label>
-            </div>
-          </div>
+                      <nav className="th-mobile-menu">
+                        <ul>
+                          <li>
+                            <Link to="/">எங்களைப் பற்றி</Link>
+                          </li>
+                          
+                          <li className="menu-item-has-children">
+                            <a href="#">வஹ்தத்துல் வுஜூத்</a>
+                            <ul className="sub-menu">
+                              {/* <li>
+                              <Link to="/vahthathulvujooth">அனுப்பப்பட்ட பரிசு</Link>
+                              </li>
+                            
+                              <li>
+                              <Link to="/oreyUllamai">ஒரே உள்ளமை</Link>
+                              </li> */}
+                              </ul>
+                            {/* <ul className="sub-menu">
+                              <li>
+                                <a href="category.html">Category</a>
+                              </li>
+                              <li>
+                                <a href="blog-three-column.html">
+                                  Three Column
+                                </a>
+                              </li>
+                              <li>
+                                <a href="blog-three-column-sidebar.html">
+                                  Three Column Sidebar
+                                </a>
+                              </li>
+                            </ul> */}
+                          </li>
+                          <li className="menu-item-has-children">
+                            <a href="#">ஞான அகமியங்கள்</a>
+                            {/* <ul className="sub-menu">
+                              <li className="menu-item-has-children">
+                                <a href="#">Shop</a>
+                                <ul className="sub-menu">
+                                  <li>
+                                    <a href="shop.html">Shop</a>
+                                  </li>
+                                  <li>
+                                    <a href="shop-details.html">Shop Details</a>
+                                  </li>
+                                  <li>
+                                    <a href="/">Cart Page</a>
+                                  </li>
+                                  <li>
+                                    <a href="/">Checkout</a>
+                                  </li>
+                                  <li>
+                                    <a href="wishlist.html">Wishlist</a>
+                                  </li>
+                                </ul>
+                              </li>
+                              <li>
+                                <a href="team.html">Team</a>
+                              </li>
+                              <li>
+                                <a href="author.html">Author</a>
+                              </li>
+                              <li>
+                                <a href="error.html">Error Page</a>
+                              </li>
+                            </ul> */}
+                          </li>
+                          <li className="menu-item-has-children">
+                            <a href="#">நூற்கள்</a>
+                            {/* <ul className="sub-menu">
+                              <li>
+                                <a href="/">Blog Standard</a>
+                              </li>
+                              <li>
+                                <a href="blog-masonary.html">Blog Masonary</a>
+                              </li>
+                              <li>
+                                <a href="blog-list.html">Blog List</a>
+                              </li>
+                              <li>
+                                <a href="/">Blog Details</a>
+                              </li>
+                              <li>
+                                <a href="blog-details-video.html">
+                                  Blog Details Video
+                                </a>
+                              </li>
+                              <li>
+                                <a href="blog-details-audio.html">
+                                  Blog Details Audio
+                                </a>
+                              </li>
+                              <li>
+                                <a href="blog-details-nosidebar.html">
+                                  Blog Details Nosidebar
+                                </a>
+                              </li>
+                              <li>
+                                <a href="blog-details-full-img.html">
+                                  Blog Details Full Image
+                                </a>
+                              </li>
+                            </ul> */}
+                          </li>
+                          <li>
+                            <Link to="/contact">கல்வி</Link>
+                          </li>
+                          <li>
+                            <a href="/">மனிதா</a>
+                          </li>
+                        </ul>
+                      </nav>
+                    </div>
+       
         </div>
       </div>
       {/*==============================
@@ -565,7 +582,7 @@ const Home = () => {
                   <div className="row align-items-center justify-content-between">
                     <div className="col-auto d-none d-xl-block">
                       <div className="toggle-icon">
-                        <a href="#" className="simple-icon sideMenuToggler">
+                        <a href="#" className="simple-icon sideMenuToggler"   onClick={toggleMenu}>
                           <i className="far fa-bars" />
                         </a>
                       </div>
@@ -702,6 +719,8 @@ const Home = () => {
                         </ul>
                       </nav>
                     </div>
+                    <NavMenu />
+
                     <div className="col-auto">
                       <div className="header-button">
                         <button
