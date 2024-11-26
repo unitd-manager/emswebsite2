@@ -5,6 +5,7 @@ import Engalaipatri from "../src/screens/engalaipatri.js";
 import DetailPage from "../src/screens/DetailPage";
 import Engalaipatricategory from "../src/screens/engalaipatricategory";
 import EngalaipatriSubcategory from "../src/screens/EngalaipatriSubcategory";
+import ShopList from "./BookShop/ShopList";
 
 import Contact from "./screens/contact.js";
 // import Vahthathul from "./Vahthathulvujooth/vahthathulvujooth.js";
@@ -96,6 +97,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/contact" element={<Contact/>} />
+          <Route path="/ShopList" element={<ShopList/>} />
           {/* <Route path="/vahthathulvujooth" element={<Vahthathul/>} />
           <Route path="/oreyUllamai" element={<OreyUllamai/>} /> */}
           <Route path="/:id" element={<Engalaipatri/>} />
