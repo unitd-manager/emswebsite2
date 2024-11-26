@@ -605,6 +605,120 @@ const Home = () => {
                         </a>
                       </div>
                     </div>
+                    <div className="col-auto">
+                      <nav className="main-menu d-none d-lg-inline-block">
+                        <ul>
+                          <li>
+                            <Link to="/">எங்களைப் பற்றி</Link>
+                          </li>
+                          
+                          <li className="menu-item-has-children">
+                          <Link to="/vahthathulvujooth1">வஹ்தத்துல் வுஜூத்</Link>
+                            <ul className="sub-menu">
+                              <li>
+                              <Link to="/vahthathulvujooth">அனுப்பப்பட்ட பரிசு</Link>
+                              </li>
+                            
+                              <li>
+                              <Link to="/oreyUllamai">ஒரே உள்ளமை</Link>
+                              </li>
+                              </ul>
+                            {/* <ul className="sub-menu">
+                              <li>
+                                <a href="category.html">Category</a>
+                              </li>
+                              <li>
+                                <a href="blog-three-column.html">
+                                  Three Column
+                                </a>
+                              </li>
+                              <li>
+                                <a href="blog-three-column-sidebar.html">
+                                  Three Column Sidebar
+                                </a>
+                              </li>
+                            </ul> */}
+                          </li>
+                          <li className="menu-item-has-children">
+                            <a href="#">ஞான அகமியங்கள்</a>
+                            {/* <ul className="sub-menu">
+                              <li className="menu-item-has-children">
+                                <a href="#">Shop</a>
+                                <ul className="sub-menu">
+                                  <li>
+                                    <a href="shop.html">Shop</a>
+                                  </li>
+                                  <li>
+                                    <a href="shop-details.html">Shop Details</a>
+                                  </li>
+                                  <li>
+                                    <a href="/">Cart Page</a>
+                                  </li>
+                                  <li>
+                                    <a href="/">Checkout</a>
+                                  </li>
+                                  <li>
+                                    <a href="wishlist.html">Wishlist</a>
+                                  </li>
+                                </ul>
+                              </li>
+                              <li>
+                                <a href="team.html">Team</a>
+                              </li>
+                              <li>
+                                <a href="author.html">Author</a>
+                              </li>
+                              <li>
+                                <a href="error.html">Error Page</a>
+                              </li>
+                            </ul> */}
+                          </li>
+                          <li className="menu-item-has-children">
+                            <a href="#">நூற்கள்</a>
+                            {/* <ul className="sub-menu">
+                              <li>
+                                <a href="/">Blog Standard</a>
+                              </li>
+                              <li>
+                                <a href="blog-masonary.html">Blog Masonary</a>
+                              </li>
+                              <li>
+                                <a href="blog-list.html">Blog List</a>
+                              </li>
+                              <li>
+                                <a href="/">Blog Details</a>
+                              </li>
+                              <li>
+                                <a href="blog-details-video.html">
+                                  Blog Details Video
+                                </a>
+                              </li>
+                              <li>
+                                <a href="blog-details-audio.html">
+                                  Blog Details Audio
+                                </a>
+                              </li>
+                              <li>
+                                <a href="blog-details-nosidebar.html">
+                                  Blog Details Nosidebar
+                                </a>
+                              </li>
+                              <li>
+                                <a href="blog-details-full-img.html">
+                                  Blog Details Full Image
+                                </a>
+                              </li>
+                            </ul> */}
+                          </li>
+                          <li>
+                            <Link to="/contact">கல்வி</Link>
+                          </li>
+                          <li>
+                            <a href="/">மனிதா</a>
+                          </li>
+                        </ul>
+                      </nav>
+                    </div>
                     <NavMenu />
 
                     <div className="col-auto">
