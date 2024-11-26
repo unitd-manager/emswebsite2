@@ -22,14 +22,7 @@ function Navbar() {
         console.error("Error fetching sections:", error);
       });
 
-    api
-      .get("/section/getSectionMenu")
-      .then((res) => {
-        setSectiones(res.data.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching sections:", error);
-      });
+  
 
     api
       .get("/category/getCategories", {

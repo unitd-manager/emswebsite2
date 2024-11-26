@@ -11,7 +11,7 @@ console.log("sdew",id)
   useEffect(() => {
     const getSubContent = async () => {
       try {
-        const res = await api.post("/content/getByVappasection11", {
+        const res = await api.post("/content/getByVappa11", {
           category_id: id,
         });
         setReligion(res.data.data);
@@ -65,11 +65,11 @@ console.log("sdew",id)
                             className="hover-line"
                             href={item.details_link || "#"}
                           >
-                            {item.category_title}
+                            {item.title}
                           </a>
                         </h3>
                         <p className="blog-text">
-                          {truncateToWords(stripHTMLTags(item.chi_description), 20)}
+                          {truncateToWords(stripHTMLTags(item.description), 20)}
                         </p>
                         <div className="blog-meta">
                           <a href={item.author_link || "#"}>
@@ -80,7 +80,7 @@ console.log("sdew",id)
                           </a>
                         </div>
                         <a
-                          href={`/#/engalaipatricategory/${item.category_id}`}
+                          href={`/#/details/${item.content_id}`}
                           className="th-btn style2"
                         >
                           Read More
