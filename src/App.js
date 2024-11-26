@@ -7,10 +7,8 @@ import Engalaipatricategory from "../src/screens/engalaipatricategory";
 import EngalaipatriSubcategory from "../src/screens/EngalaipatriSubcategory";
 
 import Contact from "./screens/contact.js";
-import Vahthathul1 from "./Vahthathulvujooth/vahthathulvujooth1.js";
-import Category from "./Vahthathulvujooth/categoryv.js";
-import PechuPottigal from "./Vahthathulvujooth/pechupottigal.js";
-import Kanoligal from "./Vahthathulvujooth/kanoligal.js";
+// import Vahthathul from "./Vahthathulvujooth/vahthathulvujooth.js";
+// import OreyUllamai from "./Vahthathulvujooth/oreyUllamai.js";
 import Footer from "./header/Footer"
 import Header from "./header/Header"
 
@@ -98,23 +96,15 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/contact" element={<Contact/>} />
-          <Route path="/vahthathulvujooth1" element={<Vahthathul1/>} />
-          <Route path="/categoryv/:id" element={<Category/>} />
-          <Route path="/pechupottigal" element={<PechuPottigal/>} />
-          <Route path="/kanoligal" element={<Kanoligal/>} />
-
-          <Route path="/vahthathulvujooth" element={<Vahthathul/>} />
-          <Route path="/oreyUllamai" element={<OreyUllamai/>} />
+          {/* <Route path="/vahthathulvujooth" element={<Vahthathul/>} />
+          <Route path="/oreyUllamai" element={<OreyUllamai/>} /> */}
           <Route path="/:id" element={<Engalaipatri/>} />
           <Route path="/details/:contentId" element={<DetailPage />} />
           <Route path="/engalaipatricategory/:id" element={<Engalaipatricategory />} />
           <Route path="/எங்களைப் பற்றி/:id" element={<Engalaipatricategory />} />
           <Route path="/தொகுப்புகள்/:id" element={<Engalaipatricategory />} />
-
           <Route path="/எங்களைப் பற்றி/:id/:subCategoryId" element={<EngalaipatriSubcategory />} />
 
-
-          
         </Routes>
         <Footer />
       </HashRouter>
