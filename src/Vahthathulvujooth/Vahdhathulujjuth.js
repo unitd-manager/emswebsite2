@@ -62,7 +62,7 @@ const BlogSection = () => {
                         {post.title}
                       </h3>
                       <p className="sec-text">{shortContent}</p>
-                      <Link to={`/categoryv/${post.content_id}`}// Dynamic route to the blog details page
+                      <Link to={`/categoryDetails/${post.content_id}`}// Dynamic route to the blog details page
                         className="th-btn"
                       >
                         Read More

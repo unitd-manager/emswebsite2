@@ -5,6 +5,13 @@ import Engalaipatri from "../src/screens/engalaipatri.js";
 import DetailPage from "../src/screens/DetailPage";
 import Engalaipatricategory from "../src/screens/engalaipatricategory";
 import EngalaipatriSubcategory from "../src/screens/EngalaipatriSubcategory";
+import Vahthathul1 from "./Vahthathulvujooth/Vahdhathulujjuth.js";
+import Category from "./Vahthathulvujooth/categoryDetails.js";
+import PechuPottigal from "./Vahthathulvujooth/pechupottigalsub.js";
+import Kanoligal from "./Vahthathulvujooth/kanoligalsub.js";
+
+
+
 
 import Contact from "./screens/contact.js";
 // import Vahthathul from "./Vahthathulvujooth/vahthathulvujooth.js";
@@ -104,6 +111,11 @@ function App() {
           <Route path="/எங்களைப் பற்றி/:id" element={<Engalaipatricategory />} />
           <Route path="/தொகுப்புகள்/:id" element={<Engalaipatricategory />} />
           <Route path="/எங்களைப் பற்றி/:id/:subCategoryId" element={<EngalaipatriSubcategory />} />
+          <Route path="/Vahdhathulujjuth" element={<Vahthathul1/>} />
+          <Route path="/categoryDetails/:id" element={<Category/>} />
+          <Route path="/pechupottigal" element={<PechuPottigal/>} />
+          <Route path="/kanoligal" element={<Kanoligal/>} />
+
 
         </Routes>
         <Footer />
