@@ -12,6 +12,7 @@ import Kanoligal from "./Vahthathulvujooth/kanoligalsub.js";
 
 
 
+import ShopList from "./BookShop/ShopList";
 
 import Contact from "./screens/contact.js";
 // import Vahthathul from "./Vahthathulvujooth/vahthathulvujooth.js";
@@ -103,6 +104,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/contact" element={<Contact/>} />
+          <Route path="/ShopList" element={<ShopList/>} />
           {/* <Route path="/vahthathulvujooth" element={<Vahthathul/>} />
           <Route path="/oreyUllamai" element={<OreyUllamai/>} /> */}
           <Route path="/:id" element={<Engalaipatri/>} />
@@ -124,4 +126,4 @@ function App() {
   );
 }
 
-export default App;
+export default App;
