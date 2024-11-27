@@ -526,31 +526,6 @@ Product Area
                     ))}
                   </ul>
                 </div>
-
-                <div className="widget widget_price_filter  ">
-                  <h4 className="widget_title">Filter By Price</h4>
-                  <div className="price_slider_wrapper">
-                    <div className="price_label">
-                      Price: <span className="from">$0</span> —{" "}
-                      <span className="to">$70</span>
-                    </div>
-                    <div className="price_slider" />
-                    <button type="submit" className="button">
-                      Filter
-                    </button>
-                  </div>
-                </div>
-                <div className="widget widget_tag_cloud   ">
-                  <h3 className="widget_title">Tags</h3>
-                  <div className="tagcloud">
-                    <a href="blog.html">Glove</a>
-                    <a href="blog.html">Key</a>
-                    <a href="blog.html">Seat</a>
-                    <a href="blog.html">Wheel</a>
-                    <a href="blog.html">Bag</a>
-                    <a href="blog.html">Helmet</a>
-                  </div>
-                </div>
               </aside>
             </div>
           </div>

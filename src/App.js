@@ -9,7 +9,7 @@ import Vahthathul1 from "./Vahthathulvujooth/Vahdhathulujjuth.js";
 import Category from "./Vahthathulvujooth/categoryDetails.js";
 import PechuPottigal from "./Vahthathulvujooth/pechupottigalsub.js";
 import Kanoligal from "./Vahthathulvujooth/kanoligalsub.js";
-
+import ShopDetails from "./BookShop/ShopDetails.js"
 
 
 import ShopList from "./BookShop/ShopList";
@@ -105,6 +105,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/contact" element={<Contact/>} />
           <Route path="/ShopList" element={<ShopList/>} />
+          <Route path="/ShopDetails" element={<ShopDetails/>} />
           {/* <Route path="/vahthathulvujooth" element={<Vahthathul/>} />
           <Route path="/oreyUllamai" element={<OreyUllamai/>} /> */}
           <Route path="/:id" element={<Engalaipatri/>} />
