@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import api from "../constants/api";
-
+import { Link } from "react-router-dom";
 import "../assets/css/style.css";
 import "../assets/css/fontawesome.min.css";
 import "../assets/css/slick.min.css";
 import "../assets/css/magnific-popup.min.css";
 import "../assets/css/bootstrap.min.css";
 import "../assets/css/style.css.map";
+
 
 const Shop = () => {
   const [categories, setCategories] = useState([]); // Categories fetched from API
@@ -412,9 +413,12 @@ Product Area
                   }}
                 />
                 <div className="actions">
-                  <a href="#QuickView" className="icon-btn popup-content">
-                    <i className="far fa-eye" />
-                  </a>
+                <Link
+              to={`/ShopDetails/${product.product_id}`}
+              className="icon-btn popup-content"
+            >
+              <i className="far fa-eye" />
+            </Link>
                   <a href="cart.html" className="icon-btn">
                     <i className="far fa-cart-plus" />
                   </a>
