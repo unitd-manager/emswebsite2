@@ -75,7 +75,7 @@ const Home = () => {
   
 
   const [modalVideo, setModalVideo] = useState(null);
-  console.log(modalVideo)
+ 
 
   const mainSlider = useRef(null);
   const thumbSlider = useRef(null);
@@ -97,9 +97,9 @@ const Home = () => {
           // Making a POST request with content_id in the request body
           api
             .post("/file/getListOfFiles", { record_id: contentId })
-            .then((imageRes) => {
+            .then(() => {
               // Handle image response
-              console.log(`Images for content_id ${contentId}:`, imageRes.data);
+              // console.log(`Images for content_id ${contentId}:`, imageRes.data);
             })
             .catch((imageError) => {
               console.error(
@@ -146,7 +146,7 @@ const getHomeProducts = () => {
       });
 
       setHomeProducts(filteredProducts);
-      console.log("Filtered Products", filteredProducts);
+      // console.log("Filtered Products", filteredProducts);
     })
     .catch((error) => {
       console.error("Error fetching products", error);
@@ -224,7 +224,7 @@ const getHomeProducts = () => {
       { breakpoint: 576, settings: { slidesToShow: 1 } },
     ],
   };
-  console.log('setting',settings.nextArrow)
+ 
     return (
 <>
  
@@ -1218,7 +1218,7 @@ const getHomeProducts = () => {
     const imageUrl = item.images
       ? `https://emsmedia.net/storage/uploads/${item.images}`
       : "https://via.placeholder.com/300"; // Fallback placeholder image
-    console.log("Image URL:", imageUrl); // Log image URL
+    
 
     return (
       <div

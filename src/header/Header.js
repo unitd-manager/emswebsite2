@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Marquee from "react-fast-marquee";
 import NavMenu from "../components/NavMenu";
-
+import { getUser } from "../common/user";
 import logoFooter from "../assets/img/logo-footer.svg";
 import logoFooterBlack from "../assets/img/logo-footer-black.svg";
 import logwhite from "../assets/img/logo Ems.png";
@@ -15,6 +15,38 @@ import "../assets/css/event.css";
 
 const Home = () => {
 
+  const [CartItem, setCartItems] = useState([]);
+  useEffect(() => {
+    const getSelectedLanguageFromLocalStorage = () => {
+      const user = localStorage.getItem('user');
+      return user ? JSON.parse(user) : {};
+    };
+
+    const selectedLanguage = getSelectedLanguageFromLocalStorage();
+    console.log('contact',selectedLanguage);
+    const userContactId = selectedLanguage.contact_id
+
+    api
+    .post("/contact/getCartProductsByContactId", { contact_id: userContactId })
+    .then((res) => {
+      res.data.data.forEach((element) => {
+        element.images = String(element.images).split(",");
+      });
+      setCartItems(res.data.data);
+    })
+    .catch((error) => {
+      console.log("error", error);
+    });
+  }, []);
+
+  const logout = () => {
+    localStorage.clear();
+    setTimeout(() => {
+      window.location.reload();
+    }, 200);
+  };
+
+  const user=getUser();
 
     const currentDate = new Date().toLocaleDateString("en-US", {
         day: "2-digit",
@@ -621,7 +653,7 @@ const Home = () => {
                           className="simple-icon d-none d-lg-block cartToggler"
                         >
                           <i className="far fa-cart-shopping" />
-                          <span className="badge">5</span>
+                          <span className="badge">{CartItem.length}</span>
                         </button>
                         {/* <a href="/contact" className="th-btn style3">
                       Contact Us
@@ -657,20 +689,42 @@ const Home = () => {
           </div>
          
           <div className="col-auto">
-            <div className="header-links">
-              <ul>
-                <li className="d-none d-sm-inline-block">
-                  <i className="far fa-user" />
-                  <a href="/">Login / register</a>
-                </li>
-                <li>
-                  <i className="far fa-envelope" />
-                  <a href="/">info@emsmedia.net</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
+  <div className="header-links">
+    <ul>
+      {/* Show Login and Register links if the user is not logged in */}
+      {!user && (
+        <>
+          <li className="d-none d-sm-inline-block">
+            <i className="far fa-user" />
+            <Link to="/Login">Login</Link>
+          </li>
+          <li className="d-none d-sm-inline-block">
+            <i className="far fa-user" />
+            <Link to="/Register">Register</Link>
+          </li>
+        </>
+      )}
+
+      {/* Show Logout link if the user is logged in */}
+      {user && (
+        <li className="d-none d-sm-inline-block">
+          <i className="far fa-user" />
+          <Link to="#" onClick={logout}>
+            Logout
+          </Link>
+        </li>
+      )}
+
+      {/* Always show the email link */}
+      <li>
+        <i className="far fa-envelope" />
+        <a href="mailto:info@emsmedia.net">info@emsmedia.net</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+         </div>
       </div>
       </header>
     </>

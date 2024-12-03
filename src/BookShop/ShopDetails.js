@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import api from "../constants/api";
-import {Link, useParams } from "react-router-dom";
+import {Link, useParams, useNavigate } from "react-router-dom";
+import { getUser } from "../common/user";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -13,6 +14,8 @@ import "../assets/css/style.css.map";
 
 const Shop = () => {
     const { id } = useParams();
+    const user =getUser()
+    const navigate = useNavigate();
 
     const stripHtmlTags = (htmlString) => {
         const doc = new DOMParser().parseFromString(htmlString, "text/html");
@@ -25,19 +28,27 @@ const [quantity, setQuantity] = useState(1);
 
   const addToCart=()=>{
 
-    // if (!user || !user.contact_id) {
-    //   alert('Please Login');
-    //   // history.push('/login'); // Replace '/login' with your actual login route
-    // }else{
+    if (!user || !user.contact_id) {
+      const userConfirmed = window.confirm(
+        "Please Login. Click 'OK' to go to the Login page or 'Cancel' to stay."
+      );
+      if (userConfirmed) {
+        navigate("/Login"); // Navigate to the login page
+      }
+      
+    }else{
    
-        // book.contact_id=user.contact_id;
+        book.contact_id=user.contact_id;
         book.qty = quantity
     api.post('/contact/addToCart',book)
     .then(() =>{ 
-      console.log("Item Added to cart")})
+      console.log("Item Added to cart")
+      navigate("/Cart"); 
+    })
+      
     .catch((error) =>console.log("Item error",error));
     
-//   }
+  }
   }
 
 

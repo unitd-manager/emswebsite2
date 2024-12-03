@@ -9,12 +9,10 @@ import Vahthathul1 from "./Vahthathulvujooth/Vahdhathulujjuth.js";
 import Category from "./Vahthathulvujooth/categoryDetails.js";
 import PechuPottigal from "./Vahthathulvujooth/pechupottigalsub.js";
 import Kanoligal from "./Vahthathulvujooth/kanoligalsub.js";
-import Gyana1 from "./Gyanagamiyangal/gyanagamiyangal.js";
-
-
 import ShopDetails from "./BookShop/ShopDetails.js";
 import Cart from "./BookShop/Cart.js";
 import CheckOut from "./BookShop/CheckOut.js";
+import Login from "./auth/Login.js";
 
 
 import ShopList from "./BookShop/ShopList";
@@ -114,6 +112,13 @@ function App() {
           <Route path="/ShopDetails/:id" element={<ShopDetails />} />
           <Route path="/Cart" element={<Cart />} />
           <Route path="/CheckOut" element={<CheckOut />} />
+
+
+
+          <Route path="/Login" element={<Login />} />
+
+
+
           {/* <Route path="/vahthathulvujooth" element={<Vahthathul/>} />
           <Route path="/oreyUllamai" element={<OreyUllamai/>} /> */}
           <Route path="/:id" element={<Engalaipatri/>} />
@@ -124,11 +129,8 @@ function App() {
           <Route path="/எங்களைப் பற்றி/:id/:subCategoryId" element={<EngalaipatriSubcategory />} />
           <Route path="/Vahdhathulujjuth" element={<Vahthathul1/>} />
           <Route path="/categoryDetails/:id" element={<Category/>} />
-          <Route path="/pechupottigalsub" element={<PechuPottigal/>} />
-          <Route path="/kanoligalsub" element={<Kanoligal/>} />
-          <Route path="/gyanagamiyangal" element={<Gyana1/>} />
-
-
+          <Route path="/pechupottigal" element={<PechuPottigal/>} />
+          <Route path="/kanoligal" element={<Kanoligal/>} />
 
 
         </Routes>

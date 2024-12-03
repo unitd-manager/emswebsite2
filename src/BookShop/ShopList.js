@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import api from "../constants/api";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
+import { getUser } from "../common/user";
 import "../assets/css/style.css";
 import "../assets/css/fontawesome.min.css";
 import "../assets/css/slick.min.css";
@@ -8,8 +9,11 @@ import "../assets/css/magnific-popup.min.css";
 import "../assets/css/bootstrap.min.css";
 import "../assets/css/style.css.map";
 
-
 const Shop = () => {
+   
+  const navigate = useNavigate();
+  const user = getUser()
+
   const [categories, setCategories] = useState([]); // Categories fetched from API
   const [products, setProducts] = useState([]); // Assuming you have products data
   const [selectedCategory, setSelectedCategory] = useState("All"); // Initial category
@@ -88,254 +92,44 @@ const Shop = () => {
   // Get current page products
   const indexOfLastProduct = currentPage * itemsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
-  const currentProducts = filteredGallery.slice(indexOfFirstProduct, indexOfLastProduct);
+  const currentProducts = filteredGallery.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
 
   // Handle page change
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
+  const addToCart = ({product}) => {
+
+    console.log('userData',user)
+
+    const book = product
+    if (!user || !user.contact_id) {
+      const userConfirmed = window.confirm(
+        "Please Login. Click 'OK' to go to the Login page or 'Cancel' to stay."
+      );
+      if (userConfirmed) {
+        navigate("/Login"); // Navigate to the login page
+      }
+    } else {
+      book.contact_id = user.contact_id;
+      book.qty = 1;
+      api
+        .post("/contact/addToCart", book)
+        .then(() => {
+          alert("Item Added to cart");
+          // navigate("/Cart");
+        })
+
+        .catch((error) => console.log("Item error", error));
+    }
+  };
+
   return (
-    <>
-      <div id="QuickView" className="quick-view mfp-hide">
-        <div className="container">
-          <div className="row gx-60">
-            <div className="col-lg-6">
-              <div className="product-big-img">
-                <div className="img">
-                  <img
-                    src="assets/img/product/product_details_1_1.png"
-                    alt="Product Image"
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-6 align-self-center">
-              <div className="product-about">
-                <p className="price">
-                  $532.85<del>$502.99</del>
-                </p>
-                <h2 className="product-title">Smartwatch Series 3</h2>
-                <div className="product-rating">
-                  <div
-                    className="star-rating"
-                    role="img"
-                    aria-label="Rated 5.00 out of 5"
-                  >
-                    <span style={{ width: "100%" }}>
-                      Rated <strong className="rating">5.00</strong> out of 5
-                      based on <span className="rating">1</span> customer rating
-                    </span>
-                  </div>
-                  <a
-                    href="shop-details.html"
-                    className="woocommerce-review-link"
-                  >
-                    (<span className="count">4</span> customer reviews)
-                  </a>
-                </div>
-                <p className="text">
-                  Embrace tech and style with the Smartwatch Series 3, your
-                  daily companion. Stay connected, track fitness, and make a
-                  statement effortlessly elevate your game today.Experience
-                  convenience at your wrist and redefine.
-                </p>
-                <div className="checklist">
-                  <ul>
-                    <li>
-                      <i className="far fa-badge-check" /> Lifetime structural,
-                      one year finish warranty
-                    </li>
-                    <li>
-                      <i className="far fa-badge-check" /> Mapped from “Center
-                      Caps” under ” tment” tab
-                    </li>
-                    <li>
-                      <i className="far fa-badge-check" /> Fully copatible with
-                      OEM equimpent
-                    </li>
-                  </ul>
-                </div>
-                <div className="actions">
-                  <div className="quantity">
-                    <input
-                      type="number"
-                      className="qty-input"
-                      step={1}
-                      min={1}
-                      max={100}
-                      name="quantity"
-                      defaultValue={1}
-                      title="Qty"
-                    />
-                    <button className="quantity-plus qty-btn">
-                      <i className="far fa-chevron-up" />
-                    </button>
-                    <button className="quantity-minus qty-btn">
-                      <i className="far fa-chevron-down" />
-                    </button>
-                  </div>
-                  <button className="th-btn">Add to Cart</button>
-                </div>
-                <div className="product_meta">
-                  <span className="sku_wrapper">
-                    SKU: <span className="sku">smartwatch-series-3</span>
-                  </span>
-                  <span className="posted_in">
-                    Category:{" "}
-                    <a href="shop.html" rel="tag">
-                      Gadget
-                    </a>
-                  </span>
-                  <span>
-                    Tags: <a href="shop.html">Gadget</a>
-                    <a href="shop.html">Smartwatch</a>
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <button title="Close (Esc)" type="button" className="mfp-close">
-            ×
-          </button>
-        </div>
-      </div>
-
-      <div className="sidemenu-wrapper cart-side-menu d-none d-lg-block ">
-        <div className="sidemenu-content">
-          <button className="closeButton sideMenuCls">
-            <i className="far fa-times" />
-          </button>
-          <div className="widget woocommerce widget_shopping_cart">
-            <h3 className="widget_title">Shopping cart</h3>
-            <div className="widget_shopping_cart_content">
-              <ul className="woocommerce-mini-cart cart_list product_list_widget ">
-                <li className="woocommerce-mini-cart-item mini_cart_item">
-                  <a href="#" className="remove remove_from_cart_button">
-                    <i className="far fa-times" />
-                  </a>
-                  <a href="#">
-                    <img
-                      src="assets/img/product/product_thumb_1_1.png"
-                      alt="Cart Image"
-                    />
-                    Car Safety Seat
-                  </a>
-                  <span className="quantity">
-                    1 ×
-                    <span className="woocommerce-Price-amount amount">
-                      <span className="woocommerce-Price-currencySymbol">
-                        $
-                      </span>
-                      940.00
-                    </span>
-                  </span>
-                </li>
-                <li className="woocommerce-mini-cart-item mini_cart_item">
-                  <a href="#" className="remove remove_from_cart_button">
-                    <i className="far fa-times" />
-                  </a>
-                  <a href="#">
-                    <img
-                      src="assets/img/product/product_thumb_1_2.png"
-                      alt="Cart Image"
-                    />
-                    Bus Safety Hammer
-                  </a>
-                  <span className="quantity">
-                    1 ×
-                    <span className="woocommerce-Price-amount amount">
-                      <span className="woocommerce-Price-currencySymbol">
-                        $
-                      </span>
-                      899.00
-                    </span>
-                  </span>
-                </li>
-                <li className="woocommerce-mini-cart-item mini_cart_item">
-                  <a href="#" className="remove remove_from_cart_button">
-                    <i className="far fa-times" />
-                  </a>
-                  <a href="#">
-                    <img
-                      src="assets/img/product/product_thumb_1_3.png"
-                      alt="Cart Image"
-                    />
-                    Car Steering Wheel
-                  </a>
-                  <span className="quantity">
-                    1 ×
-                    <span className="woocommerce-Price-amount amount">
-                      <span className="woocommerce-Price-currencySymbol">
-                        $
-                      </span>
-                      756.00
-                    </span>
-                  </span>
-                </li>
-                <li className="woocommerce-mini-cart-item mini_cart_item">
-                  <a href="#" className="remove remove_from_cart_button">
-                    <i className="far fa-times" />
-                  </a>
-                  <a href="#">
-                    <img
-                      src="assets/img/product/product_thumb_1_4.png"
-                      alt="Cart Image"
-                    />
-                    Transponder Car Key
-                  </a>
-                  <span className="quantity">
-                    1 ×
-                    <span className="woocommerce-Price-amount amount">
-                      <span className="woocommerce-Price-currencySymbol">
-                        $
-                      </span>
-                      723.00
-                    </span>
-                  </span>
-                </li>
-                <li className="woocommerce-mini-cart-item mini_cart_item">
-                  <a href="#" className="remove remove_from_cart_button">
-                    <i className="far fa-times" />
-                  </a>
-                  <a href="#">
-                    <img
-                      src="assets/img/product/product_thumb_1_5.png"
-                      alt="Cart Image"
-                    />
-                    Safety Hand Glove
-                  </a>
-                  <span className="quantity">
-                    1 ×
-                    <span className="woocommerce-Price-amount amount">
-                      <span className="woocommerce-Price-currencySymbol">
-                        $
-                      </span>
-                      1080.00
-                    </span>
-                  </span>
-                </li>
-              </ul>
-              <p className="woocommerce-mini-cart__total total">
-                <strong>Subtotal:</strong>
-                <span className="woocommerce-Price-amount amount">
-                  <span className="woocommerce-Price-currencySymbol">$</span>
-                  4398.00
-                </span>
-              </p>
-              <p className="woocommerce-mini-cart__buttons buttons">
-                <a href="cart.html" className="th-btn wc-forward">
-                  View cart
-                </a>
-                <a href="checkout.html" className="th-btn checkout wc-forward">
-                  Checkout
-                </a>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
+    <>  
       <div className="popup-search-box">
         <button className="searchClose">
           <i className="fal fa-times" />
@@ -397,90 +191,97 @@ Product Area
                 </div>
               </div>
               <div>
-      {/* Product Grid */}
-      <div className="row gy-40">
-        {currentProducts.map((product) => (
-          <div className="col-xl-4 col-sm-6" key={product.product_id}>
-            <div className="th-product product-grid">
-              <div className="product-img">
-                <img
-                  src={`https://emsmedia.net/storage/uploads/${product.images}`}
-                  alt="Product Image"
-                  style={{
-                    height: "280px",
-                    width: "580px",
-                    objectFit: "fill",
-                  }}
-                />
-                <div className="actions">
-                <Link
-              to={`/ShopDetails/${product.product_id}`}
-              className="icon-btn popup-content"
-            >
-              <i className="far fa-eye" />
-            </Link>
-                  <a href="cart.html" className="icon-btn">
-                    <i className="far fa-cart-plus" />
-                  </a>
-                  <a href="wishlist.html" className="icon-btn">
-                    <i className="far fa-heart" />
-                  </a>
+                {/* Product Grid */}
+                <div className="row gy-40">
+                  {currentProducts.map((product) => (
+                    <div className="col-xl-4 col-sm-6" key={product.product_id}>
+                      <div className="th-product product-grid">
+                        <div className="product-img">
+                          <img
+                            src={`https://emsmedia.net/storage/uploads/${product.images}`}
+                            alt="Product Image"
+                            style={{
+                              height: "280px",
+                              width: "580px",
+                              objectFit: "fill",
+                            }}
+                          />
+                          <div className="actions">
+                            <Link
+                              to={`/ShopDetails/${product.product_id}`}
+                              className="icon-btn popup-content"
+                            >
+                              <i className="far fa-eye" />
+                            </Link>
+                            <Link
+                              to=""
+                              onClick={() => {
+                                addToCart({ product });
+                              }}
+                              className="icon-btn"
+                            >
+                              <i className="far fa-cart-plus" />
+                            </Link>
+                            <a href="wishlist.html" className="icon-btn">
+                              <i className="far fa-heart" />
+                            </a>
+                          </div>
+                        </div>
+                        <div className="product-content">
+                          <div
+                            className="star-rating"
+                            role="img"
+                            aria-label="Rated 5.00 out of 5"
+                          >
+                            <span>
+                              Rated <strong className="rating">5.00</strong> out
+                              of 5 based on <span className="rating">1</span>{" "}
+                              customer rating
+                            </span>
+                          </div>
+                          <h3 className="product-title">
+                            <a href="shop-details.html">{product.title}</a>
+                          </h3>
+                          <span className="price">Rs:{product.price}</span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              </div>
-              <div className="product-content">
-                <div
-                  className="star-rating"
-                  role="img"
-                  aria-label="Rated 5.00 out of 5"
-                >
-                  <span>
-                    Rated <strong className="rating">5.00</strong> out of 5 based on{" "}
-                    <span className="rating">1</span> customer rating
-                  </span>
-                </div>
-                <h3 className="product-title">
-                  <a href="shop-details.html">{product.title}</a>
-                </h3>
-                <span className="price">Rs:{product.price}</span>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
 
-      {/* Pagination */}
-      <div className="th-pagination text-center pt-50">
-        <ul>
-          {Array.from({ length: totalPages }, (_, index) => (
-            <li key={index + 1}>
-              <a
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handlePageChange(index + 1);
-                }}
-                className={currentPage === index + 1 ? "active" : ""}
-              >
-                {index + 1}
-              </a>
-            </li>
-          ))}
-          {currentPage < totalPages && (
-            <li>
-              <a
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handlePageChange(currentPage + 1);
-                }}
-              >
-                <i className="fas fa-arrow-right" />
-              </a>
-            </li>
-          )}
-        </ul>
-      </div>
-    </div>
+                {/* Pagination */}
+                <div className="th-pagination text-center pt-50">
+                  <ul>
+                    {Array.from({ length: totalPages }, (_, index) => (
+                      <li key={index + 1}>
+                        <a
+                          href="#"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            handlePageChange(index + 1);
+                          }}
+                          className={currentPage === index + 1 ? "active" : ""}
+                        >
+                          {index + 1}
+                        </a>
+                      </li>
+                    ))}
+                    {currentPage < totalPages && (
+                      <li>
+                        <a
+                          href="#"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            handlePageChange(currentPage + 1);
+                          }}
+                        >
+                          <i className="fas fa-arrow-right" />
+                        </a>
+                      </li>
+                    )}
+                  </ul>
+                </div>
+              </div>
             </div>
             <div className="col-xl-3 col-lg-4 sidebar-wrap">
               <aside className="sidebar-area sidebar-shop">

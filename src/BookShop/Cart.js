@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import api from "../constants/api";
+import { getUser } from "../common/user";
 import { Link } from "react-router-dom";
 import "../assets/css/style.css";
 import "../assets/css/fontawesome.min.css";
@@ -10,10 +11,13 @@ import "../assets/css/style.css.map";
 
 const Shop = () => {
   const [CartItem, setCartItems] = useState([]); // Assuming you have products data
+  const user = getUser()
+
+  const userContactId = user.contact_id
 
   const fetchCartItems = () => {
     api
-      .post("/contact/getCartProductsByContactId", { contact_id: 469 })
+      .post("/contact/getCartProductsByContactId", { contact_id: userContactId })
       .then((res) => {
         res.data.data.forEach((element) => {
           element.images = String(element.images).split(",");
@@ -138,34 +142,36 @@ Cart Area
                       </span>
                     </td>
                     <td data-title="Quantity">
-  <div className="quantity">
-    <button
-      type="button" // Prevent default form submission
-      className="quantity-minus qty-btn"
-      onClick={() => decrementQuantity(index)} // Decrement quantity
-    >
-      <i className="far fa-minus" />
-    </button>
-    <input
-      type="number"
-      className="qty-input"
-      value={CartItem[index].qty} // Bind value to state
-      min={1}
-      max={99}
-      onChange={(e) =>
-        handleQtyChange(index, parseInt(e.target.value) || 1)
-      } // Update directly
-    />
-    <button
-      type="button" // Prevent default form submission
-      className="quantity-plus qty-btn"
-      onClick={() => incrementQuantity(index)} // Increment quantity
-    >
-      <i className="far fa-plus" />
-    </button>
-  </div>
-</td>
-
+                      <div className="quantity">
+                        <button
+                          type="button" // Prevent default form submission
+                          className="quantity-minus qty-btn"
+                          onClick={() => decrementQuantity(index)} // Decrement quantity
+                        >
+                          <i className="far fa-minus" />
+                        </button>
+                        <input
+                          type="number"
+                          className="qty-input"
+                          value={CartItem[index].qty} // Bind value to state
+                          min={1}
+                          max={99}
+                          onChange={(e) =>
+                            handleQtyChange(
+                              index,
+                              parseInt(e.target.value) || 1
+                            )
+                          } // Update directly
+                        />
+                        <button
+                          type="button" // Prevent default form submission
+                          className="quantity-plus qty-btn"
+                          onClick={() => incrementQuantity(index)} // Increment quantity
+                        >
+                          <i className="far fa-plus" />
+                        </button>
+                      </div>
+                    </td>
 
                     <td data-title="Total">
                       <span className="amount">
@@ -176,7 +182,11 @@ Cart Area
                       </span>
                     </td>
                     <td data-title="Remove">
-                      <a href="#" className="remove" onClick={() => handleRemoveItem(product.contact_id)}>
+                      <a
+                        href="#"
+                        className="remove"
+                        onClick={() => handleRemoveItem(product.contact_id)}
+                      >
                         <i className="fal fa-trash-alt" />
                       </a>
                     </td>
@@ -194,10 +204,10 @@ Cart Area
                         Apply Coupon
                       </button>
                     </div>
-                    <button type="submit" className="th-btn">
+                    {/* <button type="submit" className="th-btn">
                       Update cart
-                    </button>
-                    <Link to ="/ShopList" className="th-btn">
+                    </button> */}
+                    <Link to="/ShopList" className="th-btn">
                       Continue Shopping
                     </Link>
                   </td>
@@ -215,7 +225,8 @@ Cart Area
                     <td data-title="Cart Subtotal">
                       <span className="amount">
                         <bdi>
-                          <span>₹</span>{getTotalPrice()}
+                          <span>₹</span>
+                          {getTotalPrice()}
                         </bdi>
                       </span>
                     </td>
@@ -247,7 +258,7 @@ Cart Area
                       <p className="woocommerce-shipping-destination">
                         Shipping options will be updated during checkout.
                       </p>
-                      <form action="#" method="post">
+                      {/* <form action="#" method="post">
                         <a href="#" className="shipping-calculator-button">
                           Change address
                         </a>
@@ -288,7 +299,7 @@ Cart Area
                             <button className="th-btn">Update</button>
                           </p>
                         </div>
-                      </form>
+                      </form> */}
                     </td>
                   </tr>
                 </tbody>
@@ -299,7 +310,8 @@ Cart Area
                       <strong>
                         <span className="amount">
                           <bdi>
-                          <span>₹</span>{getTotalPrice()}
+                            <span>₹</span>
+                            {getTotalPrice()}
                           </bdi>
                         </span>
                       </strong>
@@ -308,9 +320,13 @@ Cart Area
                 </tfoot>
               </table>
               <div className="wc-proceed-to-checkout mb-30">
-                <a href="checkout.html" className="th-btn">
+                <Link
+                  to="/CheckOut"
+                  className="th-btn"
+                  state={{ cartData: CartItem, getTotalPrice: getTotalPrice() }}
+                >
                   Proceed to checkout
-                </a>
+                </Link>
               </div>
             </div>
           </div>
