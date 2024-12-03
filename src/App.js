@@ -9,6 +9,8 @@ import Vahthathul1 from "./Vahthathulvujooth/Vahdhathulujjuth.js";
 import Category from "./Vahthathulvujooth/categoryDetails.js";
 import PechuPottigal from "./Vahthathulvujooth/pechupottigalsub.js";
 import Kanoligal from "./Vahthathulvujooth/kanoligalsub.js";
+import Gyana1 from "./Gyanagamiyangal/gyanagamiyangal.js";
+
 
 
 
@@ -115,8 +117,11 @@ function App() {
           <Route path="/எங்களைப் பற்றி/:id/:subCategoryId" element={<EngalaipatriSubcategory />} />
           <Route path="/Vahdhathulujjuth" element={<Vahthathul1/>} />
           <Route path="/categoryDetails/:id" element={<Category/>} />
-          <Route path="/pechupottigal" element={<PechuPottigal/>} />
-          <Route path="/kanoligal" element={<Kanoligal/>} />
+          <Route path="/pechupottigalsub" element={<PechuPottigal/>} />
+          <Route path="/kanoligalsub" element={<Kanoligal/>} />
+          <Route path="/gyanagamiyangal" element={<Gyana1/>} />
+
+
 
 
         </Routes>

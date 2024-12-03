@@ -13,7 +13,11 @@ const BlogCardDetailed = () => {
     api
       .post("/media/getVideoUrls3")
       .then((res) => {
-        setData(res.data.data); // Ensure this is an array of blog posts
+        if (Array.isArray(res.data.data)) {
+          setData(res.data.data); // Ensure this is an array of blog posts
+        } else {
+          console.error("Unexpected API response format");
+        }
       })
       .catch((error) => {
         console.error("Error fetching content data:", error);
@@ -21,94 +25,114 @@ const BlogCardDetailed = () => {
   };
 
   return (
-    <section className="space-top space-extra-bottom">
+    <section className="space-top space-extra-bottom" style={{ padding: "40px 0" }}>
       <div className="container">
         <div className="row">
-          <div className="col-xxl-9 col-lg-8">
-            {data.length > 0 ? (
-              data.map((item, index) => (
-                <div className="mb-30" key={index}>
-                  <div className="border-blog2">
-                    <div className="blog-style4">
-                      <div className="blog-img w-386">
+          <div className="col-xxl-12 col-lg-12">
+            <div
+              className="row gy-30 filter-active"
+              // style={{
+              //   display: "flex",
+              //   flexWrap: "wrap",
+              //   gap: "20px",
+              //   justifyContent: "space-between",
+              // }}
+            >
+              {data.length > 0 ? (
+                data.map((item, index) => (
+                  <div
+                    key={index}
+                    className="col-lg-3 col-md-4 col-sm-6"
+                    style={{
+                      flex: "1 1 calc(25% - 20px)", // 4 items per row
+                      maxWidth: "calc(25% - 20px)",
+                      boxSizing: "border-box",
+                    }}
+                  >
+                    <div
+                      className="blog-style1"
+                      style={{
+                        backgroundColor: "#f8f9fa",
+                        border: "1px solid #ddd",
+                        borderRadius: "8px",
+                        overflow: "hidden",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-between",
+                        height: "100%",
+                        padding: "15px",
+                        textAlign: "center",
+                        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+                      }}
+                    >
+                      <div className="blog-img">
                         <img
-                          src={blogImage} // Replace with dynamic image if available in the API response
-                          alt="blog"
+                          src={item.image_url || blogImage} // Dynamic image fallback
+                          alt={item.sub_category_title || "Blog"}
                           style={{
-                            width: "300px",
-                            height: "200px", // Optional rounded corners
+                            width: "100%",
+                            height: "200px",
+                            objectFit: "cover",
+                            marginBottom: "15px",
                           }}
                         />
                       </div>
-                      <div className="blog-content">
-                        {/* <a
-                          href={item.external_link} // Dynamically set the YouTube link
-                          target="_blank" // Open in a new tab
-                          rel="noopener noreferrer" // Security best practice for external links
-                          className="category"
-                          style={{
-                            backgroundColor: "#59C2D6",
-                            borderRadius: "5px", // Optional: Rounded corners for the button
-                            padding: "5px 10px",
-                          }}
-                        >
-                          VISIT HERE
-                        </a> */}
-                        <h2 className="box-title-20">
-                          <a
-                            className="hover-line"
-                            href={item.external_link} // Pass the external link dynamically
-                            target="_blank" // Open in a new tab
-                            rel="noopener noreferrer" // Security best practice for external links
-                            style={{ textDecoration: "none", color: "#000" }}
-                          >
-                            {item.sub_category_title || "Default Title"}
-                          </a>
-                        </h2>
-
-                        <div className="blog-meta">
-                          <a
-                            href="author.html"
-                            style={{
-                              textDecoration: "none",
-                              color: "#555",
-                              marginRight: "15px",
-                            }}
-                          >
-                            <i className="far fa-user"></i> By - EMS
-                          </a>
-                         
-                        </div>
+                      <h3 style={{ fontSize: "1.2rem", marginBottom: "15px" }}>
                         <a
-                          href={item.external_link} // Dynamically set the YouTube link
-                          target="_blank" // Open in a new tab
-                          rel="noopener noreferrer" // Security best practice for external links
-                          className="category"
+                          className="hover-line"
+                          href={item.external_link || "#"} // Fallback for missing links
+                          target="_blank"
+                          rel="noopener noreferrer"
                           style={{
-                            display: "inline-block",
-                            padding: "10px 20px",
-                            backgroundColor: "#FF9500",
-                            color: "#fff",
-                            borderRadius: "5px",
-                            marginTop: "15px",
+                            color: "red",
                             textDecoration: "none",
+                            fontWeight: "bold",
                           }}
                         >
-                          VIEW FOR MORE <i className="fas fa-arrow-up-right ms-2"></i>
+                          {item.sub_category_title || "Default Title"}
                         </a>
-                      </div>
+                      </h3>
+                      <a
+                        href={item.external_link || "#"}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="th-btn"
+                        // style={{
+                        //   display: "inline-block",
+                        //   backgroundColor: "#007bff",
+                        //   color: "#fff",
+                        //   padding: "10px 15px",
+                        //   borderRadius: "5px",
+                        //   textDecoration: "none",
+                        //   fontSize: "0.9rem",
+                        //   fontWeight: "bold",
+                        //   marginTop: "10px",
+                        // }}
+                      >
+                        VIEW FOR MORE <i className="fas fa-arrow-up-right ms-2"></i>
+                      </a>
                     </div>
                   </div>
-                </div>
-              ))
-            ) : (
-              <p>No blogs available at the moment.</p>
-            )}
+                ))
+              ) : (
+                <p
+                  style={{
+                    textAlign: "center",
+                    fontSize: "1.2rem",
+                    color: "#555",
+                    marginTop: "20px",
+                  }}
+                >
+                  No blogs available at the moment.
+                </p>
+              )}
+            </div>
           </div>
         </div>
       </div>
     </section>
   );
 };
+
 
 export default BlogCardDetailed;
