@@ -13,6 +13,7 @@ import ShopDetails from "./BookShop/ShopDetails.js";
 import Cart from "./BookShop/Cart.js";
 import CheckOut from "./BookShop/CheckOut.js";
 import Login from "./auth/Login.js";
+import Register from "./auth/Register";
 
 
 import ShopList from "./BookShop/ShopList";
@@ -116,11 +117,9 @@ function App() {
 
 
           <Route path="/Login" element={<Login />} />
+          <Route path="/Register" element={<Register />} />
 
 
-
-          {/* <Route path="/vahthathulvujooth" element={<Vahthathul/>} />
-          <Route path="/oreyUllamai" element={<OreyUllamai/>} /> */}
           <Route path="/:id" element={<Engalaipatri/>} />
           <Route path="/details/:contentId" element={<DetailPage />} />
           <Route path="/engalaipatricategory/:id" element={<Engalaipatricategory />} />
