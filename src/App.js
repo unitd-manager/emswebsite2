@@ -12,6 +12,9 @@ import Kanoligal from "./Vahthathulvujooth/kanoligalsub.js";
 import Gyana1 from "./Gyanagamiyangal/gyanagamiyangal.js";
 
 
+import ShopDetails from "./BookShop/ShopDetails.js";
+import Cart from "./BookShop/Cart.js";
+import CheckOut from "./BookShop/CheckOut.js";
 
 
 import ShopList from "./BookShop/ShopList";
@@ -107,6 +110,10 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/contact" element={<Contact/>} />
           <Route path="/ShopList" element={<ShopList/>} />
+          <Route path="/ShopDetails" element={<ShopDetails/>} />
+          <Route path="/ShopDetails/:id" element={<ShopDetails />} />
+          <Route path="/Cart" element={<Cart />} />
+          <Route path="/CheckOut" element={<CheckOut />} />
           {/* <Route path="/vahthathulvujooth" element={<Vahthathul/>} />
           <Route path="/oreyUllamai" element={<OreyUllamai/>} /> */}
           <Route path="/:id" element={<Engalaipatri/>} />
