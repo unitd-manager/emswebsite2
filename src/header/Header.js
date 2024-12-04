@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Marquee from "react-fast-marquee";
 import NavMenu from "../components/NavMenu";
+import NavMenuCopy from "../components/NavMenucopy";
+
 import { getUser } from "../common/user";
 import logoFooter from "../assets/img/logo-footer.svg";
 import logoFooterBlack from "../assets/img/logo-footer-black.svg";
