@@ -68,6 +68,10 @@ import '../src/assets/sass/base/_variable.scss'
 
 import '../src/assets/sass/spacing/_margin.scss'
 import '../src/assets/sass/spacing/_padding.scss'
+import Pugaipadangal from "./screens/nigazhchigal/Pugaipadangal.js";
+import Nigazhvugal from "./screens/nigazhchigal/Nigazhvugal.js";
+import Audios from "./screens/nigazhchigal/Audios.js";
+import Kaanoli from "./screens/nigazhchigal/Kaanoli.js";
 // import '../src/assets/sass/spacing/_section-space.scss'
 // import '../src/assets/sass/spacing/_spacing.scss'
 
@@ -93,7 +97,10 @@ function App() {
           <Route path="/contact" element={<Contact/>} />
           <Route path="/vahthathulvujooth" element={<Vahthathul/>} />
           <Route path="/oreyUllamai" element={<OreyUllamai/>} />
-
+          <Route path="/nigazhchigal/nigazhvugal" element={<Nigazhvugal/>} />
+          <Route path="/nigazhchigal/pugaipadangal" element={<Pugaipadangal/>} />
+          <Route path="/nigazhchigal/kaanoligal" element={<Kaanoli />} />
+          <Route path="/nigazhchigal/audios" element={<Audios/>} />
 
           
         </Routes>

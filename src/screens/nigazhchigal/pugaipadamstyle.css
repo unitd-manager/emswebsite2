@@ -1,0 +1,15 @@
+.top-bar {
+    background-color: #f8f9fa;
+    padding: 15px 0;
+    margin-bottom: 20px;
+  }
+  
+  .top-bar .form-control,
+  .top-bar .form-select {
+    max-width: 200px;
+  }
+  
+  .top-bar .form-control {
+    margin-right: 10px;
+  }
+  
