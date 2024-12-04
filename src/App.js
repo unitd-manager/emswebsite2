@@ -1,9 +1,27 @@
 import React from "react";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import Home from "../src/screens/Home";
+import Engalaipatri from "../src/screens/engalaipatri.js";
+import DetailPage from "../src/screens/DetailPage";
+import Engalaipatricategory from "../src/screens/engalaipatricategory";
+import EngalaipatriSubcategory from "../src/screens/EngalaipatriSubcategory";
+import Vahthathul1 from "./Vahthathulvujooth/Vahdhathulujjuth.js";
+import Category from "./Vahthathulvujooth/categoryDetails.js";
+import PechuPottigal from "./Vahthathulvujooth/pechupottigalsub.js";
+import Kanoligal from "./Vahthathulvujooth/kanoligalsub.js";
+import ShopDetails from "./BookShop/ShopDetails.js"
+import Cart from "./BookShop/Cart.js";
+import CheckOut from "./BookShop/CheckOut.js";
+import Login from "./auth/Login.js";
+import Register from "./auth/Register";
+import Thoguppugalcategory from "../src/screens/thoguppugalcategory";
+
+
+import ShopList from "./BookShop/ShopList";
+
 import Contact from "./screens/contact.js";
-import Vahthathul from "./Vahthathulvujooth/vahthathulvujooth.js";
-import OreyUllamai from "./Vahthathulvujooth/oreyUllamai.js";
+// import Vahthathul from "./Vahthathulvujooth/vahthathulvujooth.js";
+// import OreyUllamai from "./Vahthathulvujooth/oreyUllamai.js";
 import Footer from "./header/Footer"
 import Header from "./header/Header"
 
@@ -95,14 +113,33 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/contact" element={<Contact/>} />
-          <Route path="/vahthathulvujooth" element={<Vahthathul/>} />
-          <Route path="/oreyUllamai" element={<OreyUllamai/>} />
-          <Route path="/nigazhchigal/nigazhvugal" element={<Nigazhvugal/>} />
+          <Route path="/ShopList" element={<ShopList/>} />
+          <Route path="/ShopDetails" element={<ShopDetails/>} />
+          <Route path="/ShopDetails/:id" element={<ShopDetails />} />
+          <Route path="/Cart" element={<Cart />} />
+          <Route path="/CheckOut" element={<CheckOut />} />
+
+
+
+          <Route path="/Login" element={<Login />} />
+          <Route path="/Register" element={<Register />} />
+
+
+          <Route path="/:id" element={<Engalaipatri/>} />
+          <Route path="/details/:contentId" element={<DetailPage />} />
+          <Route path="/engalaipatricategory/:id" element={<Engalaipatricategory />} />
+          <Route path="/எங்களைப் பற்றி/:id" element={<Engalaipatricategory />} />
+          <Route path="/தொகுப்புகள்/:id" element={<Thoguppugalcategory />} />
+          <Route path="/எங்களைப் பற்றி/:id/:subCategoryId" element={<EngalaipatriSubcategory />} />
+          <Route path="/Vahdhathulujjuth" element={<Vahthathul1/>} />
+          <Route path="/categoryDetails/:id" element={<Category/>} />
+          <Route path="/pechupottigal" element={<PechuPottigal/>} />
+          <Route path="/kanoligal" element={<Kanoligal/>} />          <Route path="/nigazhchigal/nigazhvugal" element={<Nigazhvugal/>} />
           <Route path="/nigazhchigal/pugaipadangal" element={<Pugaipadangal/>} />
           <Route path="/nigazhchigal/kaanoligal" element={<Kaanoli />} />
           <Route path="/nigazhchigal/audios" element={<Audios/>} />
 
-          
+
         </Routes>
         <Footer />
       </HashRouter>
@@ -110,4 +147,4 @@ function App() {
   );
 }
 
-export default App;
+export default App;

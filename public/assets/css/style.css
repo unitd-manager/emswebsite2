@@ -1342,13 +1342,20 @@ textarea.is-invalid {
     opacity: 1;
     -webkit-transform: rotate(0deg);
             transform: rotate(0deg);
-    box-shadow: 0 0 0 -0.5em currentcolor, 0 0 0 -0.5em currentcolor, 0 0 0 -0.5em currentcolor, 0 0 0 -0.5em currentcolor, 0 0 0 -0.5em currentcolor, 0 0 0 -0.5em currentcolor, 0 0 0 -0.5em currentcolor, 0 0 0 -0.5em currentcolor;
+    box-shadow: 0 0 0 -0.5em currentcolor, 0 0 0 -0.5em currentcolor,
+ 0 0 0 -0.5em currentcolor, 0 0 0 -0.5em currentcolor,
+ 0 0 0 -0.5em currentcolor, 0 0 0 -0.5em currentcolor,
+ 0 0 0 -0.5em currentcolor, 0 0 0 -0.5em currentcolor;
   }
   100% {
     opacity: 0;
     -webkit-transform: rotate(180deg);
             transform: rotate(180deg);
-    box-shadow: -1em -1em 0 -0.35em currentcolor, 0 -1.5em 0 -0.35em currentcolor, 1em -1em 0 -0.35em currentcolor, -1.5em 0 0 -0.35em currentcolor, 1.5em -0 0 -0.35em currentcolor, -1em 1em 0 -0.35em currentcolor, 0 1.5em 0 -0.35em currentcolor, 1em 1em 0 -0.35em currentcolor;
+    box-shadow: -1em -1em 0 -0.35em currentcolor,
+ 0 -1.5em 0 -0.35em currentcolor, 1em -1em 0 -0.35em currentcolor,
+ -1.5em 0 0 -0.35em currentcolor, 1.5em -0 0 -0.35em currentcolor,
+ -1em 1em 0 -0.35em currentcolor, 0 1.5em 0 -0.35em currentcolor,
+ 1em 1em 0 -0.35em currentcolor;
   }
 }
 
@@ -1357,13 +1364,20 @@ textarea.is-invalid {
     opacity: 1;
     -webkit-transform: rotate(0deg);
             transform: rotate(0deg);
-    box-shadow: 0 0 0 -0.5em currentcolor, 0 0 0 -0.5em currentcolor, 0 0 0 -0.5em currentcolor, 0 0 0 -0.5em currentcolor, 0 0 0 -0.5em currentcolor, 0 0 0 -0.5em currentcolor, 0 0 0 -0.5em currentcolor, 0 0 0 -0.5em currentcolor;
+    box-shadow: 0 0 0 -0.5em currentcolor, 0 0 0 -0.5em currentcolor,
+ 0 0 0 -0.5em currentcolor, 0 0 0 -0.5em currentcolor,
+ 0 0 0 -0.5em currentcolor, 0 0 0 -0.5em currentcolor,
+ 0 0 0 -0.5em currentcolor, 0 0 0 -0.5em currentcolor;
   }
   100% {
     opacity: 0;
     -webkit-transform: rotate(180deg);
             transform: rotate(180deg);
-    box-shadow: -1em -1em 0 -0.35em currentcolor, 0 -1.5em 0 -0.35em currentcolor, 1em -1em 0 -0.35em currentcolor, -1.5em 0 0 -0.35em currentcolor, 1.5em -0 0 -0.35em currentcolor, -1em 1em 0 -0.35em currentcolor, 0 1.5em 0 -0.35em currentcolor, 1em 1em 0 -0.35em currentcolor;
+    box-shadow: -1em -1em 0 -0.35em currentcolor,
+ 0 -1.5em 0 -0.35em currentcolor, 1em -1em 0 -0.35em currentcolor,
+ -1.5em 0 0 -0.35em currentcolor, 1.5em -0 0 -0.35em currentcolor,
+ -1em 1em 0 -0.35em currentcolor, 0 1.5em 0 -0.35em currentcolor,
+ 1em 1em 0 -0.35em currentcolor;
   }
 }
 
@@ -4685,6 +4699,36 @@ ol.wp-block-rss {
           transform: rotate(180deg) translateY(1px);
 }
 
+
+.main-menuss ul li {
+  list-style-type: none;
+  display: flex;
+  position: relative;
+}
+
+.main-menuss ul li.menu-item-has-children > a:after {
+  content: "\f078";
+ 
+  position: relative;
+  font-family: var(--icon-font);
+  margin-left: 4px;
+  font-weight: 600;
+  top: 0;
+  font-size: 0.9em;
+  color: inherit;
+  -webkit-transition: 0.4s -webkit-transform ease-in-out;
+  transition: 0.4s -webkit-transform ease-in-out;
+  transition: 0.4s transform ease-in-out;
+  transition: 0.4s transform ease-in-out, 0.4s -webkit-transform ease-in-out;
+}
+
+.main-menuss ul li.menu-item-has-children > a:hover:after {
+  content: "\f078";
+  -webkit-transform: rotate(180deg) translateY(1px);
+      -ms-transform: rotate(180deg) translateY(1px);
+          transform: rotate(180deg) translateY(1px);
+}
+
 .main-menu ul li:last-child {
   margin-right: 0 !important;
 }
@@ -4705,6 +4749,45 @@ ol.wp-block-rss {
 
 .main-menu .mega-menu,
 .main-menu ul.sub-menu {
+  border-top: 3px solid var(--theme-color);
+  position: absolute;
+  text-align: left;
+  top: 100%;
+  left: 0;
+  background-color: var(--body-bg);
+  visibility: hidden;
+  min-width: 230px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  padding: 7px;
+  left: -14px;
+  opacity: 0;
+  z-index: -1;
+  box-shadow: 0px 4px 15px rgba(1, 15, 28, 0.06);
+  border-radius: 0;
+  -webkit-transform: scaleY(0);
+      -ms-transform: scaleY(0);
+          transform: scaleY(0);
+  -webkit-transform-origin: top center;
+      -ms-transform-origin: top center;
+          transform-origin: top center;
+  -webkit-transition: all 0.4s ease 0s;
+  transition: all 0.4s ease 0s;
+}
+
+.main-menuss ul li:hover .mega-menu,
+.main-menuss ul li:hover > ul.sub-menu {
+  visibility: visible;
+  opacity: 1;
+  -webkit-transform: scaleY(1);
+      -ms-transform: scaleY(1);
+          transform: scaleY(1);
+  z-index: 9;
+}
+
+.main-menuss .mega-menu,
+.main-menuss ul.sub-menu {
   border-top: 3px solid var(--theme-color);
   position: absolute;
   text-align: left;
@@ -7918,7 +8001,7 @@ table.woocommerce-product-attributes {
   padding: 11px 39px;
   font-size: 18px;
   font-weight: 500;
-  border-radius: 15px ​15px 0;
+  border-radius: 15px  15px 0;
 }
 
 .login-tab button.nav-link.active {
@@ -12232,6 +12315,7 @@ span.select2-selection.select2-selection--single:focus {
 }
 
 .dark-theme .main-menu ul.sub-menu,
+.dark-theme .main-menuss ul.sub-menu,
 .dark-theme .woocommerce-form-register,
 .dark-theme .woocommerce-form-coupon,
 .dark-theme .woocommerce-form-login {

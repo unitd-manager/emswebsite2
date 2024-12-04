@@ -8308,8 +8308,8 @@ table.woocommerce-product-attributes {
 }
 
 .th-product.list-view .product-img {
-  width: 100%;
-  max-width: 200px;
+  width: 10%;
+  max-width: 20px;
   margin: 0;
 }
 
