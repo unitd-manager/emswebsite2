@@ -10,7 +10,12 @@ import Category from "./Vahthathulvujooth/categoryDetails.js";
 import PechuPottigal from "./Vahthathulvujooth/pechupottigalsub.js";
 import Kanoligal from "./Vahthathulvujooth/kanoligalsub.js";
 import ShopDetails from "./BookShop/ShopDetails.js"
+import Cart from "./BookShop/Cart.js";
+import CheckOut from "./BookShop/CheckOut.js";
+import Login from "./auth/Login.js";
+import Register from "./auth/Register";
 import Thoguppugalcategory from "../src/screens/thoguppugalcategory";
+
 
 import ShopList from "./BookShop/ShopList";
 
@@ -106,8 +111,16 @@ function App() {
           <Route path="/contact" element={<Contact/>} />
           <Route path="/ShopList" element={<ShopList/>} />
           <Route path="/ShopDetails" element={<ShopDetails/>} />
-          {/* <Route path="/vahthathulvujooth" element={<Vahthathul/>} />
-          <Route path="/oreyUllamai" element={<OreyUllamai/>} /> */}
+          <Route path="/ShopDetails/:id" element={<ShopDetails />} />
+          <Route path="/Cart" element={<Cart />} />
+          <Route path="/CheckOut" element={<CheckOut />} />
+
+
+
+          <Route path="/Login" element={<Login />} />
+          <Route path="/Register" element={<Register />} />
+
+
           <Route path="/:id" element={<Engalaipatri/>} />
           <Route path="/details/:contentId" element={<DetailPage />} />
           <Route path="/engalaipatricategory/:id" element={<Engalaipatricategory />} />
