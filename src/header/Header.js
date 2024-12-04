@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Marquee from "react-fast-marquee";
 import NavMenu from "../components/NavMenu";
+import NavMenuCopy from "../components/NavMenucopy";
 
 import logoFooter from "../assets/img/logo-footer.svg";
 import logoFooterBlack from "../assets/img/logo-footer-black.svg";
@@ -62,160 +63,13 @@ const Home = () => {
 
   return (
     <>
-     <div className={`sidemenu-wrapper sidemenu-1 ${isMenuOpen ? 'show' : 'd-none d-md-block'}`}>
+   <div className={`sidemenu-wrapper sidemenu-1 ${isMenuOpen ? 'show' : 'd-none d-md-block'}`}>
         <div className="sidemenu-content" onClick={closeMenu}>
           <button className="closeButton sideMenuCls" onClick={closeMenu}>
             <i className="far fa-times" />
           </button>
-          <div className="widget">
-            <div className="th-widget-about">
-              <div className="about-logo">
-                <a href="/">
-                  <img
-                    className="light-img"
-                    src={logoFooterBlack}
-                    alt="Ems Media"
-                  />
-                </a>
-                <a href="/">
-                  <img className="dark-img" src={logoFooter} alt="Ems Media" />
-                </a>
-              </div>
-              <p className="about-text">
-                Magazines cover a wide subjects, including not limited to
-                fashion, lifestyle, health, politics, business, Entertainment,
-                sports, science,
-              </p>
-              <div className="th-social style-black">
-                <a href="https://www.facebook.com/">
-                  <i className="fab fa-facebook-f" />
-                </a>
-                <a href="https://www.twitter.com/">
-                  <i className="fab fa-twitter" />
-                </a>
-                <a href="https://www.linkedin.com/">
-                  <i className="fab fa-linkedin-in" />
-                </a>
-                <a href="https://www.whatsapp.com/">
-                  <i className="fab fa-whatsapp" />
-                </a>
-              </div>
-            </div>
-          </div>
-          <div className="widget">
-                      <nav className="th-mobile-menu">
-                        <ul>
-                          <li>
-                            <Link to="/">எங்களைப் பற்றி</Link>
-                          </li>
-                          
-                          <li className="menu-item-has-children">
-                            <a href="#">வஹ்தத்துல் வுஜூத்</a>
-                            <ul className="sub-menu">
-                              {/* <li>
-                              <Link to="/vahthathulvujooth">அனுப்பப்பட்ட பரிசு</Link>
-                              </li>
-                            
-                              <li>
-                              <Link to="/oreyUllamai">ஒரே உள்ளமை</Link>
-                              </li> */}
-                              </ul>
-                            {/* <ul className="sub-menu">
-                              <li>
-                                <a href="category.html">Category</a>
-                              </li>
-                              <li>
-                                <a href="blog-three-column.html">
-                                  Three Column
-                                </a>
-                              </li>
-                              <li>
-                                <a href="blog-three-column-sidebar.html">
-                                  Three Column Sidebar
-                                </a>
-                              </li>
-                            </ul> */}
-                          </li>
-                          <li className="menu-item-has-children">
-                            <a href="#">ஞான அகமியங்கள்</a>
-                            {/* <ul className="sub-menu">
-                              <li className="menu-item-has-children">
-                                <a href="#">Shop</a>
-                                <ul className="sub-menu">
-                                  <li>
-                                    <a href="shop.html">Shop</a>
-                                  </li>
-                                  <li>
-                                    <a href="shop-details.html">Shop Details</a>
-                                  </li>
-                                  <li>
-                                    <a href="/">Cart Page</a>
-                                  </li>
-                                  <li>
-                                    <a href="/">Checkout</a>
-                                  </li>
-                                  <li>
-                                    <a href="wishlist.html">Wishlist</a>
-                                  </li>
-                                </ul>
-                              </li>
-                              <li>
-                                <a href="team.html">Team</a>
-                              </li>
-                              <li>
-                                <a href="author.html">Author</a>
-                              </li>
-                              <li>
-                                <a href="error.html">Error Page</a>
-                              </li>
-                            </ul> */}
-                          </li>
-                          <li className="menu-item-has-children">
-                            <a href="#">நூற்கள்</a>
-                            {/* <ul className="sub-menu">
-                              <li>
-                                <a href="/">Blog Standard</a>
-                              </li>
-                              <li>
-                                <a href="blog-masonary.html">Blog Masonary</a>
-                              </li>
-                              <li>
-                                <a href="blog-list.html">Blog List</a>
-                              </li>
-                              <li>
-                                <a href="/">Blog Details</a>
-                              </li>
-                              <li>
-                                <a href="blog-details-video.html">
-                                  Blog Details Video
-                                </a>
-                              </li>
-                              <li>
-                                <a href="blog-details-audio.html">
-                                  Blog Details Audio
-                                </a>
-                              </li>
-                              <li>
-                                <a href="blog-details-nosidebar.html">
-                                  Blog Details Nosidebar
-                                </a>
-                              </li>
-                              <li>
-                                <a href="blog-details-full-img.html">
-                                  Blog Details Full Image
-                                </a>
-                              </li>
-                            </ul> */}
-                          </li>
-                          <li>
-                            <Link to="/contact">கல்வி</Link>
-                          </li>
-                          <li>
-                            <a href="/">மனிதா</a>
-                          </li>
-                        </ul>
-                      </nav>
-                    </div>
+       
+            <NavMenuCopy />                    
        
         </div>
       </div>

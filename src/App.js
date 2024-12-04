@@ -10,7 +10,7 @@ import Category from "./Vahthathulvujooth/categoryDetails.js";
 import PechuPottigal from "./Vahthathulvujooth/pechupottigalsub.js";
 import Kanoligal from "./Vahthathulvujooth/kanoligalsub.js";
 import ShopDetails from "./BookShop/ShopDetails.js"
-
+import Thoguppugalcategory from "../src/screens/thoguppugalcategory";
 
 import ShopList from "./BookShop/ShopList";
 
@@ -112,7 +112,7 @@ function App() {
           <Route path="/details/:contentId" element={<DetailPage />} />
           <Route path="/engalaipatricategory/:id" element={<Engalaipatricategory />} />
           <Route path="/எங்களைப் பற்றி/:id" element={<Engalaipatricategory />} />
-          <Route path="/தொகுப்புகள்/:id" element={<Engalaipatricategory />} />
+          <Route path="/தொகுப்புகள்/:id" element={<Thoguppugalcategory />} />
           <Route path="/எங்களைப் பற்றி/:id/:subCategoryId" element={<EngalaipatriSubcategory />} />
           <Route path="/Vahdhathulujjuth" element={<Vahthathul1/>} />
           <Route path="/categoryDetails/:id" element={<Category/>} />

@@ -248,8 +248,236 @@
     }
 }
 
+
+.main-menuss {
+    a {
+        display: block;
+        position: relative;
+        font-weight: 500;
+        font-size: 14px;
+        font-family: $body-font;
+        color: red;
+        text-transform: uppercase;
+
+        &:hover {
+            color: $theme-color;
+        }
+    }
+
+    > ul {
+        > li {
+            margin: 0 19px;
+            > a {
+                padding: 17px 0;
+                color: $white-color;
+                &:hover {
+                    color: $theme-color;
+                }
+            }
+        }
+    }
+
+    ul {
+        margin: 0;
+        padding: 0;
+
+        li {
+            list-style-type: none;
+            display: inline-block;
+            position: relative;
+
+            &.menu-item-has-children {
+                > a {
+                    &:after {
+                        content: "\f078";
+                        display: inline-block;
+                        position: relative;
+                        font-family: $icon-font;
+                        margin-left: 4px;
+                        font-weight: 600;
+                        top: 0;
+                        font-size: 0.9em;
+                        color: inherit;
+                        transition: 0.4s transform ease-in-out;
+                    }
+                    &:hover {
+                        &:after {
+                            content: "\f078";
+                            transform: rotate(180deg) translateY(1px);
+                        }
+                    }
+                }
+            }
+
+            &:last-child {
+                margin-right: 0 !important;
+            }
+
+            &:first-child {
+                margin-left: 0 !important;
+            }
+
+            &:hover {
+                .mega-menu,
+                > ul.sub-menu {
+                    visibility: visible;
+                    opacity: 1;
+                    transform: scaleY(1);
+                    z-index: 9;
+                }
+            }
+        }
+    }
+
+    .mega-menu,
+    ul.sub-menu {
+        border-top: 3px solid $theme-color;
+        position: absolute;
+        text-align: left;
+        top: 100%;
+        left: 0;
+        background-color: $body-bg;
+        visibility: hidden;
+        min-width: 230px;
+        width: max-content;
+        padding: 7px;
+        left: -14px;
+        opacity: 0;
+        z-index: -1;
+        box-shadow: 0px 4px 15px rgba(1, 15, 28, 0.06);
+        border-radius: 0;
+        transform: scaleY(0);
+        transform-origin: top center;
+        transition: all 0.4s ease 0s;
+
+        a {
+            font-size: 14px;
+            line-height: 30px;
+        }
+    }
+
+    .mega-menu,
+    ul.sub-menu {
+        padding: 18px 20px 18px 18px;
+        left: -27px;
+
+        // &:before {
+        //   content: "";
+        //   position: absolute;
+        //   left: 34.5px;
+        //   top: 30px;
+        //   width: 1px;
+        //   background-color: #ededed;
+        //   height: calc(100% - 60px);
+        // }
+
+        li {
+            display: block;
+            margin: 0 0;
+            padding: 0px 9px;
+
+            &.menu-item-has-children {
+                > a {
+                    &:after {
+                        content: "\f054";
+                        float: right;
+                        top: 1px;
+                        display: inline-block;
+                    }
+                    &:hover {
+                        &:after {
+                            content: "\f054";
+                            transform: rotate(90deg) translateY(-1px);
+                        }
+                    }
+                }
+            }
+
+            a {
+                color: $title-color;
+                position: relative;
+                padding-left: 0;
+                text-transform: uppercase;
+
+                &:before {
+                    content: "\f054";
+                    position: absolute;
+                    top: 7px;
+                    left: 10px;
+                    font-family: $icon-font;
+                    width: 11px;
+                    height: 11px;
+                    text-align: center;
+                    border-radius: 50%;
+                    display: inline-block;
+                    font-size: 1em;
+                    line-height: 1;
+                    color: $theme-color;
+                    font-weight: 900;
+                    opacity: 0;
+                    visibility: visible;
+                    transition: 0.3s ease-in-out;
+                    // background-color: $white-color;
+                    // box-shadow: inset 0px 2px 4px 0px rgba(#ad8858, 0.4);
+                }
+                &:hover {
+                    padding-left: 19px;
+                    color: $theme-color;
+                    &:before {
+                        visibility: visible;
+                        opacity: 1;
+                        left: 0;
+                    }
+                }
+            }
+
+            .mega-menu,
+            ul.sub-menu {
+                left: 100%;
+                right: auto;
+                top: 0;
+                margin: 0 0;
+                margin-left: 20px;
+
+                li {
+                    ul {
+                        left: 100%;
+                        right: auto;
+                    }
+                }
+            }
+        }
+    }
+    .mega-menu-wrap {
+        position: static;
+    }
+    .mega-menu {
+        width: 100%;
+        max-width: var(--main-container);
+        left: calc(50% - var(--main-container)/2);
+    }
+    &.hide-icon {
+        ul.sub-menu {
+            li {
+                a {
+                    padding-left: 0;
+                    &:before {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
 @include xl {
     .main-menu .mega-menu {
+        width: 100%;
+        max-width: 100%;
+        left: 0;
+    }
+    .main-menuss .mega-menu {
         width: 100%;
         max-width: 100%;
         left: 0;
@@ -258,6 +486,9 @@
 
 @media (max-width: 1500px) {
     .main-menu > ul > li {
+        margin: 0 15px;
+    }
+    .main-menuss > ul > li {
         margin: 0 15px;
     }
 }
