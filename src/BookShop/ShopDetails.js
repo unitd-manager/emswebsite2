@@ -133,7 +133,7 @@ const [quantity, setQuantity] = useState(1);
     <div className="container">
       <ul className="breadcumb-menu">
         <li>
-          <Link href="/Home">Home</Link>
+          <Link to="/Home">Home</Link>
         </li>
         <li>Shop Details</li>
       </ul>

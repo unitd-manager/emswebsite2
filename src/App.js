@@ -87,9 +87,11 @@ import '../src/assets/sass/base/_variable.scss'
 import '../src/assets/sass/spacing/_margin.scss'
 import '../src/assets/sass/spacing/_padding.scss'
 import Pugaipadangal from "./screens/nigazhchigal/Pugaipadangal.js";
+import PugaipadangalDetails from "./screens/nigazhchigal/PugaipadangalDetails.js";
+import Kaanoli from "./screens/nigazhchigal/Kaanoli"
 import Nigazhvugal from "./screens/nigazhchigal/Nigazhvugal.js";
 import Audios from "./screens/nigazhchigal/Audios.js";
-import Kaanoli from "./screens/nigazhchigal/Kaanoli.js";
+// import Kaanoli from "./screens/nigazhchigal/Kaanoli.js";
 // import '../src/assets/sass/spacing/_section-space.scss'
 // import '../src/assets/sass/spacing/_spacing.scss'
 
@@ -134,9 +136,12 @@ function App() {
           <Route path="/Vahdhathulujjuth" element={<Vahthathul1/>} />
           <Route path="/categoryDetails/:id" element={<Category/>} />
           <Route path="/pechupottigal" element={<PechuPottigal/>} />
-          <Route path="/kanoligal" element={<Kanoligal/>} />          <Route path="/nigazhchigal/nigazhvugal" element={<Nigazhvugal/>} />
-          <Route path="/nigazhchigal/pugaipadangal" element={<Pugaipadangal/>} />
-          <Route path="/nigazhchigal/kaanoligal" element={<Kaanoli />} />
+          <Route path="/kanoligal" element={<Kanoligal/>} />         
+           <Route path="/nigazhchigal/nigazhvugal" element={<Nigazhvugal/>} />
+          <Route path="/pugaipadangal" element={<Pugaipadangal/>} />
+          <Route path="/PugaipadangalDetails" element={<PugaipadangalDetails/>} />
+          <Route path="/Kaanoli" element={<Kaanoli/>} />   
+          {/* <Route path="/nigazhchigal/kaanoligal" element={<Kaanoli />} /> */}
           <Route path="/nigazhchigal/audios" element={<Audios/>} />
 
 
