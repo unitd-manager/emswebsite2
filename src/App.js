@@ -126,7 +126,7 @@ function App() {
           <Route path="/Register" element={<Register />} />
         
           <Route path="/:engalaipatri" element={<Engalaipatri/>} />
-          <Route path="/:Collections" element={<Thoguppugal/>} />
+          <Route path="/Collections/:Collections" element={<Thoguppugal/>} />
 
           <Route path="/details/:contentId" element={<DetailPage />} />
           <Route path="/engalaipatricategory/:id" element={<Engalaipatricategory />} />
