@@ -47,19 +47,21 @@ console.log("sdwwwwwwew",Collections)
                         religion.map((item, index) => (
                     <div class="col-sm-6">
                         <div class="blog-style7">
-                            <div class="blog-img">
-                                <img
-                                src={`https://emsmedia.net/storage/uploads/${item.file_name}`}
-                              />
-                                <a data-theme-color="#6234AC" href="blog.html" class="category">{item.category_title}</a>
-                            </div>
+                        <div className="blog-img">
+                          <img
+                            src={`https://emsmedia.net/storage/uploads/${item.file_name}`}
+                            style={{ width: '500px', height: '500px', objectFit: 'cover' }}
+                            alt="Blog"
+                          />
+                        </div>
+
                             <div class="blog-meta">
-                                <a href="author.html"><i class="far fa-user"></i>By - Ems Media</a>
-                                <a href="blog.html"><i class="fal fa-calendar-days"></i>26 Mar, 2023</a>
+                                <a href="/"><i class="far fa-user"></i>By - Ems Media</a>
+                                <a href="/"><i class="fal fa-calendar-days"></i>26 Mar, 2023</a>
                             </div>
                             <h3 class="box-title-24"><a class="hover-line" href="blog-details.html">{item.category_title}</a></h3>
                             <a href={`/#/தொகுப்புகள்/${item.category_id}`}
- class="th-btn style2">Read More<i class="fas fa-arrow-up-right ms-2"></i></a>
+                            class="th-btn style2">Read More<i class="fas fa-arrow-up-right ms-2"></i></a>
                         </div>
                     </div>
                    

@@ -50,6 +50,8 @@ console.log("sdew",engalaipatri)
                       <div className="blog-img w-386">
                       <img
                 src={`https://emsmedia.net/storage/uploads/${item.file_name}`}
+                style={{ width: '500px', objectFit: 'cover' }}
+
               />
                       </div>
                       <div className="blog-content">
