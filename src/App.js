@@ -137,8 +137,9 @@ function App() {
           <Route path="/Vahdhathulujjuth" element={<Vahthathul1/>} />
           <Route path="/categoryDetails/:id" element={<Category/>} />
           <Route path="/pechupottigal" element={<PechuPottigal/>} />
-          <Route path="/kanoligal" element={<Kanoligal/>} />         
-           <Route path="/nigazhchigal/nigazhvugal" element={<Nigazhvugal/>} />
+          <Route path="/kanoligal" element={<Kanoligal/>} />  
+          <Route path="/Audios" element={<Audios/>} />                
+           <Route path="/nigazhvugal" element={<Nigazhvugal/>} />
           <Route path="/pugaipadangal" element={<Pugaipadangal/>} />
           <Route path="/PugaipadangalDetails" element={<PugaipadangalDetails/>} />
           <Route path="/Kaanoli" element={<Kaanoli/>} />   
