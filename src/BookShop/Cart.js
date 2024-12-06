@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import api from "../constants/api";
 import { getUser } from "../common/user";
+import { getCart } from "../common/headerCartApi";
 import { Link } from "react-router-dom";
 import "../assets/css/style.css";
 import "../assets/css/fontawesome.min.css";
@@ -15,35 +16,15 @@ const Shop = () => {
 
   const userContactId = user.contact_id
 
-  const fetchCartItems = () => {
-    api
-      .post("/contact/getCartProductsByContactId", { contact_id: userContactId })
-      .then((res) => {
-        res.data.data.forEach((element) => {
-          element.images = String(element.images).split(",");
-        });
-        setCartItems(res.data.data);
-      })
-      .catch((error) => {
-        console.log("error", error);
-      });
+  const loadCart = async () => {
+    const cart = await getCart(); // Wait for the cart data to load
+    setCartItems(cart);
   };
 
-  useEffect(() => {
-    fetchCartItems();
-  }, []);
-
-  // useEffect(() => {
-  //   api
-  //     .get("/product/getProductBookCato")
-  //     .then((res) => {
-  //       setCategories(res.data.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, []);
-
+  useEffect(()=>{
+    loadCart()
+  })
+ 
   const getTotalPrice = () => {
     return CartItem.reduce((total, item) => total + item.price * item.qty, 0);
   };
@@ -185,7 +166,7 @@ Cart Area
                       <a
                         href="#"
                         className="remove"
-                        onClick={() => handleRemoveItem(product.contact_id)}
+                        onClick={() => handleRemoveItem(product.basket_id)}
                       >
                         <i className="fal fa-trash-alt" />
                       </a>

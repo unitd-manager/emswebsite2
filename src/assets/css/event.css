@@ -366,5 +366,39 @@
     font-size: 12px;
   }
   .m{margin-top: 43px;}
+  .play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(241, 12, 12, 0.6);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    z-index: 10;
+  }
+  
+  .play-btn i {
+    font-size: 34px;
+  }
+  
+  .play-btn:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  
+  .popup-video {
+    display: block;
+    position: relative;
+    text-decoration: none;
+  }
+  
   
     

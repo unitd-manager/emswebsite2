@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import Marquee from "react-fast-marquee";
 import NavMenu from "../components/NavMenu";
 import NavMenuCopy from "../components/NavMenucopy";
-
+import { getCart } from "../common/headerCartApi";
 import { getUser } from "../common/user";
 import logoFooter from "../assets/img/logo-footer.svg";
 import logoFooterBlack from "../assets/img/logo-footer-black.svg";
@@ -18,35 +18,28 @@ import "../assets/css/event.css";
 const Home = () => {
 
   const [CartItem, setCartItems] = useState([]);
-  useEffect(() => {
-    const getSelectedLanguageFromLocalStorage = () => {
-      const user = localStorage.getItem('user');
-      return user ? JSON.parse(user) : {};
-    };
+  const navigate = useNavigate();
 
-    const selectedLanguage = getSelectedLanguageFromLocalStorage();
-    console.log('contact',selectedLanguage);
-    const userContactId = selectedLanguage.contact_id
+  const loadCart = async () => {
+    const cart = await getCart(); // Wait for the cart data to load
+    setCartItems(cart);
+  };
 
-    api
-    .post("/contact/getCartProductsByContactId", { contact_id: userContactId })
-    .then((res) => {
-      res.data.data.forEach((element) => {
-        element.images = String(element.images).split(",");
-      });
-      setCartItems(res.data.data);
-    })
-    .catch((error) => {
-      console.log("error", error);
-    });
-  }, []);
+  useEffect(()=>{
+    loadCart()
+  })
 
+  
   const logout = () => {
     localStorage.clear();
     setTimeout(() => {
       window.location.reload();
     }, 200);
   };
+
+  const navCart =()=>{
+    navigate('/Cart')
+  }
 
   const user=getUser();
 
@@ -506,9 +499,10 @@ const Home = () => {
                         <button
                           type="button"
                           className="simple-icon d-none d-lg-block cartToggler"
+                          onClick={navCart}
                         >
                           <i className="far fa-cart-shopping" />
-                          <span className="badge">{CartItem.length}</span>
+                          <span className="badge">{CartItem?.length}</span>
                         </button>
                         {/* <a href="/contact" className="th-btn style3">
                       Contact Us

@@ -1,90 +1,134 @@
 import React, { useState, useEffect } from "react";
 import api from "../constants/api";
 import { Link, useNavigate } from "react-router-dom";
-import { useToasts } from "react-toast-notifications";
 import "../assets/css/style.css";
-import "../assets/css/fontawesome.min.css";
-import "../assets/css/slick.min.css";
-import "../assets/css/magnific-popup.min.css";
 import "../assets/css/bootstrap.min.css";
-import "../assets/css/style.css.map";
 
 const Register = () => {
-  const { addToast } = useToasts();
-
-  const [signinData, setSigninData] = useState({
-    email: "",
-    password: "",
-  });
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [emailError, setEmailError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
-
-  // const history = useHistory();
   const navigate = useNavigate();
-  const validateEmail = (email) => {
-    // Email validation regex pattern
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailPattern.test(email);
+
+  const [signupData, setSignupData] = useState({
+    first_name: "",
+    last_name: "",
+    email: "",
+    pass_word: "",
+    mobile:"",
+    alternate_number:"",
+    address1: "",
+    address_city: "",
+    address_state: "",
+    address_country_code: "",
+    address_po_code: "",
+    otp_no: "",
+  });
+
+  const [errors, setErrors] = useState({});
+  const [mailId, setMailId] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const generateOTP = () => {
+    const min = 1000;
+    const max = 9999;
+    const otp = Math.floor(Math.random() * (max - min + 1)) + min;
+    setSignupData((prev) => ({ ...prev, otp_no: otp.toString() }));
   };
 
-  const validatePassword = (password) => {
-    // Password validation regex pattern
-    const passwordPattern =
-      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
-    return passwordPattern.test(password);
-  };
-  const handleSigninData = (e) => {
-    setSigninData({ ...signinData, [e.target.name]: e.target.value });
-    console.log("signin", signinData);
+  const getEmail = async () => {
+    try {
+      const res = await api.get("/setting/getMailId");
+      setMailId(res.data.data[0]?.email || "");
+    } catch (err) {
+      console.error("Error fetching mail ID:", err);
+    }
   };
 
-  const signin = (event) => {
+  const validateField = (name, value) => {
+    const patterns = {
+      first_name: /^[a-zA-Z\s]+$/,
+      last_name: /^[a-zA-Z\s]+$/,
+      email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+      pass_word: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/,
+      address_po_code: /^\d{5,6}$/, // Supports 5 or 6-digit PIN codes
+    };
+    if (patterns[name]) return patterns[name].test(value);
+    return value.trim() !== ""; // For fields without specific patterns
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setSignupData({ ...signupData, [name]: value });
+    setErrors({ ...errors, [name]: "" }); // Clear errors on input change
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+    Object.entries(signupData).forEach(([key, value]) => {
+      if (key !== "otp_no" && !validateField(key, value)) {
+        newErrors[key] = `Invalid ${key.replace("_", " ")}`;
+      }
+    });
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Reset previous errors
-    setEmailError("");
-    setPasswordError("");
+    if (!validateForm()) return;
 
-    // Perform email and password validation
-    if (!validateEmail(email)) {
-      setEmailError("Invalid email");
-    }
+    setLoading(true);
+    try {
+      const res = await api.post("/api/register", signupData);
+      console.log("Registration successful:", res.data.data);
 
-    if (!validatePassword(password)) {
-      setPasswordError(
-        "Password must contain at least 8 characters, including one UpperCase letter,one LowerCase letter,special characer and one number"
-      );
-    }
+      // Send email to the user
+      await api.post("/commonApi/sendUseremail", {
+        to: signupData.email,
+        subject: "Registration",
+      });
 
-    // If both email and password are valid, proceed with form submission
-    if (validateEmail(email) && validatePassword(password)) {
-      api
-        .post("/api/login", signinData)
-        .then((res) => {
-          if (res && res.status === "400") {
-            alert("Invalid Username or Password");
-            addToast("Invalid Username or Password", {
-              appearance: "error",
-              autoDismiss: true,
-            });
-          } else {
-            localStorage.setItem("user", JSON.stringify(res.data.data));
-            localStorage.setItem("token", JSON.stringify(res.data.token));
+      // Send a copy to the admin
+      await api.post("/commonApi/sendregisteremail", {
+        to: mailId,
+        text: JSON.stringify(signupData),
+        subject: "New User Registration",
+        dynamic_template_data: {
+          first_name: signupData.first_name,
+          email: signupData.email,
+          pass_word: signupData.pass_word,
+        },
+      });
 
-            setTimeout(() => {
-              navigate("/home");
-            }, 300);
-          }
-        })
-        .catch(() => {
-          addToast("Invalid Username or Password", {
-            appearance: "error",
-            autoDismiss: true,
-          });
-        });
+      // Navigate to verification page
+      navigate(`/register-verification/${signupData.email}`, {
+        state: { otpNo: signupData.otp_no },
+      });
+    } catch (err) {
+      console.error("Error during registration:", err);
+      setErrors({ email: "This email is already registered." });
+    } finally {
+      setLoading(false);
     }
   };
+  
+  const [allcountries, setallCountries] = useState();
+  const getAllCountries = () => {
+    api
+      .get("/commonApi/getCountry")
+      .then((res) => {
+        setallCountries(res.data.data);
+      })
+      .catch(() => {});
+  };
+
+  useEffect(() => {
+    getAllCountries();
+  }, []);
+
+  useEffect(() => {
+    getEmail();
+    generateOTP();
+  }, []);
+
   return (
     <>
       <div className="breadcumb-wrapper">
@@ -97,64 +141,172 @@ const Register = () => {
           </ul>
         </div>
       </div>
-      {/*==============================
-  Checkout Arae
-  ==============================*/}
+
       <div className="th-checkout-wrapper space-top space-extra-bottom">
         <div className="container">
           <div className="woocommerce-form-login-toggle">
             <div className="woocommerce-info">
-              Already you have a account?{" "}
-              <Link to ="/Login" className="showlogin">
-                Click here to Login              </Link>
+              Already have an account?{" "}
+              <Link to="/Login" className="showlogin">
+                Click here to Login
+              </Link>
             </div>
           </div>
           <div className="row">
             <div className="col-12">
-              <form action="#" className="woocommerce-form-login">
-                <div className="form-group">
-                  <label>Username or email *</label>
-                  <input
-                    type="text"
-                    name="email"
-                    placeholder="Email"
-                    onChange={(e) => {
-                      handleSigninData(e);
-                      setEmail(e.target.value);
-                    }}
-                  />
-                  {emailError && <span className="error">{emailError}</span>}
+              <form onSubmit={handleSubmit} className="woocommerce-form-login">
+                <div className="row">
+                  {/* First Name and Last Name */}
+                  <div className="col-md-6 form-group">
+                    <input
+                      type="text"
+                      name="first_name"
+                      placeholder="First Name"
+                      value={signupData.first_name}
+                      onChange={handleChange}
+                    />
+                    {errors.first_name && (
+                      <span className="error">{errors.first_name}</span>
+                    )}
+                  </div>
+                  <div className="col-md-6 form-group">
+                    <input
+                      type="text"
+                      name="last_name"
+                      placeholder="Last Name"
+                      value={signupData.last_name}
+                      onChange={handleChange}
+                    />
+                    {errors.last_name && (
+                      <span className="error">{errors.last_name}</span>
+                    )}
+                  </div>
+
+                  {/* Email and Password */}
+                  <div className="col-md-6 form-group">
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="Email"
+                      value={signupData.email}
+                      onChange={handleChange}
+                    />
+                    {errors.email && <span className="error">{errors.email}</span>}
+                  </div>
+                  <div className="col-md-6 form-group">
+                    <input
+                      type="password"
+                      name="pass_word"
+                      placeholder="Password"
+                      value={signupData.pass_word}
+                      onChange={handleChange}
+                    />
+                    {errors.pass_word && (
+                      <span className="error">{errors.pass_word}</span>
+                    )}
+                  </div>
+                  <div className="col-md-6 form-group">
+                    <input
+                      type="text"
+                      name="mobile"
+                      placeholder="Mobile"
+                      value={signupData.mobile}
+                      onChange={handleChange}
+                    />
+                    {errors.mobile && (
+                      <span className="error">{errors.mobile}</span>
+                    )}
+                  </div>
+                  <div className="col-md-6 form-group">
+                    <input
+                      type="text"
+                      name="alternate_number"
+                      placeholder="Alternate Number"
+                      value={signupData.alternate_number}
+                      onChange={handleChange}
+                    />
+                    {errors.alternate_number && (
+                      <span className="error">{errors.alternate_number}</span>
+                    )}
+                  </div>
+
+                  {/* Address */}
+                  <div className="col-md-12 form-group">
+                    <textarea
+                      name="address1"
+                      placeholder="Address"
+                      value={signupData.address1}
+                      onChange={handleChange}
+                    />
+                    {errors.address1 && (
+                      <span className="error">{errors.address1}</span>
+                    )}
+                  </div>
+
+                  {/* City, State, Country, Pincode */}
+                  <div className="col-md-6 form-group">
+                    <input
+                      type="text"
+                      name="address_city"
+                      placeholder="City"
+                      value={signupData.address_city}
+                      onChange={handleChange}
+                    />
+                    {errors.address_city && <span className="error">{errors.address_city}</span>}
+                  </div>
+                  <div className="col-md-6 form-group">
+                    <input
+                      type="text"
+                      name="address_state"
+                      placeholder="State"
+                      value={signupData.address_state}
+                      onChange={handleChange}
+                    />
+                    {errors.address_state && <span className="error">{errors.address_state}</span>}
+                  </div>
+                  <div className="col-6 form-group">
+                      <select
+                        className="form-select"
+                        name="address_country_code"
+                        onChange={handleChange}
+                        value={signupData?.address_country_code || ""}
+                      >
+                        <option value="" disabled>
+                          Please Select Country
+                        </option>
+                        {allcountries?.map((country) => (
+                          <option
+                            key={country.country_code}
+                            value={country.country_code}
+                          >
+                            {country.name}
+                          </option>
+                        ))}
+                      </select>
+                      {errors.address_country_code && (
+                      <span className="error">{errors.address_country_code}</span>
+                    )}
+                    </div>
+                  <div className="col-md-6 form-group">
+                    <input
+                      type="text"
+                      name="address_po_code"
+                      placeholder="Pincode"
+                      value={signupData.address_po_code}
+                      onChange={handleChange}
+                    />
+                    {errors.address_po_code && (
+                      <span className="error">{errors.address_po_code}</span>
+                    )}
+                  </div>
+                  
                 </div>
+
+                {/* Submit Button */}
                 <div className="form-group">
-                  <label>Password *</label>
-                  <input
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    onChange={(e) => {
-                      handleSigninData(e);
-                      setPassword(e.target.value);
-                    }}
-                  />
-                  {passwordError && (
-                    <span className="error">{passwordError}</span>
-                  )}
-                </div>
-                {/* <div className="form-group">
-                <div className="custom-checkbox">
-                  <input type="checkbox" id="remembermylogin" />
-                  <label htmlFor="remembermylogin">Remember Me</label>
-                </div>
-              </div> */}
-                <div className="form-group">
-                  <button type="submit" className="th-btn" onClick={signin}>
-                    Login
+                  <button type="submit" className="th-btn" disabled={loading}>
+                    {loading ? "Processing..." : "Submit"}
                   </button>
-                  <p className="mt-3 mb-0">
-                    <a className="text-reset" href="#">
-                      Lost your password?
-                    </a>
-                  </p>
                 </div>
               </form>
             </div>

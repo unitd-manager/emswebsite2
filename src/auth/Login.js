@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import api from "../constants/api";
 import { Link, useNavigate } from "react-router-dom";
-import { useToasts } from "react-toast-notifications";
+// import { useToasts } from "react-toast-notifications";
 import "../assets/css/style.css";
 import "../assets/css/fontawesome.min.css";
 import "../assets/css/slick.min.css";
@@ -10,7 +10,7 @@ import "../assets/css/bootstrap.min.css";
 import "../assets/css/style.css.map";
 
 const Shop = () => {
-  const { addToast } = useToasts();
+  // const { addToast } = useToasts();
 
   const [signinData, setSigninData] = useState({
     email: "",
@@ -64,10 +64,10 @@ const Shop = () => {
         .then((res) => {
           if (res && res.status === "400") {
             alert("Invalid Username or Password");
-            addToast("Invalid Username or Password", {
-              appearance: "error",
-              autoDismiss: true,
-            });
+            // addToast("Invalid Username or Password", {
+            //   appearance: "error",
+            //   autoDismiss: true,
+            // });
           } else {
             localStorage.setItem("user", JSON.stringify(res.data.data));
             localStorage.setItem("token", JSON.stringify(res.data.token));
@@ -78,10 +78,10 @@ const Shop = () => {
           }
         })
         .catch(() => {
-          addToast("Invalid Username or Password", {
-            appearance: "error",
-            autoDismiss: true,
-          });
+          // addToast("Invalid Username or Password", {
+          //   appearance: "error",
+          //   autoDismiss: true,
+          // });
         });
     }
   };
@@ -143,16 +143,16 @@ const Shop = () => {
           <div className="woocommerce-form-login-toggle">
             <div className="woocommerce-info">
               Dont have a account?{" "}
-              <a href="#" className="showlogin">
+              <Link to="/Register" className="showlogin">
                 Click here to Register
-              </a>
+              </Link>
             </div>
           </div>
           <div className="row">
             <div className="col-12">
               <form action="#" className="woocommerce-form-login">
                 <div className="form-group">
-                  <label>Username or email *</label>
+                  <label>email *</label>
                   <input
                     type="text"
                     name="email"
