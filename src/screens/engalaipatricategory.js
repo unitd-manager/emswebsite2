@@ -7,7 +7,7 @@ const Engalai = () => {
 
   const { id } = useParams();
 
-console.log("sdew",id)
+console.log("sd11ew",id)
   useEffect(() => {
     const getSubContent = async () => {
       try {
@@ -41,7 +41,7 @@ console.log("sdew",id)
     <section className="space-top space-extra-bottom">
       <div className="container">
         <div className="row">
-          <div className="col-xxl-9 col-lg-8">
+          <div className="col-xxl-12 col-lg-12">
             <div className="mb-30">
               {Array.isArray(religion) &&
                 religion.map((item, index) => (

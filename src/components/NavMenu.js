@@ -88,7 +88,7 @@ function Navbar() {
               <li className="menu-item-has-children" key={section.section_id}>
                 {/* Replace anchor tag with Link */}
                 <Link
-                   to={`/${section.section_id}`} // Unique path for each section
+                   to={`/${section.routes}`} // Unique path for each section
 
                   className={`nav-link ${
                     selectedSection === section.section_id ? "active" : ""
