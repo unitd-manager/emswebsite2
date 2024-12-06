@@ -12,7 +12,7 @@ console.log("sdew",engalaipatri)
     const getSubContent = async () => {
       try {
         const res = await api.post("/content/getByVappasection11", {
-          category_id: engalaipatri,
+          routes: engalaipatri,
         });
         setReligion(res.data.data);
       } catch (error) {
@@ -73,7 +73,7 @@ console.log("sdew",engalaipatri)
                         </p>
                         <div className="blog-meta">
                           <a href={item.author_link || "#"}>
-                            <i className="far fa-user"></i>By - Tnews
+                            <i className="far fa-user"></i>By - Ems Media
                           </a>
                           <a href={item.date_link || "#"}>
                             <i className="fal fa-calendar-days"></i>15 Mar, 2023

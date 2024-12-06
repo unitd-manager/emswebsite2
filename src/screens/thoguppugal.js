@@ -54,11 +54,12 @@ console.log("sdwwwwwwew",Collections)
                                 <a data-theme-color="#6234AC" href="blog.html" class="category">{item.category_title}</a>
                             </div>
                             <div class="blog-meta">
-                                <a href="author.html"><i class="far fa-user"></i>By - Tnews</a>
+                                <a href="author.html"><i class="far fa-user"></i>By - Ems Media</a>
                                 <a href="blog.html"><i class="fal fa-calendar-days"></i>26 Mar, 2023</a>
                             </div>
-                            <h3 class="box-title-24"><a class="hover-line" href="blog-details.html">{item.title}</a></h3>
-                            <a href={`/#/details/${item.content_id}`} class="th-btn style2">Read More<i class="fas fa-arrow-up-right ms-2"></i></a>
+                            <h3 class="box-title-24"><a class="hover-line" href="blog-details.html">{item.category_title}</a></h3>
+                            <a href={`/#/தொகுப்புகள்/${item.category_id}`}
+ class="th-btn style2">Read More<i class="fas fa-arrow-up-right ms-2"></i></a>
                         </div>
                     </div>
                    
