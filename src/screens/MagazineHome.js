@@ -73,7 +73,7 @@ const PopularNews = ({magazine}) => (
             </h3>
             <div className="blog-meta">
               <a href="author.html">
-                <i className="far fa-user" /> By - Tnews
+                <i className="far fa-user" /> By - Ems Media
               </a>
               <a href="blog.html">
                 <i className="fal fa-calendar-days" /> 26 Mar, 2023
