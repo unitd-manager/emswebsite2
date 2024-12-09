@@ -503,8 +503,8 @@ const Home = () => {
                         >
                           {/* <i className="far fa-cart-shopping" />
                           <span className="badge">{CartItem.length}</span> */}
-                          <i className="far fa-cart-shopping" />
-                          <span className="badge">{CartItem?.length}</span>
+                          {/* <i className="far fa-cart-shopping" />
+                          <span className="badge">{CartItem?.length}</span> */}
                         </button>
                         {/* <a href="/contact" className="th-btn style3">
                       Contact Us
