@@ -53,7 +53,7 @@ function Pugaipadangal() {
             <div className="blog-meta">
               <a className="author" href="author.html">
                 <i className="far fa-user" />
-                By - Tnews
+                By - Ems Media
               </a>
               <a href="blog.html">
                 <i className="fal fa-calendar-days" />

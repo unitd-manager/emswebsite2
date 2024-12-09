@@ -79,7 +79,7 @@ const BlogCard = () => {
                   </Link>
                   <div className="blog-meta">
                     <a href="author.html">
-                      <i className="far fa-user"></i> By - EMS
+                      <i className="far fa-user"></i> By - Ems Media
                     </a>
                     <a href="blog.html">
                       <i className="fal fa-calendar-days"></i> 19 Mar, 2023

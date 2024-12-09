@@ -135,7 +135,7 @@ function App() {
           <Route path="/Register" element={<Register />} />
         
           <Route path="/:engalaipatri" element={<Engalaipatri/>} />
-          <Route path="/:Collections" element={<Thoguppugal/>} />
+          <Route path="/Collections/:Collections" element={<Thoguppugal/>} />
 
           <Route path="/details/:contentId" element={<DetailPage />} />
           <Route path="/engalaipatricategory/:id" element={<Engalaipatricategory />} />
@@ -150,8 +150,9 @@ function App() {
           <Route path="/categoryDetails2/:id" element={<Category2/>} />
           <Route path="/categoryDetails3/:id" element={<Category3/>} />
           <Route path="/pechupottigal" element={<PechuPottigal/>} />
-          <Route path="/kanoligal" element={<Kanoligal/>} />         
-           <Route path="/nigazhchigal/nigazhvugal" element={<Nigazhvugal/>} />
+          <Route path="/kanoligal" element={<Kanoligal/>} />  
+          <Route path="/Audios" element={<Audios/>} />                
+           <Route path="/nigazhvugal" element={<Nigazhvugal/>} />
           <Route path="/pugaipadangal" element={<Pugaipadangal/>} />
           <Route path="/PugaipadangalDetails" element={<PugaipadangalDetails/>} />
           <Route path="/Kaanoli" element={<Kaanoli/>} />   

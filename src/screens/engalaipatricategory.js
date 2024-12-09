@@ -73,7 +73,7 @@ console.log("sd11ew",id)
                         </p>
                         <div className="blog-meta">
                           <a href={item.author_link || "#"}>
-                            <i className="far fa-user"></i>By - Tnews
+                            <i className="far fa-user"></i>By - Ems Media
                           </a>
                           <a href={item.date_link || "#"}>
                             <i className="fal fa-calendar-days"></i>15 Mar, 2023

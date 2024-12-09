@@ -91,10 +91,10 @@ const Home = () => {
                       <Link to="/kaanoli">காணொளி</Link>
                       </li>
                       <li>
-                      <Link to="/">ஆடியோ</Link>
+                      <Link to="/Audios">ஆடியோ</Link>
                       </li>
                       <li>
-                      <Link to="/">நிகழ்வுகள்</Link>
+                      <Link to="/nigazhvugal">நிகழ்வுகள்</Link>
                       </li>
                       <li>
                         <Link to="/contact">Contact Us</Link>

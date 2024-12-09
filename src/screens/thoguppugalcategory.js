@@ -51,11 +51,13 @@ console.log("sdew",id)
                             <div class="blog-img">
                                 <img
                                 src={`https://emsmedia.net/storage/uploads/${item.file_name}`}
+                                style={{ width: '500px', height: '500px', objectFit: 'cover' }}
+
                               />
                                 <a data-theme-color="#6234AC" href="blog.html" class="category">{item.category_title}</a>
                             </div>
                             <div class="blog-meta">
-                                <a href="author.html"><i class="far fa-user"></i>By - Tnews</a>
+                                <a href="author.html"><i class="far fa-user"></i>By - Ems Media</a>
                                 <a href="blog.html"><i class="fal fa-calendar-days"></i>26 Mar, 2023</a>
                             </div>
                             <h3 class="box-title-24"><a class="hover-line" href="blog-details.html">{item.title}</a></h3>
