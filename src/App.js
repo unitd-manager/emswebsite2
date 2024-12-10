@@ -2,11 +2,21 @@ import React from "react";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import Home from "../src/screens/Home";
 import Engalaipatri from "../src/screens/engalaipatri.js";
+import Education from "../src/screens/Education.js";
 import DetailPage from "../src/screens/DetailPage";
 import Engalaipatricategory from "../src/screens/engalaipatricategory";
 import EngalaipatriSubcategory from "../src/screens/EngalaipatriSubcategory";
 import Vahthathul1 from "./Vahthathulvujooth/Vahdhathulujjuth.js";
+import GyanaAgamiyangal from "./Gyanagamiyangal/gyanagamiyangal.js";
+import Manitha from "./Manitha/manitha.js";
+// C:\EMS2\emswebsite2\src\Gyanagamiyangal
+
+
 import Category from "./Vahthathulvujooth/categoryDetails.js";
+import Category2 from "./Gyanagamiyangal/categoryDetails2.js";
+import Category3 from "./Manitha/categoryDetails3.js";
+
+
 import PechuPottigal from "./Vahthathulvujooth/pechupottigalsub.js";
 import Kanoligal from "./Vahthathulvujooth/kanoligalsub.js";
 import ShopDetails from "./BookShop/ShopDetails.js"
@@ -127,7 +137,7 @@ function App() {
         
           <Route path="/:engalaipatri" element={<Engalaipatri/>} />
           <Route path="/Collections/:Collections" element={<Thoguppugal/>} />
-
+          <Route path="/Education" element={<Education/>} />
           <Route path="/details/:contentId" element={<DetailPage />} />
           <Route path="/engalaipatricategory/:id" element={<Engalaipatricategory />} />
           <Route path="/எங்களைப்பற்றி/:id" element={<Engalaipatricategory />} />
@@ -135,7 +145,11 @@ function App() {
           <Route path="/தொகுப்புகள்/:id/:subCategoryId" element={<ThoguppugalSubCategory />} />
           <Route path="/எங்களைப்பற்றி/:id/:subCategoryId" element={<EngalaipatriSubcategory />} />
           <Route path="/Vahdhathulujjuth" element={<Vahthathul1/>} />
+          <Route path="/gyanagamiyangal" element={<GyanaAgamiyangal/>} />
+          <Route path="/manitha" element={<Manitha/>} />
           <Route path="/categoryDetails/:id" element={<Category/>} />
+          <Route path="/categoryDetails2/:id" element={<Category2/>} />
+          <Route path="/categoryDetails3/:id" element={<Category3/>} />
           <Route path="/pechupottigal" element={<PechuPottigal/>} />
           <Route path="/kanoligal" element={<Kanoligal/>} />  
           <Route path="/Audios" element={<Audios/>} />                

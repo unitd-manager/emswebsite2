@@ -7,10 +7,11 @@ const Engalai = () => {
 
   const { engalaipatri } = useParams();
 
+console.log("sdew",engalaipatri)
   useEffect(() => {
     const getSubContent = async () => {
       try {
-        const res = await api.post("/content/getByVappasection11", {
+        const res = await api.post("/content/getManitha123", {
           routes: engalaipatri,
         });
         setReligion(res.data.data);
@@ -81,7 +82,7 @@ const Engalai = () => {
                           </a>
                         </div>
                         <a
-                          href={`/#/engalaipatricategory/${item.category_id}`}
+                          href={`/categoryDetails3/${item.content_id}`}
                           className="th-btn style2"
                         >
                           Read More
