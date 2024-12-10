@@ -3,6 +3,7 @@ import { HashRouter, Routes, Route } from "react-router-dom";
 import Home from "../src/screens/Home";
 import Engalaipatri from "../src/screens/engalaipatri.js";
 import Education from "../src/screens/Education.js";
+import Educationcategory from "../src/screens/Education.js";
 import DetailPage from "../src/screens/DetailPage";
 import Engalaipatricategory from "../src/screens/engalaipatricategory";
 import EngalaipatriSubcategory from "../src/screens/EngalaipatriSubcategory";
@@ -142,6 +143,7 @@ function App() {
           <Route path="/engalaipatricategory/:id" element={<Engalaipatricategory />} />
           <Route path="/எங்களைப்பற்றி/:id" element={<Engalaipatricategory />} />
           <Route path="/தொகுப்புகள்/:id" element={<Thoguppugalcategory />} />
+          <Route path="/கல்வி/:id" element={<Educationcategory />} />
           <Route path="/தொகுப்புகள்/:id/:subCategoryId" element={<ThoguppugalSubCategory />} />
           <Route path="/எங்களைப்பற்றி/:id/:subCategoryId" element={<EngalaipatriSubcategory />} />
           <Route path="/Vahdhathulujjuth" element={<Vahthathul1/>} />
