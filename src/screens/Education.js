@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import api from "../constants/api";
+import collegeMain1 from "../assets/img/collegemain1.png"
+import collegeMain2 from "../assets/img/collegemain2.png"
+import collegeMain from "../assets/img/collegemain.jpeg"
+import college1 from "../assets/img/college1.jpeg"
+import college2 from "../assets/img/college2.jpeg"
+import college3 from "../assets/img/college3.jpeg"
+import college4 from "../assets/img/college4.jpeg"
 
 const Engalai = () => {
   const [religion, setReligion] = useState([]);
@@ -43,55 +50,167 @@ console.log("sdew",engalaipatri)
         <div className="row">
           <div className="col-xxl-12 col-lg-11">
             <div className="mb-30">
-              {Array.isArray(religion) &&
-                religion.map((item, index) => (
-                  <div className="border-blog2" key={index}>
-                    <div className="blog-style4">
-                      <div className="blog-img w-386">
-                      <img
-                src={`https://emsmedia.net/storage/uploads/${item.file_name}`}
-                style={{ width: '500px', objectFit: 'cover' }}
-
-              />
+              <section className="space">
+                <div className="container">
+                  <div className="row">
+                    <div className="col-xl-12">
+                      <div className="row align-items-center">
+                        <div className="col">
+                          <h2 className="sec-title has-line">கல்வி</h2>
+                        </div>                        
                       </div>
-                      <div className="blog-content">
-                        <a
-                          data-theme-color="#FF9500"
-                          href={item.category_link || "#"}
-                          className="category"
-                        >
-                          {item.category_title}
-                        </a>
-                        <h3 className="box-title-30">
-                          <a
-                            className="hover-line"
-                            href={item.details_link || "#"}
-                          >
-                            {item.category_title}
-                          </a>
-                        </h3>
-                        <p className="blog-text">
-                          {truncateToWords(stripHTMLTags(item.chi_description), 20)}
-                        </p>
-                        <div className="blog-meta">
-                          <a href={item.author_link || "#"}>
-                            <i className="far fa-user"></i>By - Ems Media
-                          </a>
-                          <a href={item.date_link || "#"}>
-                            <i className="fal fa-calendar-days"></i>15 Mar, 2023
-                          </a>
+                      <div className="filter-active">
+                        <div className="border-blog2 filter-item cat1">
+                          <div className="blog-style4">
+                            <div className="blog-img">
+                              <img src={collegeMain1} alt="blog image" />
+                            </div>
+                            <div className="blog-content">
+                              <a
+                                data-theme-color="#007BFF"
+                                href="/"
+                                className="category"
+                                style={{backgroundColor:"#007BFF"}}
+                              >
+                              About Us
+                              </a>
+                              <h3 className="box-title-24">
+                                <a className="hover-line" href="/">
+                                This Institution founded by His Holiness Jamaliya Syed Khaleel Awn Mowlana
+                                Al Hassani wal Hussaini Ai Hashimi from the Progeny of Prophet Muhammad(PBUH)
+                                </a>
+                              </h3>
+                              {/* <p className="blog-text">
+                              This Institution founded by His Holiness Jamaliya Syed Khaleel Awn Mowlana
+                                Al Hassani wal Hussaini Ai Hashimi from the Progeny of Prophet Muhammad(PBUH)
+                              </p> */}
+                              <div className="blog-meta">
+                                <a href="/">
+                                  <i className="far fa-user" />
+                                  By - EMS Media
+                                </a>
+                              </div>
+                              <a href="#" className="th-btn style2">
+                                  Read More
+                              </a>
+                            </div>
+                          </div>
                         </div>
-                        <a
-                          href={`/categoryDetails3/${item.content_id}`}
-                          className="th-btn style2"
-                        >
-                          Read More
-                          <i className="fas fa-arrow-up-right ms-2"></i>
-                        </a>
+                        <div className="border-blog2 filter-item cat4">
+                          <div className="blog-style4">
+                            <div className="blog-img">
+                              <img src={college1} alt="blog image" />
+                            </div>
+                            <div className="blog-content">
+                              <a
+                                data-theme-color="#59C2D6"
+                                href="/"
+                                className="category"
+                                style={{backgroundColor:"#59C2D6"}}
+                              >
+                                Vision
+                              </a>
+                              <h3 className="box-title-24">
+                                <a className="hover-line" href="/">
+                                To develop into a full fledged University
+                                </a>
+                              </h3>
+                              {/* <p className="blog-text">
+                                Quisque eget ex rutrum, consequat odio in, tempor purus.
+                                Mauris neque quam, Tellentesque sit amet rutrum ut, gravida
+                                sit amet felis.
+                              </p> */}
+                              <div className="blog-meta">
+                                <a href="/">
+                                  <i className="far fa-user" />
+                                  By - EMS Media
+                                </a>
+                              </div>
+                              <a href="#" className="th-btn style2">
+                                  Read More
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="border-blog2 filter-item cat2">
+                          <div className="blog-style4">
+                            <div className="blog-img">
+                              <img src={collegeMain2} alt="blog image" />
+                            </div>
+                            <div className="blog-content">
+                              <a
+                                data-theme-color="#FF9500"
+                                href="/"
+                                className="category"
+                                style={{backgroundColor:"#FF9500"}}
+                              >
+                              Objectives
+                              </a>
+                              <h3 className="box-title-24">
+                                <a className="hover-line" href="/">
+                                Our Founder wished to form a younger generation who can be self dependant
+                              and can serve their community / fellow human beings.
+                                </a>
+                              </h3>
+                              {/* <p className="blog-text">
+                                Quisque eget ex rutrum, consequat odio in, tempor purus.
+                                Mauris neque quam, Tellentesque sit amet rutrum ut, gravida
+                                sit amet felis.
+                              </p> */}
+                              <div className="blog-meta">
+                                <a href="/">
+                                  <i className="far fa-user" />
+                                  By - EMS Media
+                                </a>
+                              </div>
+                              <a href="#" className="th-btn style2">
+                                  Read More
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="border-blog2 filter-item cat1">
+                          <div className="blog-style4">
+                            <div className="blog-img">
+                              <img src={college4} alt="blog image" />
+                            </div>
+                            <div className="blog-content">
+                              <a
+                                data-theme-color="#007BFF"
+                                href="/"
+                                className="category"
+                                style={{backgroundColor:"#007BFF"}}
+                              >
+                                  Courses Offered
+                              </a>
+                              <h3 className="box-title-24">
+                                <a className="hover-line" href="/">
+                                To Provide Islamic and formal general eduaction
+                                with strong focus on technical trainings
+                                </a>
+                              </h3>
+                              {/* <p className="blog-text">
+                                Quisque eget ex rutrum, consequat odio in, tempor purus.
+                                Mauris neque quam, Tellentesque sit amet rutrum ut, gravida
+                                sit amet felis.
+                              </p> */}
+                              <div className="blog-meta">
+                                <a href="/">
+                                  <i className="far fa-user" />
+                                  By - EMS Media
+                                </a>
+                              </div>
+                              <a href="#" className="th-btn style2">
+                                  Read More
+                              </a>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                ))}
+                </div>
+              </section>              
             </div>
           </div>
         </div>
