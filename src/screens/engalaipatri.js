@@ -7,7 +7,6 @@ const Engalai = () => {
 
   const { engalaipatri } = useParams();
 
-console.log("sdew",engalaipatri)
   useEffect(() => {
     const getSubContent = async () => {
       try {

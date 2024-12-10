@@ -142,18 +142,19 @@ function App() {
           <Route path="/engalaipatricategory/:id" element={<Engalaipatricategory />} />
           <Route path="/எங்களைப்பற்றி/:id" element={<Engalaipatricategory />} />
           <Route path="/வஹ்தத்துல் வுஜூத்/:id" element={<Category />} />
-          <Route path="/வஹ்தத்துல் வுஜூத்/::id/:subCategoryId" element={<VahtahthulSub />} />
+          <Route path="/வஹ்தத்துல் வுஜூத்/:id/:subCategoryId" element={<VahtahthulSub />} />
           <Route path="/மனிதா/:id" element={<Category3 />} />
           <Route path="/ஞான அகமியங்கள்/:id" element={<Category2 />} />
           <Route path="/ஞான அகமியங்கள்/:id/:subCategoryId" element={<GyanaSub />} />
           <Route path="/மனிதா/:id/:subCategoryId" element={<ManithaSub />} />
           <Route path="/தொகுப்புகள்/:id" element={<Thoguppugalcategory />} />
+          <Route path="/கல்வி/:id" element={<Educationcategory />} />
           <Route path="/தொகுப்புகள்/:id/:subCategoryId" element={<ThoguppugalSubCategory />} />
           <Route path="/கல்வி/:id" element={<Kalvicategory />} />
           <Route path="/கல்வி/:id/:subCategoryId" element={<KalviSubCategory />} />
           <Route path="/எங்களைப்பற்றி/:id/:subCategoryId" element={<EngalaipatriSubcategory />} />
           <Route path="/manitha" element={<Manitha/>} />
-\          <Route path="/pechupottigal" element={<PechuPottigal/>} />
+     <Route path="/pechupottigal" element={<PechuPottigal/>} />
           <Route path="/kanoligal" element={<Kanoligal/>} />  
           <Route path="/Audios" element={<Audios/>} />                
            <Route path="/nigazhvugal" element={<Nigazhvugal/>} />
