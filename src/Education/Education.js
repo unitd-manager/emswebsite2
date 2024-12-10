@@ -6,23 +6,22 @@ import api from "../constants/api";
 const BlogSection = () => {
   const [blogPosts, setBlogPosts] = useState([]);  
 
-  const { id } = useParams();
+  const { Education } = useParams();
 
-  console.log("sdew",id)
-    useEffect(() => {
-      const getSubContent = async () => {
-        try {
-          const res = await api.post("/content/getByVappa11", {
-            category_id: id,
-          });
-          setBlogPosts(res.data.data);
-        } catch (error) {
-          console.error("Failed to fetch data:", error);
-        }
-      };
-  
-      getSubContent();
-    }, [id]); // Dependency array is empty because `id` is a constant.
+  useEffect(() => {
+    const getSubContent = async () => {
+      try {
+        const res = await api.post("/content/getByVappasection11", {
+          routes:`Education/${Education}` 
+        });
+        setBlogPosts(res.data.data);
+      } catch (error) {
+        console.error("Failed to fetch data:", error);
+      }
+    };
+
+    getSubContent();
+  }, [Education]); // Dependency array is empty because `id` is a constant.
   
   const stripHTMLTags = (input) => {
     return input
@@ -66,7 +65,7 @@ const BlogSection = () => {
                         {post.title}
                       </h3>
                       <p className="sec-text">{shortContent}</p>
-                      <Link to={`/details/${post.content_id}`}
+                      <Link to={`/கல்வி/${post.category_id}`}
                         className="th-btn"
                       >
                         Read More

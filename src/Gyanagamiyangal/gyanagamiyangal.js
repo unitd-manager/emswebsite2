@@ -1,25 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import api from "../constants/api";
 
 const BlogCard = () => {
   const [blogPosts, setBlogPosts] = useState([]);
 
+  const { gyanagamiyangal } = useParams();
+
   useEffect(() => {
-    getContent();
-  }, []);
+    const getSubContent = async () => {
+      try {
+        const res = await api.post("/content/getByVappasection12", {
+          routes:`gyanagamiyangal/${gyanagamiyangal}` 
+        });
+        setBlogPosts(res.data.data);
+      } catch (error) {
+        console.error("Failed to fetch data:", error);
+      }
+    };
 
-  const getContent = () => {
-    api
-      .post("/content/getGyanaAgamiyangal")
-      .then((res) => {
-        setBlogPosts(res.data.data); // Set the entire array of blog posts
-      })
-      .catch((error) => {
-        console.error("Error fetching content data:", error);
-      });
-  };
-
+    getSubContent();
+  }, [gyanagamiyangal]); // Dependency array is empty because `id` is a constant.
+  
   const stripHTMLTags = (input) => {
     return input
       ? input
@@ -63,7 +66,8 @@ const BlogCard = () => {
                   <h3 className="box-title-20">{post.title}</h3>
                   <p className="sec-text">{shortContent}</p>
                   <Link
-                    to={`/categoryDetails2/${post.content_id}`}
+                    to={`/ஞான அகமியங்கள்/${post.category_id}`}
+                    
                     className="th-btn"
                     style={{
                       backgroundColor: "black",

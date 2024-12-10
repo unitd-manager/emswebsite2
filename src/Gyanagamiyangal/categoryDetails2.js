@@ -1,57 +1,103 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import ReactHtmlParser from "react-html-parser"; // Import the library to render HTML
+import { Link } from "react-router-dom";
 import api from "../constants/api";
 
-const BlogPost = () => {
-  const [categoryDetails, setCategoryDetails] = useState({}); // Initialize as an object
-  const { id } = useParams(); // Get the `id` from the URL
+const BlogCard = () => {
+  const [blogPosts, setBlogPosts] = useState([]);
 
-  // Fetch Category By ID
-  const fetchCategoryById = () => {
-    api
-      .post('/content/getReligionService3', { content_id: id }) // Pass content_id to API
-      .then((res) => {
-        if (res.data && res.data.data.length > 0) {
-          setCategoryDetails(res.data.data[0]); // Safely set the first item from the response
-        } else {
-          console.warn("No data found for content_id:", id);
-          setCategoryDetails({}); // Set to an empty object if no data is found
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching content data:", error);
-      });
+  const { id } = useParams();
+
+console.log("sdew",id)
+  useEffect(() => {
+    const getSubContent = async () => {
+      try {
+        const res = await api.post("/content/getByVappa11", {
+          category_id: id,
+        });
+        setBlogPosts(res.data.data);
+      } catch (error) {
+        console.error("Failed to fetch data:", error);
+      }
+    };
+
+    getSubContent();
+  }, [id]); // Dependency array is empty because `id` is a constant.
+
+  const stripHTMLTags = (input) => {
+    return input
+      ? input
+          .replace(/<[^>]*>/g, "") // Remove HTML tags
+          .replace(/&nbsp;/g, " ") // Replace `&nbsp;` with a space
+      : "";
   };
 
-  useEffect(() => {
-    fetchCategoryById();
-  }, [id]); // Fetch data when `id` changes
-
   return (
-    <div className="content" style={{ textAlign: "center", padding: "20px" }}>
-      {categoryDetails.file_name && (
-        <div className="my-4 py-lg-2" style={{ display: "flex", justifyContent: "center" }}>
-          <img
-            src={`https://emsmedia.net/storage/uploads/${categoryDetails.file_name}`} // Dynamically render image
-            alt={categoryDetails.title || "Blog Image"}
-            style={{ width: "600px", height: "500px", objectFit: "cover" }}
-          />
+    <section className="space" style={{ padding: "40px 0" }}>
+      <div className="container">
+        <div className="row gy-30">
+          {blogPosts.map((post, index) => {
+            const fullContent = stripHTMLTags(post.description);
+            const shortContent =
+              fullContent.length > 100
+                ? fullContent.slice(0, 100) + "..."
+                : fullContent;
+
+            return (
+              <div key={index} className="col-xl-3 col-lg-4 col-sm-6">
+                <div className="blog-style1">
+                  <div
+                    className="blog-img"
+                    style={{
+                      position: "relative",
+                      height: "200px", // Set a fixed height for uniformity
+                      overflow: "hidden", // Prevent overflow
+                    }}
+                  >
+                    <img
+                      src={`https://emsmedia.net/storage/uploads/${post.file_name}`}
+                      alt="blog"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover", // Ensures consistent scaling
+                      }}
+                    />
+                  </div>
+                  <h3 className="box-title-20">{post.title}</h3>
+                  <p className="sec-text">{shortContent}</p>
+                  <Link
+                    to={`/detail/${post.content_id}`}
+                    
+                    className="th-btn"
+                    style={{
+                      backgroundColor: "black",
+                      color: "white",
+                      padding: "10px 20px",
+                      display: "inline-block",
+                      textDecoration: "none",
+                      borderRadius: "5px",
+                      textAlign: "center",
+                    }}
+                  >
+                    Read More
+                  </Link>
+                  <div className="blog-meta">
+                    <a href="author.html">
+                      <i className="far fa-user"></i> By - Ems Media
+                    </a>
+                    <a href="blog.html">
+                      <i className="fal fa-calendar-days"></i> 19 Mar, 2023
+                    </a>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
-      )}
-      {categoryDetails.title && (
-        <h3 className="h4" style={{ marginTop: "20px" }}>
-          {categoryDetails.title}
-        </h3>
-      )}
-      {categoryDetails.description && (
-        <div className="about-text" style={{ textAlign: "justify", lineHeight: "1.6" }}>
-          {/* Safely render the HTML content */}
-          {ReactHtmlParser(categoryDetails.description)}
-        </div>
-      )}
-    </div>
+      </div>
+    </section>
   );
 };
 
-export default BlogPost;
+export default BlogCard;

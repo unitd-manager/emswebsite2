@@ -1,25 +1,28 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom"; // For navigation
 import api from "../constants/api";
 
 const BlogSection = () => {
-  const [blogPosts, setBlogPosts] = useState([]);
+  const [blogPosts, setBlogPosts] = useState([]);  
+
+  const { Vahdhathulujjuth } = useParams();
 
   useEffect(() => {
-    getContent();
-  }, []);
+    const getSubContent = async () => {
+      try {
+        const res = await api.post("/content/getByVappasection12", {
+          routes:`Vahdhathulujjuth/${Vahdhathulujjuth}` 
+        });
+        setBlogPosts(res.data.data);
+      } catch (error) {
+        console.error("Failed to fetch data:", error);
+      }
+    };
 
-  const getContent = () => {
-    api
-      .post("/content/getReligionService1")
-      .then((res) => {
-        setBlogPosts(res.data.data); // Set the entire array of blog posts
-      })
-      .catch((error) => {
-        console.error("Error fetching content data:", error);
-      });
-  };
-
+    getSubContent();
+  }, [Vahdhathulujjuth]); // Dependency array is empty because `id` is a constant.
+  
   const stripHTMLTags = (input) => {
     return input
       ? input
@@ -62,7 +65,7 @@ const BlogSection = () => {
                         {post.title}
                       </h3>
                       <p className="sec-text">{shortContent}</p>
-                      <Link to={`/categoryDetails/${post.content_id}`}// Dynamic route to the blog details page
+                      <Link to={`/வஹ்தத்துல் வுஜூத்/${post.category_id}`}
                         className="th-btn"
                       >
                         Read More
