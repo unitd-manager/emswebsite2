@@ -17,17 +17,17 @@ import "../assets/css/event.css";
 
 const Home = () => {
 
-  // const [CartItem, setCartItems] = useState([]);
+  const [CartItem, setCartItems] = useState([]);
   const navigate = useNavigate();
 
-  // const loadCart = async () => {
-  //   const cart = await getCart(); // Wait for the cart data to load
-  //   setCartItems(cart);
-  // };
+  const loadCart = async () => {
+    const cart = await getCart(); // Wait for the cart data to load
+    setCartItems(cart);
+  };
 
-  // useEffect(()=>{
-  //   loadCart()
-  // })
+  useEffect(()=>{
+    loadCart()
+  })
 
   
   const logout = () => {
@@ -503,8 +503,8 @@ const Home = () => {
                         >
                           {/* <i className="far fa-cart-shopping" />
                           <span className="badge">{CartItem.length}</span> */}
-                          {/* <i className="far fa-cart-shopping" />
-                          <span className="badge">{CartItem?.length}</span> */}
+                          <i className="far fa-cart-shopping" />
+                          <span className="badge">{CartItem?.length}</span>
                         </button>
                         {/* <a href="/contact" className="th-btn style3">
                       Contact Us
