@@ -4,6 +4,7 @@ import Home from "../src/screens/Home";
 import Engalaipatri from "../src/screens/engalaipatri.js";
 import Education from "./Education/Education.js";
 import DetailPage from "../src/screens/DetailPage";
+import ThoguppugalDetailPage from "../src/screens/thoguppugaldetail";
 import Engalaipatricategory from "../src/screens/engalaipatricategory";
 import EngalaipatriSubcategory from "../src/screens/EngalaipatriSubcategory";
 import Vahthathul1 from "./Vahthathulvujooth/Vahdhathulujjuth.js";
@@ -141,6 +142,7 @@ function App() {
           <Route path="/manitha/:manitha" element={<Manitha/>} />
           <Route path="/Education" element={<Education/>} />
           <Route path="/details/:contentId" element={<DetailPage />} />
+          <Route path="/thoguppugaldetails/:contentId" element={<ThoguppugalDetailPage />} />
           <Route path="/engalaipatricategory/:id" element={<Engalaipatricategory />} />
           <Route path="/எங்களைப்பற்றி/:id" element={<Engalaipatricategory />} />
           <Route path="/வஹ்தத்துல் வுஜூத்/:id" element={<Category />} />

@@ -76,7 +76,7 @@ const Engalai = () => {
                         </a>
                       </h3>
                       <a 
-                        href={`/#/details/${item.content_id}`} 
+                        href={`/#/thoguppugaldetails/${item.content_id}`} 
                         className="th-btn style2"
                       >
                         Read More <i className="fas fa-arrow-up-right ms-2"></i>

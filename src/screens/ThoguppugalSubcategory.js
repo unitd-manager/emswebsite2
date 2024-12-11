@@ -5,6 +5,7 @@ import "aos/dist/aos.css";
 import ReactHtmlParser from "react-html-parser";
 import api from '../constants/api';
 
+
 const ThoguppugalSubCategory = () => {   
     const { subCategoryId } = useParams([]);
     const [subContent, setSubContent] = useState([]);
