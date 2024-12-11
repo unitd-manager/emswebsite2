@@ -62,7 +62,7 @@ const BlogSection = () => {
                         className="box-title-20"
                         style={{ color: "red", fontSize: "1.2rem" }}
                       >
-                        {post.title}
+                        {post.category_title}
                       </h3>
                       <p className="sec-text">{shortContent}</p>
                       <Link to={`/வஹ்தத்துல் வுஜூத்/${post.category_id}`}

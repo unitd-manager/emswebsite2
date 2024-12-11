@@ -63,7 +63,7 @@ const BlogCard = () => {
                       }}
                     />
                   </div>
-                  <h3 className="box-title-20">{post.title}</h3>
+                  <h3 className="box-title-20">{post.category_title}</h3>
                   <p className="sec-text">{shortContent}</p>
                   <Link
                     to={`/ஞான அகமியங்கள்/${post.category_id}`}

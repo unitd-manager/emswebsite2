@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom"; // For getting route parameters
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import ReactHtmlParser from "react-html-parser"; // Import the library to render HTML
 import api from "../constants/api";
 
-const DetailPage = () => {
+const BlogPost = () => {
+  const [categoryDetails, setCategoryDetails] = useState([]); // Initialize with null
   const { subCategoryId } = useParams(); // Get the `content_id` from the URL
-  const [content, setContent] = useState(null);
 
   useEffect(() => {
     const fetchContentDetails =  () => {
@@ -12,7 +13,7 @@ const DetailPage = () => {
         api
           .post('/content/getEngalaiPatriSubContent',{sub_category_id: subCategoryId})
           .then((res) => {
-            setContent(res.data.data[0]);
+            setCategoryDetails(res.data.data[0]);
             console.log('edit Line Item',res.data.data)
           })
           .catch(() => {
@@ -23,64 +24,26 @@ const DetailPage = () => {
     fetchContentDetails();
   }, [subCategoryId]);
 
- 
-
-  if (!content) {
-    return <div>Loading...</div>; // Show loading state
-  }
 
   return (
-    <section className="th-blog-wrapper blog-details space-top space-extra-bottom">
-        <div className="container">
-            <div className="row justify-content-center">
-                <div className="col-12 text-center">
-                    <a data-theme-color="#6234AC" href="blog.html" className="category">Technology</a>
-                    <h2 className="blog-title">{content.title}</h2>
-                    <div className="blog-meta">
-                        <a className="author" href="/"><i className="far fa-user"></i>By - Ems Media</a>
-                        <a href="blog.html"><i className="fal fa-calendar-days"></i>{content.content_date}</a>
-                        <span><i className="far fa-book-open"></i>5 Mins Read</span>
-                    </div>
-                  
-                </div>
-                <div className="col-xxl-9 col-lg-10">
-                    <div className="th-blog blog-single">
-                        <div className="blog-content-wrap">
-                            <div className="share-links-wrap">
-                                <div className="share-links">
-                                    <span className="share-links-title">Share Post:</span>
-                                    <div className="multi-social">
-                                        <a href="https://facebook.com/" target="_blank"><i className="fab fa-facebook-f"></i></a>
-                                        <a href="https://twitter.com/" target="_blank"><i className="fab fa-twitter"></i></a>
-                                        <a href="https://linkedin.com/" target="_blank"><i className="fab fa-linkedin-in"></i></a>
-                                        <a href="https://pinterest.com/" target="_blank"><i className="fab fa-pinterest-p"></i></a>
-                                        <a href="https://instagram.com/" target="_blank"><i className="fab fa-instagram"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="blog-content">
-                              
-                                    <div
-                    className="content"
-                    dangerouslySetInnerHTML={{
-                      __html: content.description,
-                    }}
-                  />
-                                  
-                                  
-                              
-                            </div>
-                        </div>
-                    </div>
-                  
-                 
-                 
-                       
-                </div>
-            </div>
-        </div>
-    </section>
+    <div className="content">
+      <div className="my-4 py-lg-2">
+          {/* <img
+            
+            src={`https://emsmedia.net/storage/uploads/${categoryDetails.file_name}`} // Dynamically render image
+            alt={categoryDetails.title || "Blog Image"}
+            style={{width:"600px",height:"500px"}}
+          /> */}
+      </div>
+      <h3 className="h4" style={{ marginTop: "20px" }}>
+        {categoryDetails.title}
+      </h3>
+      <div className="about-text" style={{ textAlign: "justify", lineHeight: "1.6" }}>
+        {/* Safely render the HTML content */}
+        {categoryDetails.description ? ReactHtmlParser(categoryDetails.description) : ""}
+      </div>
+    </div>
   );
 };
 
-export default DetailPage;
+export default BlogPost;
