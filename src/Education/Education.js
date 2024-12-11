@@ -59,14 +59,14 @@ const BlogSection = () => {
                             <div className="blog-content">
                               <a
                                 data-theme-color="#007BFF"
-                                href="/"
+                                href="#/கல்வி/17"
                                 className="category"
                                 style={{backgroundColor:"#007BFF"}}
                               >
                               About Us
                               </a>
                               <h3 className="box-title-24">
-                                <a className="hover-line" href="/">
+                                <a className="hover-line" href="#/கல்வி/17">
                                 This Institution founded by His Holiness Jamaliya Syed Khaleel Awn Mowlana
                                 Al Hassani wal Hussaini Ai Hashimi from the Progeny of Prophet Muhammad(PBUH)
                                 </a>
@@ -76,12 +76,12 @@ const BlogSection = () => {
                                 Al Hassani wal Hussaini Ai Hashimi from the Progeny of Prophet Muhammad(PBUH)
                               </p> */}
                               <div className="blog-meta">
-                                <a href="/">
+                                <a href="#/கல்வி/17">
                                   <i className="far fa-user" />
                                   By - EMS Media
                                 </a>
                               </div>
-                              <a href="#" className="th-btn style2">
+                              <a href="#/கல்வி/17" className="th-btn style2">
                                   Read More
                               </a>
                             </div>
@@ -95,14 +95,14 @@ const BlogSection = () => {
                             <div className="blog-content">
                               <a
                                 data-theme-color="#59C2D6"
-                                href="/"
+                                href="#/கல்வி/17"
                                 className="category"
                                 style={{backgroundColor:"#59C2D6"}}
                               >
                                 Vision
                               </a>
                               <h3 className="box-title-24">
-                                <a className="hover-line" href="/">
+                                <a className="hover-line" href="#/கல்வி/17">
                                 To develop into a full fledged University
                                 </a>
                               </h3>
@@ -112,12 +112,12 @@ const BlogSection = () => {
                                 sit amet felis.
                               </p> */}
                               <div className="blog-meta">
-                                <a href="/">
+                                <a href="#/கல்வி/17">
                                   <i className="far fa-user" />
                                   By - EMS Media
                                 </a>
                               </div>
-                              <a href="#" className="th-btn style2">
+                              <a href="#/கல்வி/17" className="th-btn style2">
                                   Read More
                               </a>
                             </div>
@@ -131,14 +131,14 @@ const BlogSection = () => {
                             <div className="blog-content">
                               <a
                                 data-theme-color="#FF9500"
-                                href="/"
+                                href="#/கல்வி/17"
                                 className="category"
                                 style={{backgroundColor:"#FF9500"}}
                               >
                               Objectives
                               </a>
                               <h3 className="box-title-24">
-                                <a className="hover-line" href="/">
+                                <a className="hover-line" href="#/கல்வி/17">
                                 Our Founder wished to form a younger generation who can be self dependant
                               and can serve their community / fellow human beings.
                                 </a>
@@ -149,12 +149,12 @@ const BlogSection = () => {
                                 sit amet felis.
                               </p> */}
                               <div className="blog-meta">
-                                <a href="/">
+                                <a href="#/கல்வி/17">
                                   <i className="far fa-user" />
                                   By - EMS Media
                                 </a>
                               </div>
-                              <a href="#" className="th-btn style2">
+                              <a href="#/கல்வி/17" className="th-btn style2">
                                   Read More
                               </a>
                             </div>
@@ -168,14 +168,14 @@ const BlogSection = () => {
                             <div className="blog-content">
                               <a
                                 data-theme-color="#007BFF"
-                                href="/"
+                                href="#/கல்வி/17"
                                 className="category"
                                 style={{backgroundColor:"#007BFF"}}
                               >
                                   Courses Offered
                               </a>
                               <h3 className="box-title-24">
-                                <a className="hover-line" href="/">
+                                <a className="hover-line" href="#/கல்வி/17">
                                 To Provide Islamic and formal general eduaction
                                 with strong focus on technical trainings
                                 </a>
@@ -186,12 +186,12 @@ const BlogSection = () => {
                                 sit amet felis.
                               </p> */}
                               <div className="blog-meta">
-                                <a href="/">
+                                <a href="#/கல்வி/17">
                                   <i className="far fa-user" />
                                   By - EMS Media
                                 </a>
                               </div>
-                              <a href="#" className="th-btn style2">
+                              <a href="#/கல்வி/17" className="th-btn style2">
                                   Read More
                               </a>
                             </div>
