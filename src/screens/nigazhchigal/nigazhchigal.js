@@ -63,7 +63,7 @@ const Nigazhchigal = () => {
                         <h3 className="box-title-30">
                           <a
                             className="hover-line"
-                            href={item.details_link || `/#/நிகழ்ச்சிகள்/${item.category_title}`}
+                            href={item.details_link || `/#/நிகழ்ச்சிகள்/${item.category_title}/${item.category_id}`}
                           >
                             {item.category_title}
                           </a>
@@ -82,8 +82,8 @@ const Nigazhchigal = () => {
                         
                         <a
                           href={item.sub_category_id 
-                            ? `/#/nigazhchigal/${item.category_id}` 
-                            : `/#/details/${item.content_id}`}
+                            ? `/#/நிகழ்ச்சிகள்/${item.category_title}/${item.category_id}`
+                            : `/#/நிகழ்ச்சிகள்/${item.category_title}/${item.category_id}`}
                           className="th-btn style2"
                           
                         >
