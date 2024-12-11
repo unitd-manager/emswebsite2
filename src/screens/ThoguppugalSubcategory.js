@@ -2,22 +2,25 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import ReactHtmlParser from "react-html-parser";
 import api from '../constants/api';
+import { CSSTransition } from 'react-transition-group'; // Import animation library
+
+import styles from "./DetailPage.module.css"; // Import CSS module
 
 
 const ThoguppugalSubCategory = () => {   
     const { subCategoryId } = useParams([]);
-    const [subContent, setSubContent] = useState([]);
-    const [selectedAudioUrl, setSelectedAudioUrl] = useState(null);
+    const [content, setSubContent] = useState([]);
+    const [isLoaded, setIsLoaded] = useState(false); // State to control animation
 
     useEffect(() => {
         const getSubContent = () => {
             api
                 .post("/content/getThoguppugalSubContent",{sub_category_id: subCategoryId})
                 .then((res) => {
-                    setSubContent(res.data.data);
-                    AOS.init();
+                    setSubContent(res.data.data[0]);
+                    setIsLoaded(true); // Trigger animation after content is loaded
+
                 })
                 .catch(() => { });
         };
@@ -25,57 +28,40 @@ const ThoguppugalSubCategory = () => {
         getSubContent();   
     }, [subCategoryId]);
 
-    const playAudio = (audioUrl) => {
-        setSelectedAudioUrl(audioUrl);
-    };
 
-    const closeAudioPopup = () => {
-        setSelectedAudioUrl(null);
-    };
+    if (!content) {
+        return <div className={styles.loading}>Loading...</div>;
+      }
+    
 
     return (
-        <section class="space-top space-extra-bottom">
-        <div class="container">
-            <div class="row">
-                <div class="col-xxl-12 col-lg-11">
-                    <div class="row gy-30">
-                    {selectedAudioUrl && (
-            <div className="audio-popup">
-                <div className="popup-content">
-                    <button className="close-btn" onClick={closeAudioPopup}>
-                        Close
-                    </button>
-                    <audio src={selectedAudioUrl} controls />
-                </div>
+        <CSSTransition in={isLoaded} timeout={500} classNames={styles.fade} unmountOnExit>
+          <section className={styles.detailPageWrapper}>
+            <div className={styles.container}>
+              <div className={styles.header}>
+                <h1 className={styles.title}>{content.title}</h1>
+                <p className={styles.meta}>
+                  <span>By Ems Media</span> | <span>{content.content_date}</span>
+                </p>
+              </div>
+    
+              <div className={styles.imageContainer}>
+                <CSSTransition in={isLoaded} timeout={500} classNames={styles.slideIn} unmountOnExit>
+                  <img
+                    src={`https://emsmedia.net/storage/uploads/${content.file_name}`}
+                    alt={content.title}
+                    className={styles.image}
+                  />
+                </CSSTransition>
+              </div>
+    
+              <div className={styles.content}>
+                <div dangerouslySetInnerHTML={{ __html: content.description }} />
+              </div>
             </div>
-        )}
-                        {subContent.map((data, index) => (
-    
-                        <div class="col-sm-6">
-                            <div class="blog-style7">
-                                <div class="blog-img">
-                                    <h5 onClick={() => playAudio(`https://emsmedia.net/storage/uploads/${data.file_name}`)}>{data.title}</h5>
-    
-                                </div>
-                               
-                                {ReactHtmlParser(data.description)}
-                            </div>
-                        </div>
-                       
-                     
-                        ))}
-                        
-                       
-                    </div>
-                  
-                </div>
-               
-            </div>
-        </div>
-    
-    </section>
-
-    );
+          </section>
+        </CSSTransition>
+      );
 }
 
 export default ThoguppugalSubCategory;
