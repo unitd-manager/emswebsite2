@@ -34,7 +34,6 @@ const DetailPage = () => {
         <div className="container">
             <div className="row justify-content-center">
                 <div className="col-12 text-center">
-                    <a data-theme-color="#6234AC" href="blog.html" className="category">Technology</a>
                     <h2 className="blog-title">{content.title}</h2>
                     <div className="blog-meta">
                         <a className="author" href="/"><i className="far fa-user"></i>By - Ems Media</a>
