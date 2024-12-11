@@ -99,6 +99,7 @@ import PugaipadangalDetails from "./screens/nigazhchigal/PugaipadangalDetails.js
 import Kaanoli from "./screens/nigazhchigal/Kaanoli"
 import Nigazhvugal from "./screens/nigazhchigal/Nigazhvugal.js";
 import Audios from "./screens/nigazhchigal/Audios.js";
+import Nigazhchigal from "./screens/nigazhchigal/nigazhchigal.js";
 // import Kaanoli from "./screens/nigazhchigal/Kaanoli.js";
 // import '../src/assets/sass/spacing/_section-space.scss'
 // import '../src/assets/sass/spacing/_spacing.scss'
@@ -133,6 +134,7 @@ function App() {
         
           <Route path="/:engalaipatri" element={<Engalaipatri/>} />
           <Route path="/Collections/:Collections" element={<Thoguppugal/>} />
+          <Route path="/nigazhchigal/:nigazhchigal" element={<Nigazhchigal/>} />
           <Route path="/Vahdhathulujjuth/:Vahdhathulujjuth" element={<Vahthathul1/>} />
           <Route path="/gyanagamiyangal/:gyanagamiyangal" element={<GyanaAgamiyangal/>} />
           <Route path="/Education/:Education" element={<Education/>} />
@@ -154,14 +156,14 @@ function App() {
           <Route path="/எங்களைப்பற்றி/:id/:subCategoryId" element={<EngalaipatriSubcategory />} />
           <Route path="/manitha" element={<Manitha/>} />
         <Route path="/pechupottigal" element={<PechuPottigal/>} />
-          <Route path="/kanoligal" element={<Kanoligal/>} />  
-          <Route path="/Audios" element={<Audios/>} />                
-           <Route path="/nigazhvugal" element={<Nigazhvugal/>} />
-          <Route path="/pugaipadangal" element={<Pugaipadangal/>} />
+          <Route path="nigazhchigal/kanoligal" element={<Kanoligal/>} />  
+          <Route path="nigazhchigal/Audios" element={<Audios/>} />                
+           <Route path="nigazhchigal/nigazhvugal" element={<Nigazhvugal/>} />
+          <Route path="nigazhchigal/pugaipadangal" element={<Pugaipadangal/>} />
           <Route path="/PugaipadangalDetails" element={<PugaipadangalDetails/>} />
-          <Route path="/Kaanoli" element={<Kaanoli/>} />   
+          <Route path="nigazhchigal/Kaanoli" element={<Kaanoli/>} />   
           {/* <Route path="/nigazhchigal/kaanoligal" element={<Kaanoli />} /> */}
-          <Route path="/nigazhchigal/audios" element={<Audios/>} />
+          {/* <Route path="/nigazhchigal/audios" element={<Audios/>} /> */}
 
 
         </Routes>
