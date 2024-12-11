@@ -39,7 +39,6 @@ const DetailPage = () => {
                     <div className="blog-meta">
                         <a className="author" href="/"><i className="far fa-user"></i>By - Ems Media</a>
                         <a href="blog.html"><i className="fal fa-calendar-days"></i>{content.content_date}</a>
-                        <span><i className="far fa-book-open"></i>5 Mins Read</span>
                     </div>
                   
                 </div>
