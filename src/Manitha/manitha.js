@@ -23,106 +23,125 @@ const BlogCard = () => {
   }, [manitha]);
 
   return (
-    <section className="space" style={{ padding: "40px 0" }}>
-      <div className="container">
+    <section
+      style={{
+        padding: "60px 0",
+        backgroundColor: "#f3f4f6",
+      }}
+    >
+      <div className="container" style={{ maxWidth: "1200px", margin: "0 auto" }}>
+        <h2
+          style={{
+            textAlign: "center",
+            marginBottom: "40px",
+            fontSize: "32px",
+            fontWeight: "bold",
+            color: "#333",
+          }}
+        >
+          மனிதா
+        </h2>
         <div
           className="row"
           style={{
             display: "flex",
             flexWrap: "wrap",
-            justifyContent: "space-between",
-            gap: "20px",
+            gap: "30px",
+            justifyContent: "center",
           }}
         >
           {blogPosts.map((post, index) => (
             <div
               key={index}
-              className="col-xl-3 col-lg-4 col-sm-6"
+              className="blog-card"
               style={{
-                flex: "1 1 calc(25% - 20px)",
-                maxWidth: "300px",
-                boxSizing: "border-box",
+                width: "350px",
+                backgroundColor: "#fff",
+                borderRadius: "12px",
+                overflow: "hidden",
+                boxShadow: "0 8px 20px rgba(0, 0, 0, 0.1)",
+                transition: "transform 0.3s ease",
               }}
             >
               <div
-                className="blog-style1"
+                className="blog-img"
                 style={{
-                  border: "1px solid #ccc",
-                  borderRadius: "8px",
-                  padding: "15px",
-                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                  minHeight: "400px",
+                  position: "relative",
+                  height: "250px",
+                  overflow: "hidden",
                 }}
               >
-                <div
-                  className="blog-img"
+                <img
+                  src={`https://emsmedia.net/storage/uploads/${post.file_name}`}
+                  alt="blog"
                   style={{
-                    position: "relative",
-                    height: "200px",
                     width: "100%",
-                    overflow: "hidden",
-                    marginBottom: "15px",
-                    borderRadius: "5px",
+                    height: "100%",
+                    objectFit: "cover",
+                    transition: "transform 0.5s ease",
                   }}
-                >
-                  <img
-  src={`https://emsmedia.net/storage/uploads/${post.file_name}`}
-  alt="blog"
-  style={{
-    width: "100%",
-    height: "100%",
-    objectFit: "contain", // Show the full image without trimming
-  }}
-/>
-                </div>
+                />
+              </div>
+              <div style={{ padding: "20px" }}>
                 <h3
-                  className="box-title-20"
                   style={{
-                    fontSize: "18px",
+                    fontSize: "20px",
                     fontWeight: "bold",
-                    marginBottom: "10px",
+                    marginBottom: "15px",
+                    color: "#222",
                     textAlign: "center",
                   }}
                 >
                   {post.category_title}
                 </h3>
                 <Link
-                  to={`/மனிதா/${post.category_id}`}
-                  className="th-btn"
-                  style={{
-                    backgroundColor: "black",
-                    color: "white",
-                    padding: "10px 20px",
-                    textDecoration: "none",
-                    borderRadius: "5px",
-                    textAlign: "center",
-                    marginTop: "auto",
-                  }}
-                >
-                  Read More
-                </Link>
-                <div
-                  className="blog-meta"
-                  style={{
-                    marginTop: "10px",
-                    fontSize: "12px",
-                    textAlign: "center",
-                    color: "#999",
-                  }}
-                >
-                  <a
-                    href="author.html"
-                    style={{ color: "#999", marginRight: "10px" }}
-                  >
-                    <i className="far fa-user"></i> By - EMS
-                  </a>
-                  <a href="blog.html" style={{ color: "#999" }}>
-                    <i className="fal fa-calendar-days"></i> 19 Mar, 2023
-                  </a>
-                </div>
+  to={`/மனிதா/${post.category_id}`}
+  className="read-more-btn"
+  style={{
+    display: "block",
+    background: "linear-gradient(90deg, #ff7e5f, #feb47b)", // Gradient color
+    color: "#fff",
+    padding: "12px 20px",
+    textDecoration: "none",
+    borderRadius: "8px",
+    textAlign: "center",
+    fontWeight: "bold",
+    fontSize: "16px",
+    transition: "all 0.3s ease",
+    boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+  }}
+  onMouseOver={(e) => {
+    e.target.style.background = "linear-gradient(90deg, #feb47b, #ff7e5f)"; // Reversed gradient on hover
+    e.target.style.transform = "scale(1.05)";
+    e.target.style.boxShadow = "0px 6px 12px rgba(0, 0, 0, 0.2)";
+  }}
+  onMouseOut={(e) => {
+    e.target.style.background = "linear-gradient(90deg, #ff7e5f, #feb47b)"; // Original gradient
+    e.target.style.transform = "scale(1)";
+    e.target.style.boxShadow = "0px 4px 6px rgba(0, 0, 0, 0.1)";
+  }}
+>
+  Read More
+</Link>
+              </div>
+              <div
+                className="blog-meta"
+                style={{
+                  fontSize: "14px",
+                  textAlign: "center",
+                  color: "#555",
+                  padding: "10px",
+                  borderTop: "1px solid #eee",
+                }}
+              >
+                <span>
+                  <i className="far fa-user" style={{ marginRight: "5px" }}></i>
+                  By - EMS
+                </span>
+                <span style={{ marginLeft: "10px" }}>
+                  <i className="fal fa-calendar-days" style={{ marginRight: "5px" }}></i>
+                  19 Mar, 2023
+                </span>
               </div>
             </div>
           ))}

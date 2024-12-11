@@ -66,7 +66,7 @@ const BlogSection = () => {
                         {post.title}
                       </h3>
                       <p className="sec-text">{shortContent}</p>
-                      <Link to={`/details/${post.content_id}`}
+                      <Link to={`/details4/${post.content_id}`}
                         className="th-btn"
                       >
                         Read More

@@ -67,7 +67,8 @@ console.log("sdew",id)
                   <h3 className="box-title-20">{post.title}</h3>
                   <p className="sec-text">{shortContent}</p>
                   <Link
-                    to={`/details/${post.content_id}`}
+                    to={`/details2/${post.content_id}`}
+                    
                     className="th-btn"
                     style={{
                       backgroundColor: "black",

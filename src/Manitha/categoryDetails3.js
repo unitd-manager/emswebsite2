@@ -121,7 +121,7 @@ console.log("sdew",id)
                     {shortContent}
                   </p>
                   <Link
-                    to={`/details/${post.content_id}`}
+                    to={`/details3/${post.content_id}`}
                     className="th-btn"
                     style={{
                       backgroundColor: "black",
