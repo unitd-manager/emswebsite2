@@ -1,29 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import ReactHtmlParser from "react-html-parser"; // Import the library to render HTML
+import ReactHtmlParser from "react-html-parser";
 import api from "../constants/api";
 
-const BlogPost = () => {
-  const [categoryDetails, setCategoryDetails] = useState([]); // Initialize with null
-  const { subCategoryId } = useParams(); // Get the `content_id` from the URL
+const DetailPage = () => {
+  const { contentId2 } = useParams(); // Get the `content_id` from the URL
+  const [categoryDetails, setContent] = useState([]);
 
   useEffect(() => {
-    const fetchContentDetails =  () => {
-     
-        api
-          .post('/content/getEngalaiPatriSubContent',{sub_category_id: subCategoryId})
-          .then((res) => {
-            setCategoryDetails(res.data.data[0]);
-            console.log('edit Line Item',res.data.data)
-          })
-          .catch(() => {
-            // Handle error
-          });
-      };
+    const fetchContentDetails = async () => {
+      try {
+        const res = await api.post("/content/getContentById", {
+          content_id: contentId2,
+        });
+        setContent(res.data.data);
+      } catch (error) {
+        console.error("Failed to fetch content details:", error);
+      }
+    };
 
     fetchContentDetails();
-  }, [subCategoryId]);
-
+  }, [contentId2]);
 
   return (
     <div
@@ -162,5 +159,4 @@ const BlogPost = () => {
   );
 };
 
-
-export default BlogPost;
+export default DetailPage;
