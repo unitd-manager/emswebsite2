@@ -375,7 +375,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="switcher-fixed">
+      {/* <div className="switcher-fixed">
         <div className="theme-switcher">
           <button>
             <span className="dark">
@@ -386,7 +386,7 @@ const Home = () => {
             </span>
           </button>
         </div>
-      </div>
+      </div> */}
       {/*==============================
 	Header Area
 ==============================*/}
