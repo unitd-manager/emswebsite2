@@ -60,8 +60,15 @@ console.log("sdwwwwwwew",Collections)
                                 <a href="/"><i class="fal fa-calendar-days"></i>26 Mar, 2023</a>
                             </div>
                             <h3 class="box-title-24"><a class="hover-line" href="blog-details.html">{item.category_title}</a></h3>
-                            <a href={`/#/தொகுப்புகள்/${item.category_id}`}
-                            class="th-btn style2">Read More<i class="fas fa-arrow-up-right ms-2"></i></a>
+                          
+                               <a
+                          href={item.sub_category_id 
+                            ? `/#/தொகுப்புகள்/${item.category_id}` 
+                            : `/#/thoguppugaldetails/${item.content_id}`}
+                          className="th-btn style2"
+                          
+                        >
+                              Read More<i class="fas fa-arrow-up-right ms-2"></i></a>
                         </div>
                     </div>
                    

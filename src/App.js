@@ -2,11 +2,25 @@ import React from "react";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import Home from "../src/screens/Home";
 import Engalaipatri from "../src/screens/engalaipatri.js";
+import Education from "./Education/Education.js";
 import DetailPage from "../src/screens/DetailPage";
+import DetailPage2 from "../src/screens/DetailPage2.js";
+import DetailPage3 from "../src/screens/DetailPage3.js";
+import DetailPage4 from "../src/screens/DetailPage4.js";
+import ThoguppugalDetailPage from "../src/screens/thoguppugaldetail";
 import Engalaipatricategory from "../src/screens/engalaipatricategory";
 import EngalaipatriSubcategory from "../src/screens/EngalaipatriSubcategory";
 import Vahthathul1 from "./Vahthathulvujooth/Vahdhathulujjuth.js";
+import GyanaAgamiyangal from "./Gyanagamiyangal/gyanagamiyangal.js";
+import Manitha from "./Manitha/manitha.js";
 import Category from "./Vahthathulvujooth/categoryDetails.js";
+import Category2 from "./Gyanagamiyangal/categoryDetails2.js";
+import Category3 from "./Manitha/categoryDetails3.js";
+import VahtahthulSub from "./Vahthathulvujooth/VahthathulvujoothSub.js";
+import ManithaSub from "./Manitha/ManithaSub.js";
+import GyanaSub from "./Gyanagamiyangal/gyanaSub.js";
+import Kalvicategory from "./Education/EducationCategory.js";
+import KalviSubCategory from "./Education/EducationSub.js";
 import PechuPottigal from "./Vahthathulvujooth/pechupottigalsub.js";
 import Kanoligal from "./Vahthathulvujooth/kanoligalsub.js";
 import ShopDetails from "./BookShop/ShopDetails.js"
@@ -18,12 +32,8 @@ import Thoguppugalcategory from "../src/screens/thoguppugalcategory";
 import Thoguppugal from "../src/screens/thoguppugal";
 import ThoguppugalSubCategory from "../src/screens/ThoguppugalSubcategory";
 
-
 import ShopList from "./BookShop/ShopList";
-
 import Contact from "./screens/contact.js";
-// import Vahthathul from "./Vahthathulvujooth/vahthathulvujooth.js";
-// import OreyUllamai from "./Vahthathulvujooth/oreyUllamai.js";
 import Footer from "./header/Footer"
 import Header from "./header/Header"
 
@@ -93,6 +103,7 @@ import PugaipadangalDetails from "./screens/nigazhchigal/PugaipadangalDetails.js
 import Kaanoli from "./screens/nigazhchigal/Kaanoli"
 import Nigazhvugal from "./screens/nigazhchigal/Nigazhvugal.js";
 import Audios from "./screens/nigazhchigal/Audios.js";
+import Nigazhchigal from "./screens/nigazhchigal/nigazhchigal.js";
 // import Kaanoli from "./screens/nigazhchigal/Kaanoli.js";
 // import '../src/assets/sass/spacing/_section-space.scss'
 // import '../src/assets/sass/spacing/_spacing.scss'
@@ -127,24 +138,40 @@ function App() {
         
           <Route path="/:engalaipatri" element={<Engalaipatri/>} />
           <Route path="/Collections/:Collections" element={<Thoguppugal/>} />
-
+          <Route path="/nigazhchigal/:nigazhchigal" element={<Nigazhchigal/>} />
+          <Route path="/Vahdhathulujjuth/:Vahdhathulujjuth" element={<Vahthathul1/>} />
+          <Route path="/gyanagamiyangal/:gyanagamiyangal" element={<GyanaAgamiyangal/>} />
+          <Route path="/Education/:Education" element={<Education/>} />
+          <Route path="/manitha/:manitha" element={<Manitha/>} />
+          <Route path="/Education" element={<Education/>} />
           <Route path="/details/:contentId" element={<DetailPage />} />
+          <Route path="/details2/:contentId2" element={<DetailPage2 />} />
+          <Route path="/details3/:contentId3" element={<DetailPage3 />} />
+          <Route path="/details4/:contentId4" element={<DetailPage4 />} />
+          <Route path="/thoguppugaldetails/:contentId" element={<ThoguppugalDetailPage />} />
           <Route path="/engalaipatricategory/:id" element={<Engalaipatricategory />} />
           <Route path="/எங்களைப்பற்றி/:id" element={<Engalaipatricategory />} />
+          <Route path="/வஹ்தத்துல் வுஜூத்/:id" element={<Category />} />
+          <Route path="/வஹ்தத்துல் வுஜூத்/::id/:subCategoryId" element={<VahtahthulSub />} />
+          <Route path="/மனிதா/:id" element={<Category3 />} />
+          <Route path="/ஞான அகமியங்கள்/:id" element={<Category2 />} />
+          <Route path="/ஞான அகமியங்கள்/:id/:subCategoryId" element={<GyanaSub />} />
+          <Route path="/மனிதா/:id/:subCategoryId" element={<ManithaSub />} />
           <Route path="/தொகுப்புகள்/:id" element={<Thoguppugalcategory />} />
           <Route path="/தொகுப்புகள்/:id/:subCategoryId" element={<ThoguppugalSubCategory />} />
+          <Route path="/கல்வி/:id" element={<Kalvicategory />} />
+          <Route path="/கல்வி/:id/:subCategoryId" element={<KalviSubCategory />} />
           <Route path="/எங்களைப்பற்றி/:id/:subCategoryId" element={<EngalaipatriSubcategory />} />
-          <Route path="/Vahdhathulujjuth" element={<Vahthathul1/>} />
-          <Route path="/categoryDetails/:id" element={<Category/>} />
-          <Route path="/pechupottigal" element={<PechuPottigal/>} />
-          <Route path="/kanoligal" element={<Kanoligal/>} />  
-          <Route path="/Audios" element={<Audios/>} />                
-           <Route path="/nigazhvugal" element={<Nigazhvugal/>} />
-          <Route path="/pugaipadangal" element={<Pugaipadangal/>} />
+          <Route path="/manitha" element={<Manitha/>} />
+        <Route path="/pechupottigal" element={<PechuPottigal/>} />
+          <Route path="nigazhchigal/காணொளிகள்" element={<Kanoligal/>} />  
+          <Route path="நிகழ்ச்சிகள்/ஆடியோ" element={<Audios/>} />                
+           <Route path="nigazhchigal/nigazhvugal" element={<Nigazhvugal/>} />
+          <Route path="நிகழ்ச்சிகள்/புகைப்படங்கள்" element={<Pugaipadangal/>} />
           <Route path="/PugaipadangalDetails" element={<PugaipadangalDetails/>} />
-          <Route path="/Kaanoli" element={<Kaanoli/>} />   
+          <Route path="நிகழ்ச்சிகள்/காணொளிகள்" element={<Kaanoli/>} />   
           {/* <Route path="/nigazhchigal/kaanoligal" element={<Kaanoli />} /> */}
-          <Route path="/nigazhchigal/audios" element={<Audios/>} />
+          {/* <Route path="/nigazhchigal/audios" element={<Audios/>} /> */}
 
 
         </Routes>

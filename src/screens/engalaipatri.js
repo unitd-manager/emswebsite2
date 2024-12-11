@@ -7,7 +7,6 @@ const Engalai = () => {
 
   const { engalaipatri } = useParams();
 
-console.log("sdew",engalaipatri)
   useEffect(() => {
     const getSubContent = async () => {
       try {
@@ -36,7 +35,6 @@ console.log("sdew",engalaipatri)
     if (words.length <= wordLimit) return text; // If text has fewer words, return as is
     return words.slice(0, wordLimit).join(" ") + "..."; // Join first 'wordLimit' words and append ellipsis
   };
-
   return (
     <section className="space-top space-extra-bottom">
       <div className="container">
@@ -81,10 +79,15 @@ console.log("sdew",engalaipatri)
                             <i className="fal fa-calendar-days"></i>15 Mar, 2023
                           </a>
                         </div>
+                        
                         <a
-                          href={`/#/engalaipatricategory/${item.category_id}`}
+                          href={item.sub_category_id 
+                            ? `/#/engalaipatricategory/${item.category_id}` 
+                            : `/#/details/${item.content_id}`}
                           className="th-btn style2"
+                          
                         >
+                          
                           Read More
                           <i className="fas fa-arrow-up-right ms-2"></i>
                         </a>
