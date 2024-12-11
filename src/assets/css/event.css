@@ -399,6 +399,21 @@
     position: relative;
     text-decoration: none;
   }
+  .filter-input {
+    height: 60px;
+    border: 1px solid var(--border-color);
+    background-color: var(--body-bg);
+    width: fit-content;
+    min-width: 160px;
+    font-size: 16px;
+    color: var(--body-color);
+    margin: 0;
+  }
+  
+  .filter-menu {
+    min-width: 100px;
+  }
+  
   
   
     
