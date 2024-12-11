@@ -11,12 +11,12 @@ function Pugaipadangal() {
   const [valuelistCountry, setValuelistCountry] = useState([]);
   const [valuelistCity, setValuelistCity] = useState([]);
   const [categoryFilter, setCategoryFilter] = useState({
-    value: "Country",
-    label: "Country",
+    value: "All",
+    label: "All",
   });
   const [areaFilter, setAreaFilter] = useState({
-    value: "City",
-    label: "City",
+    value: "All",
+    label: "All",
   });
   const [searchQuery, setSearchQuery] = useState("");
   const [fromDate, setFromDate] = useState(null);
@@ -35,7 +35,7 @@ function Pugaipadangal() {
           label: item.value,
         }));
         setValuelistCountry([
-          { value: "Country", label: "Country" },
+          { value: "All", label: "All" },
           ...options,
         ]);
       })
@@ -58,15 +58,15 @@ function Pugaipadangal() {
           value: item.valuelist_id,
           label: item.citi_value,
         }));
-        setValuelistCity([{ value: "City", label: "City" }, ...options]);
+        setValuelistCity([{ value: "All", label: "All" }, ...options]);
       });
   }, [categoryFilter]);
 
   const handleCategoryChange = (selectedOption) => {
-    setCategoryFilter(selectedOption || { value: "Country", label: "Country" });
+    setCategoryFilter(selectedOption || { value: "All", label: "All" });
   };
   const handleCategoryChanges = (selectedOption) => {
-    setAreaFilter(selectedOption || { value: "City", label: "City" });
+    setAreaFilter(selectedOption || { value: "All", label: "All" });
   };
   const handleDateChange = (event) => {
     const { name, value } = event.target;
@@ -76,7 +76,13 @@ function Pugaipadangal() {
       setToDate(value ? new Date(value) : null);
     }
   };
-
+  const handleClearCategory = () => {
+    setCategoryFilter({ value: 'All', label: 'All' });
+    setAreaFilter({ value: 'All', label: 'All' });
+    setFromDate(null)
+    setToDate(null)
+    // getSortParams('category', 'default');
+  };
 
   useEffect(() => {
     const getGallery = () => {
@@ -96,13 +102,13 @@ function Pugaipadangal() {
 
     console.log("categoryFilter", categoryFilter);
     console.log("areaFilter", areaFilter);
-    if (categoryFilter.value !== "Country") {
+    if (categoryFilter.value !== "All") {
       filteredData = filteredData.filter(
         (item) => item.upload_country === categoryFilter.label
       );
     }
 
-    if (areaFilter.value !== "City") {
+    if (areaFilter.value !== "All") {
       filteredData = filteredData.filter(
         (item) => item.upload_city === areaFilter.label
       );
@@ -149,7 +155,7 @@ function Pugaipadangal() {
       border: "1px solid var(--border-color)", // Added quotes for the border property
       backgroundColor: "var(--body-bg)", // Corrected key name
       width: "fit-content", // Added quotes
-      minWidth: "180px", // Added quotes
+      minWidth: "250px", // Added quotes
       fontSize: "16px", // Added quotes
       margin: "0", // Added quotes
       color: "var(--body-color)", // Added quotes
@@ -175,6 +181,7 @@ function Pugaipadangal() {
 
       <section className="space-top space-extra-bottom">
         <div className="container">
+
         <div className="row">
             <div className="col-xl-3 col-lg-4 ">
               <div className="sidebar-area sidebar-shop">
@@ -198,27 +205,30 @@ function Pugaipadangal() {
                   <div className="col-md">
                     <p className="woocommerce-result-count"></p>
                   </div>
-                  <div className="col-md-auto" style={{ marginLeft: -60 }}>
+                  <div className="col-md-auto">
+                  <label htmlFor="fromDate" className="filter-label">Country</label>
                     <Select
                       styles={customStyles}
                       value={categoryFilter}
                       onChange={handleCategoryChange}
                       options={valuelistCountry}
-                      placeholder="Filter by Country"
+                      placeholder="Filter by All"
                     />
                   </div>
                   <div className="col-md-auto">
+                  <label htmlFor="fromDate" className="filter-label">City</label>
                     <Select
                       styles={customStyles}
                       value={areaFilter}
                       onChange={handleCategoryChanges}
                       options={valuelistCity}
-                      placeholder="Filter by City"
+                      placeholder="Filter by All"
                     />
                   </div>
-                  From
+                 
                   <div className="col-md-auto">
                     {/* <h6>From Date</h6> */}
+                    <label htmlFor="fromDate" className="filter-label">From</label>
                     <input
                       className="filter-input"
                       type="date"
@@ -229,9 +239,10 @@ function Pugaipadangal() {
                       name="fromDate"
                     />
                   </div>
-                  To
+                
                   <div className="col-md-auto">
                     {/* <h6>To Date</h6> */}
+                    <label htmlFor="fromDate" className="filter-label">To</label>
                     <input
                       className="filter-input"
                       type="date"
@@ -266,6 +277,11 @@ function Pugaipadangal() {
               </div>
               <div></div>
             </div>
+            { toDate !== null &&(
+            <button onClick={handleClearCategory} style={{ marginTop: '10px', cursor: 'pointer', color: 'blue', textDecoration: 'underline', background: 'none', border: 'none', padding: 0 }}>
+              Clear
+            </button>
+          )}
           </div>
           <div className="row gy-30 mb-30">
             {visibleGallery.map((item, index) => (

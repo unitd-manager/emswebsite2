@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import api from "../constants/api";
 import { getUser } from "../common/user";
 import { getCart } from "../common/headerCartApi";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import "../assets/css/style.css";
 import "../assets/css/fontawesome.min.css";
 import "../assets/css/slick.min.css";
@@ -11,10 +11,21 @@ import "../assets/css/bootstrap.min.css";
 import "../assets/css/style.css.map";
 
 const Shop = () => {
+
+  const navigate = useNavigate();
   const [CartItem, setCartItems] = useState([]); // Assuming you have products data
   const user = getUser()
+  
+  // const userContactId = user.contact_id
 
-  const userContactId = user.contact_id
+  if (!user || !user.contact_id) {
+    const userConfirmed = window.confirm(
+      "Please Login. Click 'OK' to go to the Login page or 'Cancel' to stay."
+    );
+    if (userConfirmed) {
+      navigate("/Login"); // Navigate to the login page
+    }   
+  }
 
   const loadCart = async () => {
     const cart = await getCart(); // Wait for the cart data to load

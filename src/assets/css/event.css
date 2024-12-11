@@ -404,7 +404,7 @@
     border: 1px solid var(--border-color);
     background-color: var(--body-bg);
     width: fit-content;
-    min-width: 160px;
+    min-width: 195px;
     font-size: 16px;
     color: var(--body-color);
     margin: 0;
@@ -413,6 +413,60 @@
   .filter-menu {
     min-width: 100px;
   }
+  .filter-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .filter-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .filter-input,
+  .filter-date {
+    width: 180px;
+    padding: 8px 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+  }
+  
+  .filter-input:focus,
+  .filter-date:focus {
+    border-color: #4e4bd0;
+    box-shadow: 0 0 4px rgba(78, 75, 208, 0.3);
+  }
+  
+  .filter-label {
+    font-size: 12px;
+    color: #555;
+    margin-bottom: 4px;
+  }
+  
+  .filter-container .react-select__control {
+    height: 40px;
+    min-width: 180px;
+    border-color: #ccc;
+  }
+  
+  .filter-container .react-select__control:hover {
+    border-color: #4e4bd0;
+  }
+  
+  .filter-container .react-select__menu {
+    z-index: 1000;
+  }
+  
   
   
   
