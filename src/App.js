@@ -156,12 +156,12 @@ function App() {
           <Route path="/எங்களைப்பற்றி/:id/:subCategoryId" element={<EngalaipatriSubcategory />} />
           <Route path="/manitha" element={<Manitha/>} />
         <Route path="/pechupottigal" element={<PechuPottigal/>} />
-          <Route path="nigazhchigal/kanoligal" element={<Kanoligal/>} />  
-          <Route path="nigazhchigal/Audios" element={<Audios/>} />                
+          <Route path="nigazhchigal/காணொளிகள்" element={<Kanoligal/>} />  
+          <Route path="நிகழ்ச்சிகள்/ஆடியோ" element={<Audios/>} />                
            <Route path="nigazhchigal/nigazhvugal" element={<Nigazhvugal/>} />
-          <Route path="nigazhchigal/pugaipadangal" element={<Pugaipadangal/>} />
+          <Route path="நிகழ்ச்சிகள்/புகைப்படங்கள்" element={<Pugaipadangal/>} />
           <Route path="/PugaipadangalDetails" element={<PugaipadangalDetails/>} />
-          <Route path="nigazhchigal/Kaanoli" element={<Kaanoli/>} />   
+          <Route path="நிகழ்ச்சிகள்/காணொளிகள்" element={<Kaanoli/>} />   
           {/* <Route path="/nigazhchigal/kaanoligal" element={<Kaanoli />} /> */}
           {/* <Route path="/nigazhchigal/audios" element={<Audios/>} /> */}
 

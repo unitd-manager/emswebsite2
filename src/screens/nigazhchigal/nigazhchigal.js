@@ -63,7 +63,7 @@ const Nigazhchigal = () => {
                         <h3 className="box-title-30">
                           <a
                             className="hover-line"
-                            href={item.details_link || `/#/nigazhchigal/${item.category_id}`}
+                            href={item.details_link || `/#/நிகழ்ச்சிகள்/${item.category_title}`}
                           >
                             {item.category_title}
                           </a>
