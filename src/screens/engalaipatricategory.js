@@ -5,14 +5,14 @@ import api from "../constants/api";
 const Engalai = () => {
   const [religion, setReligion] = useState([]);
 
-  const { id } = useParams();
+  const { niruv } = useParams();
 
-console.log("sd11ew",id)
+console.log("sd11ew",niruv)
   useEffect(() => {
     const getSubContent = async () => {
       try {
         const res = await api.post("/content/getByVappa11", {
-          category_id: id,
+          routes:`*/${niruv}` ,
         });
         setReligion(res.data.data);
       } catch (error) {
@@ -21,7 +21,7 @@ console.log("sd11ew",id)
     };
 
     getSubContent();
-  }, [id]); // Dependency array is empty because `id` is a constant.
+  }, [niruv]); // Dependency array is empty because `id` is a constant.
 
   // Helper function to remove HTML tags
   const stripHTMLTags = (input) => {
