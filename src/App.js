@@ -5,6 +5,7 @@ import Engalaipatri from "../src/screens/engalaipatri.js";
 import Education from "./Education/Education.js";
 import DetailPage from "../src/screens/DetailPage";
 import DetailPage2 from "../src/screens/DetailPage2.js";
+import DetailPage3 from "../src/screens/DetailPage3.js";
 import DetailPage4 from "../src/screens/DetailPage4.js";
 import ThoguppugalDetailPage from "../src/screens/thoguppugaldetail";
 import Engalaipatrimaincategory from "../src/screens/engalaipatrimaincategory";
@@ -209,6 +210,7 @@ function App() {
           <Route path="/details/:contentId" element={<DetailPage />} />
           <Route path="/details2/:contentId2" element={<DetailPage2 />} />
           <Route path="/details4/:contentId4" element={<DetailPage4 />} />
+          <Route path="/details3/:contentId3" element={<DetailPage3 />} />
           <Route path="/thoguppugaldetails/:contentId" element={<ThoguppugalDetailPage />} />
           <Route path="/engalaipatrimaincategory/:categoryId" element={<Engalaipatrimaincategory />} />
 
