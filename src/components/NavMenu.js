@@ -94,7 +94,7 @@ function Navbar() {
                         onMouseEnter={() => handleCategoryHover(category.category_id)} // Hover on category
                       >
                         <Link
-                          to={`${category.routes}`}
+                          to={`/${category.routes}`}
                           className="dropdown-item"
                         >
                           {category.category_title}
