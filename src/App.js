@@ -158,9 +158,9 @@ function App() {
           <Route path="/தொகுப்புகள்/:id" element={<Thoguppugalcategory />} />
           <Route path="/தொகுப்புகள்/:id/:subCategoryId" element={<ThoguppugalSubCategory />} />
 
-          <Route path="/&/:ஜாமீஆ" element={<Kalvicategory />} />
+          <Route path="/&/:jamia" element={<Kalvicategory />} />
 
-          <Route path="/கல்வி/:கல்வி" element={<Kalvicategories />} />
+          <Route path="/கல்வி/:id" element={<Kalvicategories />} />
 
           <Route path="/கல்வி/:id/:subCategoryId" element={<KalviSubCategory />} />
           <Route path="/எங்களைப்பற்றி/:id/:subCategoryId" element={<EngalaipatriSubcategory />} />
