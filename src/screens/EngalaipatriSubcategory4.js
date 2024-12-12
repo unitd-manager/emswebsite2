@@ -11,7 +11,7 @@ const DetailPage = () => {
      
         api
           .post('/content/getEngalaiPatriSubContent',{
-            routes:`va/${subCategoryId}` ,
+            routes:`ar/${subCategoryId}` ,
           })
           .then((res) => {
             setContent(res.data.data[0]);

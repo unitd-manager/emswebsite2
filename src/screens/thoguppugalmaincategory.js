@@ -12,8 +12,8 @@ const Engalai = () => {
   useEffect(() => {
     const getSubContent = async () => {
       try {
-        const res = await api.post("/content/getByVappa11", {
-          routes:`tm/${id}` ,
+        const res = await api.post("/content/getByVappa22", {
+          category_id:id ,
         });
         setReligion(res.data.data);
       } catch (error) {

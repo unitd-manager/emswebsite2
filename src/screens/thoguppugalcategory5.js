@@ -13,7 +13,7 @@ const Engalai = () => {
     const getSubContent = async () => {
       try {
         const res = await api.post("/content/getByVappa11", {
-          routes:`tm/${id}` ,
+          routes:`song/${id}` ,
         });
         setReligion(res.data.data);
       } catch (error) {

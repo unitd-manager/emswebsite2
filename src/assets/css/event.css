@@ -466,6 +466,21 @@
   .filter-container .react-select__menu {
     z-index: 1000;
   }
+  .breadcumb-wrapper {
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .card {
+    transition: transform 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .text-primary {
+    color: #4E4BD0 !important;
+  }
   
   
   
