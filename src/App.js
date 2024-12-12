@@ -4,6 +4,7 @@ import Home from "../src/screens/Home";
 import Engalaipatri from "../src/screens/engalaipatri.js";
 import Education from "./Education/Education.js";
 import DetailPage from "../src/screens/DetailPage";
+import DetailPage2 from "../src/screens/DetailPage2.js";
 import Engalaipatricategory from "../src/screens/engalaipatricategory";
 import EngalaipatriSubcategory from "../src/screens/EngalaipatriSubcategory";
 import Vahthathul1 from "./Vahthathulvujooth/Vahdhathulujjuth.js";
@@ -133,11 +134,9 @@ function App() {
           <Route path="/CheckOut" element={<CheckOut />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/Register" element={<Register />} />
-        
           <Route path="/:engalaipatri" element={<Engalaipatri/>} />
           <Route path="/Collections/:Collections" element={<Thoguppugal/>} />
           <Route path="/*/:niruv" element={<Engalaipatricategory/>} />
-
           <Route path="/nigazhchigal/:nigazhchigal" element={<Nigazhchigal/>} />
           <Route path="/Vahdhathulujjuth/:Vahdhathulujjuth" element={<Vahthathul1/>} />
           <Route path="/gyanagamiyangal/:gyanagamiyangal" element={<GyanaAgamiyangal/>} />
@@ -145,9 +144,10 @@ function App() {
           <Route path="/manitha/:manitha" element={<Manitha/>} />
           <Route path="/Education" element={<Education/>} />
           <Route path="/details/:contentId" element={<DetailPage />} />
+          <Route path="/details2/:contentId2" element={<DetailPage2 />} />
           <Route path="/engalaipatricategory/:id" element={<Engalaipatricategory />} />
           <Route path="/எங்களைப்பற்றி/:id" element={<Engalaipatricategory />} />
-          <Route path="/வஹ்தத்துல் வுஜூத்/:id" element={<Category />} />
+          <Route path="/*/:Vahthathul" element={<Category />} />
           <Route path="/வஹ்தத்துல் வுஜூத்/::id/:subCategoryId" element={<VahtahthulSub />} />
           <Route path="/மனிதா/:id" element={<Category3 />} />
           <Route path="/ஞான அகமியங்கள்/:id" element={<Category2 />} />

@@ -78,7 +78,9 @@ const BlogSection = () => {
                         {post.category_title}
                       </h3>
                       <p className="sec-text">{shortContent}</p>
-                      <Link to={`/வஹ்தத்துல் வுஜூத்/${post.category_id}`}
+                      <Link to={post.sub_category_id 
+                            ? `/#/categoryDetails/${post.category_id}` 
+                            : `/details2/${post.content_id}`}
                         className="th-btn"
                       >
                         Read More
