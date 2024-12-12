@@ -5,23 +5,26 @@ import api from "../constants/api";
 import { Link } from "react-router-dom";
 
 const DetailPage = () => {
-  const { contentId4 } = useParams();
-  const [categoryDetails, setCategoryDetails] = useState([]);
 
+  const [categoryDetails, setCategoryDetails] = useState([]);
+  const { IyyamThalivum } = useParams();
+
+console.log("sdew",IyyamThalivum)
+console.log("categoryDetails",categoryDetails)
   useEffect(() => {
-    const fetchContentDetails = async () => {
+    const getSubContent = async () => {
       try {
-        const res = await api.post("/content/getContentById", {
-          content_id: contentId4,
+        const res = await api.post("/content/getByVappa11", {
+          routes:`IyyamThalivum/${IyyamThalivum}`,
         });
-        setCategoryDetails(res.data.data);
+        setCategoryDetails(res.data.data[0]);
       } catch (error) {
-        console.error("Failed to fetch content details:", error);
+        console.error("Failed to fetch data:", error);
       }
     };
 
-    fetchContentDetails();
-  }, [contentId4]);
+    getSubContent();
+  }, [IyyamThalivum]); // Dependency array is empty because `id` is a constant.
 
   return (
     <div
@@ -60,7 +63,7 @@ const DetailPage = () => {
             fontStyle: "italic", // Adding some style to the subtitle
           }}
         >
-         
+          {categoryDetails.subtitle || "Subtitle or additional details"}
         </p>
         <div
           style={{
@@ -148,7 +151,7 @@ const DetailPage = () => {
           Stay updated with our latest content and exciting news. Click below to explore more.
         </p>
         <Link
-          to="/Home"
+          to="/"
           style={{
             backgroundColor: "#fff", // White button for a clean look
             color: "#2980B9", // Matching text color with the footer

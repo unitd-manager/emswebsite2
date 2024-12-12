@@ -5,6 +5,7 @@ import Engalaipatri from "../src/screens/engalaipatri.js";
 import Education from "./Education/Education.js";
 import DetailPage from "../src/screens/DetailPage";
 import DetailPage2 from "../src/screens/DetailPage2.js";
+import DetailPage4 from "../src/screens/DetailPage4.js";
 import ThoguppugalDetailPage from "../src/screens/thoguppugaldetail";
 import Engalaipatrimaincategory from "../src/screens/engalaipatrimaincategory";
 
@@ -33,7 +34,15 @@ import PechuPottigals from "./Vahthathulvujooth/pechuPottigal.js";
 import Vujooth from "./Vahthathulvujooth/vujoothiVahthathul.js";
 import Kanoligals from "./Vahthathulvujooth/Kanoligal.js";
 import Category2 from "./Gyanagamiyangal/categoryDetails2.js";
-import Category3 from "./Manitha/categoryDetails3.js";
+
+
+import MahangalDetails from "./Manitha/MahangalDetails.js";
+import Amudhamozhi from "./Manitha/Amudhamozhi.js";
+import IyyamThalivum from "./Manitha/IyyamThalivum.js";
+import EraiNasagerkal from "./Manitha/EraiNasagerkal.js";
+import HalalHaram from "./Manitha/HalalHaram.js";
+import UnmaiVilakkam from "./Manitha/UnmaiVilakkam.js";
+
 import VahtahthulSub from "./Vahthathulvujooth/VahthathulvujoothSub.js";
 import ManithaSub from "./Manitha/ManithaSub.js";
 import GyanaSub from "./Gyanagamiyangal/gyanaSub.js";
@@ -173,6 +182,9 @@ function App() {
        {/* thoguppugalmenu*/}
         <Route path="/DetailBlog/:id" element={<DetailBlog />} />
 
+        
+
+
           {/* engalaipatrimenu*/}
           <Route path="/:engalaipatri" element={<Engalaipatri/>} />
           <Route path="/*/:niruv" element={<Engalaipatricategory/>} />
@@ -196,6 +208,7 @@ function App() {
           <Route path="/Education" element={<Education/>} />
           <Route path="/details/:contentId" element={<DetailPage />} />
           <Route path="/details2/:contentId2" element={<DetailPage2 />} />
+          <Route path="/details4/:contentId4" element={<DetailPage4 />} />
           <Route path="/thoguppugaldetails/:contentId" element={<ThoguppugalDetailPage />} />
           <Route path="/engalaipatrimaincategory/:categoryId" element={<Engalaipatrimaincategory />} />
 
@@ -208,7 +221,17 @@ function App() {
           <Route path="Vujjothi/:Vahthathul" element={<Vujooth />} />
           <Route path="/நிகழ்ச்சிகள்/:காணொளிகள்" element={<Kanoligals />} />
           <Route path="/வஹ்தத்துல் வுஜூத்/::id/:subCategoryId" element={<VahtahthulSub />} />
-          <Route path="/மனிதா/:id" element={<Category3 />} />
+
+            {/* manitha */}
+
+
+          <Route path="/MahangalDetails/:MahangalDetails" element={<MahangalDetails />} />
+          <Route path="/Amudhamozhi/:Amudhamozhi" element={<Amudhamozhi />} />
+          <Route path="/IyyamThalivum/:IyyamThalivum" element={<IyyamThalivum />} />
+          <Route path="/EraiNasagerkal/:EraiNasagerkal" element={<EraiNasagerkal />} />
+          <Route path="/HalalHaram/:HalalHaram" element={<HalalHaram />} />
+          <Route path="/UnmaiVilakkam/:UnmaiVilakkam" element={<UnmaiVilakkam />} />
+
           <Route path="/ஞான அகமியங்கள்/:id" element={<Category2 />} />
           <Route path="/ஞான அகமியங்கள்/:id/:subCategoryId" element={<GyanaSub />} />
           <Route path="/மனிதா/:id/:subCategoryId" element={<ManithaSub />} />
@@ -222,6 +245,9 @@ function App() {
           <Route path="/கல்வி/:id/:subCategoryId" element={<KalviSubCategory />} />
           <Route path="/எங்களைப்பற்றி/:id/:subCategoryId" element={<EngalaipatriSubcategory />} />
           <Route path="/manitha" element={<Manitha/>} />
+          {/* <Route path="/manitha" element={<Manitha/>} /> */}
+        <Route path="/pechupottigal" element={<PechuPottigals/>} />
+          <Route path="nigazhchigal/காணொளிகள்" element={<Kanoligals/>} />  
           <Route path="நிகழ்ச்சிகள்/ஆடியோ" element={<Audios/>} />                
            <Route path="நிகழ்ச்சிகள்/நிகழ்வுகள்" element={<Nigazhvugal/>} />
           <Route path="நிகழ்ச்சிகள்/புகைப்படங்கள்" element={<Pugaipadangal/>} />
