@@ -10,10 +10,11 @@ const DetailPage = () => {
     const fetchContentDetails =  () => {
      
         api
-          .post('/content/getEngalaiPatriSubContent',{sub_category_id: subCategoryId})
+          .post('/content/getEngalaiPatriSubContent',{
+            routes:`va/${subCategoryId}` ,
+          })
           .then((res) => {
             setContent(res.data.data[0]);
-            console.log('edit Line Item',res.data.data)
           })
           .catch(() => {
             // Handle error

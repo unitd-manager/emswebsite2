@@ -11,6 +11,13 @@ import Engalaipatricategory3 from "../src/screens/engalaipatricategory3";
 import Engalaipatricategory4 from "../src/screens/engalaipatricategory4";
 
 import EngalaipatriSubcategory from "../src/screens/EngalaipatriSubcategory";
+import EngalaipatriSubcategory1 from "../src/screens/EngalaipatriSubcategory1";
+import EngalaipatriSubcategory2 from "../src/screens/EngalaipatriSubcategory2";
+
+import EngalaipatriSubcategory3 from "../src/screens/EngalaipatriSubcategory3";
+import EngalaipatriSubcategory4 from "../src/screens/EngalaipatriSubcategory4";
+import EngalaipatriSubcategory5 from "../src/screens/EngalaipatriSubcategory5";
+
 import Vahthathul1 from "./Vahthathulvujooth/Vahdhathulujjuth.js";
 import GyanaAgamiyangal from "./Gyanagamiyangal/gyanagamiyangal.js";
 import Manitha from "./Manitha/manitha.js";
@@ -148,6 +155,13 @@ function App() {
           <Route path="/+/:niruv" element={<Engalaipatricategory2/>} />
           <Route path="/=/:niruv" element={<Engalaipatricategory3/>} />
           <Route path="/!/:niruv" element={<Engalaipatricategory4/>} />
+          <Route path="/va/:subCategoryId" element={<EngalaipatriSubcategory />} />
+          <Route path="/tha/:subCategoryId" element={<EngalaipatriSubcategory1 />} />
+          <Route path="/an/:subCategoryId" element={<EngalaipatriSubcategory2 />} />
+
+          <Route path="/ka/:subCategoryId" element={<EngalaipatriSubcategory3 />} />
+          <Route path="/ar/:subCategoryId" element={<EngalaipatriSubcategory4 />} />
+          <Route path="/ta/:subCategoryId" element={<EngalaipatriSubcategory5 />} />
 
           <Route path="/nigazhchigal/:nigazhchigal" element={<Nigazhchigal/>} />
           <Route path="/Vahdhathulujjuth/:Vahdhathulujjuth" element={<Vahthathul1/>} />
