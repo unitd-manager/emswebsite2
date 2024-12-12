@@ -16,6 +16,8 @@ import VahtahthulSub from "./Vahthathulvujooth/VahthathulvujoothSub.js";
 import ManithaSub from "./Manitha/ManithaSub.js";
 import GyanaSub from "./Gyanagamiyangal/gyanaSub.js";
 import Kalvicategory from "./Education/EducationCategory.js";
+import Kalvicategories from "./Education/EducationCategories.js";
+
 import KalviSubCategory from "./Education/EducationSub.js";
 import PechuPottigal from "./Vahthathulvujooth/pechupottigalsub.js";
 import Kanoligal from "./Vahthathulvujooth/kanoligalsub.js";
@@ -154,7 +156,11 @@ function App() {
           <Route path="/மனிதா/:id/:subCategoryId" element={<ManithaSub />} />
           <Route path="/தொகுப்புகள்/:id" element={<Thoguppugalcategory />} />
           <Route path="/தொகுப்புகள்/:id/:subCategoryId" element={<ThoguppugalSubCategory />} />
-          <Route path="/கல்வி/:id" element={<Kalvicategory />} />
+
+          <Route path="/&/:ஜாமீஆ" element={<Kalvicategory />} />
+
+          <Route path="/கல்வி/:கல்வி" element={<Kalvicategories />} />
+
           <Route path="/கல்வி/:id/:subCategoryId" element={<KalviSubCategory />} />
           <Route path="/எங்களைப்பற்றி/:id/:subCategoryId" element={<EngalaipatriSubcategory />} />
           <Route path="/manitha" element={<Manitha/>} />
