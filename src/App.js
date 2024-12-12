@@ -5,6 +5,11 @@ import Engalaipatri from "../src/screens/engalaipatri.js";
 import Education from "./Education/Education.js";
 import DetailPage from "../src/screens/DetailPage";
 import Engalaipatricategory from "../src/screens/engalaipatricategory";
+import Engalaipatricategory1 from "../src/screens/engalaipatricategory1";
+import Engalaipatricategory2 from "../src/screens/engalaipatricategory2";
+import Engalaipatricategory3 from "../src/screens/engalaipatricategory3";
+import Engalaipatricategory4 from "../src/screens/engalaipatricategory4";
+
 import EngalaipatriSubcategory from "../src/screens/EngalaipatriSubcategory";
 import Vahthathul1 from "./Vahthathulvujooth/Vahdhathulujjuth.js";
 import GyanaAgamiyangal from "./Gyanagamiyangal/gyanagamiyangal.js";
@@ -139,6 +144,10 @@ function App() {
           <Route path="/:engalaipatri" element={<Engalaipatri/>} />
           <Route path="/Collections/:Collections" element={<Thoguppugal/>} />
           <Route path="/*/:niruv" element={<Engalaipatricategory/>} />
+          <Route path="/@/:niruv" element={<Engalaipatricategory1/>} />
+          <Route path="/+/:niruv" element={<Engalaipatricategory2/>} />
+          <Route path="/=/:niruv" element={<Engalaipatricategory3/>} />
+          <Route path="/!/:niruv" element={<Engalaipatricategory4/>} />
 
           <Route path="/nigazhchigal/:nigazhchigal" element={<Nigazhchigal/>} />
           <Route path="/Vahdhathulujjuth/:Vahdhathulujjuth" element={<Vahthathul1/>} />
