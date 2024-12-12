@@ -21,6 +21,7 @@ import EngalaipatriSubcategory2 from "../src/screens/EngalaipatriSubcategory2";
 import EngalaipatriSubcategory3 from "../src/screens/EngalaipatriSubcategory3";
 import EngalaipatriSubcategory4 from "../src/screens/EngalaipatriSubcategory4";
 import EngalaipatriSubcategory5 from "../src/screens/EngalaipatriSubcategory5";
+import DetailBlog from "../src/screens/DetailBlog";
 
 import Vahthathul1 from "./Vahthathulvujooth/Vahdhathulujjuth.js";
 import GyanaAgamiyangal from "./Gyanagamiyangal/gyanagamiyangal.js";
@@ -162,19 +163,20 @@ function App() {
           <Route path="/CheckOut" element={<CheckOut />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/Register" element={<Register />} />
-          <Route path="/Collections/:Collections" element={<Thoguppugal/>} />
 
+            {/* thoguppugalmenu*/}
+          <Route path="/Collections/:Collections" element={<Thoguppugal/>} />
           <Route path="/tm/:id" element={<Thoguppugalcategory />} />
           <Route path="/award/:id" element={<Thoguppugalcategory1 />} />
           <Route path="/essay/:id" element={<Thoguppugalcategory2 />} />
           <Route path="/poem/:id" element={<Thoguppugalcategory3 />} />
           <Route path="/moulid/:id" element={<Thoguppugalcategory4 />} />
           <Route path="/song/:id" element={<Thoguppugalcategory5 />} />
-
           <Route path="/tamil/:subCategoryId" element={<ThoguppugalSubCategory />} />
           <Route path="/history/:subCategoryId" element={<ThoguppugalSubCategory1 />} />
           <Route path="/poeter/:subCategoryId" element={<ThoguppugalSubCategory2 />} />
-
+       {/* thoguppugalmenu*/}
+        <Route path="/DetailBlog/:id" element={<DetailBlog />} />
 
         
 
@@ -192,6 +194,7 @@ function App() {
           <Route path="/ka/:subCategoryId" element={<EngalaipatriSubcategory3 />} />
           <Route path="/ar/:subCategoryId" element={<EngalaipatriSubcategory4 />} />
           <Route path="/ta/:subCategoryId" element={<EngalaipatriSubcategory5 />} />
+         {/* engalaipatrimenu*/}
 
           <Route path="/nigazhchigal/:nigazhchigal" element={<Nigazhchigal/>} />
           <Route path="/Vahdhathulujjuth/:Vahdhathulujjuth" element={<Vahthathul1/>} />
