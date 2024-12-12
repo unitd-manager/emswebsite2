@@ -256,7 +256,7 @@ const Home = () => {
             <div className="row gx-0">
               <div className="col-lg-2 d-none d-lg-inline-block">
                 <div className="header-logo">
-                  <Link to =''>
+                  <Link to ='/'>
                     <img src={logwhite} alt="Ems Media" />
                   </Link>
                 </div>
