@@ -1,0 +1,120 @@
+/* Wrapper and container for the entire page */
+.detailPageWrapper {
+  background-color: #ae9191;
+  padding: 40px 20px; /* Padding on left and right */
+  display: flex;
+  justify-content: center; /* Center the content */
+}
+
+.container {
+  max-width: 900px;
+  width: 100%; 
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  padding: 20px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.meta {
+  font-size: 0.9rem;
+  color: #777;
+}
+
+.meta span {
+  margin-right: 5px;
+}
+
+.imageContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.imageContainer img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  max-height: 400px;
+  object-fit: cover;
+  transition: transform 0.4s ease-in-out;
+}
+
+.imageContainer img:hover {
+  transform: scale(1.05);
+}
+
+.content {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #444;
+  padding: 10px 20px;
+}
+
+.loading {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-top: 50px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation for transitions using CSSTransition */
+.fade-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 500ms, transform 500ms;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 500ms;
+}
+
+.slideIn-enter {
+  transform: translateX(-100%);
+}
+
+.slideIn-enter-active {
+  transform: translateX(0);
+  transition: transform 500ms;
+}
+
+.slideIn-exit {
+  transform: translateX(0);
+}
+
+.slideIn-exit-active {
+  transform: translateX(-100%);
+}
+

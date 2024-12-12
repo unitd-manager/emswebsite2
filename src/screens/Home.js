@@ -657,7 +657,7 @@ const getHomeProducts = () => {
       </div>
     </div>
   </div>
-  <div className="switcher-fixed">
+  {/* <div className="switcher-fixed">
     <div className="theme-switcher">
       <button>
         <span className="dark">
@@ -668,7 +668,7 @@ const getHomeProducts = () => {
         </span>
       </button>
     </div>
-  </div>
+  </div> */}
 
         <div className="bannerImage">
       {/* Main Banner Slider */}

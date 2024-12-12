@@ -64,7 +64,7 @@ console.log("sdwwwwwwew",Collections)
                                <a
                           href={item.sub_category_id 
                             ? `/#/தொகுப்புகள்/${item.category_id}` 
-                            : `/#/details/${item.content_id}`}
+                            : `/#/thoguppugaldetails/${item.content_id}`}
                           className="th-btn style2"
                           
                         >

@@ -36,6 +36,19 @@ const BlogSection = () => {
       <div className="container">
         <div className="row">
           <div className="col-xxl-12 col-lg-12">
+          <div className="container" style={{ maxWidth: "1200px", margin: "0 auto" }}>
+        <h2
+          style={{
+            textAlign: "center",
+            marginBottom: "40px",
+            fontSize: "32px",
+            fontWeight: "bold",
+            color: "#333",
+          }}
+        >
+         வஹ்தத்துல் வுஜூத்
+        </h2>
+       </div>
             <div className="row gy-30 filter-active">
               {blogPosts.map((post, index) => {
                 const fullContent = stripHTMLTags(post.description);
