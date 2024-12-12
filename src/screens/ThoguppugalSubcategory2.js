@@ -16,7 +16,7 @@ const ThoguppugalSubCategory = () => {
     useEffect(() => {
         const getSubContent = () => {
             api
-                .post("/content/getThoguppugalSubContent",{routes:`tamil/${subCategoryId}` ,})
+                .post("/content/getThoguppugalSubContent",{routes:`poeter/${subCategoryId}` ,})
                 .then((res) => {
                     setSubContent(res.data.data[0]);
                     setIsLoaded(true); // Trigger animation after content is loaded
@@ -45,16 +45,7 @@ const ThoguppugalSubCategory = () => {
                 </p>
               </div>
     
-              <div className={styles.imageContainer}>
-                <CSSTransition in={isLoaded} timeout={500} classNames={styles.slideIn} unmountOnExit>
-                  <img
-                    src={`https://emsmedia.net/storage/uploads/${content.file_name}`}
-                    alt={content.title}
-                    className={styles.image}
-                  />
-                </CSSTransition>
-              </div>
-    
+            
               <div className={styles.content}>
                 <div dangerouslySetInnerHTML={{ __html: content.description }} />
               </div>

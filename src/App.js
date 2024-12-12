@@ -5,8 +5,23 @@ import Engalaipatri from "../src/screens/engalaipatri.js";
 import Education from "./Education/Education.js";
 import DetailPage from "../src/screens/DetailPage";
 import DetailPage2 from "../src/screens/DetailPage2.js";
+import ThoguppugalDetailPage from "../src/screens/thoguppugaldetail";
+import Engalaipatrimaincategory from "../src/screens/engalaipatrimaincategory";
+
 import Engalaipatricategory from "../src/screens/engalaipatricategory";
+import Engalaipatricategory1 from "../src/screens/engalaipatricategory1";
+import Engalaipatricategory2 from "../src/screens/engalaipatricategory2";
+import Engalaipatricategory3 from "../src/screens/engalaipatricategory3";
+import Engalaipatricategory4 from "../src/screens/engalaipatricategory4";
+
 import EngalaipatriSubcategory from "../src/screens/EngalaipatriSubcategory";
+import EngalaipatriSubcategory1 from "../src/screens/EngalaipatriSubcategory1";
+import EngalaipatriSubcategory2 from "../src/screens/EngalaipatriSubcategory2";
+
+import EngalaipatriSubcategory3 from "../src/screens/EngalaipatriSubcategory3";
+import EngalaipatriSubcategory4 from "../src/screens/EngalaipatriSubcategory4";
+import EngalaipatriSubcategory5 from "../src/screens/EngalaipatriSubcategory5";
+
 import Vahthathul1 from "./Vahthathulvujooth/Vahdhathulujjuth.js";
 import GyanaAgamiyangal from "./Gyanagamiyangal/gyanagamiyangal.js";
 import Manitha from "./Manitha/manitha.js";
@@ -17,6 +32,9 @@ import VahtahthulSub from "./Vahthathulvujooth/VahthathulvujoothSub.js";
 import ManithaSub from "./Manitha/ManithaSub.js";
 import GyanaSub from "./Gyanagamiyangal/gyanaSub.js";
 import Kalvicategory from "./Education/EducationCategory.js";
+import Kalvicategories from "./Education/EducationCategories.js";
+import Thoguppugalmaincategory from "../src/screens/thoguppugalmaincategory";
+
 import KalviSubCategory from "./Education/EducationSub.js";
 import PechuPottigal from "./Vahthathulvujooth/pechupottigalsub.js";
 import Kanoligal from "./Vahthathulvujooth/kanoligalsub.js";
@@ -26,8 +44,16 @@ import CheckOut from "./BookShop/CheckOut.js";
 import Login from "./auth/Login.js";
 import Register from "./auth/Register";
 import Thoguppugalcategory from "../src/screens/thoguppugalcategory";
+import Thoguppugalcategory1 from "../src/screens/thoguppugalcategory1";
+import Thoguppugalcategory2 from "../src/screens/thoguppugalcategory2";
+import Thoguppugalcategory3 from "../src/screens/thoguppugalcategory3";
+import Thoguppugalcategory4 from "../src/screens/thoguppugalcategory4";
+import Thoguppugalcategory5 from "../src/screens/thoguppugalcategory5";
 import Thoguppugal from "../src/screens/thoguppugal";
 import ThoguppugalSubCategory from "../src/screens/ThoguppugalSubcategory";
+import ThoguppugalSubCategory1 from "../src/screens/ThoguppugalSubcategory1";
+import ThoguppugalSubCategory2 from "../src/screens/ThoguppugalSubcategory2";
+
 import ShopList from "./BookShop/ShopList";
 import BooksMenu from "./Menu/BooksMenu";
 import FromBookList from "./BookShop/FromBookList";
@@ -103,12 +129,6 @@ import Kaanoli from "./screens/nigazhchigal/Kaanoli"
 import Nigazhvugal from "./screens/nigazhchigal/Nigazhvugal.js";
 import Audios from "./screens/nigazhchigal/Audios.js";
 import Nigazhchigal from "./screens/nigazhchigal/nigazhchigal.js";
-// import Kaanoli from "./screens/nigazhchigal/Kaanoli.js";
-// import '../src/assets/sass/spacing/_section-space.scss'
-// import '../src/assets/sass/spacing/_spacing.scss'
-
-
-// import '../src/assets/sass/template/breadcumb/_breadcumb-v1.scss'
 
 
 
@@ -127,16 +147,41 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/contact" element={<Contact/>} />
-          <Route path="/ShopList" element={<ShopList/>} />
+          <Route path="/ShopList/ShopList" element={<ShopList/>} />
           <Route path="/ShopDetails" element={<ShopDetails/>} />
           <Route path="/ShopDetails/:id" element={<ShopDetails />} />
           <Route path="/Cart" element={<Cart />} />
           <Route path="/CheckOut" element={<CheckOut />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/Register" element={<Register />} />
-          <Route path="/:engalaipatri" element={<Engalaipatri/>} />
           <Route path="/Collections/:Collections" element={<Thoguppugal/>} />
+
+          <Route path="/tm/:id" element={<Thoguppugalcategory />} />
+          <Route path="/award/:id" element={<Thoguppugalcategory1 />} />
+          <Route path="/essay/:id" element={<Thoguppugalcategory2 />} />
+          <Route path="/poem/:id" element={<Thoguppugalcategory3 />} />
+          <Route path="/moulid/:id" element={<Thoguppugalcategory4 />} />
+          <Route path="/song/:id" element={<Thoguppugalcategory5 />} />
+
+          <Route path="/tamil/:subCategoryId" element={<ThoguppugalSubCategory />} />
+          <Route path="/history/:subCategoryId" element={<ThoguppugalSubCategory1 />} />
+          <Route path="/poeter/:subCategoryId" element={<ThoguppugalSubCategory2 />} />
+
+
+          {/* engalaipatrimenu*/}
+          <Route path="/:engalaipatri" element={<Engalaipatri/>} />
           <Route path="/*/:niruv" element={<Engalaipatricategory/>} />
+          <Route path="/@/:niruv" element={<Engalaipatricategory1/>} />
+          <Route path="/+/:niruv" element={<Engalaipatricategory2/>} />
+          <Route path="/=/:niruv" element={<Engalaipatricategory3/>} />
+          <Route path="/!/:niruv" element={<Engalaipatricategory4/>} />
+          <Route path="/va/:subCategoryId" element={<EngalaipatriSubcategory />} />
+          <Route path="/tha/:subCategoryId" element={<EngalaipatriSubcategory1 />} />
+          <Route path="/an/:subCategoryId" element={<EngalaipatriSubcategory2 />} />
+          <Route path="/ka/:subCategoryId" element={<EngalaipatriSubcategory3 />} />
+          <Route path="/ar/:subCategoryId" element={<EngalaipatriSubcategory4 />} />
+          <Route path="/ta/:subCategoryId" element={<EngalaipatriSubcategory5 />} />
+
           <Route path="/nigazhchigal/:nigazhchigal" element={<Nigazhchigal/>} />
           <Route path="/Vahdhathulujjuth/:Vahdhathulujjuth" element={<Vahthathul1/>} />
           <Route path="/gyanagamiyangal/:gyanagamiyangal" element={<GyanaAgamiyangal/>} />
@@ -145,6 +190,9 @@ function App() {
           <Route path="/Education" element={<Education/>} />
           <Route path="/details/:contentId" element={<DetailPage />} />
           <Route path="/details2/:contentId2" element={<DetailPage2 />} />
+          <Route path="/thoguppugaldetails/:contentId" element={<ThoguppugalDetailPage />} />
+          <Route path="/engalaipatrimaincategory/:categoryId" element={<Engalaipatrimaincategory />} />
+
           <Route path="/engalaipatricategory/:id" element={<Engalaipatricategory />} />
           <Route path="/எங்களைப்பற்றி/:id" element={<Engalaipatricategory />} />
           <Route path="/*/:Vahthathul" element={<Category />} />
@@ -153,9 +201,13 @@ function App() {
           <Route path="/ஞான அகமியங்கள்/:id" element={<Category2 />} />
           <Route path="/ஞான அகமியங்கள்/:id/:subCategoryId" element={<GyanaSub />} />
           <Route path="/மனிதா/:id/:subCategoryId" element={<ManithaSub />} />
-          <Route path="/தொகுப்புகள்/:id" element={<Thoguppugalcategory />} />
+          <Route path="/தொகுப்புகள்/:id" element={<Thoguppugalmaincategory />} />
           <Route path="/தொகுப்புகள்/:id/:subCategoryId" element={<ThoguppugalSubCategory />} />
-          <Route path="/கல்வி/:id" element={<Kalvicategory />} />
+
+          <Route path="/&/:jamia" element={<Kalvicategory />} />
+
+          <Route path="/கல்வி/:id" element={<Kalvicategories />} />
+
           <Route path="/கல்வி/:id/:subCategoryId" element={<KalviSubCategory />} />
           <Route path="/எங்களைப்பற்றி/:id/:subCategoryId" element={<EngalaipatriSubcategory />} />
           <Route path="/manitha" element={<Manitha/>} />
@@ -167,8 +219,8 @@ function App() {
           <Route path="/PugaipadangalDetails" element={<PugaipadangalDetails/>} />
           <Route path="நிகழ்ச்சிகள்/காணொளிகள்" element={<Kaanoli/>} />
           <Route path="/noorkal/:noorkal" element={<BooksMenu/>} />    
-          <Route path="/PublicationReview" element={<PublicationReview />} />
-          <Route path="/FromBookList" element={<FromBookList/>} />
+          <Route path="/PublicationReview/PublicationReview" element={<PublicationReview />} />
+          <Route path="/FromBookList/FromBookList" element={<FromBookList/>} />
 
 
         </Routes>

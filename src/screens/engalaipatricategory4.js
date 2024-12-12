@@ -5,13 +5,14 @@ import api from "../constants/api";
 const Engalai = () => {
   const [religion, setReligion] = useState([]);
 
-  const { engalaipatri } = useParams();
+  const { niruv } = useParams();
 
+console.log("sd11ew",niruv)
   useEffect(() => {
     const getSubContent = async () => {
       try {
-        const res = await api.post("/content/getByVappasection11", {
-          routes: engalaipatri,
+        const res = await api.post("/content/getByVappa11", {
+          routes:`!/${niruv}` ,
         });
         setReligion(res.data.data);
       } catch (error) {
@@ -20,7 +21,7 @@ const Engalai = () => {
     };
 
     getSubContent();
-  }, [engalaipatri]); // Dependency array is empty because `id` is a constant.
+  }, [niruv]); // Dependency array is empty because `id` is a constant.
 
   // Helper function to remove HTML tags
   const stripHTMLTags = (input) => {
@@ -35,11 +36,12 @@ const Engalai = () => {
     if (words.length <= wordLimit) return text; // If text has fewer words, return as is
     return words.slice(0, wordLimit).join(" ") + "..."; // Join first 'wordLimit' words and append ellipsis
   };
+
   return (
     <section className="space-top space-extra-bottom">
       <div className="container">
         <div className="row">
-          <div className="col-xxl-12 col-lg-11">
+          <div className="col-xxl-12 col-lg-12">
             <div className="mb-30">
               {Array.isArray(religion) &&
                 religion.map((item, index) => (
@@ -48,8 +50,6 @@ const Engalai = () => {
                       <div className="blog-img w-386">
                       <img
                 src={`https://emsmedia.net/storage/uploads/${item.file_name}`}
-                style={{ width: '500px', objectFit: 'cover' }}
-
               />
                       </div>
                       <div className="blog-content">
@@ -65,11 +65,11 @@ const Engalai = () => {
                             className="hover-line"
                             href={item.details_link || "#"}
                           >
-                            {item.category_title}
+                            {item.title}
                           </a>
                         </h3>
                         <p className="blog-text">
-                          {truncateToWords(stripHTMLTags(item.chi_description), 20)}
+                          {truncateToWords(stripHTMLTags(item.description), 20)}
                         </p>
                         <div className="blog-meta">
                           <a href={item.author_link || "#"}>
@@ -79,15 +79,10 @@ const Engalai = () => {
                             <i className="fal fa-calendar-days"></i>15 Mar, 2023
                           </a>
                         </div>
-                        
                         <a
-                          href={item.sub_category_id 
-                            ? `/#/engalaipatrimaincategory/${item.category_id}` 
-                            : `/#/details/${item.content_id}`}
+                          href={`/#/details/${item.content_id}`}
                           className="th-btn style2"
-                          
                         >
-                          
                           Read More
                           <i className="fas fa-arrow-up-right ms-2"></i>
                         </a>
