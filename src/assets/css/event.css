@@ -482,7 +482,10 @@
     color: #4E4BD0 !important;
   }
   
-  
-  
+  .slick-slider.thumbnail-slider .slick-track{
+
+  padding-top: 45Px;
+
+  }
   
     

@@ -828,7 +828,7 @@ const getHomeProducts = () => {
                                     <a data-theme-color="#00D084" style={{backgroundColor:'#00D084'}} href="/" class="category">அப்பா நாயகம்</a>
                                     <h3 class="box-title-20"><a class="hover-line" href="/">யாஸீன் மௌலானா நாயகம் அவர்களின் தவமிகு தந்தையார்</a></h3>
                                     <div class="blog-meta">
-                                        <a href="/"><i class="far fa-user"></i>By - EMS Media</a>
+                                        <a ><i class="far fa-user"></i>By - EMS Media</a>
                                         {/* <a href="/"><i class="fal fa-calendar-days"></i>13 Mar, 2023</a> */}
                                     </div>
                                 </div>
@@ -843,7 +843,7 @@ const getHomeProducts = () => {
                                     <a data-theme-color="#4E4BD0" style={{backgroundColor:'#4E4BD0'}}  href="/" class="category">தந்தை நாயகம்</a>
                                     <h3 class="box-title-20"><a class="hover-line" href="/">ஜமாலிய்யா அஸ்ஸெய்யித் யாஸீன் மௌலானா </a></h3>
                                     <div class="blog-meta">
-                                        <a href="/"><i class="far fa-user"></i>By - EMS Media</a>
+                                        <a ><i class="far fa-user"></i>By - EMS Media</a>
                                         {/* <a href="/"><i class="fal fa-calendar-days"></i>10 Mar, 2023</a> */}
                                     </div>
                                 </div>
@@ -861,7 +861,7 @@ const getHomeProducts = () => {
                                 <a data-theme-color="#FF9500" style={{backgroundColor:'#FF9500'}} href="/" class="category">வாப்பா நாயகம்</a>
                                 <h3 class="box-title-30"><a class="hover-line" href="/">அஸ்ஸெய்யித் கலீல் அவ்ன் மௌலானா</a></h3>
                                 <div class="blog-meta">
-                                    <a href="/"><i class="far fa-user"></i>By - EMS Media</a>
+                                    <a ><i class="far fa-user"></i>By - EMS Media</a>
                                     {/* <a href="/"><i class="fal fa-calendar-days"></i>10 Mar, 2023</a> */}
                                 </div>
                             </div>
@@ -1066,7 +1066,7 @@ const getHomeProducts = () => {
                   sit amet felis.
                 </p> */}
                 <div className="blog-meta">
-                  <a href="/">
+                  <a >
                     <i className="far fa-user" />
                     By - EMS Media
                   </a>
@@ -1231,25 +1231,25 @@ const getHomeProducts = () => {
           </div>
           <div className="blog-content">
             <a
-              href="/"
+              
               className="category"
               data-theme-color="#6234AC"
             >
               {item.category_title}
             </a>
             <h3 className="box-title-20">
-              <a className="hover-line" href="/">
+              <Link className="hover-line" to ={`/ShopDetails/${item.product_id}`}>
                 {item.title}
-              </a>
+              </Link>
             </h3>
-            <div >
-              <a href="/">
-                Rs:
-                     <span style={{color:'green',marginLeft:5,}}>{item.price}</span>
+            <div > 
+              <a >
+               
+                     <span style={{color:'green',marginLeft:5,}}>Rs:{item.price}</span>
               </a>
               </div>
             <div className="blog-meta">
-              <a href="/">
+              <a >
                 <i className="fal fa-calendar-days" />
                 {item.year}
               </a>

@@ -148,7 +148,7 @@ const Shop = () => {
             <li>
               <a href="home-newspaper.html">Home</a>
             </li>
-            <li>Shop</li>
+            <li> Book Shop</li>
           </ul>
         </div>
       </div>
@@ -166,7 +166,7 @@ Product Area
                       Showing 1–9 of{products.length}
                     </p>
                   </div>
-                  <div className="col-md-auto">
+                  {/* <div className="col-md-auto">
                     <form className="woocommerce-ordering" method="get">
                       <select
                         name="orderby"
@@ -187,7 +187,7 @@ Product Area
                         </option>
                       </select>
                     </form>
-                  </div>
+                  </div> */}
                 </div>
               </div>
               <div>
@@ -222,25 +222,25 @@ Product Area
                             >
                               <i className="far fa-cart-plus" />
                             </Link>
-                            <a href="wishlist.html" className="icon-btn">
+                            {/* <a href="wishlist.html" className="icon-btn">
                               <i className="far fa-heart" />
-                            </a>
+                            </a> */}
                           </div>
                         </div>
                         <div className="product-content">
-                          <div
+                          {/* <div
                             className="star-rating"
                             role="img"
                             aria-label="Rated 5.00 out of 5"
-                          >
-                            <span>
+                          > */}
+                            {/* <span>
                               Rated <strong className="rating">5.00</strong> out
                               of 5 based on <span className="rating">1</span>{" "}
                               customer rating
-                            </span>
-                          </div>
+                            </span> */}
+                          {/* </div> */}
                           <h3 className="product-title">
-                            <a href="shop-details.html">{product.title}</a>
+                            <Link to ={`/ShopDetails/${product.product_id}`}>{product.title}</Link>
                           </h3>
                           <span className="price">Rs:{product.price}</span>
                         </div>

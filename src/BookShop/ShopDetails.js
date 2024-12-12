@@ -25,6 +25,31 @@ const Shop = () => {
 const [quantity, setQuantity] = useState(1);
   const [categories, setCategories] = useState([]); 
   const [book, setBooks] = useState([]); 
+  const addToCartMenu = ({product}) => {
+
+    console.log('userData',user)
+
+    const book = product
+    if (!user || !user.contact_id) {
+      const userConfirmed = window.confirm(
+        "Please Login. Click 'OK' to go to the Login page or 'Cancel' to stay."
+      );
+      if (userConfirmed) {
+        navigate("/Login"); // Navigate to the login page
+      }
+    } else {
+      book.contact_id = user.contact_id;
+      book.qty = 1;
+      api
+        .post("/contact/addToCart", book)
+        .then(() => {
+          alert("Item Added to cart");
+          // navigate("/Cart");
+        })
+
+        .catch((error) => console.log("Item error", error));
+    }
+  };
 
   const addToCart=()=>{
 
@@ -166,7 +191,7 @@ const [quantity, setQuantity] = useState(1);
             Rs:{book.price}<del></del>
             </p>
             <h2 className="product-title">{book.title}</h2>
-            <div className="product-rating">
+            {/* <div className="product-rating">
               <div
                 className="star-rating"
                 role="img"
@@ -180,7 +205,7 @@ const [quantity, setQuantity] = useState(1);
               <a href="shop-details.html" className="woocommerce-review-link">
                 (<span className="count">4</span> customer reviews)
               </a>
-            </div>
+            </div> */}
             <p className="text">
              {stripHtmlTags(book.description_short)}
             </p>
@@ -234,7 +259,7 @@ const [quantity, setQuantity] = useState(1);
               </span>
               <span className="posted_in">
                 Category:{" "}
-                <a href="shop.html" rel="tag">
+                <a  rel="tag">
                   {book.category_title}
                 </a>
               </span>
@@ -515,20 +540,22 @@ const [quantity, setQuantity] = useState(1);
             >
               <i className="far fa-eye" />
             </Link>
-                <a href="cart.html" className="icon-btn">
+                <Link to="" onClick={() => {
+                                addToCartMenu({ product });
+                              }} className="icon-btn">
                   <i className="far fa-cart-plus" />
-                </a>
-                <a href="wishlist.html" className="icon-btn">
+                </Link>
+                {/* <a href="wishlist.html" className="icon-btn">
                   <i className="far fa-heart" />
-                </a>
+                </a> */}
               </div>
             </div>
             <div className="product-content">
               <h3 className="product-title">
-                <a href="shop-details.html">{product.title}</a>
+                <Link to={`/ShopDetails/${product.product_id}`}>{product.title}</Link>
               </h3>
               <span className="price">
-                {product.price}
+                Rs:{product.price}
                 {product.oldPrice && <del>{product.oldPrice}</del>}
               </span>
             </div>

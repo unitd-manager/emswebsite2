@@ -276,7 +276,7 @@ const Home = () => {
                           >
                             <div className="col-auto">
                               <a
-                                href="/"
+                           
                                 className="breaking-news"
                               >
                                 {marqueeValue}
@@ -284,7 +284,7 @@ const Home = () => {
                             </div>
                             <div className="col-auto">
                               <a
-                                href="/"
+                             
                                 className="breaking-news"
                               >
                                 {marqueeValue}
@@ -392,7 +392,7 @@ const Home = () => {
               <ul>
                 <li>
                   <i className="fal fa-calendar-days" />
-                  <a href="/">{currentDate}</a>
+                  <a>{currentDate}</a>
                 </li>
               </ul>
             </div>
