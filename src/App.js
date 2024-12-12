@@ -195,7 +195,7 @@ function App() {
 
           <Route path="/engalaipatricategory/:id" element={<Engalaipatricategory />} />
           <Route path="/எங்களைப்பற்றி/:id" element={<Engalaipatricategory />} />
-          <Route path="/*/:Vahthathul" element={<Category />} />
+          <Route path="/Vahthathul/:Parizu" element={<Category />} />
           <Route path="/வஹ்தத்துல் வுஜூத்/::id/:subCategoryId" element={<VahtahthulSub />} />
           <Route path="/மனிதா/:id" element={<Category3 />} />
           <Route path="/ஞான அகமியங்கள்/:id" element={<Category2 />} />
