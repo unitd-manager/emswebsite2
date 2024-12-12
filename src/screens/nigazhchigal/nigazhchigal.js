@@ -149,7 +149,7 @@ const Nigalchigal = () => {
             <div className="container">
                 <div className="title-area text-center">
                     {/* <span className="sub-title">நிகழ்ச்சிகள்</span> */}
-                    <h2 className="sub-title">நிகழ்ச்சிகள்</h2>
+                    <h2 className="sec-title2">நிகழ்ச்சிகள்</h2>
                 </div>
                 <div className="story-box-area" data-bg-src="assets/img/normal/story_bg_1.svg">
                     {religion?.map((item, index) => (
