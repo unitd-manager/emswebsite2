@@ -9,8 +9,8 @@ import "../assets/css/magnific-popup.min.css";
 import "../assets/css/bootstrap.min.css";
 import "../assets/css/style.css.map";
 import BookReview1 from "../assets/img/booknew.gif";
-import BookReview2 from "../assets/img/lightbox-still-life.avif";
-import BookReview3 from "../assets/img/books-forming-star.avif";
+import BookReview2 from "../assets/img/lightbox-still-life.jpg";
+import BookReview3 from "../assets/img/books-forming-star.jpg";
 
 const BookMenu = () => {
   const [books, setBooks] = useState([]);
@@ -84,7 +84,7 @@ const BookMenu = () => {
                     நூற்கள்
                   </a>
                   <h3 className="box-title-24">
-                    <Link className="hover-line" to="/ShopList">
+                    <Link className="hover-line" to="/ShopList/ShopList">
                     &nbsp;&nbsp;நூற்களின் தொகுப்பு&nbsp;&nbsp;
                     </Link>
                   </h3>
@@ -116,7 +116,7 @@ const BookMenu = () => {
                   </a>
                   &nbsp;&nbsp;
                   <h3 className="box-title-24">
-                    <Link className="hover-line" to="/FromBookList">
+                    <Link className="hover-line" to="/FromBookList/FromBookList">
                     &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;நூல்களில் இருந்து&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </Link>
                   </h3>
@@ -147,7 +147,7 @@ const BookMenu = () => {
                     நூற்கள்
                   </a>
                   <h3 className="box-title-24">
-                    <Link className="hover-line" to="/PublicationReview">
+                    <Link className="hover-line" to="/PublicationReview/PublicationReview">
                     பதிப்பாய்வு Book Reviews
                     </Link>
                   </h3>
@@ -157,6 +157,47 @@ const BookMenu = () => {
           </div>
         </div>
       </div>
+      {/* <div className="space-bottom">
+      <div className="container-full-1">
+        <div
+          className="row th-carousel slider-shadow"
+          data-slide-show={3}
+          data-ml-slide-show={2}
+          data-lg-slide-show={2}
+          data-md-slide-show={1}
+          data-sm-slide-show={1}
+        >
+          {books.map((book, index) => (
+            <div className="col-md-6 col-xxl-4" key={index}>
+              <div className="blog-style9">
+                <div className="blog-img">
+                  <img
+                    src={`https://emsmedia.net/storage/uploads/${book.file_name}`}
+                    alt={book.title || "Book image"}
+                    style={{
+                      width: "100%",
+                      height: "200px",
+                      objectFit: "cover",
+                      borderRadius: "8px",
+                    }}
+                  />
+                </div>
+                <div className="blog-content">
+                  <a data-theme-color="#4E4BD0" className="category">
+                    {book.category || "நூற்கள்"}
+                  </a>
+                  <h3 className="box-title-24">
+                    <Link className="hover-line" to={book.link || "#"}>
+                   {book.category_title || "Untitled"}
+                    </Link>
+                  </h3>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div> */}
     </>
   );
 };
