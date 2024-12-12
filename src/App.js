@@ -135,7 +135,7 @@ function App() {
         
           <Route path="/:engalaipatri" element={<Engalaipatri/>} />
           <Route path="/Collections/:Collections" element={<Thoguppugal/>} />
-          <Route path="/*/:நிறுவனர்" element={<Engalaipatricategory/>} />
+          <Route path="/*/:niruv" element={<Engalaipatricategory/>} />
 
           <Route path="/nigazhchigal/:nigazhchigal" element={<Nigazhchigal/>} />
           <Route path="/Vahdhathulujjuth/:Vahdhathulujjuth" element={<Vahthathul1/>} />
