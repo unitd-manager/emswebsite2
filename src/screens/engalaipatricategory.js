@@ -12,7 +12,7 @@ console.log("sd11ew",id)
     const getSubContent = async () => {
       try {
         const res = await api.post("/content/getByVappa11", {
-          category_id: id,
+          routes:`*/${id}` ,
         });
         setReligion(res.data.data);
       } catch (error) {
