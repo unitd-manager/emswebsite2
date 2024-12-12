@@ -60,7 +60,7 @@ const DetailPage = () => {
             fontStyle: "italic", // Adding some style to the subtitle
           }}
         >
-          {categoryDetails.subtitle || "Subtitle or additional details"}
+         
         </p>
         <div
           style={{
@@ -148,7 +148,7 @@ const DetailPage = () => {
           Stay updated with our latest content and exciting news. Click below to explore more.
         </p>
         <Link
-          to="/"
+          to="/Home"
           style={{
             backgroundColor: "#fff", // White button for a clean look
             color: "#2980B9", // Matching text color with the footer

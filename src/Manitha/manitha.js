@@ -95,7 +95,7 @@ const BlogCard = () => {
                   {post.category_title}
                 </h3>
                 <Link
-  to={`${post.routes}`}
+  to={`/details4/${post.content_id}`}
   className="read-more-btn"
   style={{
     display: "block",
