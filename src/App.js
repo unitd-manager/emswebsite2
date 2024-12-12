@@ -33,6 +33,7 @@ import Thoguppugal from "../src/screens/thoguppugal";
 import ThoguppugalSubCategory from "../src/screens/ThoguppugalSubcategory";
 
 import ShopList from "./BookShop/ShopList";
+import BooksMenu from "./Menu/BooksMenu"
 import Contact from "./screens/contact.js";
 import Footer from "./header/Footer"
 import Header from "./header/Header"
@@ -170,6 +171,7 @@ function App() {
           <Route path="நிகழ்ச்சிகள்/புகைப்படங்கள்" element={<Pugaipadangal/>} />
           <Route path="/PugaipadangalDetails" element={<PugaipadangalDetails/>} />
           <Route path="நிகழ்ச்சிகள்/காணொளிகள்" element={<Kaanoli/>} />   
+          <Route path="/BooksMenu" element={<BooksMenu/>} /> 
           {/* <Route path="/nigazhchigal/kaanoligal" element={<Kaanoli />} /> */}
           {/* <Route path="/nigazhchigal/audios" element={<Audios/>} /> */}
 
