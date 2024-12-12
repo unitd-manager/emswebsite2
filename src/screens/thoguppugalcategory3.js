@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom"; // Import useNavigate
 import api from "../constants/api";
 import styles from "./DetailPage.module.css"; // Import CSS module
 import { CSSTransition } from 'react-transition-group'; // Import animation library
@@ -8,6 +8,8 @@ import { CSSTransition } from 'react-transition-group'; // Import animation libr
 const Engalai = () => {
   const [content, setReligion] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false); // State to control animation
+  const [blogs, setBlogs] = useState([]);
+  const navigate = useNavigate(); // Initialize useNavigate for navigation
 
   const { id } = useParams();
 
@@ -36,7 +38,24 @@ const Engalai = () => {
     tempDiv.innerHTML = input;
     return tempDiv.textContent || tempDiv.innerText || "";
   };
+ // Fetch blog data when the id changes
+ useEffect(() => {
+  api
+    .post("/blog/getBlogsByCategoryId", {
+      routes:`poem/${id}` ,
+    })
+    .then((res) => {
+      setBlogs(res.data.data || []);
+    })
+    .catch((error) => {
+      console.error("Error fetching blog data:", error);
+    });
+}, [id]);
 
+// Function to handle blog title click
+const handleBlogClick = (blog_id) => {
+  navigate(`/DetailBlog/${blog_id}`); // Navigate to the blogDetail page with the blog_id
+};
   // Helper function to truncate text to 20 words
   const truncateToWords = (text, wordLimit) => {
     const words = text.split(/\s+/); 
@@ -66,11 +85,19 @@ const Engalai = () => {
           </div>
 
           <div className={styles.content}>
-            <div dangerouslySetInnerHTML={{ __html: content.description }} />
+          {blogs.map((blog, index) => (
+
+            <div  key={index}
+                    onClick={() => handleBlogClick(blog.blog_id)} // Handle click to navigate to blogDetail page
+                    style={{ cursor: "pointer", color: "red" ,padding:10}} >  {blog.title}
+                  </div>
+                    ))}
           </div>
         </div>
+         
       </section>
     </CSSTransition>
+    
   );
 };
 
