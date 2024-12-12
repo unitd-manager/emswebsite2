@@ -140,7 +140,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/contact" element={<Contact/>} />
-          <Route path="/ShopList" element={<ShopList/>} />
+          <Route path="/ShopList/ShopList" element={<ShopList/>} />
           <Route path="/ShopDetails" element={<ShopDetails/>} />
           <Route path="/ShopDetails/:id" element={<ShopDetails />} />
           <Route path="/Cart" element={<Cart />} />
@@ -196,8 +196,8 @@ function App() {
           <Route path="/PugaipadangalDetails" element={<PugaipadangalDetails/>} />
           <Route path="நிகழ்ச்சிகள்/காணொளிகள்" element={<Kaanoli/>} />
           <Route path="/noorkal/:noorkal" element={<BooksMenu/>} />    
-          <Route path="/PublicationReview" element={<PublicationReview />} />
-          <Route path="/FromBookList" element={<FromBookList/>} />
+          <Route path="/PublicationReview/PublicationReview" element={<PublicationReview />} />
+          <Route path="/FromBookList/FromBookList" element={<FromBookList/>} />
 
 
         </Routes>
