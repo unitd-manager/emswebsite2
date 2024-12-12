@@ -82,7 +82,7 @@ const Home = () => {
                   <div className="menu-all-pages-container">
                     <ul className="menu">
                       <li>
-                      <Link to="/ShopList">நூற்கள்</Link>
+                      <Link to="/ShopList/ShopList">நூற்கள்</Link>
                       </li>
                       <li>
                       <Link to="நிகழ்ச்சிகள்/புகைப்படங்கள்">புகைப்படங்கள்</Link>
