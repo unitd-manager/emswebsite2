@@ -85,16 +85,16 @@ const Home = () => {
                       <Link to="/ShopList">நூற்கள்</Link>
                       </li>
                       <li>
-                      <Link to="/pugaipadangal">புகைப்படங்கள்</Link>
+                      <Link to="நிகழ்ச்சிகள்/புகைப்படங்கள்">புகைப்படங்கள்</Link>
                       </li>
                       <li>
-                      <Link to="/kaanoli">காணொளி</Link>
+                      <Link to="நிகழ்ச்சிகள்/காணொளிகள்">காணொளி</Link>
                       </li>
                       <li>
-                      <Link to="/Audios">ஆடியோ</Link>
+                      <Link to="நிகழ்ச்சிகள்/ஆடியோ">ஆடியோ</Link>
                       </li>
                       <li>
-                      <Link to="/nigazhvugal">நிகழ்வுகள்</Link>
+                      <Link to="nigazhchigal/nigazhvugal">நிகழ்வுகள்</Link>
                       </li>
                       <li>
                         <Link to="/contact">Contact Us</Link>
