@@ -29,12 +29,13 @@ import Register from "./auth/Register";
 import Thoguppugalcategory from "../src/screens/thoguppugalcategory";
 import Thoguppugal from "../src/screens/thoguppugal";
 import ThoguppugalSubCategory from "../src/screens/ThoguppugalSubcategory";
-
 import ShopList from "./BookShop/ShopList";
-import BooksMenu from "./Menu/BooksMenu"
+import BooksMenu from "./Menu/BooksMenu";
+import FromBookList from "./BookShop/FromBookList";
+import PublicationReview from "./BookShop/PublicationReview"
 import Contact from "./screens/contact.js";
-import Footer from "./header/Footer"
-import Header from "./header/Header"
+import Footer from "./header/Footer";
+import Header from "./header/Header";
 
 import '../src/assets/css/bootstrap.min.css'
 import '../src/assets/css/fontawesome.min.css'
@@ -170,9 +171,10 @@ function App() {
            <Route path="நிகழ்ச்சிகள்/நிகழ்வுகள்" element={<Nigazhvugal/>} />
           <Route path="நிகழ்ச்சிகள்/புகைப்படங்கள்" element={<Pugaipadangal/>} />
           <Route path="/PugaipadangalDetails" element={<PugaipadangalDetails/>} />
-          <Route path="நிகழ்ச்சிகள்/காணொளிகள்" element={<Kaanoli/>} />   
-          {/* <Route path="/nigazhchigal/kaanoligal" element={<Kaanoli />} /> */}
-          {/* <Route path="/nigazhchigal/audios" element={<Audios/>} /> */}
+          <Route path="நிகழ்ச்சிகள்/காணொளிகள்" element={<Kaanoli/>} />
+          <Route path="/noorkal/:noorkal" element={<BooksMenu/>} />    
+          <Route path="/PublicationReview" element={<PublicationReview />} />
+          <Route path="/FromBookList" element={<FromBookList/>} />
 
 
         </Routes>
