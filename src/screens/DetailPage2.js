@@ -50,7 +50,7 @@ const DetailPage = () => {
             marginBottom: "10px",
           }}
         >
-          {categoryDetails.title || "Content Title"}
+          {categoryDetails?.title || "Content Title"}
         </h1>
         <p
           style={{
@@ -58,7 +58,7 @@ const DetailPage = () => {
             color: "#6c757d", // Subtle gray for the subtitle
           }}
         >
-          {categoryDetails.subtitle || "Subtitle or additional details here"}
+          {categoryDetails?.subtitle || "Subtitle or additional details here"}
         </p>
         <hr
           style={{
@@ -73,7 +73,7 @@ const DetailPage = () => {
       </header>
 
       {/* Image Section (optional) */}
-      {categoryDetails.image && (
+      {categoryDetails?.image && (
         <div
           style={{
             marginBottom: "30px",
@@ -107,8 +107,8 @@ const DetailPage = () => {
           padding: "0 20px",
         }}
       >
-        {categoryDetails.description
-          ? ReactHtmlParser(categoryDetails.description)
+        {categoryDetails?.description
+          ? ReactHtmlParser(categoryDetails?.description)
           : "No description available at the moment."}
       </section>
 
