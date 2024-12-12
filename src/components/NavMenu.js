@@ -115,7 +115,7 @@ function Navbar() {
                                   </a>
                                 ) : (
                                   <Link
-                                    to={`/${section.section_title}/${category.category_id}/${subcategory.routes}`}
+                                    to={`${category.routes}`}
                                     className="dropdown-item"
                                   >
                                     {subcategory.sub_category_title}

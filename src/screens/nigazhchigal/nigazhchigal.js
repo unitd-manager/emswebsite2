@@ -148,8 +148,8 @@ const Nigalchigal = () => {
         <div className="space2">
             <div className="container">
                 <div className="title-area text-center">
-                    <span className="sub-title">நிகழ்ச்சிகள்</span>
-                    <h2 className="sec-title2">நிகழ்ச்சிகள்</h2>
+                    {/* <span className="sub-title">நிகழ்ச்சிகள்</span> */}
+                    <h2 className="sub-title">நிகழ்ச்சிகள்</h2>
                 </div>
                 <div className="story-box-area" data-bg-src="assets/img/normal/story_bg_1.svg">
                     {religion?.map((item, index) => (
@@ -160,7 +160,7 @@ const Nigalchigal = () => {
                                 </div>
                                 <a
                             className="hover-line"
-                            href={item.details_link || `/#/நிகழ்ச்சிகள்/${item.category_title}/${item.category_id}`}
+                            href={item.details_link || `/#/நிகழ்ச்சிகள்/${item.category_title}`}
                           >
                                 <div className="box-content">
 
@@ -169,7 +169,7 @@ const Nigalchigal = () => {
                                 </div>
                                 </a>
                             </div>
-                            <div className="story-year">{item.year}</div>
+                            {/* <div className="story-year">{item.year}</div> */}
                         </div>
                     ))}
                     {/* <div className="story-box-wrap">

@@ -160,11 +160,11 @@ function App() {
           <Route path="/manitha" element={<Manitha/>} />
         <Route path="/pechupottigal" element={<PechuPottigal/>} />
           <Route path="nigazhchigal/காணொளிகள்" element={<Kanoligal/>} />  
-          <Route path="நிகழ்ச்சிகள்/ஆடியோ/:audio" element={<Audios/>} />                
-           <Route path="நிகழ்ச்சிகள்/நிகழ்வுகள்/:nigalvu" element={<Nigazhvugal/>} />
-          <Route path="நிகழ்ச்சிகள்/புகைப்படங்கள்/:pugaipadam" element={<Pugaipadangal/>} />
+          <Route path="நிகழ்ச்சிகள்/ஆடியோ" element={<Audios/>} />                
+           <Route path="நிகழ்ச்சிகள்/நிகழ்வுகள்" element={<Nigazhvugal/>} />
+          <Route path="நிகழ்ச்சிகள்/புகைப்படங்கள்" element={<Pugaipadangal/>} />
           <Route path="/PugaipadangalDetails" element={<PugaipadangalDetails/>} />
-          <Route path="நிகழ்ச்சிகள்/காணொளிகள்/:video" element={<Kaanoli/>} />   
+          <Route path="நிகழ்ச்சிகள்/காணொளிகள்" element={<Kaanoli/>} />   
           {/* <Route path="/nigazhchigal/kaanoligal" element={<Kaanoli />} /> */}
           {/* <Route path="/nigazhchigal/audios" element={<Audios/>} /> */}
 
