@@ -27,6 +27,11 @@ import Vahthathul1 from "./Vahthathulvujooth/Vahdhathulujjuth.js";
 import GyanaAgamiyangal from "./Gyanagamiyangal/gyanagamiyangal.js";
 import Manitha from "./Manitha/manitha.js";
 import Category from "./Vahthathulvujooth/categoryDetails.js";
+import OreyUllamai from "./Vahthathulvujooth/OreyUllamai.js";
+import PottiKatturai from "./Vahthathulvujooth/pottiKatturaigal.js";
+import PechuPottigals from "./Vahthathulvujooth/pechuPottigal.js";
+import Vujooth from "./Vahthathulvujooth/vujoothiVahthathul.js";
+import Kanoligals from "./Vahthathulvujooth/Kanoligal.js";
 import Category2 from "./Gyanagamiyangal/categoryDetails2.js";
 import Category3 from "./Manitha/categoryDetails3.js";
 import VahtahthulSub from "./Vahthathulvujooth/VahthathulvujoothSub.js";
@@ -37,8 +42,6 @@ import Kalvicategories from "./Education/EducationCategories.js";
 import Thoguppugalmaincategory from "../src/screens/thoguppugalmaincategory";
 
 import KalviSubCategory from "./Education/EducationSub.js";
-import PechuPottigal from "./Vahthathulvujooth/pechupottigalsub.js";
-import Kanoligal from "./Vahthathulvujooth/kanoligalsub.js";
 import ShopDetails from "./BookShop/ShopDetails.js"
 import Cart from "./BookShop/Cart.js";
 import CheckOut from "./BookShop/CheckOut.js";
@@ -199,6 +202,11 @@ function App() {
           <Route path="/engalaipatricategory/:id" element={<Engalaipatricategory />} />
           <Route path="/எங்களைப்பற்றி/:id" element={<Engalaipatricategory />} />
           <Route path="/Vahthathul/:Parizu" element={<Category />} />
+          <Route path="/Orey/:Ullamai" element={<OreyUllamai />} />
+          <Route path="/Potti/:Katturaigal" element={<PottiKatturai />} />
+          <Route path="/Pechu/:Pottigal" element={<PechuPottigals />} />
+          <Route path="Vujjothi/:Vahthathul" element={<Vujooth />} />
+          <Route path="/நிகழ்ச்சிகள்/:காணொளிகள்" element={<Kanoligals />} />
           <Route path="/வஹ்தத்துல் வுஜூத்/::id/:subCategoryId" element={<VahtahthulSub />} />
           <Route path="/மனிதா/:id" element={<Category3 />} />
           <Route path="/ஞான அகமியங்கள்/:id" element={<Category2 />} />
@@ -214,8 +222,6 @@ function App() {
           <Route path="/கல்வி/:id/:subCategoryId" element={<KalviSubCategory />} />
           <Route path="/எங்களைப்பற்றி/:id/:subCategoryId" element={<EngalaipatriSubcategory />} />
           <Route path="/manitha" element={<Manitha/>} />
-        <Route path="/pechupottigal" element={<PechuPottigal/>} />
-          <Route path="nigazhchigal/காணொளிகள்" element={<Kanoligal/>} />  
           <Route path="நிகழ்ச்சிகள்/ஆடியோ" element={<Audios/>} />                
            <Route path="நிகழ்ச்சிகள்/நிகழ்வுகள்" element={<Nigazhvugal/>} />
           <Route path="நிகழ்ச்சிகள்/புகைப்படங்கள்" element={<Pugaipadangal/>} />

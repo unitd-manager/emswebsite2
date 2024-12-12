@@ -6,14 +6,14 @@ import api from "../constants/api";
 const BlogSection = () => {
   const [blogPosts, setBlogPosts] = useState([]);  
 
-  const { Parizu } = useParams();
+  const { Vahthathul } = useParams();
 
-  console.log("sd11ew",Parizu)
+  console.log("sd11ew",Vahthathul)
     useEffect(() => {
       const getSubContent = async () => {
         try {
           const res = await api.post("/content/getByVappa11", {
-            routes:`Vahthathul/${Parizu}` ,
+            routes:`Vujjothi/${Vahthathul}` ,
           });
           setBlogPosts(res.data.data);
         } catch (error) {
@@ -22,7 +22,7 @@ const BlogSection = () => {
       };
   
       getSubContent();
-    }, [Parizu]); // Dependency array is empty because `id` is a constant.
+    }, [Vahthathul]); // Dependency array is empty because `id` is a constant.
   
   const stripHTMLTags = (input) => {
     return input
