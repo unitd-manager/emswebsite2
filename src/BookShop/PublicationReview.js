@@ -1,27 +1,28 @@
 import React, { useState, useEffect } from "react";
 import api from "../constants/api";
-import { Link, useNavigate } from "react-router-dom";
-import { getUser } from "../common/user";
+import { Link,} from "react-router-dom";
 import "../assets/css/style.css";
 import "../assets/css/fontawesome.min.css";
 import "../assets/css/slick.min.css";
 import "../assets/css/magnific-popup.min.css";
 import "../assets/css/bootstrap.min.css";
 import "../assets/css/style.css.map";
+import bookBanner from "../assets/img/bookBanner1.jpg"
 
 const FromBookList = () => {
   const [books, setBooks] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const getBooks = () => {
-      //var formated = title.split("-").join(" ");
-
-      api
-        .post("/content/getBooks", { category_id: 79 })
-        .then((res) => {
-          setBooks(res.data.data);
-        })
-        .catch(() => {});
+    const getBooks = async () => {
+      try {
+        const response = await api.post("/content/getBooks", { category_id: 79 });
+        setBooks(response.data.data || []);
+      } catch (error) {
+        console.error("Error fetching books:", error);
+      } finally {
+        setLoading(false);
+      }
     };
 
     getBooks();
@@ -33,35 +34,51 @@ const FromBookList = () => {
         <div className="container">
           <ul className="breadcumb-menu">
             <li>
-              <a href="/">Home</a>
+              <Link to="/">Home</Link>
             </li>
-            <li>நூல்களிலிருந்து</li>
+            <li>பதிப்பாய்வு</li>
           </ul>
         </div>
       </div>
 
       <section className="th-blog-wrapper space-top space-extra-bottom">
         <div className="container">
-          <div className="row">
-            <div className="col-xxl-12 col-lg-8">
-              {books.map((image) => (
-                <div
-                  className="th-blog blog-single has-post-thumbnail"
-                  key={image.id}
-                >
-                  <div className="blog-content">
-                    <h2 className="blog-title box-title-30">
-                      <a href="blog-details.html">{image.title}</a>
-                    </h2>
-                    <div
-                      className="blog-text"
-                      dangerouslySetInnerHTML={{ __html: image.description }}
+          {loading ? (
+            <div className="text-center py-5">
+              <div className="spinner-border text-primary" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </div>
+            </div>
+          ) : books.length > 0 ? (
+            <div className="row">
+              {books.map((book) => (
+                <div className="col-md-12 col-lg-12 mb-4" key={book.id}>
+                  <div className="card shadow-sm">
+                    <img
+                      src={bookBanner}
+                      className="card-img-top"
+                      alt={book.title}
+                      style={{
+                        height: "200px",
+                        objectFit: "cover",
+                      }}
                     />
+                    <div className="card-body">
+                      <h5 className="card-title text-primary">{book.title}</h5>
+                      <div
+                        className="card-text text-muted"
+                        dangerouslySetInnerHTML={{ __html: book.description }}
+                      />
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
-          </div>
+          ) : (
+            <div className="text-center py-5">
+              <p className="text-muted">No books found.</p>
+            </div>
+          )}
         </div>
       </section>
     </>
