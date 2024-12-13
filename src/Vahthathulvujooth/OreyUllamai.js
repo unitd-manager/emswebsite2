@@ -15,7 +15,7 @@ const BlogSection = () => {
           const res = await api.post("/content/getByVappa11", {
             routes:`Orey/${Ullamai}` ,
           });
-          setBlogPosts(res.data.data);
+          setBlogPosts(res.data.data[0]);
         } catch (error) {
           console.error("Failed to fetch data:", error);
         }
@@ -60,7 +60,7 @@ const BlogSection = () => {
           marginBottom: "10px",
         }}
       >
-        {blogPosts?.title || "Content Title"}
+        {blogPosts.title || "Content Title"}
       </h1>
       <p
         style={{
@@ -68,7 +68,7 @@ const BlogSection = () => {
           color: "#6c757d", // Subtle gray for the subtitle
         }}
       >
-        {blogPosts?.subtitle || "Subtitle or additional details here"}
+        {blogPosts.subtitle || "Subtitle or additional details here"}
       </p>
       <hr
         style={{
@@ -83,7 +83,7 @@ const BlogSection = () => {
     </header>
 
     {/* Image Section (optional) */}
-    {blogPosts?.image && (
+    {blogPosts.image && (
       <div
         style={{
           marginBottom: "30px",
@@ -117,8 +117,8 @@ const BlogSection = () => {
         padding: "0 20px",
       }}
     >
-      {blogPosts?.description
-        ? ReactHtmlParser(blogPosts?.description)
+      {blogPosts.description
+        ? ReactHtmlParser(blogPosts.description)
         : "No description available at the moment."}
     </section>
 

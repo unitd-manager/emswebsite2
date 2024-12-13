@@ -13,7 +13,7 @@ const BlogCard = () => {
       const getSubContent = async () => {
         try {
           const res = await api.post("/content/getByVappa11", {
-            routes:`Yavani/${id}` ,
+            routes:`Urai/${id}` ,
           });
           setBlogPosts(res.data.data);
         } catch (error) {
@@ -66,7 +66,7 @@ const BlogCard = () => {
                   <h3 className="box-title-20">{post.title}</h3>
                   <p className="sec-text">{shortContent}</p>
                   <Link
-                    to={`/details3/${post.content_id}`}
+                    to={`/details2/${post.content_id}`}
                     
                     className="th-btn"
                     style={{

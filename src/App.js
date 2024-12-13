@@ -5,6 +5,7 @@ import Engalaipatri from "../src/screens/engalaipatri.js";
 import Education from "./Education/Education.js";
 import DetailPage from "../src/screens/DetailPage";
 import DetailPage2 from "../src/screens/DetailPage2.js";
+import DetailPage3 from "../src/screens/DetailPage3.js";
 import DetailPage4 from "../src/screens/DetailPage4.js";
 import ThoguppugalDetailPage from "../src/screens/thoguppugaldetail";
 import Engalaipatrimaincategory from "../src/screens/engalaipatrimaincategory";
@@ -34,6 +35,26 @@ import PechuPottigals from "./Vahthathulvujooth/pechuPottigal.js";
 import Vujooth from "./Vahthathulvujooth/vujoothiVahthathul.js";
 import Kanoligals from "./Vahthathulvujooth/Kanoligal.js";
 import Category2 from "./Gyanagamiyangal/categoryDetails2.js";
+import Kowthiyas from "./Gyanagamiyangal/Risalathul.js";
+import Prabams from "./Gyanagamiyangal/Thahiprabam.js";
+import Vidayums from "./Gyanagamiyangal/VinavumVidayum.js";
+import Urais from "./Gyanagamiyangal/Vanoli.js";
+import Agamiyangals from "./Gyanagamiyangal/Varithathugal.js";
+import Mighrajs from "./Gyanagamiyangal/Migraj.js";
+import Amuthams from "./Gyanagamiyangal/AmuthangalSub.js";
+import Thelis from "./Gyanagamiyangal/AraBothanai.js";
+import Aras from "./Gyanagamiyangal/TheliThenSub.js";
+import Thathithavars from "./Gyanagamiyangal/ThagithavarkuSub.js";
+import ThahiPrabams from "./Gyanagamiyangal/Thahiprabam.js";
+import Vanoli1 from "./Gyanagamiyangal/Vanoli1Sub.js";
+import Vanoli2 from "./Gyanagamiyangal/Vanoli2Sub.js";
+import Sor1 from "./Gyanagamiyangal/SorPolivuSub1.js";
+import Sor2 from "./Gyanagamiyangal/SorPolivuSub2.js";
+
+
+
+
+
 
 
 import MahangalDetails from "./Manitha/MahangalDetails.js";
@@ -181,8 +202,17 @@ function App() {
           <Route path="/poeter/:subCategoryId" element={<ThoguppugalSubCategory2 />} />
        {/* thoguppugalmenu*/}
         <Route path="/DetailBlog/:id" element={<DetailBlog />} />
+        <Route path="/Mighraj/:subCategoryId" element={<Mighrajs />} />
+        <Route path="/Amutham/:subCategoryId" element={<Amuthams />} />
+        <Route path="/Theli/:subCategoryId" element={<Thelis />} />
+        <Route path="/Ara/:subCategoryId" element={<Aras />} />
+        <Route path="/Thagi/:subCategoryId" element={<Thathithavars />} />
+        <Route path="/Thahi/:subCategoryId" element={<ThahiPrabams />} />
+        <Route path="/Vanoli/:subCategoryId" element={<Vanoli1 />} />
+        <Route path="/Vanoli1/:subCategoryId" element={<Vanoli2 />} />
+        <Route path="/Sorpolivu/:subCategoryId" element={<Sor1 />} />
+        <Route path="/Sorpolivu1/:subCategoryId" element={<Sor2 />} />
 
-        
 
 
           {/* engalaipatrimenu*/}
@@ -208,6 +238,7 @@ function App() {
           <Route path="/Education" element={<Education/>} />
           <Route path="/details/:contentId" element={<DetailPage />} />
           <Route path="/details2/:contentId2" element={<DetailPage2 />} />
+          <Route path="/details3/:contentId3" element={<DetailPage3 />} />
           <Route path="/details4/:contentId4" element={<DetailPage4 />} />
           <Route path="/thoguppugaldetails/:contentId" element={<ThoguppugalDetailPage />} />
           <Route path="/engalaipatrimaincategory/:categoryId" element={<Engalaipatrimaincategory />} />
@@ -219,6 +250,14 @@ function App() {
           <Route path="/Potti/:Katturaigal" element={<PottiKatturai />} />
           <Route path="/Pechu/:Pottigal" element={<PechuPottigals />} />
           <Route path="Vujjothi/:Vahthathul" element={<Vujooth />} />
+          <Route path="Yavani/:id" element={<Category2 />} />
+          <Route path="Prabam/:id" element={<Prabams />} />
+          <Route path="Kowthiya/:id" element={<Kowthiyas />} />
+          <Route path="Vidayum/:id" element={<Vidayums />} />
+          <Route path="Agamiyangal/:id" element={<Agamiyangals />} />
+          <Route path="Urai/:id" element={<Urais />} />
+
+
           <Route path="/நிகழ்ச்சிகள்/:காணொளிகள்" element={<Kanoligals />} />
           <Route path="/வஹ்தத்துல் வுஜூத்/::id/:subCategoryId" element={<VahtahthulSub />} />
 

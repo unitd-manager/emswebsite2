@@ -1,36 +1,29 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import ReactHtmlParser from "react-html-parser";
+import ReactHtmlParser from "react-html-parser"; // Import the library to render HTML
 import api from "../constants/api";
 
-const BlogSection = () => {
-  const [blogPosts, setBlogPosts] = useState([]);  
+const BlogPost = () => {
+  const [categoryDetails, setCategoryDetails] = useState([]); // Initialize with null
+  const { subCategoryId } = useParams(); // Get the `content_id` from the URL
 
-  const { Vahthathul } = useParams();
-
-  console.log("sd11ew",Vahthathul)
-    useEffect(() => {
-      const getSubContent = async () => {
-        try {
-          const res = await api.post("/content/getByVappa11", {
-            routes:`Vujjothi/${Vahthathul}` ,
+  useEffect(() => {
+    const fetchContentDetails =  () => {
+     
+        api
+          .post('/content/getEngalaiPatriSubContent',{sub_category_id: subCategoryId})
+          .then((res) => {
+            setCategoryDetails(res.data.data[0]);
+            console.log('edit Line Item',res.data.data)
+          })
+          .catch(() => {
+            // Handle error
           });
-          setBlogPosts(res.data.data[0]);
-        } catch (error) {
-          console.error("Failed to fetch data:", error);
-        }
       };
-  
-      getSubContent();
-    }, [Vahthathul]); // Dependency array is empty because `id` is a constant.
-  
-  const stripHTMLTags = (input) => {
-    return input
-      ? input
-          .replace(/<[^>]*>/g, "") // Remove HTML tags
-          .replace(/&nbsp;/g, " ") // Replace &nbsp; with a space
-      : "";
-  };
+
+    fetchContentDetails();
+  }, [subCategoryId]);
+
 
   return (
     <div
@@ -60,7 +53,7 @@ const BlogSection = () => {
             marginBottom: "10px",
           }}
         >
-          {blogPosts?.title || "Content Title"}
+          {categoryDetails.title || "Content Title"}
         </h1>
         <p
           style={{
@@ -68,7 +61,7 @@ const BlogSection = () => {
             color: "#6c757d", // Subtle gray for the subtitle
           }}
         >
-          {blogPosts?.subtitle || "Subtitle or additional details here"}
+          {categoryDetails.subtitle || "Subtitle or additional details here"}
         </p>
         <hr
           style={{
@@ -83,7 +76,7 @@ const BlogSection = () => {
       </header>
 
       {/* Image Section (optional) */}
-      {blogPosts?.image && (
+      {categoryDetails.image && (
         <div
           style={{
             marginBottom: "30px",
@@ -94,7 +87,7 @@ const BlogSection = () => {
           }}
         >
           <img
-            src={`https://emsmedia.net/storage/uploads/${blogPosts.file_name}`}
+            src={`https://emsmedia.net/storage/uploads/${categoryDetails.file_name}`}
             alt="Content"
             style={{
               width: "100%",
@@ -117,8 +110,8 @@ const BlogSection = () => {
           padding: "0 20px",
         }}
       >
-        {blogPosts?.description
-          ? ReactHtmlParser(blogPosts?.description)
+        {categoryDetails.description
+          ? ReactHtmlParser(categoryDetails.description)
           : "No description available at the moment."}
       </section>
 
@@ -169,4 +162,5 @@ const BlogSection = () => {
   );
 };
 
-export default BlogSection;
+
+export default BlogPost;

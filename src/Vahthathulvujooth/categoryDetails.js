@@ -15,7 +15,7 @@ const BlogSection = () => {
           const res = await api.post("/content/getByVappa11", {
             routes:`Vahthathul/${Parizu}` ,
           });
-          setBlogPosts(res.data.data);
+          setBlogPosts(res.data.data[0]);
         } catch (error) {
           console.error("Failed to fetch data:", error);
         }

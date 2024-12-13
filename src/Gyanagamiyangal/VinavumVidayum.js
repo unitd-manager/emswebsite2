@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import ReactHtmlParser from "react-html-parser";
+import ReactHtmlParser from "react-html-parser"; // Import the library to render HTML
 import api from "../constants/api";
 
-const BlogSection = () => {
+const BlogCard = () => {
   const [blogPosts, setBlogPosts] = useState([]);  
 
-  const { Katturaigal } = useParams();
+  const { id } = useParams();
 
-  console.log("sd11ew",Katturaigal)
+  console.log("sd11ew",id)
     useEffect(() => {
       const getSubContent = async () => {
         try {
           const res = await api.post("/content/getByVappa11", {
-            routes:`Potti/${Katturaigal}` ,
+            routes:`Vidayum/${id}` ,
           });
           setBlogPosts(res.data.data[0]);
         } catch (error) {
@@ -22,13 +22,12 @@ const BlogSection = () => {
       };
   
       getSubContent();
-    }, [Katturaigal]); // Dependency array is empty because `id` is a constant.
-  
+    }, [id]); // Dependency array is empty because `id` is a constant.
   const stripHTMLTags = (input) => {
     return input
       ? input
           .replace(/<[^>]*>/g, "") // Remove HTML tags
-          .replace(/&nbsp;/g, " ") // Replace &nbsp; with a space
+          .replace(/&nbsp;/g, " ") // Replace `&nbsp;` with a space
       : "";
   };
 
@@ -60,7 +59,7 @@ const BlogSection = () => {
           marginBottom: "10px",
         }}
       >
-        {blogPosts?.title || "Content Title"}
+        {blogPosts.title || "Content Title"}
       </h1>
       <p
         style={{
@@ -68,7 +67,7 @@ const BlogSection = () => {
           color: "#6c757d", // Subtle gray for the subtitle
         }}
       >
-        {blogPosts?.subtitle || "Subtitle or additional details here"}
+        {blogPosts.subtitle || "Subtitle or additional details here"}
       </p>
       <hr
         style={{
@@ -83,7 +82,7 @@ const BlogSection = () => {
     </header>
 
     {/* Image Section (optional) */}
-    {blogPosts?.image && (
+    {blogPosts.image && (
       <div
         style={{
           marginBottom: "30px",
@@ -117,8 +116,8 @@ const BlogSection = () => {
         padding: "0 20px",
       }}
     >
-      {blogPosts?.description
-        ? ReactHtmlParser(blogPosts?.description)
+      {blogPosts.description
+        ? ReactHtmlParser(blogPosts.description)
         : "No description available at the moment."}
     </section>
 
@@ -166,7 +165,7 @@ const BlogSection = () => {
       </a>
     </footer>
   </div>
-  );
+);
 };
 
-export default BlogSection;
+export default BlogCard;

@@ -13,7 +13,7 @@ const BlogCard = () => {
       const getSubContent = async () => {
         try {
           const res = await api.post("/content/getByVappa11", {
-            routes:`Yavani/${id}` ,
+            routes:`Prabam/${id}` ,
           });
           setBlogPosts(res.data.data);
         } catch (error) {

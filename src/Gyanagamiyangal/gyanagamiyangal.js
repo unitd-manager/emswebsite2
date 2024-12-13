@@ -109,7 +109,10 @@ const BlogCard = () => {
                       {shortContent}
                     </p>
                     <Link
-                      to={`/ஞான அகமியங்கள்/${post.category_id}`}
+                      to={
+                        post.sub_category_id 
+                        ? `/ஞான அகமியங்கள்/${post.category_id}` 
+                        : `/details3/${post.content_id}`}
                       className="th-btn"
                       style={{
                         backgroundColor: "#007BFF",
