@@ -259,7 +259,7 @@ function App() {
           <Route path="Urai/:id" element={<Urais />} />
 
 
-          <Route path="/நிகழ்ச்சிகள்/:காணொளிகள்" element={<Kanoligals />} />
+          {/* <Route path="/நிகழ்ச்சிகள்/:காணொளிகள்" element={<Kanoligals />} /> */}
           <Route path="/Vujjothi/:காணொளிகள்" element={<Kanoligalkal />} />
           <Route path="/வஹ்தத்துல் வுஜூத்/::id/:subCategoryId" element={<VahtahthulSub />} />
 
