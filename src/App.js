@@ -45,6 +45,7 @@ import Amuthams from "./Gyanagamiyangal/AmuthangalSub.js";
 import Aras from "./Gyanagamiyangal/AraBothanai.js";
 import Thelis from "./Gyanagamiyangal/TheliThenSub.js";
 import Thathithavars from "./Gyanagamiyangal/ThagithavarkuSub.js";
+import Thahi4 from "./Gyanagamiyangal/PrabamSub.js";
 import ThahiPrabams from "./Gyanagamiyangal/Thahiprabam.js";
 import Vanoli1 from "./Gyanagamiyangal/Vanoli1Sub.js";
 import Vanoli2 from "./Gyanagamiyangal/Vanoli2Sub.js";
@@ -65,6 +66,7 @@ import HalalHaram from "./Manitha/HalalHaram.js";
 import UnmaiVilakkam from "./Manitha/UnmaiVilakkam.js";
 
 import VahtahthulSub from "./Vahthathulvujooth/VahthathulvujoothSub.js";
+import VahMain from "./Vahthathulvujooth/VahthathulMainCat.js";
 import ManithaSub from "./Manitha/ManithaSub.js";
 import GyanaSub from "./Gyanagamiyangal/gyanaSub.js";
 import GyanaSubMain from "./Gyanagamiyangal/gyanamaincategory.js";
@@ -208,7 +210,7 @@ function App() {
         <Route path="/Theli/:subCategoryId" element={<Thelis />} />
         <Route path="/Ara/:subCategoryId" element={<Aras />} />
         <Route path="/Thagi/:subCategoryId" element={<Thathithavars />} />
-        <Route path="/OorAaivu/:subCategoryId" element={<ThahiPrabams />} />
+        <Route path="/OorAaivu/:subCategoryId" element={<Thahi4 />} />
         <Route path="/Vanoli/:subCategoryId" element={<Vanoli1 />} />
         <Route path="/Urai/:subCategoryId" element={<Vanoli2 />} />
         <Route path="/Sorpolivu/:subCategoryId" element={<Sor1 />} />
@@ -241,7 +243,6 @@ function App() {
           <Route path="/details2/:contentId2" element={<DetailPage2 />} />
           <Route path="/details3/:contentId3" element={<DetailPage3 />} />
           <Route path="/details4/:contentId4" element={<DetailPage4 />} />
-          <Route path="/details3/:contentId3" element={<DetailPage3 />} />
           <Route path="/thoguppugaldetails/:contentId" element={<ThoguppugalDetailPage />} />
           <Route path="/engalaipatrimaincategory/:categoryId" element={<Engalaipatrimaincategory />} />
 
@@ -257,12 +258,13 @@ function App() {
           <Route path="Kowthiya/:id" element={<Kowthiyas />} />
           <Route path="Vidayum/:id" element={<Vidayums />} />
           <Route path="Agamiyangal/:id" element={<Agamiyangals />} />
-          <Route path="Urai/:id" element={<Urais />} />
+          <Route path="PetiVanoli/:id" element={<Urais />} />
 
 
           {/* <Route path="/நிகழ்ச்சிகள்/:காணொளிகள்" element={<Kanoligals />} /> */}
-          <Route path="/Vujjothi/:காணொளிகள்" element={<Kanoligalkal />} />
+          <Route path="Kanoli/:Kanoli" element={<Kanoligalkal />} />
           <Route path="/வஹ்தத்துல் வுஜூத்/::id/:subCategoryId" element={<VahtahthulSub />} />
+          <Route path="/வஹ்தத்துல் வுஜூத்/:id" element={<VahMain />} />
 
             {/* manitha */}
 

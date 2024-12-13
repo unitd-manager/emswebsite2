@@ -3,33 +3,23 @@ import { useParams,Link } from "react-router-dom";
 import ReactHtmlParser from "react-html-parser"; // Import the library to render HTML
 import api from "../constants/api";
 
-const BlogCard = () => {
-  const [blogPosts, setBlogPosts] = useState([]);  
+const BlogPost = () => {
+  const [categoryDetails, setCategoryDetails] = useState([]); // Initialize with null
+  const { subCategoryId } = useParams(); // Get the `content_id` from the URL
 
-  const { id } = useParams();
+  useEffect(() => {
+    const getSubContent = () => {
+        api
+            .post("/content/getThoguppugalSubContent",{routes:`OorAaivu/${subCategoryId}` ,})
+            .then((res) => {
+                setCategoryDetails(res.data.data[0]);
+            })
+            .catch(() => { });
+    };
 
-  console.log("sd11ew",id)
-    useEffect(() => {
-      const getSubContent = async () => {
-        try {
-          const res = await api.post("/content/getByVappa11", {
-            routes:`Vidayum/${id}` ,
-          });
-          setBlogPosts(res.data.data[0]);
-        } catch (error) {
-          console.error("Failed to fetch data:", error);
-        }
-      };
-  
-      getSubContent();
-    }, [id]); // Dependency array is empty because `id` is a constant.
-  const stripHTMLTags = (input) => {
-    return input
-      ? input
-          .replace(/<[^>]*>/g, "") // Remove HTML tags
-          .replace(/&nbsp;/g, " ") // Replace `&nbsp;` with a space
-      : "";
-  };
+    getSubContent();   
+}, [subCategoryId]);
+
 
   return (
     <div
@@ -56,7 +46,7 @@ const BlogCard = () => {
           marginBottom: "10px",
         }}
       >
-        {blogPosts.title || "Content Title"}
+        {categoryDetails.title || "Content Title"}
       </h1>
       <p
         style={{
@@ -66,7 +56,7 @@ const BlogCard = () => {
           marginBottom: "20px",
         }}
       >
-        {blogPosts.subtitle || "Subtitle or additional details"}
+        {categoryDetails.subtitle || "Subtitle or additional details"}
       </p>
       <div
         style={{
@@ -80,7 +70,7 @@ const BlogCard = () => {
     </header>
 
     {/* Image Section */}
-    {blogPosts.image && (
+    {categoryDetails.image && (
       <div
         style={{
           textAlign: "center",
@@ -91,7 +81,7 @@ const BlogCard = () => {
         }}
       >
         <img
-          src={`https://emsmedia.net/storage/uploads/${blogPosts.image}`}
+          src={`https://emsmedia.net/storage/uploads/${categoryDetails.image}`}
           alt="Content"
           style={{
             width: "100%",
@@ -113,8 +103,8 @@ const BlogCard = () => {
         marginBottom: "40px",
       }}
     >
-      {blogPosts.description
-        ? ReactHtmlParser(blogPosts.description)
+      {categoryDetails.description
+        ? ReactHtmlParser(categoryDetails.description)
         : "No description available."}
     </section>
 
@@ -178,5 +168,7 @@ const BlogCard = () => {
   </div>
 );
 };
+  
 
-export default BlogCard;
+
+export default BlogPost;

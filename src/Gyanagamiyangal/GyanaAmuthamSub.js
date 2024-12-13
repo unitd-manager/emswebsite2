@@ -27,138 +27,149 @@ const BlogPost = () => {
 
   return (
     <div
-      className="content-container"
-      style={{
-        maxWidth: "1200px",
-        margin: "40px auto",
-        padding: "20px",
-        boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
-        borderRadius: "10px",
-        backgroundColor: "#fff",
-        fontFamily: "'Roboto', sans-serif",
-      }}
-    >
-      {/* Header Section */}
-      <header
+    className="detail-page-container"
+    style={{
+      maxWidth: "1000px", // Making the width a bit wider
+      margin: "50px auto",
+      padding: "40px",
+      backgroundColor: "#fff", // White background for clarity
+      borderRadius: "15px",
+      border: "2px solid #ddd", // Light border around the page
+      boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+      fontFamily: "'Roboto', sans-serif",
+      overflow: "hidden",
+    }}
+  >
+    {/* Header Section */}
+    <header style={{ textAlign: "center", marginBottom: "40px" }}>
+      <h1
         style={{
-          textAlign: "center",
+          fontSize: "36px",
+          fontWeight: "700",
+          color: "#333", // Dark color for the main title
+          marginBottom: "10px",
+        }}
+      >
+        {categoryDetails.title || "Content Title"}
+      </h1>
+      <p
+        style={{
+          fontSize: "18px",
+          fontWeight: "400",
+          color: "#777", // Light gray for subtitle
           marginBottom: "20px",
         }}
       >
-        <h1
+        {categoryDetails.subtitle || "Subtitle or additional details"}
+      </p>
+      <div
+        style={{
+          width: "80px",
+          height: "3px",
+          backgroundColor: "#FF6F61", // Accent color line
+          margin: "0 auto",
+          borderRadius: "2px",
+        }}
+      />
+    </header>
+
+    {/* Image Section */}
+    {categoryDetails.image && (
+      <div
+        style={{
+          textAlign: "center",
+          marginBottom: "40px",
+          borderRadius: "10px",
+          overflow: "hidden",
+          boxShadow: "0 10px 20px rgba(0, 0, 0, 0.1)",
+        }}
+      >
+        <img
+          src={`https://emsmedia.net/storage/uploads/${categoryDetails.image}`}
+          alt="Content"
           style={{
-            fontSize: "36px",
-            fontWeight: "700",
-            color: "#e63946", // Bold red for the title
-            marginBottom: "10px",
-          }}
-        >
-          {categoryDetails.title || "Content Title"}
-        </h1>
-        <p
-          style={{
-            fontSize: "16px",
-            color: "#6c757d", // Subtle gray for the subtitle
-          }}
-        >
-          {categoryDetails.subtitle || "Subtitle or additional details here"}
-        </p>
-        <hr
-          style={{
-            border: "0",
-            height: "3px",
-            background: "#e63946",
-            width: "80px",
-            margin: "20px auto",
-            borderRadius: "5px",
+            width: "100%",
+            height: "400px",
+            objectFit: "cover",
+            borderRadius: "10px",
           }}
         />
-      </header>
+      </div>
+    )}
 
-      {/* Image Section (optional) */}
-      {categoryDetails.image && (
-        <div
-          style={{
-            marginBottom: "30px",
-            textAlign: "center",
-            borderRadius: "10px",
-            overflow: "hidden",
-            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
-          }}
-        >
-          <img
-            src={`https://emsmedia.net/storage/uploads/${categoryDetails.file_name}`}
-            alt="Content"
-            style={{
-              width: "100%",
-              height: "auto",
-              borderRadius: "10px",
-              boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
-              alignItems: "center"
-            }}
-          />
-        </div>
-      )}
+    {/* Content Section */}
+    <section
+      style={{
+        lineHeight: "1.8",
+        fontSize: "18px",
+        color: "#333",
+        textAlign: "justify",
+        marginBottom: "40px",
+      }}
+    >
+      {categoryDetails.description
+        ? ReactHtmlParser(categoryDetails.description)
+        : "No description available."}
+    </section>
 
-      {/* Content Section */}
-      <section
+    {/* Footer Section */}
+    <footer
+      style={{
+        backgroundColor: "#FF6F61", // Accent color for footer
+        color: "#fff", // White text for contrast
+        padding: "40px 0",
+        textAlign: "center",
+        borderRadius: "10px",
+      }}
+    >
+      <h2
         style={{
-          lineHeight: "1.8",
+          fontSize: "28px",
+          fontWeight: "600",
+          marginBottom: "15px",
+          color: "#fff",
+        }}
+      >
+        Discover More Content
+      </h2>
+      <p
+        style={{
           fontSize: "18px",
-          color: "#343a40", // Dark gray for better readability
-          textAlign: "justify",
-          padding: "0 20px",
+          marginBottom: "30px",
+          fontWeight: "400",
+          color: "#ffffffb3", // Slightly faded white
         }}
       >
-        {categoryDetails.description
-          ? ReactHtmlParser(categoryDetails.description)
-          : "No description available at the moment."}
-      </section>
-
-      {/* Footer Section */}
-      <footer
+        Stay tuned for more information and exciting updates. Click the button below to return to the homepage.
+      </p>
+      <Link
+        to="/"
         style={{
-          marginTop: "40px",
-          padding: "20px",
-          textAlign: "center",
-          backgroundColor: "#f94144", // Bright red footer
-          color: "#ffffff", // White text for contrast
-          borderRadius: "10px",
+          backgroundColor: "#fff", // White button
+          color: "#FF6F61", // Accent color text
+          padding: "15px 30px",
+          fontWeight: "600",
+          fontSize: "16px",
+          textDecoration: "none",
+          borderRadius: "30px",
+          border: "2px solid #FF6F61", // Border to match button background
+          transition: "all 0.3s ease",
+          display: "inline-block",
+          textTransform: "uppercase", // Uppercase text
+        }}
+        onMouseOver={(e) => {
+          e.target.style.backgroundColor = "#FF6F61";
+          e.target.style.color = "#fff";
+        }}
+        onMouseOut={(e) => {
+          e.target.style.backgroundColor = "#fff";
+          e.target.style.color = "#FF6F61";
         }}
       >
-        <h2
-          style={{
-            fontSize: "22px",
-            marginBottom: "10px",
-            fontWeight: "bold",
-            color: "#ffe8d6", // Soft beige to complement the red
-          }}
-        >
-          Thank You for Visiting!
-        </h2>
-        <p style={{ fontSize: "16px", marginBottom: "10px" }}>
-          Feel free to reach out if you have any questions or want to learn
-          more.
-        </p>
-        <a
-          href="/contact"
-          style={{
-            display: "inline-block",
-            backgroundColor: "#ffe8d6", // Soft beige button
-            color: "#f94144", // Red text for the button
-            padding: "10px 20px",
-            textDecoration: "none",
-            fontWeight: "bold",
-            borderRadius: "5px",
-            transition: "background-color 0.3s",
-          }}
-          onMouseOver={(e) => (e.target.style.backgroundColor = "#f28482")}
-          onMouseOut={(e) => (e.target.style.backgroundColor = "#ffe8d6")}
-        >
-          Contact Us
-        </a>
-      </footer>
-    </div>
+        Return to Home
+      </Link>
+    </footer>
+  </div>
   );
 };
 
