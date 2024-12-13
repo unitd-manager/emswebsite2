@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import api from "../constants/api";
+import React, { useState, useEffect } from 'react';
+import api from '../constants/api';
+import { Link,useParams } from 'react-router-dom';
+import "../assets/css/event.css";
 
-const Engalai = () => {
-  const [religion, setReligion] = useState([]);
+function Pugaipadangal() {
+  const [gallery, setGallery] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 6;
 
   const { id } = useParams();
-
-  console.log("sdew", id);
 
   useEffect(() => {
     const getSubContent = async () => {
@@ -15,7 +16,7 @@ const Engalai = () => {
         const res = await api.post("/content/getByVappa11", {
           routes:`song/${id}` ,
         });
-        setReligion(res.data.data);
+        setGallery(res.data.data);
       } catch (error) {
         console.error("Failed to fetch data:", error);
       }
@@ -24,72 +25,99 @@ const Engalai = () => {
     getSubContent();
   }, [id]); 
 
-  // Helper function to remove HTML tags
-  const stripHTMLTags = (input) => {
-    const tempDiv = document.createElement("div");
-    tempDiv.innerHTML = input;
-    return tempDiv.textContent || tempDiv.innerText || "";
+  const totalPages = Math.ceil(gallery.length / itemsPerPage);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
   };
 
-  // Helper function to truncate text to 20 words
-  const truncateToWords = (text, wordLimit) => {
-    const words = text.split(/\s+/); 
-    if (words.length <= wordLimit) return text; 
-    return words.slice(0, wordLimit).join(" ") + "..."; 
-  };
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const visibleGallery = gallery.slice(startIndex, endIndex);
 
   return (
-    <section className="space-top space-extra-bottom">
-      <div className="container">
-        <div className="row">
-          <div className="col-xxl-12 col-lg-11">
-            <div className="row gy-30">
-              {Array.isArray(religion) &&
-                religion.map((item, index) => (
-                  <div className="col-sm-6" key={index}>
-                    <div className="blog-style7">
-                      <div className="blog-img">
-                        {item.category_title !== "AAN-FNM" ? (
-                          <img
-                            src={`https://emsmedia.net/storage/uploads/${item.file_name}`}
-                            style={{ width: '500px', height: '500px', objectFit: 'cover' }}
-                            alt={item.title}
-                          />
-                        ) : (
-                          <audio controls style={{ width: '100%' }}>
-                            <source 
-                              src={`https://emsmedia.net/storage/uploads/${item.file_name}`} 
-                              type="audio/mpeg" 
-                            />
-                            Your browser does not support the audio element.
-                          </audio>
-                        )}
-                      
-                      </div>
-                      <div className="blog-meta">
-                        <a href="author.html"><i className="far fa-user"></i>By - Ems Media</a>
-                        <a href="blog.html"><i className="fal fa-calendar-days"></i>26 Mar, 2023</a>
-                      </div>
-                      <h3 className="box-title-24">
-                        <a className="hover-line" href="blog-details.html">
-                          {item.title}
-                        </a>
-                      </h3>
-                      <a 
-                        href={`/#/thoguppugaldetails/${item.content_id}`} 
-                        className="th-btn style2"
-                      >
-                        Read More <i className="fas fa-arrow-up-right ms-2"></i>
-                      </a>
-                    </div>
-                  </div>
-                ))}
-            </div>
-          </div>
+    <>
+      <div className="breadcumb-wrapper">
+        <div className="container">
+          <ul className="breadcumb-menu">
+            <li>
+              <Link to="/Home">Home</Link>
+            </li>
+            <li>Songs</li>
+          </ul>
         </div>
       </div>
-    </section>
-  );
-};
 
-export default Engalai;
+      <section className="space-top space-extra-bottom">
+        <div className="container">
+          <div className="row gy-30 mb-30">
+            {visibleGallery.map((item, index) => (
+              <div className="col-lg-6" key={index}>
+                <div className="th-blog blog-single">
+                  {/* <a
+                    data-theme-color="#4E4BD0"
+                    href="#"
+                    className="category"
+                  >
+                    {item.category_title}
+                  </a> */}
+                  <h2 className="blog-title">{item.title}</h2>
+                  <div className="blog-meta">
+                    <a className="author" href="#">
+                      <i className="far fa-user" />
+                      By - EMS Media
+                    </a>
+                   
+                  </div>
+                  <div className="blog-audio">
+                    <audio controls>
+                      <source
+                        src={`https://emsmedia.net/storage/uploads/${item.file_name}`}
+                        type="audio/mpeg"
+                      />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="th-pagination text-center pt-50">
+            <ul>
+              {Array.from({ length: totalPages }, (_, index) => (
+                <li key={index + 1}>
+                  <a
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handlePageChange(index + 1);
+                    }}
+                    className={currentPage === index + 1 ? 'active' : ''}
+                  >
+                    {index + 1}
+                  </a>
+                </li>
+              ))}
+              {currentPage < totalPages && (
+                <li>
+                  <a
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handlePageChange(currentPage + 1);
+                    }}
+                  >
+                    <i className="fas fa-arrow-right" />
+                  </a>
+                </li>
+              )}
+            </ul>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
+
+export default Pugaipadangal;
