@@ -6,11 +6,11 @@ import api from "../constants/api";
 const BlogPost = () => {
   const [categoryDetails2, setCategoryDetails2] = useState([]); // Initialize with null
   const { subCategoryId } = useParams(); // Get the `content_id` from the URL
-
+ console.log('subCategoryId',subCategoryId)
   useEffect(() => {
     const getSubContent = () => {
         api
-            .post("/content/getThoguppugalSubContent",{routes:`Vanoli2/${subCategoryId}` ,})
+            .post("/content/getThoguppugalSubContent",{routes:`Urai/${subCategoryId}` ,})
             .then((res) => {
                 setCategoryDetails2(res.data.data[0]);
             

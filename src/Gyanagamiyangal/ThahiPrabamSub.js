@@ -10,7 +10,7 @@ const BlogPost = () => {
   useEffect(() => {
     const getSubContent = () => {
         api
-            .post("/content/getThoguppugalSubContent",{routes:`Thahi/${subCategoryId}` ,})
+            .post("/content/getThoguppugalSubContent",{routes:`OorAaivu/${subCategoryId}` ,})
             .then((res) => {
                 setCategoryDetails(res.data.data[0]);
             
