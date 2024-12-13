@@ -88,10 +88,10 @@ const handleBlogClick = (blog_id) => {
           {blogs.map((blog, index) => (
 
             <div  key={index}
-                    onClick={() => handleBlogClick(blog.blog_id)} // Handle click to navigate to blogDetail page
-                    style={{ cursor: "pointer", color: "red" ,padding:10}} >  {blog.title}
-                  </div>
-                    ))}
+              onClick={() => handleBlogClick(blog.blog_id)} // Handle click to navigate to blogDetail page
+              style={{ cursor: "pointer", color: "red" ,padding:10}} >  {blog.title}
+            </div>
+          ))}
           </div>
         </div>
          
