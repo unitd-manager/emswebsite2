@@ -12,7 +12,7 @@ const Engalai = () => {
   const navigate = useNavigate(); // Initialize useNavigate for navigation
 
   const { id } = useParams();
-
+ 
   console.log("sdew", id);
 
   useEffect(() => {

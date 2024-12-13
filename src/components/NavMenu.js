@@ -100,31 +100,32 @@ function Navbar() {
                           {category.category_title}
                         </Link>
 
-                        {hoveredCategoryId === category.category_id && (
-                          <ul className="sub-menu">
-                            {getSubCategoriesForCategory(category.category_id).map((subcategory) => (
-                              <li key={subcategory.sub_category_id}>
-                                {subcategory.external_link ? (
-                                  <a
-                                    href={subcategory.external_link}
-                                    className="dropdown-item"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                  >
-                                    {subcategory.sub_category_title}
-                                  </a>
-                                ) : (
-                                  <Link
-                                    to={`${subcategory.routes}`}
-                                    className="dropdown-item"
-                                  >
-                                    {subcategory.sub_category_title}
-                                  </Link>
-                                )}
-                              </li>
-                            ))}
-                          </ul>
-                        )}
+                        {hoveredCategoryId === category.category_id && getSubCategoriesForCategory(category.category_id).length > 0 && (
+  <ul className="sub-menu">
+    {getSubCategoriesForCategory(category.category_id).map((subcategory) => (
+      <li key={subcategory.sub_category_id}>
+        {subcategory.external_link ? (
+          <a
+            href={subcategory.external_link}
+            className="dropdown-item"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {subcategory.sub_category_title}
+          </a>
+        ) : (
+          <Link
+            to={`${subcategory.routes}`}
+            className="dropdown-item"
+          >
+            {subcategory.sub_category_title}
+          </Link>
+        )}
+      </li>
+    ))}
+  </ul>
+)}
+
                       </li>
                     ))}
                   </ul>
