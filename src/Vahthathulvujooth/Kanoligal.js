@@ -13,7 +13,7 @@ const BlogSection = () => {
       const getSubContent = async () => {
         try {
           const res = await api.post("/content/getByVappa11", {
-            routes:`நிகழ்ச்சிகள்/${காணொளிகள்}` ,
+            routes:`Vujjothi/${காணொளிகள்}` ,
           });
           setBlogPosts(res.data.data);
         } catch (error) {

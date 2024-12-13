@@ -33,7 +33,7 @@ import OreyUllamai from "./Vahthathulvujooth/OreyUllamai.js";
 import PottiKatturai from "./Vahthathulvujooth/pottiKatturaigal.js";
 import PechuPottigals from "./Vahthathulvujooth/pechuPottigal.js";
 import Vujooth from "./Vahthathulvujooth/vujoothiVahthathul.js";
-import Kanoligals from "./Vahthathulvujooth/Kanoligal.js";
+import Kanoligalkal from "./Vahthathulvujooth/Kanoligal.js";
 import Category2 from "./Gyanagamiyangal/categoryDetails2.js";
 import Kowthiyas from "./Gyanagamiyangal/Risalathul.js";
 import Prabams from "./Gyanagamiyangal/Thahiprabam.js";
@@ -240,6 +240,7 @@ function App() {
           <Route path="/details2/:contentId2" element={<DetailPage2 />} />
           <Route path="/details3/:contentId3" element={<DetailPage3 />} />
           <Route path="/details4/:contentId4" element={<DetailPage4 />} />
+          <Route path="/details3/:contentId3" element={<DetailPage3 />} />
           <Route path="/thoguppugaldetails/:contentId" element={<ThoguppugalDetailPage />} />
           <Route path="/engalaipatrimaincategory/:categoryId" element={<Engalaipatrimaincategory />} />
 
@@ -259,6 +260,7 @@ function App() {
 
 
           <Route path="/நிகழ்ச்சிகள்/:காணொளிகள்" element={<Kanoligals />} />
+          <Route path="/Vujjothi/:காணொளிகள்" element={<Kanoligalkal />} />
           <Route path="/வஹ்தத்துல் வுஜூத்/::id/:subCategoryId" element={<VahtahthulSub />} />
 
             {/* manitha */}
@@ -286,12 +288,12 @@ function App() {
           <Route path="/manitha" element={<Manitha/>} />
           {/* <Route path="/manitha" element={<Manitha/>} /> */}
         <Route path="/pechupottigal" element={<PechuPottigals/>} />
-          <Route path="nigazhchigal/காணொளிகள்" element={<Kanoligals/>} />  
+          {/* <Route path="nigazhchigal/காணொளிகள்" element={<Kanoligals/>} />   */}
           <Route path="நிகழ்ச்சிகள்/ஆடியோ" element={<Audios/>} />                
            <Route path="நிகழ்ச்சிகள்/நிகழ்வுகள்" element={<Nigazhvugal/>} />
           <Route path="நிகழ்ச்சிகள்/புகைப்படங்கள்" element={<Pugaipadangal/>} />
           <Route path="/PugaipadangalDetails" element={<PugaipadangalDetails/>} />
-          <Route path="நிகழ்ச்சிகள்/காணொளிகள்" element={<Kaanoli/>} />
+          <Route path="nigazhchigal/காணொளிகள்" element={<Kaanoli/>} />
           <Route path="/noorkal/:noorkal" element={<BooksMenu/>} />    
           <Route path="/PublicationReview/PublicationReview" element={<PublicationReview />} />
           <Route path="/FromBookList/FromBookList" element={<FromBookList/>} />
