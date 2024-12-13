@@ -43,7 +43,7 @@ function Pugaipadangal() {
             <li>
               <Link to="/Home">Home</Link>
             </li>
-            <li>Audio Gallery</li>
+            <li>Songs</li>
           </ul>
         </div>
       </div>
@@ -54,13 +54,13 @@ function Pugaipadangal() {
             {visibleGallery.map((item, index) => (
               <div className="col-lg-6" key={index}>
                 <div className="th-blog blog-single">
-                  <a
+                  {/* <a
                     data-theme-color="#4E4BD0"
                     href="#"
                     className="category"
                   >
                     {item.category_title}
-                  </a>
+                  </a> */}
                   <h2 className="blog-title">{item.title}</h2>
                   <div className="blog-meta">
                     <a className="author" href="#">
