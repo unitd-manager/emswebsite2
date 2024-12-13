@@ -292,7 +292,7 @@ function App() {
            <Route path="நிகழ்ச்சிகள்/நிகழ்வுகள்" element={<Nigazhvugal/>} />
           <Route path="நிகழ்ச்சிகள்/புகைப்படங்கள்" element={<Pugaipadangal/>} />
           <Route path="/PugaipadangalDetails" element={<PugaipadangalDetails/>} />
-          <Route path="nigazhchigal/காணொளிகள்" element={<Kaanoli/>} />
+          <Route path="நிகழ்ச்சிகள்/காணொளிகள்" element={<Kaanoli/>} />
           <Route path="/noorkal/:noorkal" element={<BooksMenu/>} />    
           <Route path="/PublicationReview/PublicationReview" element={<PublicationReview />} />
           <Route path="/FromBookList/FromBookList" element={<FromBookList/>} />
