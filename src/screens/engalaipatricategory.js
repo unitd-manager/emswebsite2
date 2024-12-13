@@ -11,7 +11,7 @@ console.log("sd11ew",niruv)
   useEffect(() => {
     const getSubContent = async () => {
       try {
-        const res = await api.post("/content/getByVappa12", {
+        const res = await api.post("/content/getByVappa11", {
           routes:`*/${niruv}` ,
         });
         setReligion(res.data.data);
