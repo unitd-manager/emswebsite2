@@ -401,6 +401,11 @@ const Home = () => {
           <div className="col-auto">
   <div className="header-links">
     <ul>
+
+    <li className="d-none d-sm-inline-block">
+    <i className="fas fa-book-open" />
+            <Link to="/Magazine">Magazine</Link>
+          </li>
       {/* Show Login and Register links if the user is not logged in */}
       {!user && (
         <>
