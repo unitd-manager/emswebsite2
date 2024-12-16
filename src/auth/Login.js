@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import api from "../constants/api";
 import { Link, useNavigate } from "react-router-dom";
-// import { useToasts } from "react-toast-notifications";
 import "../assets/css/style.css";
 import "../assets/css/fontawesome.min.css";
 import "../assets/css/slick.min.css";

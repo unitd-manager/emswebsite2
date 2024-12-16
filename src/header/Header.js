@@ -18,6 +18,13 @@ import "../assets/css/event.css";
 const Home = () => {
 
   const [CartItem, setCartItems] = useState([]);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false); 
+  const [firstName, setFirstName] = useState(null);
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
   const navigate = useNavigate();
 
   const loadCart = async () => {
@@ -37,6 +44,7 @@ const Home = () => {
     }, 200);
   };
 
+  
   const navCart =()=>{
     if (!user || !user.contact_id) {
       const userConfirmed = window.confirm(
@@ -94,7 +102,8 @@ const Home = () => {
   // Prevent propagation when clicking inside the menu
   const stopPropagation = (e) => {
     e.stopPropagation();
-  };
+  }; 
+  
 
   return (
     <>
@@ -349,12 +358,18 @@ const Home = () => {
 
                     <div className="col-auto">
                       <div className="header-button">
-                        <button
+                      {user ? (
+              <div style={{ padding: "10px", textAlign: "left", fontWeight: "bold" ,color: "#ff6347"}}>
+                Welcome, {user.first_name}!
+              </div>
+            ) : null}
+
+                        {/* <button
                           type="button"
                           className="simple-icon searchBoxToggler"
                         >
                           <i className="far fa-search" />
-                        </button>
+                        </button> */}
                         <button
                           type="button"
                           className="simple-icon d-none d-lg-block cartToggler"
@@ -400,30 +415,78 @@ const Home = () => {
          
           <div className="col-auto">
   <div className="header-links">
-    <ul>
-      {/* Show Login and Register links if the user is not logged in */}
-      {!user && (
-        <>
-          <li className="d-none d-sm-inline-block">
-            <i className="far fa-user" />
-            <Link to="/Login">Login</Link>
-          </li>
-          <li className="d-none d-sm-inline-block">
-            <i className="far fa-user" />
-            <Link to="/Register">Register</Link>
-          </li>
-        </>
-      )}
+  <ul style={{ listStyle: "none", padding: "0", margin: "0" }}>
+      {/* User Icon with Dropdown */}
+      <li style={{ display: "inline-block", position: "relative" }}>
+      <button
+          onClick={toggleDropdown}
+          style={{
+            background: "none",
+            border: "none",
+            fontSize: "24px",
+            cursor: "pointer",
+            color: "#ff6347" // Bright red color for the user icon
+          }}
+        >
+          <i className="far fa-user" /> {/* Font Awesome User Icon */}
+        </button>
 
-      {/* Show Logout link if the user is logged in */}
-      {user && (
-        <li className="d-none d-sm-inline-block">
-          <i className="far fa-user" />
-          <Link to="#" onClick={logout}>
-            Logout
-          </Link>
-        </li>
-      )}
+        {isDropdownOpen && (
+          <div
+            style={{
+              position: "absolute",
+              top: "100%",
+              right: "0",
+              backgroundColor: "white",
+              border: "1px solid #ccc",
+              borderRadius: "5px",
+              boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
+              zIndex: 1000,
+              width: "150px"
+            }}
+          >
+            {/* Display Welcome message if user is logged in
+            {user ? (
+              <div style={{ padding: "10px", textAlign: "left", fontWeight: "bold" }}>
+                Welcome, {user.first_name}!
+              </div>
+            ) : null} */}
+
+            {/* Links for Login, Register, Profile, Logout */}
+            {!user ? (
+              <>
+                <li style={{ padding: "10px", textAlign: "left" }}>
+                  <Link to="/Login" style={{ textDecoration: "none", color: "#333" }}>
+                    Login
+                  </Link>
+                </li>
+                <li style={{ padding: "10px", textAlign: "left" }}>
+                  <Link to="/Register" style={{ textDecoration: "none", color: "#333" }}>
+                    Register
+                  </Link>
+                </li>
+              </>
+            ) : (
+              <>
+                <li style={{ padding: "10px", textAlign: "left" }}>
+                  <Link
+                    to="#"
+                    onClick={logout}
+                    style={{ textDecoration: "none", color: "#333" }}
+                  >
+                    Logout
+                  </Link>
+                </li>
+                <li style={{ padding: "10px", textAlign: "left" }}>
+                  <Link to="/Profile" style={{ textDecoration: "none", color: "#333" }}>
+                    Profile
+                  </Link>
+                </li>
+              </>
+            )}
+          </div>
+        )}
+      </li>
 
       {/* Always show the email link */}
       <li>
