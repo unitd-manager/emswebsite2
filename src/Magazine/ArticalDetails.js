@@ -72,8 +72,14 @@ const Magazine = () => {
       <div className="breadcumb-wrapper">
         <div className="container">
           <ul className="breadcumb-menu">
+          <li>
+              <Link to="/Home">Home</Link>
+            </li>
             <li>
-              <a href="home-newspaper.html">Home</a>
+              <Link to="/Magazine">Magazine</Link>
+            </li>
+            <li>
+              <Link to="/ArticalList">ArticalList</Link>
             </li>
             <li>Artical</li>
           </ul>
@@ -105,7 +111,11 @@ const Magazine = () => {
               </div>
               <div className="blog-img mb-40">
                 <img
-                  src={`https://emsmedia.net/storage/uploads/${Artical.file_name}`}
+                  src={
+                    Artical.file_name
+                      ? `https://emsmedia.net/storage/uploads/${Artical.file_name}`
+                      : defaultImage
+                  }
                   alt="Blog Image"
                 />
               </div>

@@ -121,6 +121,7 @@ const Magazine = () => {
   };
 
   const filteredGallery = applyFilters();
+  
 
   // Pagination logic
   const lastArticleIndex = currentPage * articlesPerPage;
@@ -196,9 +197,9 @@ const Magazine = () => {
                           {featuredBlog.category}
                         </a>
                         <h3 className="box-title-22">
-                          <a className="hover-line" >
+                          <Link to={`/ArticalList/${featuredBlog.magazine_id}`} className="hover-line" >
                             {featuredBlog.title}
-                          </a>
+                          </Link>
                         </h3>
                         <div className="blog-meta">
                           <a >

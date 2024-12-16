@@ -136,7 +136,10 @@ const Artical = () => {
         <div className="container">
           <ul className="breadcumb-menu">
             <li>
-              <a href="home-newspaper.html">Home</a>
+              <Link to="/Home">Home</Link>
+            </li>
+            <li>
+              <Link to="/Magazine">Magazine</Link>
             </li>
             <li>Artical List</li>
           </ul>
@@ -171,9 +174,9 @@ const Artical = () => {
                          {featuredBlog.category}
                         </a>
                         <h3 className="box-title-30">
-                          <a className="hover-line">
+                          <Link to={`/ArticalDetails/${featuredBlog.article_id}`} className="hover-line">
                            {featuredBlog.title}
-                          </a>
+                          </Link>
                         </h3>
                         {/* <p className="blog-text">
                           Encapsulates the belief that embracing diversity and

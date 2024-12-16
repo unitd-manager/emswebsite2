@@ -358,18 +358,18 @@ const Home = () => {
 
                     <div className="col-auto">
                       <div className="header-button">
-                      {user ? (
+                      {/* {user ? (
               <div style={{ padding: "10px", textAlign: "left", fontWeight: "bold" ,color: "#ff6347"}}>
                 Welcome, {user.first_name}!
               </div>
-            ) : null}
+            ) : null} */}
 
-                        {/* <button
+                        <button
                           type="button"
                           className="simple-icon searchBoxToggler"
                         >
                           <i className="far fa-search" />
-                        </button> */}
+                        </button>
                         <button
                           type="button"
                           className="simple-icon d-none d-lg-block cartToggler"
@@ -406,6 +406,13 @@ const Home = () => {
             <div className="header-links">
               <ul>
                 <li>
+                {user ? (
+              <div style={{ padding: "10px", textAlign: "left", fontWeight: "bold"}}>
+                Welcome, {user.first_name}!
+              </div>
+            ) : null}
+                </li>
+                <li>
                   <i className="fal fa-calendar-days" />
                   <a>{currentDate}</a>
                 </li>
@@ -423,12 +430,13 @@ const Home = () => {
           style={{
             background: "none",
             border: "none",
-            fontSize: "24px",
+            fontSize: "14px",
             cursor: "pointer",
-            color: "#ff6347" // Bright red color for the user icon
+             // Bright red color for the user icon
           }}
         >
-          <i className="far fa-user" /> {/* Font Awesome User Icon */}
+            <i className="far fa-user" /> 
+            {/* Font Awesome User Icon */}
         </button>
 
    
@@ -502,11 +510,12 @@ const Home = () => {
           </div>
         )}
       </li>
+      {user && (
       <li className="d-none d-sm-inline-block">
     <i className="fas fa-book-open" />
             <Link to="/Magazine">Magazine</Link>
           </li>
-      {/* Always show the email link */}
+           )}
       <li>
         <i className="far fa-envelope" />
         <a href="mailto:info@emsmedia.net">info@emsmedia.net</a>
