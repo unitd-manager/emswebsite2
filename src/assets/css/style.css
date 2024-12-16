@@ -9168,9 +9168,12 @@ table.woocommerce-product-attributes {
 }
 
 /* Extra small devices */
-@media (max-width: 375px) {
+@media (max-width: 400px) {
   .th-product.list-view .product-img {
     max-width: 130px;
+  }
+  .closeButton.sideMenuCls {
+    right: 100px;
   }
 }
 
@@ -10927,6 +10930,9 @@ span.select2-selection.select2-selection--single:focus {
 @media (max-width: 375px) {
   .blog-style2:has(.img-big) .category {
     line-height: 21px;
+  }
+  .closeButton.sideMenuCls {
+    right: 100px;
   }
 }
 

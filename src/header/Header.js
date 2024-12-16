@@ -388,7 +388,7 @@ const Home = () => {
                         </Link>
                         <button
                           type="button"
-                          className="th-menu-toggle d-block d-lg-none"
+                          className="th-menu-toggle d-block d-lg-none"  onClick={toggleMenu}
                         >
                           <i className="far fa-bars" />
                         </button>
@@ -430,6 +430,21 @@ const Home = () => {
         >
           <i className="far fa-user" /> {/* Font Awesome User Icon */}
         </button>
+
+   
+      {/* Show Login and Register links if the user is not logged in */}
+      {/* {!user && (
+        <>
+          <li className="d-none d-sm-inline-block">
+            <i className="far fa-user" />
+            <Link to="/Login">Login</Link>
+          </li>
+          <li className="d-none d-sm-inline-block">
+            <i className="far fa-user" />
+            <Link to="/Register">Register</Link>
+          </li>
+        </>
+      )} */}
 
         {isDropdownOpen && (
           <div
@@ -487,7 +502,10 @@ const Home = () => {
           </div>
         )}
       </li>
-
+      <li className="d-none d-sm-inline-block">
+    <i className="fas fa-book-open" />
+            <Link to="/Magazine">Magazine</Link>
+          </li>
       {/* Always show the email link */}
       <li>
         <i className="far fa-envelope" />

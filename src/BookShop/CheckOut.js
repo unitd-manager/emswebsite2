@@ -127,7 +127,7 @@ const Shop = () => {
       .then((response) => {
         if (response.status === 200) {
           window.confirm("Orders Sent successfully on your mail.");
-          navigate("/ShopList"); 
+          navigate("/ShopList/ShopList"); 
         } else {
           console.error("Error");
         }

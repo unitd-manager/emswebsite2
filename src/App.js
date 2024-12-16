@@ -46,16 +46,17 @@ import Aras from "./Gyanagamiyangal/AraBothanai.js";
 import Thelis from "./Gyanagamiyangal/TheliThenSub.js";
 import Thathithavars from "./Gyanagamiyangal/ThagithavarkuSub.js";
 import Thahi4 from "./Gyanagamiyangal/PrabamSub.js";
-import ThahiPrabams from "./Gyanagamiyangal/Thahiprabam.js";
+// import ThahiPrabams from "./Gyanagamiyangal/Thahiprabam.js";
 import Vanoli1 from "./Gyanagamiyangal/Vanoli1Sub.js";
 import Vanoli2 from "./Gyanagamiyangal/Vanoli2Sub.js";
 import Sor1 from "./Gyanagamiyangal/SorPolivuSub1.js";
 import Sor2 from "./Gyanagamiyangal/SorPolivuSub2.js";
+import ArticalDetails from "./Magazine/ArticalDetails.js"
+import ArticalList from "./Magazine/ArticalList.js"
 
 
 
-
-
+import Magazine from "./Magazine/Magazine.js"
 
 
 import MahangalDetails from "./Manitha/MahangalDetails.js";
@@ -300,8 +301,10 @@ function App() {
           <Route path="/noorkal/:noorkal" element={<BooksMenu/>} />    
           <Route path="/PublicationReview/PublicationReview" element={<PublicationReview />} />
           <Route path="/FromBookList/FromBookList" element={<FromBookList/>} />
-
-
+          <Route path="/Magazine" element={<Magazine/>} />
+          <Route path="/ArticalList/:id" element={<ArticalList/>} />
+          <Route path="/ArticalDetails/:id" element={<ArticalDetails/>} />
+          
         </Routes>
         <Footer />
       </HashRouter>

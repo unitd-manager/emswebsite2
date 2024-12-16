@@ -18,7 +18,7 @@
         padding: 0;
         position: absolute;
         top: 20px;
-        right: 20px;
+      
         background-color: $body-bg;
         border-radius: 50%;
         transform: rotate(0);
@@ -31,6 +31,15 @@
             transform: rotate(90deg);
         }
     }
+
+    @include sm {
+        .sidemenu-wrapper {
+            .closeButton.sideMenuCls {
+                right: 100px !important; // Ensure it overrides any other styles
+            }
+        }
+    }
+    
     .sidemenu-content {
         background-color: $body-bg;
         width: 450px;
