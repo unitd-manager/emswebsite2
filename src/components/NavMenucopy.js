@@ -8,6 +8,8 @@ function Navbar() {
   const [subCategories, setSubCategories] = useState([]);
   const [selectedCategoryId, setSelectedCategoryId] = useState(null);
   const [selectedSection, setSelectedSection] = useState(null); // Add state for selected section
+    const [hoveredCategoryId, setHoveredCategoryId] = useState(null); // Track hovered category
+    const [hoveredSectionId, setHoveredSectionId] = useState(null); // Track hovered section
   const [sectiones, setSectiones] = useState([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -71,6 +73,17 @@ function Navbar() {
     setSelectedCategoryId(categoryId);
   };
 
+   // Handle hover for section
+   const handleSectionHover = (sectionId) => {
+    setHoveredSectionId(sectionId);
+  };
+
+  // Handle hover for category
+  const handleCategoryHover = (categoryId) => {
+    setHoveredCategoryId(categoryId);
+  };
+
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -79,85 +92,69 @@ function Navbar() {
 <nav className={`navbar ${isMenuOpen ? "show" : ""}`}>
         
         <div
-          className={`main-menuss d-none d-lg-inline-block ${isMenuOpen ? "show" : ""}`}          
+          className={`main-menuss d-lg-inline-block ${isMenuOpen ? "show" : "d-block"}`}          
         >
-          <ul>
-            {/* Map over sections array to generate navbar items */}
-            {sections.map((section) => (
-              <li className="menu-item-has-children" key={section.section_id}>
-                {/* Replace anchor tag with Link */}
-                <Link
-                   to={`/${section.section_id}`} // Unique path for each section
-
-                  className={`nav-link ${
-                    selectedSection === section.section_id ? "active" : ""
-                  }`}
-                  onClick={() => handleSectionClick(section.section_id)}
-                >
-                  {section.section_title}
-                </Link>
-                {/* Filter categories for current section */}
-                {getCategoriesForSection(section.section_id).length > 0 && (
-                  <ul
-                    className="sub-menu"
-                    aria-labelledby={`${section.section_id}Dropdown`}
-                  >
-                    {getCategoriesForSection(section.section_id).map(
-                      (category) => (
-                        <li key={category.category_id}>
-                          {/* Handle category click */}
-                          <Link
-                            to={`/${section.section_title}/${category.category_id}`}
-                            className={`dropdown-item ${
-                              selectedCategoryId === category.category_id
-                                ? "active"
-                                : ""
-                            }`}
-                            onClick={() =>
-                              handleCategoryClick(category.category_id)
-                            }
-                          >
-                            {category.category_title}
-                          </Link>
-                          {/* Render subcategories if category is selected */}
-                          {selectedCategoryId === category.category_id && (
-                            <ul className="sub-menu">
-                             {/* Modify the rendering of subcategory links */}
-{getSubCategoriesForCategory(category.category_id).map((subcategory) => (
-    <li key={subcategory.sub_category_id}>
-        {/* Check if the subcategory has a YouTube link */}
-        {subcategory.external_link ? (
-            // If a YouTube link exists, render a YouTube link
-            <a
-                href={subcategory.external_link}
-                className="dropdown-item"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                {subcategory.sub_category_title}
-            </a>
-        ) : (
-            // If no YouTube link exists, render a normal link
-            <Link
-                to={`/${section.section_title}/${category.category_id}/${subcategory.sub_category_id}`}
-                className="dropdown-item"
-            >
-                {subcategory.sub_category_title}
-            </Link>
-        )}
-    </li>
-))}
-
-                            </ul>
-                          )}
-                        </li>
-                      )
-                    )}
+           <ul>
+                    {sections.map((section) => (
+                      <li
+                        className="menu-item-has-children"
+                        key={section.section_id}
+                        onMouseEnter={() => handleSectionHover(section.section_id)}
+                      >
+                        <Link
+                          to={`/${section.routes}`} // Unique path for each section
+                          className="nav-link"
+                        >
+                          {section.section_title}
+                        </Link>
+        
+                        {hoveredSectionId === section.section_id && getCategoriesForSection(section.section_id).length > 0 && (
+                          <ul className="sub-menu">
+                            {getCategoriesForSection(section.section_id).map((category) => (
+                              <li
+                                key={category.category_id}
+                                onMouseEnter={() => handleCategoryHover(category.category_id)} // Hover on category
+                              >
+                                <Link
+                                  to={`/${category.routes}`}
+                                  className="dropdown-item"
+                                >
+                                  {category.category_title}
+                                </Link>
+        
+                                {hoveredCategoryId === category.category_id && getSubCategoriesForCategory(category.category_id).length > 0 && (
+                                      <ul className="sub-menu">
+                                        {getSubCategoriesForCategory(category.category_id).map((subcategory) => (
+                                          <li key={subcategory.sub_category_id}>
+                                            {subcategory.external_link ? (
+                                              <a
+                                                href={subcategory.external_link}
+                                                className="dropdown-item"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                              >
+                                                {subcategory.sub_category_title}
+                                              </a>
+                                            ) : (
+                                              <Link
+                                                to={`${subcategory.routes}`}
+                                                className="dropdown-item"
+                                              >
+                                                {subcategory.sub_category_title}
+                                              </Link>
+                                            )}
+                                          </li>
+                                        ))}
+                                      </ul>
+                                    )}
+        
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </li>
+                    ))}
                   </ul>
-                )}
-              </li>
-            ))}
-          </ul>
         </div>
       </nav>
     </div>

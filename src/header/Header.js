@@ -373,7 +373,7 @@ const Home = () => {
                         </Link>
                         <button
                           type="button"
-                          className="th-menu-toggle d-block d-lg-none"
+                          className="th-menu-toggle d-block d-lg-none"  onClick={toggleMenu}
                         >
                           <i className="far fa-bars" />
                         </button>

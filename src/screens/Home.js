@@ -684,11 +684,7 @@ const getHomeProducts = () => {
                 <img
                   src={`https://emsmedia.net/storage/uploads/${item.file_name}`}
                   alt={`News ${item.content_id}`}
-                  style={{
-                    width: '100%',
-                    height: '400px',
-                    objectFit: 'cover',
-                  }}
+                
                 />
               </div>
             </div>

@@ -120,12 +120,108 @@
   /* Desktop */
 @media (min-width: 1024px) {
     .bannerImage .single-blog img {
-      height: 400px;
+      height: 500px;
     }
     .bannerImage .thumbnail-slider .thumbnail-img img {
       height: 80px;
     }
   }
+
+  /* Mobile View Adjustments */
+@media (max-width: 768px) {
+  /* General container adjustments */
+  .event-slider-container {
+    padding: 10px;
+  }
+
+  /* Event card adjustments */
+  .event-card {
+    margin-bottom: 20px;
+    box-shadow: none;
+  }
+
+  .event-title {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+
+  /* Thumbnail slider visibility */
+  .bannerImage .thumbnail-slider {
+    display: block; /* Ensure it's visible on mobile */
+    gap: 5px;
+    padding: 5px;
+  }
+
+  .bannerImage .thumbnail-slider .thumbnail-img img {
+    height: 50px;
+    width: auto;
+    margin: 0 auto;
+  }
+
+  /* Blog tab adjustments for mobile scrolling */
+  .blog-tab {
+    max-height: 400px;
+    scrollbar-width: thin; /* Thinner scrollbars */
+  }
+
+  /* Smaller font sizes for text */
+  .event-category {
+    font-size: 10px;
+  }
+
+  .event-meta {
+    font-size: 12px;
+  }
+
+  /* Banner Image adjustments */
+  .bannerImage {
+    height: 350px;
+  }
+
+  .bannerImage .single-blog img {
+    height: 200px;
+  }
+
+  /* Modal content adjustments */
+  .modal-content {
+    padding: 15px;
+    width: 90%;
+  }
+
+  /* Sidemenu adjustments */
+  .sidemenu-wrapper {
+    width: 90%;
+  }
+
+  /* Play button on mobile */
+  .play-btn {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+  }
+}
+
+
+  
+
+@media (max-width: 400px) { /* Adjust the max-width as per your tablet breakpoint */
+  .slick-arrow.slick-prev,
+  .slick-arrow.slick-next {
+    display: none !important;
+  }
+
+}
+
+@media (max-width: 800px) { /* Adjust the max-width as per your tablet breakpoint */
+  .slick-arrow.slick-prev,
+  .slick-arrow.slick-next {
+    display: none !important;
+  }
+  .bannerImage {
+    background-color: #5e5e5e;
+    height: 500px;
+  }
+}
   
   /* Tablet */
   @media (max-width: 1024px) {
@@ -148,6 +244,10 @@
   
     .bannerImage .thumbnail-slider {
       display: none; /* Hide thumbnail slider on mobile */
+    }
+    .bannerImage {
+      background-color: #5e5e5e;
+      height: 280px;
     }
   }
   
