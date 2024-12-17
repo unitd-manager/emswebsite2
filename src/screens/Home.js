@@ -1370,23 +1370,23 @@ Blog Area
                     <div className="blog-content">
                       <a
                         data-theme-color="#6234AC"
-                        href={blog.categoryLink}
+                       
                         className="category"
                       >
                         {blog.category}
                       </a>
                       <h3 className="box-title-20">
-                        <a className="hover-line" href={blog.link}>
+                        <Link className="hover-line" to={`/ArticalList/${blog.magazine_id}`}>
                           {blog.title}
-                        </a>
+                        </Link>
                       </h3>
                       <div className="blog-meta">
-                        <a href={blog.dateLink}>
+                        <a >
                           <i className="fal fa-calendar-days" /> {blog.date}
                         </a>
                       </div>
                       <div className="blog-meta" style={{marginTop:10}}>
-                      <Link to ="/" className="th-btn style2">
+                      <Link to ={`/ArticalList/${blog.magazine_id}`} className="th-btn style2">
                         Read More <i className="fas fa-arrow-up-right ms-2" />
                       </Link>
                       </div>
@@ -1485,18 +1485,18 @@ Blog Area
                         <div className="blog-content">
                           <a
                             data-theme-color="#6234AC"
-                            href={blog.categoryLink}
+                            
                             className="category"
                           >
                             {blog.category}
                           </a>
                           <h3 className="box-title-20">
-                            <a className="hover-line" href={blog.link}>
+                            <Link className="hover-line" to={`/ArticalList/${blog.magazine_id}`}>
                               {blog.title}
-                            </a>
+                            </Link>
                           </h3>
                           <div className="blog-meta">
-                            <a href={blog.dateLink}>
+                            <a >
                               <i className="fal fa-calendar-days" /> {blog.date}
                             </a>
                           </div>
