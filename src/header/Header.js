@@ -358,18 +358,18 @@ const Home = () => {
 
                     <div className="col-auto">
                       <div className="header-button">
-                      {user ? (
+                      {/* {user ? (
               <div style={{ padding: "10px", textAlign: "left", fontWeight: "bold" ,color: "#ff6347"}}>
                 Welcome, {user.first_name}!
               </div>
-            ) : null}
+            ) : null} */}
 
-                        {/* <button
+                        <button
                           type="button"
                           className="simple-icon searchBoxToggler"
                         >
                           <i className="far fa-search" />
-                        </button> */}
+                        </button>
                         <button
                           type="button"
                           className="simple-icon d-none d-lg-block cartToggler"
@@ -416,7 +416,7 @@ const Home = () => {
           <div className="col-auto">
   <div className="header-links">
   <ul style={{ listStyle: "none", padding: "0", margin: "0" }}>
-      {/* User Icon with Dropdown */}
+      {/* User Icon with Dropdown */} 
       <li style={{ display: "inline-block", position: "relative" }}>
       <button
           onClick={toggleDropdown}
@@ -462,7 +462,7 @@ const Home = () => {
           >
             {/* Display Welcome message if user is logged in
             {user ? (
-              <div style={{ padding: "10px", textAlign: "left", fontWeight: "bold" }}>
+              <li style={{ padding: "10px", textAlign: "left", fontWeight: "bold" }}>
                 Welcome, {user.first_name}!
               </div>
             ) : null} */}
@@ -483,6 +483,11 @@ const Home = () => {
               </>
             ) : (
               <>
+              {/* {user ? (
+              <div style={{ padding: "10px", textAlign: "left", fontWeight: "bold" ,color: "#ff6347"}}>
+                Welcome, {user.first_name}!
+              </div>
+            ) : null} */}
                 <li style={{ padding: "10px", textAlign: "left" }}>
                   <Link
                     to="#"
@@ -502,6 +507,11 @@ const Home = () => {
           </div>
         )}
       </li>
+      {user ? (
+              <li style={{  textAlign: "center", fontWeight: "bold" ,color:"red"}}>
+                Welcome, {user.first_name}!
+              </li>
+            ) : null}
       <li className="d-none d-sm-inline-block">
     <i className="fas fa-book-open" />
             <Link to="/Magazine">Magazine</Link>
