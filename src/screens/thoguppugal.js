@@ -64,7 +64,7 @@ const Engalai = () => {
                           <a href="/"><i className="fal fa-calendar-days"></i>26 Mar, 2023</a>
                         </div>
                         <h3 className="box-title-24">
-                          <a className="hover-line" href="blog-details.html">{item.category_title}</a>
+                          {item.category_title}
                         </h3>
 
                         <a

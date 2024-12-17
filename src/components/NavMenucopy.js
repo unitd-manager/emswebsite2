@@ -110,46 +110,52 @@ function Navbar() {
         
                         {hoveredSectionId === section.section_id && getCategoriesForSection(section.section_id).length > 0 && (
                           <ul className="sub-menu">
-                            {getCategoriesForSection(section.section_id).map((category) => (
-                              <li
-                                key={category.category_id}
-                                onMouseEnter={() => handleCategoryHover(category.category_id)} // Hover on category
-                              >
-                                <Link
-                                  to={`/${category.routes}`}
-                                  className="dropdown-item"
-                                >
-                                  {category.category_title}
-                                </Link>
-        
-                                {hoveredCategoryId === category.category_id && getSubCategoriesForCategory(category.category_id).length > 0 && (
-                                      <ul className="sub-menu">
-                                        {getSubCategoriesForCategory(category.category_id).map((subcategory) => (
-                                          <li key={subcategory.sub_category_id}>
-                                            {subcategory.external_link ? (
-                                              <a
-                                                href={subcategory.external_link}
-                                                className="dropdown-item"
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                              >
-                                                {subcategory.sub_category_title}
-                                              </a>
-                                            ) : (
-                                              <Link
-                                                to={`${subcategory.routes}`}
-                                                className="dropdown-item"
-                                              >
-                                                {subcategory.sub_category_title}
-                                              </Link>
-                                            )}
-                                          </li>
-                                        ))}
-                                      </ul>
-                                    )}
-        
-                              </li>
-                            ))}
+                          {getCategoriesForSection(section.section_id).map((category) => (
+  <li
+    key={category.category_id}
+    onMouseEnter={() => handleCategoryHover(category.category_id)} // Hover on category
+   
+  >
+    <Link
+      to={`/${category.routes}`}
+      className="dropdown-item"
+    >
+      {category.category_title}
+
+      {/* Check if the category has subcategories and show arrow */}
+      {getSubCategoriesForCategory(category.category_id).length > 0 && (
+        <span className="arrow">&#x25B6;</span> 
+      )}
+    </Link>
+
+    {hoveredCategoryId === category.category_id && getSubCategoriesForCategory(category.category_id).length > 0 && (
+      <ul className="sub-menu">
+        {getSubCategoriesForCategory(category.category_id).map((subcategory) => (
+          <li key={subcategory.sub_category_id}>
+            {subcategory.external_link ? (
+              <a
+                href={subcategory.external_link}
+                className="dropdown-item"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {subcategory.sub_category_title}
+              </a>
+            ) : (
+              <Link
+                to={`${subcategory.routes}`}
+                className="dropdown-item"
+              >
+                {subcategory.sub_category_title}
+              </Link>
+            )}
+          </li>
+        ))}
+      </ul>
+    )}
+  </li>
+))}
+
                           </ul>
                         )}
                       </li>

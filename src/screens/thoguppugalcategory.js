@@ -67,13 +67,13 @@ const Engalai = () => {
                       
                       </div>
                       <div className="blog-meta">
-                        <a href="author.html"><i className="far fa-user"></i>By - Ems Media</a>
-                        <a href="blog.html"><i className="fal fa-calendar-days"></i>26 Mar, 2023</a>
+                        <a href="/"><i className="far fa-user"></i>By - Ems Media</a>
+                        <a href="/"><i className="fal fa-calendar-days"></i>26 Mar, 2023</a>
                       </div>
                       <h3 className="box-title-24">
-                        <a className="hover-line" href="blog-details.html">
+                       
                           {item.title}
-                        </a>
+                      
                       </h3>
                       <a 
                         href={`/#/thoguppugaldetails/${item.content_id}`} 

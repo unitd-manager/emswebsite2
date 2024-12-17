@@ -17,7 +17,7 @@
         font-size: 24px;
         padding: 0;
         position: absolute;
-        top: 20px;
+        top: 40px;
       
         background-color: $body-bg;
         border-radius: 50%;
@@ -38,11 +38,15 @@
                 right: 100px !important; // Ensure it overrides any other styles
             }
         }
+        .sidemenu-content {
+            width:450px
+           }
     }
+
     
     .sidemenu-content {
         background-color: $body-bg;
-        width: 450px;
+        width: 580px;
         margin-left: auto;
         padding: 80px 30px;
         height: 100%;
@@ -89,6 +93,7 @@
             right: 0;
             opacity: 1;
             visibility: visible;
+           
         }
     }
 }
