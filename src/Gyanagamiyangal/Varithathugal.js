@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useParams,Link,useNavigate } from "react-router-dom";
 import ReactHtmlParser from "react-html-parser"; // Import the library to render HTML
+import styles from '../screens/DetailPage.module.css';
 import api from "../constants/api";
 
 const BlogCard = () => {
   const [blogPosts, setBlogPosts] = useState([]);  
   const [blogs, setBlogs] = useState([]);
+  const { id } = useParams();
   const navigate = useNavigate(); // Initialize useNavigate for navigation
 
-  const { id } = useParams();
 
   console.log("sd11ew",id)
     useEffect(() => {
@@ -26,24 +27,24 @@ const BlogCard = () => {
       getSubContent();
     }, [id]); // Dependency array is empty because `id` is a constant.
 
-    useEffect(() => {
-      api
-        .post("/blog/getBlogsByCategoryId", {
-          routes:`poem/${id}` ,
-        })
-        .then((res) => {
-          setBlogs(res.data.data || []);
-        })
-        .catch((error) => {
-          console.error("Error fetching blog data:", error);
-        });
-    }, [id]);
-    
-    // Function to handle blog title click
-    const handleBlogClick = (blog_id) => {
-      navigate(`/DetailBlog/${blog_id}`); // Navigate to the blogDetail page with the blog_id
-    };
-    
+     // Fetch blog data when the id changes
+ useEffect(() => {
+  api
+    .post("/blog/getBlogsByCategoryId", {
+      routes:`Agamiyangal/${id}` ,
+    })
+    .then((res) => {
+      setBlogs(res.data.data || []);
+    })
+    .catch((error) => {
+      console.error("Error fetching blog data:", error);
+    });
+}, [id]);
+
+// Function to handle blog title click
+const handleBlogClick = (blog_id) => {
+  navigate(`/DetailBlog/${blog_id}`); // Navigate to the blogDetail page with the blog_id
+};
   const stripHTMLTags = (input) => {
     return input
       ? input
@@ -136,16 +137,17 @@ const BlogCard = () => {
     >
       {blogPosts.description
         ? ReactHtmlParser(blogPosts.description)
-        : "No description available."}
-         <div>
+        : "No description available."} 
+            <div className={styles.content}>
           {blogs.map((blog, index) => (
 
             <div  key={index}
                     onClick={() => handleBlogClick(blog.blog_id)} // Handle click to navigate to blogDetail page
-                    style={{ cursor: "pointer", color: "red" ,padding:10}} >  {blog.title}
+                    style={{ cursor: "pointer", color: "blue" ,textAlign:"left",padding:10}} >  {blog.title}
                   </div>
                     ))}
           </div>
+        
     </section>
 
     {/* Footer Section */}

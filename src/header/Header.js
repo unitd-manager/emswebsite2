@@ -9,10 +9,8 @@ import logoFooter from "../assets/img/logo-footer.svg";
 import logoFooterBlack from "../assets/img/logo-footer-black.svg";
 import logwhite from "../assets/img/logo Ems.png";
 import logosvg from "../assets/img/logo.svg";
-
 import api from "../constants/api";
 import "../assets/css/event.css";
-
 
 
 const Home = () => {

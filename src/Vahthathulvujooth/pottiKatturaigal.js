@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams,Link,useNavigate } from "react-router-dom";
 import ReactHtmlParser from "react-html-parser";
+import styles from '../screens/DetailPage.module.css';
 import api from "../constants/api";
 
 const BlogSection = () => {
   const [blogPosts, setBlogPosts] = useState([]);  
-
+  const [blogs, setBlogs] = useState([]);
   const { Katturaigal } = useParams();
+  const navigate = useNavigate(); // Initialize useNavigate for navigation
+
 
   console.log("sd11ew",Katturaigal)
     useEffect(() => {
@@ -30,7 +33,26 @@ const BlogSection = () => {
           .replace(/<[^>]*>/g, "") // Remove HTML tags
           .replace(/&nbsp;/g, " ") // Replace &nbsp; with a space
       : "";
-  };
+  };  
+
+    // Fetch blog data when the id changes
+ useEffect(() => {
+  api
+    .post("/blog/getBlogsByCategoryId", {
+      routes:`Potti/${Katturaigal}` ,
+    })
+    .then((res) => {
+      setBlogs(res.data.data || []);
+    })
+    .catch((error) => {
+      console.error("Error fetching blog data:", error);
+    });
+}, [Katturaigal]);
+
+// Function to handle blog title click
+const handleBlogClick = (blog_id) => {
+  navigate(`/DetailBlog/${blog_id}`); // Navigate to the blogDetail page with the blog_id
+};
 
   return (
     <div
@@ -119,7 +141,18 @@ const BlogSection = () => {
     >
       {blogPosts?.description
         ? ReactHtmlParser(blogPosts?.description)
-        : "No description available at the moment."}
+        : "No description available at the moment."}  
+
+<div className={styles.content}>
+          {blogs.map((blog, index) => (
+
+            <div  key={index}
+                    onClick={() => handleBlogClick(blog.blog_id)} // Handle click to navigate to blogDetail page
+                    style={{ cursor: "pointer", color: "blue" ,textAlign:"left",padding:10}} >  {blog.title}
+                  </div>
+                    ))}
+          </div>
+
     </section>
 
     {/* Footer Section */}

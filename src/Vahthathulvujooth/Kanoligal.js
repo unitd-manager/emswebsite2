@@ -66,12 +66,15 @@ const BlogSection = () => {
                         {post.title}
                       </h3>
                       <p className="sec-text">{shortContent}</p>
-                      <Link to={`/details2/${post.content_id}`}
-                      
+                      <a
+                        href={post.external_link || "#"}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="th-btn"
+                   
                       >
-                        Read More
-                      </Link>
+                        VIEW MORE
+                      </a>
                     </div>
                   </div>
                 );
