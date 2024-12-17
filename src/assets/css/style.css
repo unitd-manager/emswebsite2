@@ -7479,7 +7479,7 @@ ul.comment-list:has(> .th-comment-item ~ .th-comment-item):first-child > .th-pos
   padding: 0;
   position: absolute;
   top: 20px;
-  right: 20px;
+  right: 90px;
   background-color: var(--body-bg);
   border-radius: 50%;
   -webkit-transform: rotate(0);
@@ -9173,7 +9173,7 @@ table.woocommerce-product-attributes {
     max-width: 130px;
   }
   .closeButton.sideMenuCls {
-    right: 100px;
+    right: 125px;
   }
 }
 
