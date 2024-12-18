@@ -120,7 +120,7 @@
   /* Desktop */
 @media (min-width: 1024px) {
     .bannerImage .single-blog img {
-      height: 500px;
+      /* height: 500px; */
     }
     .bannerImage .thumbnail-slider .thumbnail-img img {
       height: 80px;

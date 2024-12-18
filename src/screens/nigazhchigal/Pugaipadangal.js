@@ -25,6 +25,19 @@ function Pugaipadangal() {
     setSearchQuery(event.target.value);
   };
 
+  const [popupVisible, setPopupVisible] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const openPopup = (imageData) => {
+    setSelectedImage(imageData);
+    setPopupVisible(true);
+  };
+
+  const closePopup = () => {
+    setSelectedImage(null);
+    setPopupVisible(false);
+  };
+
   const getValuelistCountry = () => {
     api
       .get("/valuelist/getValueListCountry")
@@ -291,14 +304,14 @@ function Pugaipadangal() {
                     />
                     <Link
                       data-theme-color="#4E4BD0"
-                      to="/PugaipadangalDetails"
+                      onClick={() => openPopup(item)}
                       className="category"
                     >
                       {item.category_title}
                     </Link>
                   </div>
                   <h3 className="box-title-18">
-                    <Link className="hover-line" to="/">
+                    <Link className="hover-line" onClick={() => openPopup(item)}>
                       {item.title}
                     </Link>
                   </h3>
@@ -354,8 +367,56 @@ function Pugaipadangal() {
           </div>
         </div>
       </section>
+      {popupVisible && selectedImage && (
+        <div className="popup" style={popupStyles}>
+          <div className="popup-content" style={popupContentStyles}>
+            <button
+              onClick={closePopup}
+              style={closeButtonStyles}
+            >
+              X
+            </button>
+            <img
+              src={`https://emsmedia.net/storage/uploads/${selectedImage.file_name}`}
+              alt={selectedImage.title}
+              style={{ maxWidth: "100%", maxHeight: "80vh" }}
+            />
+            <h5>{selectedImage.title}</h5>
+          </div>
+        </div>
+      )}
     </>
   );
 }
+
+const popupStyles = {
+  position: "fixed",
+  top: 0,
+  left: 0,
+  width: "100%",
+  height: "100%",
+  backgroundColor: "rgba(0, 0, 0, 0.5)",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  zIndex: 1000,
+};
+
+const popupContentStyles = {
+  backgroundColor: "#fff",
+  padding: "20px",
+  borderRadius: "8px",
+  textAlign: "center",
+};
+
+const closeButtonStyles = {
+  position: "absolute",
+  top: "10px",
+  right: "10px",
+  background: "none",
+  border: "none",
+  fontSize: "20px",
+  cursor: "pointer",
+};
 
 export default Pugaipadangal;

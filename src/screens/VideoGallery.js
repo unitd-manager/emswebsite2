@@ -149,12 +149,12 @@ const TabButton = React.memo(({ video, isActive, onClick }) => (
           {video.category || "Unknown Category"}
         </a> */}
         <h3 className="box-title-20">
-          <a className="hover-line" href="blog-details.html">
+          <a className="hover-line">
             {video.title || "Untitled"}
           </a>
         </h3>
         <div className="blog-meta">
-         <a href="blog.html">
+         <a>
         <i className="fal fa-calendar-days" />
         {video.content_date ? new Date(video.content_date).toLocaleDateString('en-GB') : "Unknown Date"}
       </a>
@@ -178,19 +178,19 @@ const VideoCard = React.memo(({ video, onPlay }) => (
       </button>
     </div>
     <h3 className="box-title-30">
-      <a className="hover-line" href="blog-details.html">
+      <a className="hover-line">
         {video.title || "Untitled"}
       </a>
     </h3>
     <div className="blog-meta">
       <a
         data-theme-color={video.categoryColor || "#000"}
-        href="blog.html"
+       
         className="category"
       >
         {video.category || "Unknown Category"}
       </a>
-      <a href="author.html">
+      <a>
         <i className="far fa-user" /> By - EMS Media
       </a>
       <a href="blog.html">

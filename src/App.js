@@ -163,7 +163,7 @@ import '../src/assets/sass/base/_variable.scss'
 import '../src/assets/sass/spacing/_margin.scss'
 import '../src/assets/sass/spacing/_padding.scss'
 import Pugaipadangal from "./screens/nigazhchigal/Pugaipadangal.js";
-import PugaipadangalDetails from "./screens/nigazhchigal/PugaipadangalDetails.js";
+import EventDetails from "./screens/nigazhchigal/EventDetails.js";
 import Kaanoli from "./screens/nigazhchigal/Kaanoli"
 import Nigazhvugal from "./screens/nigazhchigal/Nigazhvugal.js";
 import Audios from "./screens/nigazhchigal/Audios.js";
@@ -296,7 +296,7 @@ function App() {
           <Route path="நிகழ்ச்சிகள்/ஆடியோ" element={<Audios/>} />                
            <Route path="நிகழ்ச்சிகள்/நிகழ்வுகள்" element={<Nigazhvugal/>} />
           <Route path="நிகழ்ச்சிகள்/புகைப்படங்கள்" element={<Pugaipadangal/>} />
-          <Route path="/PugaipadangalDetails" element={<PugaipadangalDetails/>} />
+          <Route path="/EventDetails/:id" element={<EventDetails/>} />
           <Route path="நிகழ்ச்சிகள்/காணொளிகள்" element={<Kaanoli/>} />
           <Route path="/noorkal/:noorkal" element={<BooksMenu/>} />    
           <Route path="/PublicationReview/PublicationReview" element={<PublicationReview />} />

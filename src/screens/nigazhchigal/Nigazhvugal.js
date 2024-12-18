@@ -292,23 +292,23 @@ function Pugaipadangal() {
                     />
                     <Link
                       data-theme-color="#4E4BD0"
-                      to="/PugaipadangalDetails"
+                      to={`/EventDetails/${item.content_id}`}
                       className="category"
                     >
                      {item.category_title}
                     </Link>
                   </div>
                   <h3 className="box-title-18">
-                    <Link className="hover-line" to="/">
+                    <Link className="hover-line" to={`/EventDetails/${item.content_id}`}>
                       {item.title}
                     </Link>
                   </h3>
                   <div className="blog-meta">
-                    <a href="">
+                    <a >
                       <i className="far fa-user" />
                       By - EMS Media
                     </a>
-                    <a href="">
+                    <a >
                       <i className="fal fa-calendar-days" />
                       {new Date(item.content_date).toLocaleDateString("en-GB", {
                    day: "2-digit",

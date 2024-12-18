@@ -1,10 +1,10 @@
 import React, { useEffect, useState,useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import Slider from "react-slick";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Marquee from "react-fast-marquee";
 import VideoPlaylist from "./VideoGallery";
-
+import { getUser } from "../common/user";
 
 import logoFooter  from "../assets/img/logo-footer.svg"
 import logoFooterBlack from "../assets/img/logo-footer-black.svg"
@@ -34,8 +34,30 @@ import '../assets/css/event.css'
 
 const Home = () => {
 
+  const navigate = useNavigate();
+  const user =getUser()
+
   const [magazine, setMagazine] = useState([]);
   const [magazineRead, setMagazineRead] = useState([]);
+  const [subs, setSubs] = useState("");
+
+  console.log('subs',subs)
+
+  useEffect(() => {
+    const getContactById = () => {
+      api
+        .post('/contact/getContactsById', { contact_id: user?.contact_id })
+        .then((res) => {
+          setSubs(res.data.data[0].subs_payment_status);
+        })
+        .catch(() => {
+        });
+    };
+  
+    getContactById();
+  }, []);
+
+ 
 
   useEffect(() => {
     getMagazine();
@@ -738,20 +760,20 @@ const getHomeProducts = () => {
           alt="Blog Title Image"
           style={{ width: "25%", maxHeight: "250px", objectFit: "cover", marginBottom: "20px" }}
         />
-         <a data-theme-color="#6234AC" href="/" className="category"  style={{ marginLeft: "20px" }}>
-        வாப்பா நாயகம்</a>
+         <Link data-theme-color="#6234AC" to={`/va/:${'வாப்பாநாயகம்'}`} className="category"  style={{ marginLeft: "20px" }}>
+        வாப்பா நாயகம்</Link>
          <h3 className="box-title-20">
-          <a className="hover-line" href="/">
+          <Link className="hover-line" to={`/va/:${'வாப்பாநாயகம்'}`}>
           என்று அனைவராலும் அன்போடு அழைக்கப்படும் அஸ்ஸெய்யித் கலீல் அவ்ன் மௌலானா 
           அவர்கள் அத்தரிகத்துல் ஹக்கிகத்துல் காதிரியா தரிக்காவின் ஆன்மீக தலைவராவார்கள்.
-          </a>
+          </Link>
         </h3>
        
         <div className="blog-meta">
-          <a href="/">
+          <Link to={`/va/:${'வாப்பாநாயகம்'}`}>
           குதுபுல் அக்தாப், சாஹிபுல் வக்த், ஷ‌ம்ஸுல் வுஜூத், அஷ்ஷெய்கு ஜமாலிய்யா 
           அஸ்ஸய்யித் கலீல் அவ்ன் மௌலானா அல்ஹஸனிய்யுல் ஹுஸைனிய்யுல் ஹாஷிமிய் நாயகம்
-          </a>
+          </Link>
           {/* <a href="/">
             <i className="fal fa-calendar-days" />
             20 Mar, 2023
@@ -821,8 +843,8 @@ const getHomeProducts = () => {
                                     <img src={about2} alt="blog image"/>
                                 </div>
                                 <div class="blog-content">
-                                    <a data-theme-color="#00D084" style={{backgroundColor:'#00D084'}} href="/" class="category">அப்பா நாயகம்</a>
-                                    <h3 class="box-title-20"><a class="hover-line" href="/">யாஸீன் மௌலானா நாயகம் அவர்களின் தவமிகு தந்தையார்</a></h3>
+                                    <Link data-theme-color="#00D084" style={{backgroundColor:'#00D084'}} to={`/an/:${'அப்பாநாயகம்'}`} class="category">அப்பா நாயகம்</Link>
+                                    <h3 class="box-title-20"><Link class="hover-line" to={`/an/:${'அப்பாநாயகம்'}`}>யாஸீன் மௌலானா நாயகம் அவர்களின் தவமிகு தந்தையார்</Link></h3>
                                     <div class="blog-meta">
                                         <a ><i class="far fa-user"></i>By - EMS Media</a>
                                         {/* <a href="/"><i class="fal fa-calendar-days"></i>13 Mar, 2023</a> */}
@@ -836,8 +858,8 @@ const getHomeProducts = () => {
                                     <img src={about1} alt="blog image"/>
                                 </div>
                                 <div class="blog-content">
-                                    <a data-theme-color="#4E4BD0" style={{backgroundColor:'#4E4BD0'}}  href="/" class="category">தந்தை நாயகம்</a>
-                                    <h3 class="box-title-20"><a class="hover-line" href="/">ஜமாலிய்யா அஸ்ஸெய்யித் யாஸீன் மௌலானா </a></h3>
+                                    <Link data-theme-color="#4E4BD0" style={{backgroundColor:'#4E4BD0'}}  to={`/tha/:${'தந்தைநாயகம்'}`} class="category">தந்தை நாயகம்</Link>
+                                    <h3 class="box-title-20"><Link class="hover-line" to={`/tha/:${'தந்தைநாயகம்'}`}>ஜமாலிய்யா அஸ்ஸெய்யித் யாஸீன் மௌலானா </Link></h3>
                                     <div class="blog-meta">
                                         <a ><i class="far fa-user"></i>By - EMS Media</a>
                                         {/* <a href="/"><i class="fal fa-calendar-days"></i>10 Mar, 2023</a> */}
@@ -854,8 +876,8 @@ const getHomeProducts = () => {
                                 <img src={about} alt="blog image"/>
                             </div>
                             <div class="blog-content">
-                                <a data-theme-color="#FF9500" style={{backgroundColor:'#FF9500'}} href="/" class="category">வாப்பா நாயகம்</a>
-                                <h3 class="box-title-30"><a class="hover-line" href="/">அஸ்ஸெய்யித் கலீல் அவ்ன் மௌலானா</a></h3>
+                                <Link data-theme-color="#FF9500" style={{backgroundColor:'#FF9500'}} to={`/va/:${'வாப்பாநாயகம்'}`} class="category">வாப்பா நாயகம்</Link>
+                                <h3 class="box-title-30"><Link class="hover-line" to={`/va/:${'வாப்பாநாயகம்'}`}>அஸ்ஸெய்யித் கலீல் அவ்ன் மௌலானா</Link></h3>
                                 <div class="blog-meta">
                                     <a ><i class="far fa-user"></i>By - EMS Media</a>
                                     {/* <a href="/"><i class="fal fa-calendar-days"></i>10 Mar, 2023</a> */}
@@ -880,10 +902,10 @@ const getHomeProducts = () => {
                                             <img src={about3} alt="blog image"/>
                                         </div>
                                         <div class="blog-content">
-                                            <a data-theme-color="#FF9500" href="/" class="category">1</a>
+                                            <a data-theme-color="#FF9500"  class="category">1</a>
                                             {/* <h3 class="box-title-18"><a class="hover-line" href="/">பொது நல சேவைப் புரிதல்.</a></h3> */}
                                             <div class="blog-meta">
-                                                <a href="/">பொது நல சேவைப் புரிதல்.</a>
+                                                <a style={{color:'black'}}>பொது நல சேவைப் புரிதல்.</a>
                                                 
                                             </div>
                                         </div>
@@ -897,10 +919,10 @@ const getHomeProducts = () => {
                                             <img src={bannerImage}  alt="blog image"/>
                                         </div>
                                         <div class="blog-content">
-                                            <a data-theme-color="#007BFF" href="/" class="category">2</a>
+                                            <a data-theme-color="#007BFF"  class="category">2</a>
                                             {/* <h3 class="box-title-18"><a class="hover-line" href="/">மெய்ஞ்ஞான விளக்கம் நல்கி இறைவனை அறிய வழிக் காட்டுதல்.</a></h3> */}
                                             <div class="blog-meta">
-                                                <a href="/">மெய்ஞ்ஞான விளக்கம் நல்கி இறைவனை அறிய வழிக் காட்டுதல்.</a>
+                                                <a  style={{color:'black'}}>மெய்ஞ்ஞான விளக்கம் நல்கி இறைவனை அறிய வழிக் காட்டுதல்.</a>
                                             </div>
                                         </div>
 
@@ -913,10 +935,10 @@ const getHomeProducts = () => {
                                             <img src={about4}  alt="blog image"/>
                                         </div>
                                         <div class="blog-content">
-                                            <a data-theme-color="#00D084" href="/" class="category">3</a>
+                                            <a data-theme-color="#00D084" class="category">3</a>
                                             {/* <h3 class="box-title-18"><a class="hover-line" href="/">மெய்ஞ்ஞான நூல்கள் வெளியிடல்.</a></h3> */}
                                             <div class="blog-meta">
-                                                <a href="/">மெய்ஞ்ஞான நூல்கள் வெளியிடல்.</a>
+                                                <a style={{color:'black'}}>மெய்ஞ்ஞான நூல்கள் வெளியிடல்.</a>
                                             </div>
                                         </div>
 
@@ -929,18 +951,18 @@ const getHomeProducts = () => {
                                             <img src={bannerImage}  alt="blog image"/>
                                         </div>
                                         <div class="blog-content">
-                                            <a data-theme-color="#4E4BD0" href="/" class="category">4</a>
+                                            <a data-theme-color="#4E4BD0"  class="category">4</a>
                                             {/* <h3 class="box-title-18"><a class="hover-line" href="/">Score big with the Latest sports news.</a></h3> */}
                                             <div class="blog-meta">
-                                                <a href="/">நாட்டுப் பற்றுடன் வாழ உதவுதல்.</a>
+                                                <a style={{color:'black'}}>நாட்டுப் பற்றுடன் வாழ உதவுதல்.</a>
                                             </div>
                                         </div>
 
                                     </div>
                                 </div>
-                                <a href="#" className="th-btn style3">
+                                <Link to={`/+/:${'கொள்கைகள்'}`} className="th-btn style3">
                                  Read More <i className="fas fa-arrow-up-right ms-2" />
-                                   </a>
+                                   </Link>
                                   </div>
                                   </div>
                       
@@ -970,33 +992,33 @@ const getHomeProducts = () => {
                 <img src={collegeMain1} alt="blog image" />
               </div>
               <div className="blog-content">
-                <a
+                <Link
                   data-theme-color="#007BFF"
-                  href="/"
+                  to={`/&/:${'ஜாமீஆ'}`}
                   className="category"
                   style={{backgroundColor:"#007BFF"}}
                 >
                 About Us
-                </a>
+                </Link>
                 <h3 className="box-title-24">
-                  <a className="hover-line" href="/">
+                  <Link className="hover-line" to={`/&/:${'ஜாமீஆ'}`}>
                   This Institution founded by His Holiness Jamaliya Syed Khaleel Awn Mowlana
                   Al Hassani wal Hussaini Ai Hashimi from the Progeny of Prophet Muhammad(PBUH)
-                  </a>
+                  </Link>
                 </h3>
                 {/* <p className="blog-text">
                 This Institution founded by His Holiness Jamaliya Syed Khaleel Awn Mowlana
                   Al Hassani wal Hussaini Ai Hashimi from the Progeny of Prophet Muhammad(PBUH)
                 </p> */}
                 <div className="blog-meta">
-                  <a href="/">
+                  <Link >
                     <i className="far fa-user" />
                     By - EMS Media
-                  </a>
+                  </Link>
                 </div>
-                <a href="#" className="th-btn style2">
+                <Link to={`/&/:${'ஜாமீஆ'}`} className="th-btn style2">
                     Read More
-                 </a>
+                 </Link>
               </div>
             </div>
           </div>
@@ -1006,55 +1028,18 @@ const getHomeProducts = () => {
                 <img src={college1} alt="blog image" />
               </div>
               <div className="blog-content">
-                <a
+                <Link
                   data-theme-color="#59C2D6"
-                  href="/"
+                  to={`/&/:${'ஜாமீஆ'}`}
                   className="category"
                   style={{backgroundColor:"#59C2D6"}}
                 >
                   Vision
-                </a>
+                </Link>
                 <h3 className="box-title-24">
-                  <a className="hover-line" href="/">
+                  <Link className="hover-line" to={`/&/:${'ஜாமீஆ'}`}>
                   To develop into a full fledged University
-                  </a>
-                </h3>
-                {/* <p className="blog-text">
-                  Quisque eget ex rutrum, consequat odio in, tempor purus.
-                  Mauris neque quam, Tellentesque sit amet rutrum ut, gravida
-                  sit amet felis.
-                </p> */}
-                <div className="blog-meta">
-                  <a href="/">
-                    <i className="far fa-user" />
-                    By - EMS Media
-                  </a>
-                </div>
-                <a href="#" className="th-btn style2">
-                    Read More
-                 </a>
-              </div>
-            </div>
-          </div>
-          <div className="border-blog2 filter-item cat2">
-            <div className="blog-style4">
-              <div className="blog-img">
-                <img src={collegeMain2} alt="blog image" />
-              </div>
-              <div className="blog-content">
-                <a
-                  data-theme-color="#FF9500"
-                  href="/"
-                  className="category"
-                  style={{backgroundColor:"#FF9500"}}
-                >
-                Objectives
-                </a>
-                <h3 className="box-title-24">
-                  <a className="hover-line" href="/">
-                  Our Founder wished to form a younger generation who can be self dependant
-                 and can serve their community / fellow human beings.
-                  </a>
+                  </Link>
                 </h3>
                 {/* <p className="blog-text">
                   Quisque eget ex rutrum, consequat odio in, tempor purus.
@@ -1067,9 +1052,46 @@ const getHomeProducts = () => {
                     By - EMS Media
                   </a>
                 </div>
-                <a href="#" className="th-btn style2">
+                <Link to={`/&/:${'ஜாமீஆ'}`} className="th-btn style2">
                     Read More
-                 </a>
+                 </Link>
+              </div>
+            </div>
+          </div>
+          <div className="border-blog2 filter-item cat2">
+            <div className="blog-style4">
+              <div className="blog-img">
+                <img src={collegeMain2} alt="blog image" />
+              </div>
+              <div className="blog-content">
+                <Link
+                  data-theme-color="#FF9500"
+                  to={`/&/:${'ஜாமீஆ'}`}
+                  className="category"
+                  style={{backgroundColor:"#FF9500"}}
+                >
+                Objectives
+                </Link>
+                <h3 className="box-title-24">
+                  <Link className="hover-line" to={`/&/:${'ஜாமீஆ'}`}>
+                  Our Founder wished to form a younger generation who can be self dependant
+                 and can serve their community / fellow human beings.
+                  </Link>
+                </h3>
+                {/* <p className="blog-text">
+                  Quisque eget ex rutrum, consequat odio in, tempor purus.
+                  Mauris neque quam, Tellentesque sit amet rutrum ut, gravida
+                  sit amet felis.
+                </p> */}
+                <div className="blog-meta">
+                  <a >
+                    <i className="far fa-user" />
+                    By - EMS Media
+                  </a>
+                </div>
+                <Link to={`/&/:${'ஜாமீஆ'}`} className="th-btn style2">
+                    Read More
+                 </Link>
               </div>
             </div>
           </div>
@@ -1079,19 +1101,19 @@ const getHomeProducts = () => {
                 <img src={college4} alt="blog image" />
               </div>
               <div className="blog-content">
-                <a
+                <Link
                   data-theme-color="#007BFF"
-                  href="/"
+                  to={`/&/:${'ஜாமீஆ'}`}
                   className="category"
                   style={{backgroundColor:"#007BFF"}}
                 >
                     Courses Offered
-                </a>
+                </Link>
                 <h3 className="box-title-24">
-                  <a className="hover-line" href="/">
+                  <Link className="hover-line" to={`/&/:${'ஜாமீஆ'}`}>
                   To Provide Islamic and formal general eduaction
                   with strong focus on technical trainings
-                  </a>
+                  </Link>
                 </h3>
                 {/* <p className="blog-text">
                   Quisque eget ex rutrum, consequat odio in, tempor purus.
@@ -1099,14 +1121,14 @@ const getHomeProducts = () => {
                   sit amet felis.
                 </p> */}
                 <div className="blog-meta">
-                  <a href="/">
+                  <a >
                     <i className="far fa-user" />
                     By - EMS Media
                   </a>
                 </div>
-                <a href="#" className="th-btn style2">
+                <Link to={`/&/:${'ஜாமீஆ'}`} className="th-btn style2">
                     Read More
-                 </a>
+                 </Link>
               </div>
             </div>
           </div>
@@ -1116,7 +1138,7 @@ const getHomeProducts = () => {
         <div className="sidebar-area">
           <div className="widget mb-30">
             <div className="widget-ads">
-              <a href="/">
+              <a>
                 <img
                   className="w-100"
                   src={college2}
@@ -1127,7 +1149,7 @@ const getHomeProducts = () => {
           </div>
           <div className="widget mb-30">
             <div className="widget-ads">
-              <a href="/">
+              <a>
                 <img
                   className="w-100"
                   src={collegeMain}
@@ -1138,7 +1160,7 @@ const getHomeProducts = () => {
           </div>
           <div className="widget mb-30">
             <div className="widget-ads">
-              <a href="/">
+              <a>
                 <img
                   className="w-100"
                   src={college3}
@@ -1292,14 +1314,14 @@ const getHomeProducts = () => {
                   Event
                 </a>
                 <h3 className="box-title-20">
-               <a className="hover-line" href="/">{item.title}</a>
+               <Link className="hover-line" to={`/EventDetails/${item.content_id}`}>{item.title}</Link>
              </h3>
                 <div className="event-meta">
                   <span className="event-meta-item">
-                    <i className="far fa-eye"></i> Read More
+                  <Link className="hover-line" to={`/EventDetails/${item.content_id}`}> <i className="far fa-eye"></i> Read More</Link>
                   </span>
                   <span className="event-meta-item">
-                    <i className="fal fa-calendar-alt"></i> 11/12/2022
+                    <i className="fal fa-calendar-alt"></i> {item.content_date}
                   </span>
                 </div>
               </div>
@@ -1376,9 +1398,26 @@ Blog Area
                         {blog.category}
                       </a>
                       <h3 className="box-title-20">
-                        <Link className="hover-line" to={`/ArticalList/${blog.magazine_id}`}>
-                          {blog.title}
-                        </Link>
+                      <a
+  className="hover-line"
+                    onClick={() => {
+                     if (!user || !user.contact_id) {
+                    const userConfirmed = window.confirm(
+                  "Please Login. Click 'OK' to go to the Login page or 'Cancel' to stay."
+                   );
+                     if (userConfirmed) {
+                  navigate("/Login"); // Navigate to the login page
+                        }
+                } else if (subs !=="subscribe") {
+                window.alert("You do not have an active subscription. Please subscribe to access this article.");
+               } else {
+                navigate(`/ArticalList/${blog.magazine_id}`);
+                }
+                    }}
+                >
+             {blog.title}
+                    </a>
+
                       </h3>
                       <div className="blog-meta">
                         <a >
@@ -1386,9 +1425,22 @@ Blog Area
                         </a>
                       </div>
                       <div className="blog-meta" style={{marginTop:10}}>
-                      <Link to ={`/ArticalList/${blog.magazine_id}`} className="th-btn style2">
+                      <a   onClick={() => {
+                     if (!user || !user.contact_id) {
+                    const userConfirmed = window.confirm(
+                  "Please Login. Click 'OK' to go to the Login page or 'Cancel' to stay."
+                   );
+                     if (userConfirmed) {
+                  navigate("/Login"); // Navigate to the login page
+                        }
+                } else if (subs !=="subscribe") {
+                window.alert("You do not have an active subscription. Please subscribe to access this article.");
+               } else {
+                navigate(`/ArticalList/${blog.magazine_id}`);
+                }
+                    }} className="th-btn style2">
                         Read More <i className="fas fa-arrow-up-right ms-2" />
-                      </Link>
+                      </a>
                       </div>
                     </div>
                   </div>
@@ -1397,7 +1449,7 @@ Blog Area
             </div>
 
             <div className="space">
-              <a href="/">
+              <a>
                 <img
                   className="w-100 light-img"
                   src={no2Banner}
@@ -1457,7 +1509,7 @@ Blog Area
               {/* Sidebar Ads */}
               <div className="widget">
                 <div className="widget-ads">
-                  <a href="/">
+                  <a >
                     <img
                       className="w-100 light-img"
                       src={about}
@@ -1491,9 +1543,22 @@ Blog Area
                             {blog.category}
                           </a>
                           <h3 className="box-title-20">
-                            <Link className="hover-line" to={`/ArticalList/${blog.magazine_id}`}>
+                            <a className="hover-line"   onClick={() => {
+                     if (!user || !user.contact_id) {
+                    const userConfirmed = window.confirm(
+                  "Please Login. Click 'OK' to go to the Login page or 'Cancel' to stay."
+                   );
+                     if (userConfirmed) {
+                  navigate("/Login"); // Navigate to the login page
+                        }
+                } else if (subs !=="subscribe") {
+                window.alert("You do not have an active subscription. Please subscribe to access this article.");
+               } else {
+                navigate(`/ArticalList/${blog.magazine_id}`);
+                }
+                    }}>
                               {blog.title}
-                            </Link>
+                            </a>
                           </h3>
                           <div className="blog-meta">
                             <a >

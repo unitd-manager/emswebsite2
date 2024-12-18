@@ -151,7 +151,7 @@ const Shop = () => {
             <div className="col-12">
               <form action="#" className="woocommerce-form-login">
                 <div className="form-group">
-                  <label>email *</label>
+                  <label>Email *</label>
                   <input
                     type="text"
                     name="email"
@@ -189,9 +189,9 @@ const Shop = () => {
                     Login
                   </button>
                   <p className="mt-3 mb-0">
-                    <a className="text-reset" href="#">
+                    {/* <a className="text-reset" href="#">
                       Lost your password?
-                    </a>
+                    </a> */}
                   </p>
                 </div>
               </form>

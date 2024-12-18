@@ -46,7 +46,7 @@ const Shop = () => {
     );
     if (userConfirmed) {
       api
-        .post("/contact/deleteCartItem", { basket_id: item.basket_id })
+        .post("/contact/deleteCartItem", { basket_id: item })
         .then(() => {
           window.confirm("Selected item is deleted");
           window.location.reload();
@@ -175,7 +175,7 @@ Cart Area
                     </td>
                     <td data-title="Remove">
                       <a
-                        href="#"
+                        
                         className="remove"
                         onClick={() => handleRemoveItem(product.basket_id)}
                       >

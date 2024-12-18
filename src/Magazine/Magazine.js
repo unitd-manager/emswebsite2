@@ -8,8 +8,10 @@ import "../assets/css/slick.min.css";
 import "../assets/css/magnific-popup.min.css";
 import "../assets/css/bootstrap.min.css";
 import "../assets/css/style.css.map";
-import about from "../assets/img/Vappa nayagam.png";
+import about from "../assets/img/magazine.jpg";
 import emsbanner from "../assets/img/EmsBanner.jpg";
+import Login from "../auth/Login"
+import Popup from "./PopUp";
 
 const Magazine = () => {
   const navigate = useNavigate();
@@ -24,13 +26,31 @@ const Magazine = () => {
   const [selectedYear, setSelectedYear] = useState("");
   const [selectedMonth, setSelectedMonth] = useState("");
   const defaultImage = "https://via.placeholder.com/680x200?text=No+Image+Available";
-
+  const [subs, setSubs] = useState("");
+  
+  console.log('subs',subs)
 
   useEffect(() => {
     getMagazine();
     getMagazineMostRead();
     getYear();
     getmonth();
+  }, []);
+  
+  const contactId = user?.contact_id
+  
+  useEffect(() => {
+    const getContactById = () => {
+      api
+        .post('/contact/getContactsById', { contact_id: user?.contact_id })
+        .then((res) => {
+          setSubs(res.data.data[0].subs_payment_status);
+        })
+        .catch(() => {
+        });
+    };
+  
+    getContactById();
   }, []);
 
   const clearFilters = () => {
@@ -82,14 +102,14 @@ const Magazine = () => {
       });
   };
 
-  if (!user || !user.contact_id) {
-    const userConfirmed = window.confirm(
-      "Please Login. Click 'OK' to go to the Login page or 'Cancel' to stay."
-    );
-    if (userConfirmed) {
-      navigate("/Login");
-    }
-  }
+  // if (!user || !user.contact_id) {
+  //   const userConfirmed = window.confirm(
+  //     "Please Login. Click 'OK' to go to the Login page or 'Cancel' to stay."
+  //   );
+  //   if (userConfirmed) {
+  //     navigate("/Login");
+  //   }
+  // }
 
   const applyFilters = () => {
     let filteredData = [...magazine];
@@ -138,6 +158,10 @@ const Magazine = () => {
 
   return (
     <>
+    {contactId ? (
+    <>
+     {subs ==='subscribe' ? (
+
       <section className="space-bottom" style={{ marginTop: 52 }}>
         <div className="container">
           <div className="row">
@@ -327,6 +351,16 @@ const Magazine = () => {
           </div>
         </div>
       </section>
+     ):(
+     
+       <Popup></Popup>
+     )}
+    </>
+    ):(
+
+      <Login ></Login>
+
+    )}
     </>
   );
 };

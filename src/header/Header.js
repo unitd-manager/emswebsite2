@@ -9,8 +9,10 @@ import logoFooter from "../assets/img/logo-footer.svg";
 import logoFooterBlack from "../assets/img/logo-footer-black.svg";
 import logwhite from "../assets/img/logo Ems.png";
 import logosvg from "../assets/img/logo.svg";
+
 import api from "../constants/api";
 import "../assets/css/event.css";
+
 
 
 const Home = () => {
@@ -404,6 +406,13 @@ const Home = () => {
             <div className="header-links">
               <ul>
                 <li>
+                {user ? (
+              <div style={{ padding: "10px", textAlign: "left", fontWeight: "bold"}}>
+                Welcome, {user.first_name}!
+              </div>
+            ) : null}
+                </li>
+                <li>
                   <i className="fal fa-calendar-days" />
                   <a>{currentDate}</a>
                 </li>
@@ -414,19 +423,31 @@ const Home = () => {
           <div className="col-auto">
   <div className="header-links">
   <ul style={{ listStyle: "none", padding: "0", margin: "0" }}>
-      {/* User Icon with Dropdown */} 
+      {/* User Icon with Dropdown */}
+     
+     
+      <li className="d-none d-sm-inline-block">
+    <i className="fas fa-book-open" />
+            <Link to="/Magazine">Magazine</Link>
+          </li>
+          
+      <li>
+        <i className="far fa-envelope" />
+        <a href="mailto:info@emsmedia.net">info@emsmedia.net</a>
+      </li>
       <li style={{ display: "inline-block", position: "relative" }}>
       <button
           onClick={toggleDropdown}
           style={{
             background: "none",
             border: "none",
-            fontSize: "24px",
+            fontSize: "14px",
             cursor: "pointer",
-            color: "#ff6347" // Bright red color for the user icon
+             // Bright red color for the user icon
           }}
         >
-          <i className="far fa-user" /> {/* Font Awesome User Icon */}
+            <i className="far fa-user" /> 
+            {/* Font Awesome User Icon */}
         </button>
 
    
@@ -460,7 +481,7 @@ const Home = () => {
           >
             {/* Display Welcome message if user is logged in
             {user ? (
-              <li style={{ padding: "10px", textAlign: "left", fontWeight: "bold" }}>
+              <div style={{ padding: "10px", textAlign: "left", fontWeight: "bold" }}>
                 Welcome, {user.first_name}!
               </div>
             ) : null} */}
@@ -481,11 +502,6 @@ const Home = () => {
               </>
             ) : (
               <>
-              {/* {user ? (
-              <div style={{ padding: "10px", textAlign: "left", fontWeight: "bold" ,color: "#ff6347"}}>
-                Welcome, {user.first_name}!
-              </div>
-            ) : null} */}
                 <li style={{ padding: "10px", textAlign: "left" }}>
                   <Link
                     to="#"
@@ -504,20 +520,6 @@ const Home = () => {
             )}
           </div>
         )}
-      </li>
-      {user ? (
-              <li style={{  textAlign: "center", fontWeight: "bold" ,color:"red"}}>
-                Welcome, {user.first_name}!
-              </li>
-            ) : null}
-      <li className="d-none d-sm-inline-block">
-    <i className="fas fa-book-open" />
-            <Link to="/Magazine">Magazine</Link>
-          </li>
-      {/* Always show the email link */}
-      <li>
-        <i className="far fa-envelope" />
-        <a href="mailto:info@emsmedia.net">info@emsmedia.net</a>
       </li>
     </ul>
   </div>

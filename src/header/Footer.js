@@ -55,7 +55,7 @@ const Home = () => {
                   <div className="menu-all-pages-container">
                     <ul className="menu">
                       <li>
-                      <Link to="/">EMS Magazine</Link>
+                      <Link to="/Magazine">EMS Magazine</Link>
                       </li>
                       <li>
                       <Link to="/">Awniyya Books Store</Link>
@@ -64,10 +64,10 @@ const Home = () => {
                       <Link to="/">Yaseenrali</Link>
                       </li>
                       <li>
-                      <Link to="/">EMS Web TV channel</Link>
+                      <Link to="https://www.youtube.com/@EMSMEDIA">EMS Web TV channel</Link>
                       </li>
                       <li>
-                      <Link to="/">EMS Media</Link>
+                      <Link to="https://emsnew.unitdtechnologies.com/#/">EMS Media</Link>
                       </li>
                       <li>
                       <Link to="/">Entertainment</Link>
@@ -94,7 +94,7 @@ const Home = () => {
                       <Link to="நிகழ்ச்சிகள்/ஆடியோ">ஆடியோ</Link>
                       </li>
                       <li>
-                      <Link to="nigazhchigal/nigazhvugal">நிகழ்வுகள்</Link>
+                      <Link to="நிகழ்ச்சிகள்/நிகழ்வுகள்">நிகழ்வுகள்</Link>
                       </li>
                       <li>
                         <Link to="/contact">Contact Us</Link>
@@ -105,11 +105,11 @@ const Home = () => {
               </div>
               <div className="col-md-6 col-xl-auto">
                 <div className="widget footer-widget">
-                  <h3 className="widget_title">Recent Posts</h3>
+                  <h3 className="widget_title">About</h3>
                   <div className="recent-post-wrap">
                     <div className="recent-post">
                       <div className="media-img">
-                        <Link to="/">
+                        <Link to={`/va/:${'வாப்பாநாயகம்'}`}>
                           <img
                             src={about}
                             alt="Blog Image"
@@ -118,7 +118,7 @@ const Home = () => {
                       </div>
                       <div className="media-body">
                         <h4 className="post-title">
-                          <Link className="hover-line" to="/">
+                          <Link className="hover-line" to={`/va/:${'வாப்பாநாயகம்'}`}>
                           அஸ்ஸெய்யித் கலீல் அவ்ன் மௌலானா
                           </Link>
                         </h4>
@@ -132,7 +132,7 @@ const Home = () => {
                     </div>
                     <div className="recent-post">
                       <div className="media-img">
-                        <Link to="/">
+                        <Link  to={`/tha/:${'தந்தைநாயகம்'}`}>
                           <img
                             src={about1}
                             alt="Blog Image"
@@ -141,7 +141,7 @@ const Home = () => {
                       </div>
                       <div className="media-body">
                         <h4 className="post-title">
-                          <Link className="hover-line" to="/">
+                          <Link className="hover-line" to={`/tha/:${'தந்தைநாயகம்'}`}>
                           ஜமாலிய்யா அஸ்ஸெய்யித் யாஸீன் மௌலானா
                           </Link>
                         </h4>
