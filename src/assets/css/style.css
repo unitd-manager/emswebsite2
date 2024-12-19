@@ -9182,6 +9182,11 @@ table.woocommerce-product-attributes {
   .sidemenu-wrapper.show .sidemenu-content {
    width:450px
   }
+
+  .dropdown-item {
+  
+    font-size: 12px;
+  }
 }
 
 /*------------------- 4.00. Cart  -------------------*/
