@@ -17,9 +17,13 @@ function Pugaipadangal() {
     value: "All",
     label: "All",
   });
+
+  console.log('categoryFilter',categoryFilter)
+  console.log('areaFilter',areaFilter)
   const [searchQuery, setSearchQuery] = useState("");
   const [fromDate, setFromDate] = useState(null);
   const [toDate, setToDate] = useState(null);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(null);
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
@@ -28,15 +32,15 @@ function Pugaipadangal() {
   const [popupVisible, setPopupVisible] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
 
-  const openPopup = (imageData) => {
-    setSelectedImage(imageData);
-    setPopupVisible(true);
-  };
+  // const openPopup = (imageData) => {
+  //   setSelectedImage(imageData);
+  //   setPopupVisible(true);
+  // };
 
-  const closePopup = () => {
-    setSelectedImage(null);
-    setPopupVisible(false);
-  };
+  // const closePopup = () => {
+  //   setSelectedImage(null);
+  //   setPopupVisible(false);
+  // };
 
   const getValuelistCountry = () => {
     api
@@ -74,8 +78,10 @@ function Pugaipadangal() {
     setCategoryFilter(selectedOption || { value: "All", label: "All" });
   };
   const handleCategoryChanges = (selectedOption) => {
+    console.log("Selected City:", selectedOption);
     setAreaFilter(selectedOption || { value: "All", label: "All" });
   };
+  
   const handleDateChange = (event) => {
     const { name, value } = event.target;
     if (name === "fromDate") {
@@ -93,18 +99,18 @@ function Pugaipadangal() {
   };
 
   useEffect(() => {
-    const getGallery = () => {
-      api
-        .get("/content/getPhotoGallery")
-        .then((res) => {
-          setGallery(res.data.data);
-        })
-        .catch((error) => {
-          console.log("Error fetching data:", error);
-        });
-    };
-    getGallery();
+    api.get("/content/getPhotoGallerys")
+      .then((res) => {
+        console.log("Gallery Data:", res.data.data); // Check the structure
+        setGallery(res.data.data);
+      })
+      .catch((error) => {
+        console.log("Error fetching data:", error);
+      });
   }, []);
+
+  
+  
 
   const applyFilters = () => {
     let filteredData = [...gallery];
@@ -116,10 +122,16 @@ function Pugaipadangal() {
     }
 
     if (areaFilter.value !== "All") {
-      filteredData = filteredData.filter(
-        (item) => item.upload_city === areaFilter.label
-      );
+      filteredData = filteredData.filter((item) => {
+        console.log("Checking item city:", item.upload_city, "against", areaFilter.label);
+        return (
+          item.upload_city &&
+          item.upload_city.trim().toLowerCase() === areaFilter.label.trim().toLowerCase()
+        );
+      });
     }
+    
+    
 
     if (fromDate && toDate) {
       filteredData = filteredData.filter((item) => {
@@ -146,15 +158,15 @@ function Pugaipadangal() {
   const filteredGallery = applyFilters();
   
 
-  const totalPages = Math.ceil(filteredGallery.length / itemsPerPage);
+ 
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const visibleGallery = filteredGallery.slice(startIndex, endIndex);
+  // const startIndex = (currentPage - 1) * itemsPerPage;
+  // const endIndex = startIndex + itemsPerPage;
+  // const visibleGallery = filteredGallery.slice(startIndex, endIndex);
 
   useEffect(() => {
     getValuelistCountry();
@@ -175,6 +187,28 @@ function Pugaipadangal() {
       ...base,
       minWidth: "100px", // Retained as is
     }),
+  };
+
+ 
+  const totalPages = Math.ceil(filteredGallery.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const visibleGallery = filteredGallery.slice(startIndex, endIndex);
+
+  const openPopup = (index) => {
+    setSelectedImageIndex(index);
+  };
+
+  const closePopup = () => {
+    setSelectedImageIndex(null);
+  };
+
+  const goToPrevious = () => {
+    setSelectedImageIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : gallery.length - 1));
+  };
+
+  const goToNext = () => {
+    setSelectedImageIndex((prevIndex) => (prevIndex < gallery.length - 1 ? prevIndex + 1 : 0));
   };
 
   return (
@@ -301,17 +335,18 @@ function Pugaipadangal() {
                     <img
                       src={`https://emsmedia.net/storage/uploads/${item.file_name}`}
                       alt={item.title}
+                      onClick={() => openPopup(startIndex + index)}
                     />
                     <Link
                       data-theme-color="#4E4BD0"
-                      onClick={() => openPopup(item)}
+                      onClick={() => openPopup(startIndex + index)}
                       className="category"
                     >
                       {item.category_title}
                     </Link>
                   </div>
                   <h3 className="box-title-18">
-                    <Link className="hover-line" onClick={() => openPopup(item)}>
+                    <Link className="hover-line" onClick={() => openPopup(startIndex + index)}>
                       {item.title}
                     </Link>
                   </h3>
@@ -367,7 +402,7 @@ function Pugaipadangal() {
           </div>
         </div>
       </section>
-      {popupVisible && selectedImage && (
+      {/* {popupVisible && selectedImage && (
         <div className="popup" style={popupStyles}>
           <div className="popup-content" style={popupContentStyles}>
             <button
@@ -384,10 +419,54 @@ function Pugaipadangal() {
             <h5>{selectedImage.title}</h5>
           </div>
         </div>
+      )} */}
+       {selectedImageIndex !== null && (
+        <div className="popup" style={popupStyles}>
+          <div className="popup-content" style={popupContentStyles}>
+            <button onClick={closePopup} style={closeButtonStyles}>X</button>
+            <button onClick={goToPrevious} style={navButtonStyles}>&lt;</button>
+            <img
+              src={`https://emsmedia.net/storage/uploads/${gallery[selectedImageIndex].file_name}`}
+              alt={gallery[selectedImageIndex].title}
+              style={{ maxWidth: "100%", maxHeight: "80vh" }}
+            />
+            <button onClick={goToNext} style={navButtonStylesRight}>&gt;</button>
+          </div>
+        </div>
       )}
     </>
   );
 }
+
+// const popupStyles = {
+//   position: "fixed",
+//   top: 0,
+//   left: 0,
+//   width: "100%",
+//   height: "100%",
+//   backgroundColor: "rgba(0, 0, 0, 0.5)",
+//   display: "flex",
+//   justifyContent: "center",
+//   alignItems: "center",
+//   zIndex: 1000,
+// };
+
+// const popupContentStyles = {
+//   backgroundColor: "#fff",
+//   padding: "20px",
+//   borderRadius: "8px",
+//   textAlign: "center",
+// };
+
+// const closeButtonStyles = {
+//   position: "absolute",
+//   top: "10px",
+//   right: "10px",
+//   background: "none",
+//   border: "none",
+//   fontSize: "20px",
+//   cursor: "pointer",
+// };
 
 const popupStyles = {
   position: "fixed",
@@ -407,6 +486,7 @@ const popupContentStyles = {
   padding: "20px",
   borderRadius: "8px",
   textAlign: "center",
+  position: "relative",
 };
 
 const closeButtonStyles = {
@@ -417,6 +497,30 @@ const closeButtonStyles = {
   border: "none",
   fontSize: "20px",
   cursor: "pointer",
+};
+
+const navButtonStyles = {
+  position: "absolute",
+  top: "50%",
+  transform: "translateY(-50%)",
+  background: "rgba(0, 0, 0, 0.5)",
+  color: "white",
+  border: "none",
+  fontSize: "24px",
+  cursor: "pointer",
+  padding: "10px",
+};
+const navButtonStylesRight = {
+  position: "absolute",
+  top: "50%",
+  right: '20px',
+  transform: "translateY(-50%)",
+  background: "rgba(0, 0, 0, 0.5)",
+  color: "white",
+  border: "none",
+  fontSize: "24px",
+  cursor: "pointer",
+  padding: "10px",
 };
 
 export default Pugaipadangal;

@@ -22,20 +22,20 @@ const VideoPlaylist = () => {
   const [modalVideo, setModalVideo] = useState(null); // Track video for the modal
 
   useEffect(() => {
-    // Fetch video data from API
+    setLoading(true);
     api
-      .post("/content/getVideoUrls")
+      .get("/content/getVideoForweb", { limit: 10 }) // limit parameter add பண்ணுறது
       .then((res) => {
-        const fetchedVideos = res.data.data || [];
+        const fetchedVideos = res.data.data?.slice(0, 10) || []; // Safety check, 10 items மட்டும் எடுக்குறது
         setVideoData(fetchedVideos);
         setVideos(fetchedVideos);
-        setLoading(false);
       })
       .catch((err) => {
         console.error("Error fetching videos:", err);
-        setLoading(false);
-      });
+      })
+      .finally(() => setLoading(false));
   }, []);
+  
 
   // Show loading spinner
   if (loading) {
@@ -94,6 +94,10 @@ const VideoPlaylist = () => {
       {/* Modal for YouTube Video */}
       {modalVideo && (
         <div className="modal-overlay">
+        <button className="modal-close" onClick={() => setModalVideo(null)}>
+  ×
+</button>
+  
           <div className="modal-content">
             <button className="modal-close" onClick={() => setModalVideo(null)}>
               ×
@@ -131,7 +135,7 @@ const TabButton = React.memo(({ video, isActive, onClick }) => (
  
   >
     <div className="blog-style2">
-      <div className="blog-img img-100">
+      <div className="blog-img img-200">
         <img
           src={`https://emsmedia.net/storage/uploads/${video.file_name}`}
           alt={video.title || "Video Thumbnail"}
@@ -183,13 +187,13 @@ const VideoCard = React.memo(({ video, onPlay }) => (
       </a>
     </h3>
     <div className="blog-meta">
-      <a
+      {/* <a
         data-theme-color={video.categoryColor || "#000"}
        
         className="category"
       >
         {video.category || "Unknown Category"}
-      </a>
+      </a> */}
       <a>
         <i className="far fa-user" /> By - EMS Media
       </a>

@@ -7,7 +7,7 @@ import { getCart } from "../common/headerCartApi";
 import { getUser } from "../common/user";
 import logoFooter from "../assets/img/logo-footer.svg";
 import logoFooterBlack from "../assets/img/logo-footer-black.svg";
-import logwhite from "../assets/img/logo Ems.png";
+import logwhite from "../assets/img/logo Emss.png";
 import logosvg from "../assets/img/logo.svg";
 
 import api from "../constants/api";
@@ -364,12 +364,12 @@ const Home = () => {
               </div>
             ) : null} */}
 
-                        <button
+                        {/* <button
                           type="button"
                           className="simple-icon searchBoxToggler"
                         >
                           <i className="far fa-search" />
-                        </button>
+                        </button> */}
                         <button
                           type="button"
                           className="simple-icon d-none d-lg-block cartToggler"

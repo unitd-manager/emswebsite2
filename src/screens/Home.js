@@ -30,6 +30,7 @@ import college4 from "../assets/img/college4.jpeg"
 
 import api from "../constants/api";
 import '../assets/css/event.css'
+import '../assets/css/event1.css'
 
 
 const Home = () => {
