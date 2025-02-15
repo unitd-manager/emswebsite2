@@ -7541,7 +7541,7 @@ ul.comment-list:has(> .th-comment-item ~ .th-comment-item):first-child > .th-pos
   top: 20px;
   right: 90px;
   background-color: var(--body-bg);
-  border-radius: 50%;
+  border-radius: 20%;
   -webkit-transform: rotate(0);
       -ms-transform: rotate(0);
           transform: rotate(0);
@@ -9233,7 +9233,7 @@ table.woocommerce-product-attributes {
     max-width: 130px;
   }
   .closeButton.sideMenuCls {
-    right: 125px;
+    right: 25px;
   }
   .sidemenu-wrapper.show .sidemenu-content {
    width:450px;
@@ -11001,7 +11001,7 @@ span.select2-selection.select2-selection--single:focus {
     line-height: 21px;
   }
   .closeButton.sideMenuCls {
-    right: 100px;
+    right: 40px;
   }
   .sidemenu-wrapper.show .sidemenu-content {
     width:450px
