@@ -32,9 +32,9 @@ const Shop = () => {
     setCartItems(cart);
   };
 
-  useEffect(()=>{
-    loadCart()
-  })
+  useEffect(() => {
+    loadCart();
+  }, []);
  
   const getTotalPrice = () => {
     return CartItem.reduce((total, item) => total + item.price * item.qty, 0);
@@ -199,7 +199,7 @@ Cart Area
                     {/* <button type="submit" className="th-btn">
                       Update cart
                     </button> */}
-                    <Link to="/ShopList" className="th-btn">
+                    <Link to="/ShopList/ShopList" className="th-btn">
                       Continue Shopping
                     </Link>
                   </td>

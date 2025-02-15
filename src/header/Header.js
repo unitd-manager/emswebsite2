@@ -34,7 +34,7 @@ const Home = () => {
 
   useEffect(()=>{
     loadCart()
-  })
+  }, [CartItem]);
 
   
   const logout = () => {
@@ -516,6 +516,11 @@ const Home = () => {
                     Profile
                   </Link>
                 </li>
+                {/* <li style={{ padding: "10px", textAlign: "left" }}>
+                  <Link to="/Orders" style={{ textDecoration: "none", color: "#333" }}>
+                    My Orders
+                  </Link>
+                </li> */}
               </>
             )}
           </div>

@@ -15,6 +15,8 @@ const Shop = () => {
   const cartData = location.state?.cartData || [];
   const [orderDetail, setOrderDetail] = useState({});
   const [allcountries, setallCountries] = useState();
+
+  console.log('cartData',cartData)
   const getAllCountries = () => {
     api
       .get("/commonApi/getCountry")
@@ -73,6 +75,7 @@ const Shop = () => {
                 order_id: orderId,
                 cost_price: item.qty * item.price,
                 item_title: item.title,
+                product_id: item.product_id,
               });
             })
           )

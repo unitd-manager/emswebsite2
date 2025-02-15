@@ -144,7 +144,7 @@ const TabButton = React.memo(({ video, isActive, onClick }) => (
           <i className="fal fa-waveform-lines" />
         </div>
       </div>
-      <div className="blog-content">
+      <div className="blog-content videoPanel">
         {/* <a
           data-theme-color={video.categoryColor || "#000"}
           href="blog.html"
@@ -152,7 +152,7 @@ const TabButton = React.memo(({ video, isActive, onClick }) => (
         >
           {video.category || "Unknown Category"}
         </a> */}
-        <h3 className="box-title-20">
+        <h3 className="box-title-20 videoPanelFont">
           <a className="hover-line">
             {video.title || "Untitled"}
           </a>
@@ -176,6 +176,12 @@ const VideoCard = React.memo(({ video, onPlay }) => (
       <img
         src={`https://emsmedia.net/storage/uploads/${video.file_name}`}
         alt={video.title || "Video Thumbnail"}
+        style={{ 
+          width: '100%', /* Column width-க்கு fit ஆகும் */
+          height: '500px', /* Set a fixed height */
+          objectFit: 'cover', /* Crop and fit the image */
+          borderRadius: '10px' /* Optional: Rounded corners */
+        }}
       />
       <button className="play-btn" onClick={onPlay}>
         <i className="fas fa-play" />

@@ -94,6 +94,7 @@ import ThoguppugalSubCategory1 from "../src/screens/ThoguppugalSubcategory1";
 import ThoguppugalSubCategory2 from "../src/screens/ThoguppugalSubcategory2";
 
 import ShopList from "./BookShop/ShopList";
+import Orders from "./BookShop/Orders";
 import BooksMenu from "./Menu/BooksMenu";
 import FromBookList from "./BookShop/FromBookList";
 import PublicationReview from "./BookShop/PublicationReview"
@@ -194,6 +195,7 @@ function App() {
           <Route path="/Login" element={<Login />} />
           <Route path="/Register" element={<Register />} />
           <Route path="/Profile" element={<Profile />} />
+          <Route path="/Orders" element={<Orders />} />
 
             {/* thoguppugalmenu*/}
           <Route path="/Collections/:Collections" element={<Thoguppugal/>} />
