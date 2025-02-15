@@ -1,43 +1,47 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import api from "../constants/api";
-import { FaChevronDown, FaChevronRight } from "react-icons/fa"; // Import icons
+import { FaChevronDown, FaChevronRight } from "react-icons/fa";
 
 function Navbar() {
   const [sections, setSections] = useState([]);
   const [categories, setCategories] = useState([]);
   const [subCategories, setSubCategories] = useState([]);
-  const [openSections, setOpenSections] = useState({}); // Track open sections
-  const [openCategories, setOpenCategories] = useState({}); // Track open categories
+  const [openSections, setOpenSections] = useState({});
+  const [openCategories, setOpenCategories] = useState({});
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
-    // Fetch sections
     api.get("/section/getSectionMenu")
       .then((res) => setSections(res.data.data))
       .catch((error) => console.error("Error fetching sections:", error));
 
-    // Fetch categories
     api.get("/category/getCategories")
       .then((res) => setCategories(res.data.data))
       .catch((error) => console.error("Error fetching categories:", error));
 
-    // Fetch subcategories
     api.get("/subcategory/getSubCategory")
       .then((res) => setSubCategories(res.data.data))
       .catch((error) => console.error("Error fetching subcategories:", error));
   }, []);
 
-  // Toggle categories under a section
+  // Toggle sections (click-based for both desktop & mobile)
   const toggleSection = (event, sectionId) => {
-    event.stopPropagation(); // Prevent parent clicks from triggering
-    setOpenSections((prev) => ({ ...prev, [sectionId]: !prev[sectionId] }));
+    event.stopPropagation();
+    setOpenSections((prev) => ({
+      ...prev,
+      [sectionId]: !prev[sectionId],
+    }));
   };
 
-  // Toggle subcategories under a category
+  // Toggle categories
   const toggleCategory = (event, categoryId) => {
-    event.stopPropagation(); // Prevent parent clicks from triggering
-    setOpenCategories((prev) => ({ ...prev, [categoryId]: !prev[categoryId] }));
+    event.stopPropagation();
+    event.preventDefault();
+    setOpenCategories((prev) => ({
+      ...prev,
+      [categoryId]: !prev[categoryId],
+    }));
   };
 
   // Filter categories for a specific section
@@ -56,36 +60,34 @@ function Navbar() {
         <ul>
           {sections.map((section) => (
             <li key={section.section_id} className="menu-item-has-children">
-              {/* Section Title (Navigates) */}
               <div className="section-container">
-  <Link to={`/${section.routes}`} className="nav-link">
-    {section.section_title}
-  </Link>
-  <span className="dropdown-icon" onClick={(event) => toggleSection(event, section.section_id)}>
-    {openSections[section.section_id] ? <FaChevronDown /> : <FaChevronRight />}
-  </span>
-</div>
-
+                <Link to={`/${section.routes}`} className="nav-link">
+                  {section.section_title}
+                </Link>
+                <span className="dropdown-icon" onClick={(event) => toggleSection(event, section.section_id)}>
+                  {openSections[section.section_id] ? <FaChevronDown /> : <FaChevronRight />}
+                </span>
+              </div>
 
               {/* Show Categories if Section is Open */}
               {openSections[section.section_id] && (
                 <ul className="sub-menu">
                   {getCategoriesForSection(section.section_id).map((category) => (
                     <li key={category.category_id}>
-                      {/* Category Title (Navigates) */}
-                      <Link to={`/${category.routes}`} className="dropdown-item">
-                        {category.category_title}
-                      </Link>
+                        <Link to={`/${category.routes}`} className="dropdown-item">
+                          {category.category_title}
+                        </Link>
 
-                      {/* Category Toggle Icon (Toggles Subcategory Dropdown) */}
-                      {getSubCategoriesForCategory(category.category_id).length > 0 && (
-                        <span
-                          className="icon"
-                          onClick={(event) => toggleCategory(event, category.category_id)} // Prevents menu closing
-                        >
-                          {openCategories[category.category_id] ? <FaChevronDown /> : <FaChevronRight />}
-                        </span>
-                      )}
+                        {/* Toggle Icon for Categories */}
+                        {getSubCategoriesForCategory(category.category_id).length > 0 && (
+                          <span
+                            className="dropdown-icon1"
+                            onClick={(event) => toggleCategory(event, category.category_id)}
+                          >
+                            {openCategories[category.category_id] ? <FaChevronDown /> : <FaChevronRight />}
+                          </span>
+                        )}
+                     
 
                       {/* Show Subcategories if Category is Open */}
                       {openCategories[category.category_id] && (
@@ -93,7 +95,12 @@ function Navbar() {
                           {getSubCategoriesForCategory(category.category_id).map((subcategory) => (
                             <li key={subcategory.sub_category_id}>
                               {subcategory.external_link ? (
-                                <a href={subcategory.external_link} className="dropdown-item" target="_blank" rel="noopener noreferrer">
+                                <a
+                                  href={subcategory.external_link}
+                                  className="dropdown-item"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
                                   {subcategory.sub_category_title}
                                 </a>
                               ) : (
