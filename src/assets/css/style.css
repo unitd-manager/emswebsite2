@@ -278,6 +278,8 @@ p {
   border-radius: 30px; /* Rounded corners */
   cursor: pointer;
   transition: background 0.3s;
+      position: relative;
+    top: 9px;
 }
 
 .dropdown-icon:hover {
