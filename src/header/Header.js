@@ -304,25 +304,46 @@ const Home = () => {
                       </div>
                     </div>
                     <div className="col-xl-3 text-end d-none d-xl-block">
-                      <div className="social-links">
-                        <span className="social-title">Follow Us :</span>
-                        <a href="https://www.facebook.com/">
-                          <i className="fab fa-facebook-f" />
-                        </a>
-                        <a href="https://www.twitter.com/">
-                          <i className="fab fa-twitter" />
-                        </a>
-                        <a href="https://www.linkedin.com/">
-                          <i className="fab fa-linkedin-in" />
-                        </a>
-                        <a href="https://www.instagram.com/">
-                          <i className="fab fa-instagram" />
-                        </a>
-                        <a href="https://www.youtube.com/">
-                          <i className="fab fa-youtube" />
-                        </a>
-                      </div>
-                    </div>
+  <div className="social-links">
+    <span className="social-title">Follow Us :</span>
+    <a
+      href="https://www.facebook.com/emsabaimedia"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <i className="fab fa-facebook-f" />
+    </a>
+    <a
+      href="https://x.com/media_ems"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <i className="fab fa-twitter" />
+    </a>
+    <a
+      href="https://www.linkedin.com/in/ems-media-65725a368"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <i className="fab fa-linkedin-in" />
+    </a>
+    <a
+      href="https://www.instagram.com/emsabaimedia"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <i className="fab fa-instagram" />
+    </a>
+    <a
+      href="https://www.youtube.com/emsmedia"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <i className="fab fa-youtube" />
+    </a>
+  </div>
+</div>
+
                   </div>
                 </div>
                 {/* Main Menu Area */}
