@@ -265,6 +265,21 @@ p {
   border-radius: 30px; /* Rounded corners */
   cursor: pointer;
   transition: background 0.3s;
+  margin-right: -350px;
+}
+
+.dropdown-icon1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 20px;
+  border: 1px solid #ccc; /* Border for the icon */
+  border-radius: 30px; /* Rounded corners */
+  cursor: pointer;
+  transition: background 0.3s;
+      position: relative;
+    top: 9px;
 }
 
 .dropdown-icon:hover {
@@ -7528,7 +7543,7 @@ ul.comment-list:has(> .th-comment-item ~ .th-comment-item):first-child > .th-pos
   top: 20px;
   right: 90px;
   background-color: var(--body-bg);
-  border-radius: 50%;
+  border-radius: 20%;
   -webkit-transform: rotate(0);
       -ms-transform: rotate(0);
           transform: rotate(0);
@@ -9220,10 +9235,11 @@ table.woocommerce-product-attributes {
     max-width: 130px;
   }
   .closeButton.sideMenuCls {
-    right: 125px;
+    right: 25px;
   }
   .sidemenu-wrapper.show .sidemenu-content {
-   width:450px
+   width:450px;
+   margin-left: -85px;
   }
 
   .dropdown-item {
@@ -10987,7 +11003,7 @@ span.select2-selection.select2-selection--single:focus {
     line-height: 21px;
   }
   .closeButton.sideMenuCls {
-    right: 100px;
+    right: 40px;
   }
   .sidemenu-wrapper.show .sidemenu-content {
     width:450px
