@@ -28,20 +28,26 @@ function Navbar() {
   // Toggle sections (click-based for both desktop & mobile)
   const toggleSection = (event, sectionId) => {
     event.stopPropagation();
-    setOpenSections((prev) => ({
-      ...prev,
-      [sectionId]: !prev[sectionId],
-    }));
+    event.preventDefault();
+    setOpenSections((prev) => {
+      const newState = { ...prev };
+      // Toggle only the clicked section without affecting other sections
+      newState[sectionId] = !prev[sectionId];
+      return newState;
+    });
+    // Don't reset categories when toggling sections
   };
 
   // Toggle categories
   const toggleCategory = (event, categoryId) => {
     event.stopPropagation();
     event.preventDefault();
-    setOpenCategories((prev) => ({
-      ...prev,
-      [categoryId]: !prev[categoryId],
-    }));
+    setOpenCategories((prev) => {
+      const newState = { ...prev };
+      // Toggle only the clicked category without affecting other categories
+      newState[categoryId] = !prev[categoryId];
+      return newState;
+    });
   };
 
   // Filter categories for a specific section
