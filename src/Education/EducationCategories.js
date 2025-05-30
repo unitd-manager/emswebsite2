@@ -55,13 +55,6 @@ const BlogCard = () => {
                 <a href="#"><i className="fal fa-calendar-days"></i> {blogPosts[activeTab].content_date}</a>
                 <span><i className="far fa-book-open"></i> 5 Mins Read</span>
               </div>
-              {/* <div className="blog-img mb-40">
-                <img
-                  src={`https://emsmedia.net/storage/uploads/${blogPosts[activeTab]?.file_name}`}
-                  alt={blogPosts[activeTab].title}
-                  style={{ width: "100%", height: "auto" }}
-                />
-              </div> */}
             </div>
 
             <div className="col-xxl-9 col-lg-10">
@@ -74,24 +67,29 @@ const BlogCard = () => {
                   </div>
                   <div className="blog-content">
                     <div className="content">
-                      {/* Render description */}
-                      <div
+                      {/* Extract and show ONLY ONE PDF */}
+                      {(() => {
+                        const match = blogPosts[activeTab].description.match(/(https?:\/\/[^\s"]+\.pdf)/i);
+                        if (match) {
+                          return (
+                            <div className="mt-4">
+                                <div
                         // dangerouslySetInnerHTML={{ __html: blogPosts[activeTab].description }}
                         
                       >______________________கல்விக்கு உதவிடுவோம் PDF______________________</div>
-
-                      {/* If PDF link is present, embed it */}
-                      {blogPosts[activeTab].description.match(/(https?:\/\/[^\s"]+\.pdf)/gi)?.map((pdfUrl, idx) => (
-                        <div key={idx} className="mt-4">
-                          <iframe
-                            src={pdfUrl}
-                            width="100%"
-                            height="600px"
-                            title={`pdf-${idx}`}
-                            style={{ border: "1px solid #ccc" }}
-                          ></iframe>
-                        </div>
-                      ))}
+                              <iframe
+                                src={match[0]}
+                                width="100%"
+                                height="600px"
+                                title="pdf-viewer"
+                                style={{ border: "1px solid #ccc" }}
+                              ></iframe>
+                            </div>
+                          );
+                        } else {
+                          return <p>PDF link not available.</p>;
+                        }
+                      })()}
                     </div>
                   </div>
                 </div>

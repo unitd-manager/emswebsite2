@@ -163,7 +163,7 @@ Product Area
                 <div className="row justify-content-between align-items-center">
                   <div className="col-md">
                     <p className="woocommerce-result-count">
-                      Showing 1–9 of{products.length}
+                      Showing 1–{currentProducts.length} of{products.length}
                     </p>
                   </div>
                   {/* <div className="col-md-auto">
