@@ -38,11 +38,20 @@ const Shop = () => {
     return cartData.reduce((total, item) => total + item.price * item.qty, 0);
   };
 
+  console.log('total',getTotalPrice())
   const user = getUser();
-  const userContactId = user.contact_id;
+  const userContactId = user?.contact_id;
+  const userfirstname = user?.first_name;
+  const userlastname = user?.last_name;
+  const useremail = user?.email;
+  const useraddress1 = user?.address1;
+  const useraddress2 = user?.address2;
+  const userCity = user?.address_city;
+  const userState = user?.address_state;
+  const userCountry = user?.address_country_code;
+  const userPoCode = user?.address_po_code;
+  const userPhone = user?.mobile;
 
-  console.log('user',user)
-  console.log('userContactId',userContactId)
 
   const removeBacket = async () => {
     try {
@@ -61,6 +70,18 @@ const Shop = () => {
       .post("/orders/insertorders", {
         ...orderDetail,
         contact_id: userContactId,
+        amount:getTotalPrice(),
+        payment_method:'online',
+        cust_first_name: userfirstname,
+        cust_last_name: userlastname,
+        cust_email: useremail,
+        cust_address1: useraddress1,
+        cust_address2: useraddress2,
+        cust_address_city: userCity,
+        cust_address_state: userState,
+        cust_address_country: userCountry,
+        cust_address_po_code: userPoCode,
+        cust_phone: userPhone,
       })
       .then((response) => {
         if (response.status === 200) {
