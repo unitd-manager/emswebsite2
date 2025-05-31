@@ -206,7 +206,7 @@ const Magazine = () => {
                         <img
                           src={
                             featuredBlog.file_name
-                              ? `https://emsmedia.net/storage/uploads/${featuredBlog.file_name}`
+                              ? `https://ems.unitdtechnologies.com/storage/${featuredBlog.file_name}`
                               : defaultImage
                           }
                           alt="blog"

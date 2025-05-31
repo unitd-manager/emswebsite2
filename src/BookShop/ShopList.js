@@ -198,7 +198,7 @@ Product Area
                       <div className="th-product product-grid">
                         <div className="product-img">
                           <img
-                            src={`https://emsmedia.net/storage/uploads/${product.images}`}
+                            src={`https://ems.unitdtechnologies.com/storage/${product.images}`}
                             alt="Product Image"
                             style={{
                               height: "280px",

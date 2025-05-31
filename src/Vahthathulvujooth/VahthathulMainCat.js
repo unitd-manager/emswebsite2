@@ -61,7 +61,7 @@ const Engalai = () => {
                   }}
                 >
                   <img
-                    src={`https://emsmedia.net/storage/uploads/${post.file_name}`}
+                    src={`https://ems.unitdtechnologies.com/storage/${post.file_name}`}
                     alt="blog"
                     style={{
                       width: "100%",

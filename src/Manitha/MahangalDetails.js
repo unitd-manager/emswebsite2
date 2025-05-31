@@ -88,7 +88,7 @@ console.log("categoryDetails",categoryDetails)
           }}
         >
           <img
-            src={`https://emsmedia.net/storage/uploads/${categoryDetails.image}`}
+            src={`https://ems.unitdtechnologies.com/storage/${categoryDetails.image}`}
             alt="Content"
             style={{
               width: "100%",

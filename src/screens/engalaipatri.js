@@ -47,7 +47,7 @@ const Engalai = () => {
                     <div className="blog-style4">
                       <div className="blog-img w-386">
                       <img
-                src={`https://emsmedia.net/storage/uploads/${item.file_name}`}
+                src={`https://ems.unitdtechnologies.com/storage/${item.file_name}`}
                 style={{ width: '500px', objectFit: 'cover' }}
 
               />

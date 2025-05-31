@@ -84,7 +84,7 @@ const DetailPage = () => {
           }}
         >
           <img
-            src={`https://emsmedia.net/storage/uploads/${categoryDetails.file_name}`}
+            src={`https://ems.unitdtechnologies.com/storage/${categoryDetails.file_name}`}
             alt="Content"
             style={{
               width: "100%",

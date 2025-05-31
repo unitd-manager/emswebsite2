@@ -705,7 +705,7 @@ const getHomeProducts = () => {
             <div key={item.content_id} className="single-blog">
               <div className="part-img">
                 <img
-                  src={`https://emsmedia.net/storage/uploads/${item.file_name}`}
+                  src={`https://ems.unitdtechnologies.com/storage/${item.file_name}`}
                   alt={`News ${item.content_id}`}
                 
                 />
@@ -725,7 +725,7 @@ const getHomeProducts = () => {
           banners.map((item, index) => (
             <div key={`thumb_${item.content_id}`} className="thumbnail-img">
               <img
-                src={`https://emsmedia.net/storage/uploads/${item.file_name}`}
+                src={`https://ems.unitdtechnologies.com/storage/${item.file_name}`}
                 alt={`Thumbnail ${item.content_id}`}
                 style={{
                   width: '100%',
@@ -1235,7 +1235,7 @@ const getHomeProducts = () => {
   {/* Render filtered items */}
   {filteredItems.map((item) => {
     const imageUrl = item.images
-      ? `https://emsmedia.net/storage/uploads/${item.images}`
+      ? `https://ems.unitdtechnologies.com/storage/${item.images}`
       : "https://via.placeholder.com/300"; // Fallback placeholder image
     
 
@@ -1305,7 +1305,7 @@ const getHomeProducts = () => {
             <div className="event-card">
               <div className="event-img-container">
                 <img
-                  src={`https://emsmedia.net/storage/uploads/${item.file_name}`}
+                  src={`https://ems.unitdtechnologies.com/storage/${item.file_name}`}
                   alt="Event"
                   className="event-img"
                 />
@@ -1388,7 +1388,7 @@ Blog Area
                 <div className="col-md-6" key={index}>
                   <div className="blog-style2">
                     <div className="blog-img img-big">
-                      <img src={`https://emsmedia.net/storage/uploads/${blog.file_name}`} alt="blog" />
+                      <img src={`https://ems.unitdtechnologies.com/storage/${blog.file_name}`} alt="blog" />
                     </div>
                     <div className="blog-content">
                       <a
@@ -1471,7 +1471,7 @@ Blog Area
                 <div className="mb-4" key={index}>
                   <div className="blog-style4">
                     <div className="blog-img w-270">
-                      <img src={`https://emsmedia.net/storage/uploads/${featuredBlog.file_name}`} alt="blog" />
+                      <img src={`https://ems.unitdtechnologies.com/storage/${featuredBlog.file_name}`} alt="blog" />
                     </div>
                     <div className="blog-content">
                       <a
@@ -1533,7 +1533,7 @@ Blog Area
                     <div className="col-xl-12 col-md-6" key={index}>
                       <div className="blog-style2">
                         <div className="blog-img img-big">
-                          <img src={`https://emsmedia.net/storage/uploads/${blog.file_name}`} alt="blog" />
+                          <img src={`https://ems.unitdtechnologies.com/storage/${blog.file_name}`} alt="blog" />
                         </div>
                         <div className="blog-content">
                           <a

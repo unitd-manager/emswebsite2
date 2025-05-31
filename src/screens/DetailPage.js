@@ -42,7 +42,7 @@ const DetailPage = () => {
                     </div>
                     <div className="blog-img mb-40">
                         <img
-                src={`https://emsmedia.net/storage/uploads/${content.file_name}`}
+                src={`https://ems.unitdtechnologies.com/storage/${content.file_name}`}
                 alt={content.title}
                
               />

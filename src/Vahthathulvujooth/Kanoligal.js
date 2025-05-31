@@ -50,7 +50,7 @@ const BlogSection = () => {
                     <div className="blog-style1">
                       <div className="blog-img">
                         <img
-                          src={`https://emsmedia.net/storage/uploads/${post.file_name}`}
+                          src={`https://ems.unitdtechnologies.com/storage/${post.file_name}`}
                           alt={post.title}
                           style={{
                             width: "100%",

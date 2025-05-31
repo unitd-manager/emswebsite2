@@ -113,7 +113,7 @@ const Magazine = () => {
                 <img
                   src={
                     Artical.file_name
-                      ? `https://emsmedia.net/storage/uploads/${Artical.file_name}`
+                      ? `https://ems.unitdtechnologies.com/storage/${Artical.file_name}`
                       : defaultImage
                   }
                   alt="Blog Image"
@@ -140,7 +140,7 @@ const Magazine = () => {
               {/* <div className="blog-author">
               <div className="auhtor-img">
                 <img
-                  src={`https://emsmedia.net/storage/uploads/${Artical.file_name}`}
+                  src={`https://ems.unitdtechnologies.com/storage/${Artical.file_name}`}
                   alt="Artical Image"
                 />
               </div>
@@ -193,7 +193,7 @@ const Magazine = () => {
                             <img
                               src={
                                 product.file_name
-                                  ? `https://emsmedia.net/storage/uploads/${product.file_name}`
+                                  ? `https://ems.unitdtechnologies.com/storage/${product.file_name}`
                                   : defaultImage
                               }
                               alt={product.title}

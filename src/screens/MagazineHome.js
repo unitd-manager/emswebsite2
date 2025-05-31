@@ -7,7 +7,7 @@ const BlogCard = ({ magazine }) => (
   <div className="col-md-6">
     <div className="blog-style2">
       <div className="blog-img img-big">
-        {/* <img src={`https://emsmedia.net/storage/uploads/${magazine.file_name}`} alt={magazine.title} /> */}
+        {/* <img src={`https://ems.unitdtechnologies.com/storage/${magazine.file_name}`} alt={magazine.title} /> */}
       </div>
       <div className="blog-content">
         <a data-theme-color="#6234AC" href="blog.html" className="category">
@@ -32,7 +32,7 @@ const SidebarCard = ({ item }) => (
   <div className="col-xl-12 col-md-6">
     <div className="blog-style2">
       <div className="blog-img img-big">
-        {/* <img src={`https://emsmedia.net/storage/uploads/${item.file_name}`} alt={item.title} /> */}
+        {/* <img src={`https://ems.unitdtechnologies.com/storage/${item.file_name}`} alt={item.title} /> */}
       </div>
       <div className="blog-content">
         <a data-theme-color="#6234AC" href="blog.html" className="category">

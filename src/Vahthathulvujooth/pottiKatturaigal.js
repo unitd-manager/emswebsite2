@@ -116,7 +116,7 @@ const handleBlogClick = (blog_id) => {
         }}
       >
         <img
-          src={`https://emsmedia.net/storage/uploads/${blogPosts.file_name}`}
+          src={`https://ems.unitdtechnologies.com/storage/${blogPosts.file_name}`}
           alt="Content"
           style={{
             width: "100%",

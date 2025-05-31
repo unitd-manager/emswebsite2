@@ -48,7 +48,7 @@ const ThoguppugalSubCategory = () => {
               <div className={styles.imageContainer}>
                 <CSSTransition in={isLoaded} timeout={500} classNames={styles.slideIn} unmountOnExit>
                   <img
-                    src={`https://emsmedia.net/storage/uploads/${content.file_name}`}
+                    src={`https://ems.unitdtechnologies.com/storage/${content.file_name}`}
                     alt={content.title}
                     className={styles.image}
                   />

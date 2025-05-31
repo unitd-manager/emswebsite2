@@ -30,7 +30,7 @@ const BlogPost = () => {
       <div className="my-4 py-lg-2">
           {/* <img
             
-            src={`https://emsmedia.net/storage/uploads/${categoryDetails.file_name}`} // Dynamically render image
+            src={`https://ems.unitdtechnologies.com/storage/${categoryDetails.file_name}`} // Dynamically render image
             alt={categoryDetails.title || "Blog Image"}
             style={{width:"600px",height:"500px"}}
           /> */}

@@ -122,7 +122,7 @@ const Contact = () => {
                     <div className="box-content">
                       <h3 className="box-title-22">Email Address</h3>
                       <p className="box-text">
-                        <a href="mailto:info@emsmedia.net">info@emsmedia.net</a>
+                        <a href="mailto:info@ems.unitdtechnologies.com">info@ems.unitdtechnologies.com</a>
                       </p>
                     </div>
                   </div>

@@ -137,7 +137,7 @@ const TabButton = React.memo(({ video, isActive, onClick }) => (
     <div className="blog-style2">
       <div className="blog-img img-200">
         <img
-          src={`https://emsmedia.net/storage/uploads/${video.file_name}`}
+          src={`https://ems.unitdtechnologies.com/storage/${video.file_name}`}
           alt={video.title || "Video Thumbnail"}
         />
         <div className="icon">
@@ -174,7 +174,7 @@ const VideoCard = React.memo(({ video, onPlay }) => (
   <div className="blog-style8" >
     <div className="blog-img">
       <img
-        src={`https://emsmedia.net/storage/uploads/${video.file_name}`}
+        src={`https://ems.unitdtechnologies.com/storage/${video.file_name}`}
         alt={video.title || "Video Thumbnail"}
         style={{ 
           width: '100%', /* Column width-க்கு fit ஆகும் */

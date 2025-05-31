@@ -174,7 +174,7 @@ const [quantity, setQuantity] = useState(1);
           <div className="product-big-img">
             <div className="img">
               <img
-                src={`https://emsmedia.net/storage/uploads/${book.images}`}
+                src={`https://ems.unitdtechnologies.com/storage/${book.images}`}
                 alt="Product Image"
                 style={{
                     height: "580px",
@@ -528,7 +528,7 @@ const [quantity, setQuantity] = useState(1);
         {categories.map((product) => (
           <div className="th-product product-grid" key={product.product_id}>
             <div className="product-img">
-              <img src={`https://emsmedia.net/storage/uploads/${product.images}`} alt={product.title}style={{
+              <img src={`https://ems.unitdtechnologies.com/storage/${product.images}`} alt={product.title}style={{
                     height: "280px",
                     width: "580px",
                     objectFit: "fill",

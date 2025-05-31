@@ -172,7 +172,7 @@ const BookMenu = () => {
               <div className="blog-style9">
                 <div className="blog-img">
                   <img
-                    src={`https://emsmedia.net/storage/uploads/${book.file_name}`}
+                    src={`https://ems.unitdtechnologies.com/storage/${book.file_name}`}
                     alt={book.title || "Book image"}
                     style={{
                       width: "100%",

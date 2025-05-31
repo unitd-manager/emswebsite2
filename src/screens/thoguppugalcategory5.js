@@ -72,7 +72,7 @@ function Pugaipadangal() {
                   <div className="blog-audio">
                     <audio controls>
                       <source
-                        src={`https://emsmedia.net/storage/uploads/${item.file_name}`}
+                        src={`https://ems.unitdtechnologies.com/storage/${item.file_name}`}
                         type="audio/mpeg"
                       />
                       Your browser does not support the audio element.

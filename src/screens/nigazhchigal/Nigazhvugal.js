@@ -287,7 +287,7 @@ function Pugaipadangal() {
                 <div className="blog-style1">
                   <div className="blog-img">
                     <img
-                      src={`https://emsmedia.net/storage/uploads/${item.file_name}`}
+                      src={`https://ems.unitdtechnologies.com/storage/${item.file_name}`}
                       alt={item.title}
                     />
                     <Link

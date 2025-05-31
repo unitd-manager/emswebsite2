@@ -51,14 +51,14 @@ const Engalai = () => {
                       <div className="blog-img">
                         {item.category_title !== "AAN-FNM" ? (
                           <img
-                            src={`https://emsmedia.net/storage/uploads/${item.file_name}`}
+                            src={`https://ems.unitdtechnologies.com/storage/${item.file_name}`}
                             style={{ width: '500px', height: '500px', objectFit: 'cover' }}
                             alt={item.title}
                           />
                         ) : (
                           <audio controls style={{ width: '100%' }}>
                             <source 
-                              src={`https://emsmedia.net/storage/uploads/${item.file_name}`} 
+                              src={`https://ems.unitdtechnologies.com/storage/${item.file_name}`} 
                               type="audio/mpeg" 
                             />
                             Your browser does not support the audio element.

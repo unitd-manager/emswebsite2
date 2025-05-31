@@ -454,7 +454,7 @@ const Home = () => {
           
       <li>
         <i className="far fa-envelope" />
-        <a href="mailto:info@emsmedia.net">info@emsmedia.net</a>
+        <a href="mailto:info@ems.unitdtechnologies.com">info@ems.unitdtechnologies.com</a>
       </li>
       <li style={{ display: "inline-block", position: "relative" }}>
       <button

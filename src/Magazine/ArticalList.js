@@ -159,7 +159,7 @@ const Artical = () => {
                         <img
                            src={
                             featuredBlog.file_name
-                              ? `https://emsmedia.net/storage/uploads/${featuredBlog.file_name}`
+                              ? `https://ems.unitdtechnologies.com/storage/${featuredBlog.file_name}`
                               : defaultImage
                           }
                           alt="artical image"
@@ -303,7 +303,7 @@ const Artical = () => {
                             <img
                               src={
                                 product.file_name
-                                  ? `https://emsmedia.net/storage/uploads/${product.file_name}`
+                                  ? `https://ems.unitdtechnologies.com/storage/${product.file_name}`
                                   : defaultImage
                               }
                               alt={product.title}

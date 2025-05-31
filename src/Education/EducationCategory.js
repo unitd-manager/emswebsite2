@@ -48,7 +48,7 @@ console.log("sdew",jamia)
                   </div>
                   <div className="blog-img mb-40">
                     <img
-                      src={`https://emsmedia.net/storage/uploads/${post.file_name}`}
+                      src={`https://ems.unitdtechnologies.com/storage/${post.file_name}`}
                       alt={post.title}           
                     />
                   </div>

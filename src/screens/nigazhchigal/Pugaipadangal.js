@@ -333,7 +333,7 @@ function Pugaipadangal() {
                 <div className="blog-style1">
                   <div className="blog-img">
                     <img
-                      src={`https://emsmedia.net/storage/uploads/${item.file_name}`}
+                      src={`https://ems.unitdtechnologies.com/storage/${item.file_name}`}
                       alt={item.title}
                       onClick={() => openPopup(startIndex + index)}
                     />
@@ -412,7 +412,7 @@ function Pugaipadangal() {
               X
             </button>
             <img
-              src={`https://emsmedia.net/storage/uploads/${selectedImage.file_name}`}
+              src={`https://ems.unitdtechnologies.com/storage/${selectedImage.file_name}`}
               alt={selectedImage.title}
               style={{ maxWidth: "100%", maxHeight: "80vh" }}
             />
@@ -426,7 +426,7 @@ function Pugaipadangal() {
             <button onClick={closePopup} style={closeButtonStyles}>X</button>
             <button onClick={goToPrevious} style={navButtonStyles}>&lt;</button>
             <img
-              src={`https://emsmedia.net/storage/uploads/${gallery[selectedImageIndex].file_name}`}
+              src={`https://ems.unitdtechnologies.com/storage/${gallery[selectedImageIndex].file_name}`}
               alt={gallery[selectedImageIndex].title}
               style={{ maxWidth: "100%", maxHeight: "80vh" }}
             />

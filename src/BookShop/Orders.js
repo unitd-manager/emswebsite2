@@ -75,7 +75,7 @@ const Orders = () => {
                         <img
                           width={91}
                           height={91}
-                          src={`https://emsmedia.net/storage/uploads/${product.file_name}`}
+                          src={`https://ems.unitdtechnologies.com/storage/${product.file_name}`}
                           alt="Image"
                         />
                       </a>
