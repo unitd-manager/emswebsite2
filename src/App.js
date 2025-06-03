@@ -73,6 +73,7 @@ import GyanaSub from "./Gyanagamiyangal/gyanaSub.js";
 import GyanaSubMain from "./Gyanagamiyangal/gyanamaincategory.js";
 import Kalvicategory from "./Education/EducationCategory.js";
 import Kalvicategories from "./Education/EducationCategories.js";
+import KarbalaHistoryPdf from "./Education/KarbalaHistoryPdf.js";
 import Thoguppugalmaincategory from "../src/screens/thoguppugalmaincategory";
 
 import KalviSubCategory from "./Education/EducationSub.js";
@@ -290,6 +291,7 @@ function App() {
           <Route path="/&/:jamia" element={<Kalvicategory />} />
 
           <Route path="/கல்வி/:id" element={<Kalvicategories />} />
+          <Route path="/KarbalaHistoryPdf" element={<KarbalaHistoryPdf />} />
 
           <Route path="/கல்வி/:id/:subCategoryId" element={<KalviSubCategory />} />
           <Route path="/எங்களைப்பற்றி/:id/:subCategoryId" element={<EngalaipatriSubcategory />} />
