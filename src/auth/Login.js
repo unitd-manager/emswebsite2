@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import api from "../constants/api";
 import { Link, useNavigate } from "react-router-dom";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "../assets/css/style.css";
 import "../assets/css/fontawesome.min.css";
 import "../assets/css/slick.min.css";
@@ -10,6 +11,7 @@ import "../assets/css/style.css.map";
 
 const Shop = () => {
   // const { addToast } = useToasts();
+  const [showPassword, setShowPassword] = useState(false);
 
   const [signinData, setSigninData] = useState({
     email: "",
@@ -41,49 +43,44 @@ const Shop = () => {
 
   const signin = (event) => {
     event.preventDefault();
-    // Reset previous errors
     setEmailError("");
     setPasswordError("");
-
-    // Perform email and password validation
+  
     if (!validateEmail(email)) {
       setEmailError("Invalid email");
     }
-
+  
     if (!validatePassword(password)) {
       setPasswordError(
-        "Password must contain at least 8 characters, including one UpperCase letter,one LowerCase letter,special characer and one number"
+        "Password must contain at least 8 characters, including one UpperCase letter, one LowerCase letter, special character and one number"
       );
     }
-
-    // If both email and password are valid, proceed with form submission
+  
     if (validateEmail(email) && validatePassword(password)) {
       api
         .post("/api/login", signinData)
         .then((res) => {
-          if (res && res.status === "400") {
-            alert("Invalid Username or Password");
-            // addToast("Invalid Username or Password", {
-            //   appearance: "error",
-            //   autoDismiss: true,
-            // });
-          } else {
+          if (res?.data?.token) {
             localStorage.setItem("user", JSON.stringify(res.data.data));
             localStorage.setItem("token", JSON.stringify(res.data.token));
-
+  
             setTimeout(() => {
               navigate("/home");
             }, 300);
+          } else {
+            alert("Login failed. Please try again.");
           }
         })
-        .catch(() => {
-          // addToast("Invalid Username or Password", {
-          //   appearance: "error",
-          //   autoDismiss: true,
-          // });
+        .catch((err) => {
+          if (err.response && err.response.status === 400) {
+            alert("Invalid Username or Password");
+          } else {
+            alert("Something went wrong. Please try again later.");
+          }
         });
     }
   };
+  
   return (
     <>
       {/* <div className="popup-subscribe-area">
@@ -163,21 +160,32 @@ const Shop = () => {
                   />
                   {emailError && <span className="error">{emailError}</span>}
                 </div>
-                <div className="form-group">
-                  <label>Password *</label>
-                  <input
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    onChange={(e) => {
-                      handleSigninData(e);
-                      setPassword(e.target.value);
-                    }}
-                  />
-                  {passwordError && (
-                    <span className="error">{passwordError}</span>
-                  )}
-                </div>
+                <div className="form-group position-relative">
+  <label>Password *</label>
+  <input
+    type={showPassword ? "text" : "password"}
+    name="password"
+    placeholder="Password"
+    onChange={(e) => {
+      handleSigninData(e);
+      setPassword(e.target.value);
+    }}
+  />
+  <span
+    onClick={() => setShowPassword(!showPassword)}
+    style={{
+      position: "absolute",
+      right: "10px",
+      top: "38px",
+      cursor: "pointer",
+      zIndex: 2,
+    }}
+  >
+   {showPassword ? <FaEye />: <FaEyeSlash /> }
+  </span>
+  {passwordError && <span className="error">{passwordError}</span>}
+</div>
+
                 {/* <div className="form-group">
                 <div className="custom-checkbox">
                   <input type="checkbox" id="remembermylogin" />

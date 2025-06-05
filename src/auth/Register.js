@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from "react";
 import api from "../constants/api";
 import { Link, useNavigate } from "react-router-dom";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "../assets/css/style.css";
 import "../assets/css/bootstrap.min.css";
 
 const Register = () => {
   const navigate = useNavigate();
 
+  const [showPassword, setShowPassword] = useState(false);
+
   const [signupData, setSignupData] = useState({
     first_name: "",
     last_name: "",
     email: "",
     pass_word: "",
-    mobile:"",
-    alternate_number:"",
+    mobile: "",
+    alternate_number: "",
     address1: "",
     address_city: "",
     address_state: "",
@@ -81,27 +84,31 @@ const Register = () => {
       console.log("Registration successful:", res.data.data);
 
       // Send email to the user
-      await api.post("/commonApi/sendUseremail", {
+      await api.post("/commonApi/sendUseremailSignUp", {
         to: signupData.email,
-        subject: "Registration",
+        subject: "Login Registration",
       });
 
       // Send a copy to the admin
-      await api.post("/commonApi/sendregisteremail", {
-        to: mailId,
-        text: JSON.stringify(signupData),
-        subject: "New User Registration",
-        dynamic_template_data: {
-          first_name: signupData.first_name,
-          email: signupData.email,
-          pass_word: signupData.pass_word,
-        },
-      });
+      // await api.post("/commonApi/sendUseremailSignUp", {
+      //   to: mailId,
+      //   text: JSON.stringify(signupData),
+      //   subject: "New User Registration",
+      //   dynamic_template_data: {
+      //     first_name: signupData.first_name,
+      //     email: signupData.email,
+      //     pass_word: signupData.pass_word,
+      //   },
+      // });
 
       // Navigate to verification page
-      navigate(`/register-verification/${signupData.email}`, {
-        state: { otpNo: signupData.otp_no },
-      });
+      // navigate(`/Home/${signupData.email}`, {
+      //   state: { otpNo: signupData.otp_no },
+      // });
+
+      setTimeout(() => {
+        navigate("/Login");
+      }, 300);
     } catch (err) {
       console.error("Error during registration:", err);
       setErrors({ email: "This email is already registered." });
@@ -109,7 +116,7 @@ const Register = () => {
       setLoading(false);
     }
   };
-  
+
   const [allcountries, setallCountries] = useState();
   const getAllCountries = () => {
     api
@@ -191,9 +198,11 @@ const Register = () => {
                       value={signupData.email}
                       onChange={handleChange}
                     />
-                    {errors.email && <span className="error">{errors.email}</span>}
+                    {errors.email && (
+                      <span className="error">{errors.email}</span>
+                    )}
                   </div>
-                  <div className="col-md-6 form-group">
+                  {/* <div className="col-md-6 form-group">
                     <input
                       type="password"
                       name="pass_word"
@@ -202,9 +211,39 @@ const Register = () => {
                       onChange={handleChange}
                     />
                     {errors.pass_word && (
-                      <span className="error">{errors.pass_word}</span>
+                      <span className="error">Password must contain at least 8 characters, including one uppercase letter, one lowercase letter, special character, and one number</span>
+                    )}
+                  </div> */}
+                  <div className="col-md-6 form-group position-relative">
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      name="pass_word"
+                      placeholder="Password"
+                      value={signupData.pass_word}
+                      onChange={handleChange}
+                    />
+                    <span
+                      onClick={() => setShowPassword((prev) => !prev)}
+                      style={{
+                        position: "absolute",
+                        right: "15px",
+                        top: "50%",
+                        transform: "translateY(-50%)",
+                        cursor: "pointer",
+                        zIndex: 2,
+                      }}
+                    >
+                      {showPassword ? <FaEye />: <FaEyeSlash /> }
+                    </span>
+                    {errors.pass_word && (
+                      <span className="error">
+                        Password must contain at least 8 characters, including
+                        one uppercase letter, one lowercase letter, special
+                        character, and one number
+                      </span>
                     )}
                   </div>
+
                   <div className="col-md-6 form-group">
                     <input
                       type="text"
@@ -252,7 +291,9 @@ const Register = () => {
                       value={signupData.address_city}
                       onChange={handleChange}
                     />
-                    {errors.address_city && <span className="error">{errors.address_city}</span>}
+                    {errors.address_city && (
+                      <span className="error">{errors.address_city}</span>
+                    )}
                   </div>
                   <div className="col-md-6 form-group">
                     <input
@@ -262,31 +303,35 @@ const Register = () => {
                       value={signupData.address_state}
                       onChange={handleChange}
                     />
-                    {errors.address_state && <span className="error">{errors.address_state}</span>}
+                    {errors.address_state && (
+                      <span className="error">{errors.address_state}</span>
+                    )}
                   </div>
                   <div className="col-6 form-group">
-                      <select
-                        className="form-select"
-                        name="address_country_code"
-                        onChange={handleChange}
-                        value={signupData?.address_country_code || ""}
-                      >
-                        <option value="" disabled>
-                          Please Select Country
+                    <select
+                      className="form-select"
+                      name="address_country_code"
+                      onChange={handleChange}
+                      value={signupData?.address_country_code || ""}
+                    >
+                      <option value="" disabled>
+                        Please Select Country
+                      </option>
+                      {allcountries?.map((country) => (
+                        <option
+                          key={country.country_code}
+                          value={country.country_code}
+                        >
+                          {country.name}
                         </option>
-                        {allcountries?.map((country) => (
-                          <option
-                            key={country.country_code}
-                            value={country.country_code}
-                          >
-                            {country.name}
-                          </option>
-                        ))}
-                      </select>
-                      {errors.address_country_code && (
-                      <span className="error">{errors.address_country_code}</span>
+                      ))}
+                    </select>
+                    {errors.address_country_code && (
+                      <span className="error">
+                        {errors.address_country_code}
+                      </span>
                     )}
-                    </div>
+                  </div>
                   <div className="col-md-6 form-group">
                     <input
                       type="text"
@@ -299,7 +344,6 @@ const Register = () => {
                       <span className="error">{errors.address_po_code}</span>
                     )}
                   </div>
-                  
                 </div>
 
                 {/* Submit Button */}

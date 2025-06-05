@@ -51,7 +51,7 @@ const BlogCard = () => {
                     <div className="content">
                       {match ? (
                         <div className="mt-4">
-                          <div>__________________________Karbala History __________________________</div>
+                          <div>__________________________கர்பலா வீர வரலாறு __________________________</div>
                           <iframe
                             src={match[0]}
                             width="100%"
