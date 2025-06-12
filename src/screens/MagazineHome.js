@@ -10,7 +10,7 @@ const BlogCard = ({ magazine }) => (
         {/* <img src={`https://ems.unitdtechnologies.com/storage/${magazine.file_name}`} alt={magazine.title} /> */}
       </div>
       <div className="blog-content">
-        <a data-theme-color="#6234AC" href="blog.html" className="category">
+        <a data-theme-color="#6234AC" href="/" className="category">
           {/* {magazine.title} */}
         </a>
         <h3 className="box-title-20">
@@ -19,7 +19,7 @@ const BlogCard = ({ magazine }) => (
           </a>
         </h3>
         <div className="blog-meta">
-          {/* <a href="blog.html">
+          {/* <a href="/">
             <i className="fal fa-calendar-days" /> {magazine.date}
           </a> */}
         </div>
@@ -35,16 +35,16 @@ const SidebarCard = ({ item }) => (
         {/* <img src={`https://ems.unitdtechnologies.com/storage/${item.file_name}`} alt={item.title} /> */}
       </div>
       <div className="blog-content">
-        <a data-theme-color="#6234AC" href="blog.html" className="category">
+        <a data-theme-color="#6234AC" href="/" className="category">
           {/* {item.category_title} */}
         </a>
         <h3 className="box-title-20">
-          <a className="hover-line" href="blog-details.html">
+          <a className="hover-line" href="/">
             {/* {item.title} */}
           </a>
         </h3>
         <div className="blog-meta">
-          <a href="blog.html">
+          <a href="/">
             {/* <i className="fal fa-calendar-days" /> {item.date} */}
           </a>
         </div>
@@ -63,19 +63,19 @@ const PopularNews = ({magazine}) => (
             <img src="assets/img/blog/blog_5_15.jpg" alt="Popular Blog" />
           </div>
           <div className="blog-content">
-            <a data-theme-color="#6234AC" href="blog.html" className="category">
+            <a data-theme-color="#6234AC" href="/" className="category">
               Technology
             </a>
             <h3 className="box-title-40">
-              <a className="hover-line" href="blog-details.html">
+              <a className="hover-line" href="/">
                 Tech Unleash possibilities, shape a brighter future.
               </a>
             </h3>
             <div className="blog-meta">
-              <a href="author.html">
+              <a href="/">
                 <i className="far fa-user" /> By - Ems Media
               </a>
-              <a href="blog.html">
+              <a href="/">
                 <i className="fal fa-calendar-days" /> 26 Mar, 2023
               </a>
             </div>

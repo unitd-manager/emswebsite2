@@ -147,7 +147,7 @@ const TabButton = React.memo(({ video, isActive, onClick }) => (
       <div className="blog-content videoPanel">
         {/* <a
           data-theme-color={video.categoryColor || "#000"}
-          href="blog.html"
+          href="/"
           className="category"
         >
           {video.category || "Unknown Category"}
@@ -203,7 +203,7 @@ const VideoCard = React.memo(({ video, onPlay }) => (
       <a>
         <i className="far fa-user" /> By - EMS Media
       </a>
-      <a href="blog.html">
+      <a href="/">
     <i className="fal fa-calendar-days" />
     {video.content_date ? new Date(video.content_date).toLocaleDateString('en-GB') : "Unknown Date"}
   </a>

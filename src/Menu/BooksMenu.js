@@ -78,7 +78,7 @@ const BookMenu = () => {
                 <div className="blog-content">
                   <a
                     data-theme-color="#4E4BD0"
-                    // href="blog.html"
+                    // href="/"
                     className="category"
                   >
                     நூற்கள்
@@ -109,7 +109,7 @@ const BookMenu = () => {
                 <div className="blog-content">
                   <a
                     data-theme-color="#4E4BD0"
-                    // href="blog.html"
+                    // href="/"
                     className="category"
                   >
                     நூற்கள் 
@@ -141,7 +141,7 @@ const BookMenu = () => {
                 <div className="blog-content">
                   <a
                     data-theme-color="#4E4BD0"
-                    // href="blog.html"
+                    // href="/"
                     className="category"
                   >
                     நூற்கள்

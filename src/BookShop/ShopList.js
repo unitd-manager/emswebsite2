@@ -146,7 +146,7 @@ const Shop = () => {
         <div className="container">
           <ul className="breadcumb-menu">
             <li>
-              <a href="home-newspaper.html">Home</a>
+              <a href="/">Home</a>
             </li>
             <li> Book Shop</li>
           </ul>

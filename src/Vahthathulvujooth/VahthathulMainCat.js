@@ -89,10 +89,10 @@ const Engalai = () => {
                   Read More
                 </Link>
                 <div className="blog-meta">
-                  <a href="author.html">
+                  <a href="/">
                     <i className="far fa-user"></i> By - Ems Media
                   </a>
-                  <a href="blog.html">
+                  <a href="/">
                     <i className="fal fa-calendar-days"></i> 19 Mar, 2023
                   </a>
                 </div>

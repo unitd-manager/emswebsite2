@@ -146,7 +146,7 @@ const Home = () => {
                           </Link>
                         </h4>
                         {/* <div className="recent-post-meta">
-                          <Link to="blog.html">
+                          <Link to="/">
                             <i className="fal fa-calendar-days" />
                             22 June, 2023
                           </Link>

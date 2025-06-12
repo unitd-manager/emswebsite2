@@ -34,11 +34,11 @@ const DetailPage = () => {
         <div className="container">
             <div className="row justify-content-center">
                 <div className="col-12 text-center">
-                    <a data-theme-color="#6234AC" href="blog.html" className="category">{content.title}</a>
+                    <a data-theme-color="#6234AC" href="/" className="category">{content.title}</a>
                     <h2 className="blog-title">{content.title}</h2>
                     <div className="blog-meta">
                         <a className="author" href="/"><i className="far fa-user"></i>By - Ems Media</a>
-                        <a href="blog.html"><i className="fal fa-calendar-days"></i>{content.content_date}</a>
+                        <a href="/"><i className="fal fa-calendar-days"></i>{content.content_date}</a>
                     </div>
                     <div className="blog-img mb-40">
                         <img

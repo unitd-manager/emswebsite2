@@ -142,7 +142,7 @@ const Register = () => {
         <div className="container">
           <ul className="breadcumb-menu">
             <li>
-              <a href="home-newspaper.html">Home</a>
+              <a href="/">Home</a>
             </li>
             <li>Register</li>
           </ul>

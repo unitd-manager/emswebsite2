@@ -38,7 +38,7 @@ const DetailPage = () => {
                     <h2 className="blog-title">{content.title}</h2>
                     <div className="blog-meta">
                         <a className="author" href="/"><i className="far fa-user"></i>By - Ems Media</a>
-                        <a href="blog.html"><i className="fal fa-calendar-days"></i>{content.content_date}</a>
+                        <a href="/"><i className="fal fa-calendar-days"></i>{content.content_date}</a>
                     </div>
                   
                 </div>
