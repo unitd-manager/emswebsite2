@@ -69,7 +69,7 @@ const Home = () => {
   const [marquee, setMarquee] = useState([]);
   const getMarquee = () => {
     api
-      .get("/setting/getSettingsForQuizInfoText")
+      .get("/content/getMarquee")
       .then((res) => {
         setMarquee(res.data.data);
       })
@@ -77,7 +77,7 @@ const Home = () => {
         console.log("error", error);
       });
   };
-  const marqueeValue = marquee && marquee[0]?.value;
+  const marqueeValue = marquee && marquee?.title;
 
   useEffect(() => {
     getMarquee();
@@ -277,29 +277,15 @@ const Home = () => {
                       <div className="news-area">
                         <div className="title">Ems News :</div>
                         <div className="news-wrap">
-                          <Marquee
-                            speed={50}
-                            gradient={false}
-                            pauseOnHover
-                            className="slick-marquee"
-                          >
-                            <div className="col-auto">
-                              <a
-                           
-                                className="breaking-news"
-                              >
-                                {marqueeValue}
-                              </a>
-                            </div>
-                            <div className="col-auto">
-                              <a
-                             
-                                className="breaking-news"
-                              >
-                                {marqueeValue}
-                              </a>
-                            </div>
-                          </Marquee>
+                        <Marquee speed={50} gradient={false} pauseOnHover className="slick-marquee">
+              {marquee.map((item, index) => (
+                <div className="col-auto" key={index}>
+                  <a className="breaking-news">
+                    {item.title}
+                  </a>
+                </div>
+              ))}
+            </Marquee>
                         </div>
                       </div>
                     </div>

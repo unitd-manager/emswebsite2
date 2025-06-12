@@ -125,7 +125,7 @@ const Shop = () => {
         <div className="container">
           <ul className="breadcumb-menu">
             <li>
-              <a href="home-newspaper.html">Home</a>
+              <a href="/home">Home</a>
             </li>
             <li>Login</li>
           </ul>
@@ -197,9 +197,9 @@ const Shop = () => {
                     Login
                   </button>
                   <p className="mt-3 mb-0">
-                    {/* <a className="text-reset" href="#">
+                    <Link className="text-reset" to="/Forgot">
                       Lost your password?
-                    </a> */}
+                    </Link>
                   </p>
                 </div>
               </form>

@@ -81,6 +81,7 @@ import ShopDetails from "./BookShop/ShopDetails.js"
 import Cart from "./BookShop/Cart.js";
 import CheckOut from "./BookShop/CheckOut.js";
 import Login from "./auth/Login.js";
+import Forgot from "./auth/Forgot.js";
 import Register from "./auth/Register";
 import Profile from "./auth/Profile";
 import Thoguppugalcategory from "../src/screens/thoguppugalcategory";
@@ -194,6 +195,7 @@ function App() {
           <Route path="/Cart" element={<Cart />} />
           <Route path="/CheckOut" element={<CheckOut />} />
           <Route path="/Login" element={<Login />} />
+          <Route path="/Forgot" element={<Forgot />} />
           <Route path="/Register" element={<Register />} />
           <Route path="/Profile" element={<Profile />} />
           <Route path="/Orders" element={<Orders />} />
