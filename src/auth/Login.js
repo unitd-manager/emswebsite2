@@ -125,7 +125,7 @@ const Shop = () => {
         <div className="container">
           <ul className="breadcumb-menu">
             <li>
-              <a href="/home">Home</a>
+              <a href="/">Home</a>
             </li>
             <li>Login</li>
           </ul>
