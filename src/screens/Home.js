@@ -193,13 +193,34 @@ const getHomeProducts = () => {
       ? homeProducts
       : homeProducts.filter((item) => item.category_title === activeTab);
 
+      const NextArrow = (settings) => {
+        const { onClick } = settings;
+        return (
+          <button  className="slick-arrow default" onClick={onClick}>
+            <FaArrowRight />
+          </button>
+        );
+      };
+    
+      const PrevArrow = (settings) => {
+        const { onClick } = settings;
+        return (
+          <button className="slick-arrow default" onClick={onClick}>
+            <FaArrowLeft />
+          </button>
+        );
+      };
+
   const bannersettings = {
-    dots: true,
+    // dots: true,
     speed: 500,
+    arrows: true,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
     asNavFor: null, // Placeholder for main slider
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
   };
   
   const thumbnailSettings = {
@@ -211,23 +232,7 @@ const getHomeProducts = () => {
     centerPadding: '10px',
   };
 
-  const NextArrow = (settings) => {
-    const { onClick } = settings;
-    return (
-      <button  className="slick-arrow default" onClick={onClick}>
-        <FaArrowRight />
-      </button>
-    );
-  };
 
-  const PrevArrow = (settings) => {
-    const { onClick } = settings;
-    return (
-      <button className="slick-arrow default" onClick={onClick}>
-        <FaArrowLeft />
-      </button>
-    );
-  };
 
   
 

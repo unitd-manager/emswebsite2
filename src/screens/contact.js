@@ -94,7 +94,7 @@ const Contact = () => {
       <div className="space2">
         <div className="container">
           <div className="row">
-            <div className="col-xl-5">
+            {/* <div className="col-xl-5">
               <div className="pe-xxl-4 me-xl-3 text-center text-xl-start mb-40 mb-lg-0">
                 <div className="title-area mb-32">
                   <h2 className="sec-title2">Get in Touch</h2>
@@ -139,7 +139,7 @@ const Contact = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
             <div className="col-xl-7">
               <div className="quote-form-box">
                 <h4 className="form-title">Send Message</h4>

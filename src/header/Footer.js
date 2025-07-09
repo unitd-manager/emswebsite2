@@ -33,18 +33,41 @@ const Home = () => {
                    
                   
                     <div className="th-social style-black" style={{marginLeft:50}}>
-                      <a href="https://www.facebook.com/">
-                        <i className="fab fa-facebook-f" />
-                      </a>
-                      <a href="https://www.twitter.com/">
-                        <i className="fab fa-twitter" />
-                      </a>
-                      <a href="https://www.linkedin.com/">
-                        <i className="fab fa-linkedin-in" />
-                      </a>
-                      <a href="https://www.whatsapp.com/">
-                        <i className="fab fa-whatsapp" />
-                      </a>
+                    <a
+      href="https://www.facebook.com/emsabaimedia"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <i className="fab fa-facebook-f" />
+    </a>
+    <a
+      href="https://x.com/media_ems"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <i className="fab fa-twitter" />
+    </a>
+    <a
+      href="https://www.linkedin.com/in/ems-media-65725a368"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <i className="fab fa-linkedin-in" />
+    </a>
+    <a
+      href="https://www.instagram.com/emsabaimedia"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <i className="fab fa-instagram" />
+    </a>
+    <a
+      href="https://www.youtube.com/emsmedia"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <i className="fab fa-youtube" />
+    </a>
                     </div>
                   </div>
                 </div>
@@ -58,20 +81,22 @@ const Home = () => {
                       <Link to="/Magazine">EMS Magazine</Link>
                       </li>
                       <li>
-                      <Link to="/">Awniyya Books Store</Link>
+                      <Link to="https://www.awniyyabookstore.com/"  target="_blank"
+                        rel="noopener noreferrer">Awniyya Books Store</Link>
                       </li>
                       <li>
-                      <Link to="/">Yaseenrali</Link>
+                      <Link to="https://www.yaseenrali.com/"  target="_blank"
+                        rel="noopener noreferrer">Yaseenrali</Link>
                       </li>
                       <li>
                       <Link to="https://www.youtube.com/@EMSMEDIA">EMS Web TV channel</Link>
                       </li>
                       <li>
-                      <Link to="https://emsnew.unitdtechnologies.com/#/">EMS Media</Link>
+                      <Link to="https://emsmedia.net/#/">EMS Media</Link>
                       </li>
-                      <li>
+                      {/* <li>
                       <Link to="/">Entertainment</Link>
-                      </li>
+                      </li> */}
                     </ul>
                   </div>
                 </div>

@@ -53,14 +53,7 @@ const DetailPage = () => {
                         <div className="blog-content-wrap">
                             <div className="share-links-wrap">
                                 <div className="share-links">
-                                    <span className="share-links-title">Share Post:</span>
-                                    <div className="multi-social">
-                                        <a href="https://facebook.com/" target="_blank"><i className="fab fa-facebook-f"></i></a>
-                                        <a href="https://twitter.com/" target="_blank"><i className="fab fa-twitter"></i></a>
-                                        <a href="https://linkedin.com/" target="_blank"><i className="fab fa-linkedin-in"></i></a>
-                                        <a href="https://pinterest.com/" target="_blank"><i className="fab fa-pinterest-p"></i></a>
-                                        <a href="https://instagram.com/" target="_blank"><i className="fab fa-instagram"></i></a>
-                                    </div>
+                                   <span></span>
                                 </div>
                             </div>
                             <div className="blog-content">
