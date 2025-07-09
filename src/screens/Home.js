@@ -214,13 +214,13 @@ const getHomeProducts = () => {
   const bannersettings = {
     // dots: true,
     speed: 500,
-    arrows: true,
+    arrows: false,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
     asNavFor: null, // Placeholder for main slider
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
+    // nextArrow: <NextArrow />,
+    // prevArrow: <PrevArrow />,
   };
   
   const thumbnailSettings = {
@@ -230,6 +230,7 @@ const getHomeProducts = () => {
     focusOnSelect: true, // Enables clicking on thumbnails
     centerMode: true,
     centerPadding: '10px',
+    arrows: false,
   };
 
 
