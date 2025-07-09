@@ -89,7 +89,8 @@ const Home = () => {
                         rel="noopener noreferrer">Yaseenrali</Link>
                       </li>
                       <li>
-                      <Link to="https://www.youtube.com/@EMSMEDIA">EMS Web TV channel</Link>
+                      <Link to="https://www.youtube.com/@EMSMEDIA" target="_blank"
+                        rel="noopener noreferrer">EMS Web TV channel</Link>
                       </li>
                       <li>
                       <Link to="https://emsmedia.net/#/">EMS Media</Link>
