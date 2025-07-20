@@ -149,6 +149,59 @@
       display: none; /* Hide thumbnail slider on mobile */
     }
   }
+
+
+
+
+  .bannerImageMarquee {
+    background-color: #fff;
+  }
+  
+  /* Main Slider Image */
+  .bannerImageMarquee .single-blog {
+    background-color: #fff;  /* Ensures the main image container has a black background */
+  }
+
+  
+  /* Thumbnail Slider */
+  .thumbnail-slider {
+    background-color: #fff;  /* Ensures the thumbnail slider has a black background */
+  }
+  /* Desktop */
+@media (min-width: 1024px) {
+    .bannerImageMarquee .single-blog img {
+      height: 400px;
+    }
+    .bannerImageMarquee .thumbnail-slider .thumbnail-img img {
+      height: 80px;
+    }
+  }
+  
+  /* Tablet */
+  @media (max-width: 1024px) {
+    .bannerImageMarquee .single-blog img {
+      height: 300px;  /* Adjust height for tablet */
+    }
+    .bannerImageMarquee .thumbnail-slider .thumbnail-img img {
+      height: 70px;  /* Thumbnail height for tablet */
+    }
+  }
+  
+  /* Mobile */
+  @media (max-width: 768px) {
+    .bannerImageMarquee .single-blog img {
+      height: 250px;  /* Adjust height for mobile */
+    }
+    .bannerImageMarquee .thumbnail-slider .thumbnail-img img {
+      height: 60px;  /* Thumbnail height for mobile */
+    }
+  
+    .bannerImageMarquee .thumbnail-slider {
+      display: none; /* Hide thumbnail slider on mobile */
+    }
+  }
+
+
   
   .thumbnail-img img {
     border: 2px solid #ccc;      /* Adds a border to thumbnail */

@@ -75,6 +75,8 @@ import Kalvicategory from "./Education/EducationCategory.js";
 import Kalvicategories from "./Education/EducationCategories.js";
 import KarbalaHistoryPdf from "./Education/KarbalaHistoryPdf.js";
 import Thoguppugalmaincategory from "../src/screens/thoguppugalmaincategory";
+import NewsContent from "./screens/NewsContent";
+import LatestNews from "../src/screens/LatestNews";
 
 import KalviSubCategory from "./Education/EducationSub.js";
 import ShopDetails from "./BookShop/ShopDetails.js"
@@ -94,6 +96,7 @@ import Thoguppugal from "../src/screens/thoguppugal";
 import ThoguppugalSubCategory from "../src/screens/ThoguppugalSubcategory";
 import ThoguppugalSubCategory1 from "../src/screens/ThoguppugalSubcategory1";
 import ThoguppugalSubCategory2 from "../src/screens/ThoguppugalSubcategory2";
+import Payment from "../src/screens/Payment";
 
 import ShopList from "./BookShop/ShopList";
 import Orders from "./BookShop/Orders";
@@ -198,6 +201,7 @@ function App() {
           <Route path="/Forgot" element={<Forgot />} />
           <Route path="/Register" element={<Register />} />
           <Route path="/Profile" element={<Profile />} />
+          <Route path="/Payment" element={<Payment />} />
           <Route path="/Orders" element={<Orders />} />
 
             {/* thoguppugalmenu*/}
@@ -291,6 +295,8 @@ function App() {
           <Route path="/தொகுப்புகள்/:id/:subCategoryId" element={<ThoguppugalSubCategory />} />
 
           <Route path="/&/:jamia" element={<Kalvicategory />} />
+          <Route path="/NewsContent/:contentId" element={<NewsContent />} />
+          <Route path="நிகழ்ச்சிகள்/LatestNews" element={<LatestNews />} />
 
           <Route path="/கல்வி/:id" element={<Kalvicategories />} />
           <Route path="/KarbalaHistoryPdf" element={<KarbalaHistoryPdf />} />

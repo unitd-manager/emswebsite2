@@ -57,6 +57,7 @@ const Home = () => {
     navigate('/Cart')
     }
   }
+ 
 
   const user=getUser();
 
@@ -67,6 +68,7 @@ const Home = () => {
       });
     
   const [marquee, setMarquee] = useState([]);
+
   const getMarquee = () => {
     api
       .get("/content/getMarquee")
@@ -280,9 +282,9 @@ const Home = () => {
                         <Marquee speed={50} gradient={false} pauseOnHover className="slick-marquee">
               {marquee.map((item, index) => (
                 <div className="col-auto" key={index}>
-                  <a className="breaking-news">
+                  <Link to ={`${item.internal_link}/${item.content_id}`} className="breaking-news">
                     {item.title}
-                  </a>
+                  </Link>
                 </div>
               ))}
             </Marquee>
@@ -506,6 +508,11 @@ const Home = () => {
                     Register
                   </Link>
                 </li>
+                <li style={{ padding: "10px", textAlign: "left" }}>
+                  <Link to="/Payment" style={{ textDecoration: "none", color: "#333" }}>
+                    Payment
+                  </Link>
+                </li>
               </>
             ) : (
               <>
@@ -521,6 +528,11 @@ const Home = () => {
                 <li style={{ padding: "10px", textAlign: "left" }}>
                   <Link to="/Profile" style={{ textDecoration: "none", color: "#333" }}>
                     Profile
+                  </Link>
+                </li>
+                <li style={{ padding: "10px", textAlign: "left" }}>
+                  <Link to="/Payment" style={{ textDecoration: "none", color: "#333" }}>
+                    Payment
                   </Link>
                 </li>
                 {/* <li style={{ padding: "10px", textAlign: "left" }}>
