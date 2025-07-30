@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import api from "../constants/api";
 import { getUser } from "../common/user";
 import { getCart } from "../common/headerCartApi";
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../assets/css/style.css";
 import "../assets/css/fontawesome.min.css";
 import "../assets/css/slick.min.css";
@@ -11,11 +11,14 @@ import "../assets/css/bootstrap.min.css";
 import "../assets/css/style.css.map";
 
 const Shop = () => {
-
   const navigate = useNavigate();
   const [CartItem, setCartItems] = useState([]); // Assuming you have products data
-  const user = getUser()
-  
+  const user = getUser();
+
+  const [couponCode, setCouponCode] = useState("");
+  const [couponDiscount, setCouponDiscount] = useState(0);
+  const [couponMessage, setCouponMessage] = useState("");
+
   // const userContactId = user.contact_id
 
   if (!user || !user.contact_id) {
@@ -24,7 +27,7 @@ const Shop = () => {
     );
     if (userConfirmed) {
       navigate("/Login"); // Navigate to the login page
-    }   
+    }
   }
 
   const loadCart = async () => {
@@ -35,9 +38,17 @@ const Shop = () => {
   useEffect(() => {
     loadCart();
   }, []);
- 
+
+  // const getTotalPrice = () => {
+  //   return CartItem.reduce((total, item) => total + item.price * item.qty, 0);
+  // };
+
   const getTotalPrice = () => {
-    return CartItem.reduce((total, item) => total + item.price * item.qty, 0);
+    const total = CartItem.reduce(
+      (sum, item) => sum + item.price * item.qty,
+      0
+    );
+    return Math.max(total - couponDiscount, 0); // avoid negative total
   };
 
   const handleRemoveItem = (item) => {
@@ -70,6 +81,24 @@ const Shop = () => {
   const incrementQuantity = (index) => {
     const newQuantity = CartItem[index].qty + 1;
     handleQtyChange(index, newQuantity);
+  };
+
+  const applyCoupon = async () => {
+    try {
+      const res = await api.post("/product/getCouponCode", {
+        code: couponCode,
+      });
+
+      // if (res.data && res.data.status === 200) {
+        setCouponDiscount(10); // e.g., ₹100 off
+        setCouponMessage("Coupon applied successfully!");
+      // } else {
+      //   setCouponDiscount(0);
+      //   setCouponMessage("Invalid or expired coupon.");
+      // }
+    } catch (err) {
+      setCouponMessage("Error applying coupon. Try again.");
+    }
   };
 
   return (
@@ -175,7 +204,6 @@ Cart Area
                     </td>
                     <td data-title="Remove">
                       <a
-                        
                         className="remove"
                         onClick={() => handleRemoveItem(product.basket_id)}
                       >
@@ -186,7 +214,7 @@ Cart Area
                 ))}
                 <tr>
                   <td colSpan={6} className="actions">
-                    <div className="th-cart-coupon">
+                    {/* <div className="th-cart-coupon">
                       <input
                         type="text"
                         className="form-control"
@@ -195,7 +223,34 @@ Cart Area
                       <button type="submit" className="th-btn">
                         Apply Coupon
                       </button>
+                    </div> */}
+                    <div className="th-cart-coupon">
+                      <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Coupon Code..."
+                        value={couponCode}
+                        onChange={(e) => setCouponCode(e.target.value)}
+                      />
+                      <button
+                        type="button"
+                        className="th-btn"
+                        onClick={applyCoupon}
+                      >
+                        Apply Coupon
+                      </button>
+                      {couponMessage && (
+                        <p
+                          style={{
+                            color: couponDiscount > 0 ? "green" : "red",
+                            marginTop: "10px",
+                          }}
+                        >
+                          {couponMessage}
+                        </p>
+                      )}
                     </div>
+
                     {/* <button type="submit" className="th-btn">
                       Update cart
                     </button> */}
@@ -223,6 +278,31 @@ Cart Area
                       </span>
                     </td>
                   </tr>
+                  <tr>
+                    <td>Cart Subtotal</td>
+                    <td>
+                      <span className="amount">
+                        <bdi>
+                          ₹
+                          {CartItem.reduce(
+                            (sum, item) => sum + item.price * item.qty,
+                            0
+                          )}
+                        </bdi>
+                      </span>
+                    </td>
+                  </tr>
+                  {couponDiscount > 0 && (
+                    <tr>
+                      <td>Coupon Discount</td>
+                      <td>
+                        <span className="amount" style={{ color: "green" }}>
+                          - ₹{couponDiscount}
+                        </span>
+                      </td>
+                    </tr>
+                  )}
+
                   <tr className="shipping">
                     <th>Shipping and Handling</th>
                     <td data-title="Shipping and Handling">
