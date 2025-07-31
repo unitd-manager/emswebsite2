@@ -106,6 +106,8 @@ import PublicationReview from "./BookShop/PublicationReview"
 import Contact from "./screens/contact.js";
 import Footer from "./header/Footer";
 import Header from "./header/Header";
+import PrivacyPolicy from "../src/screens/privacy-policy";
+import Support from "../src/screens/Support";
 
 import '../src/assets/css/bootstrap.min.css'
 import '../src/assets/css/fontawesome.min.css'
@@ -203,6 +205,8 @@ function App() {
           <Route path="/Profile" element={<Profile />} />
           <Route path="/Payment" element={<Payment />} />
           <Route path="/Orders" element={<Orders />} />
+       <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+       <Route path="/Support" element={<Support />} />
 
             {/* thoguppugalmenu*/}
           <Route path="/Collections/:Collections" element={<Thoguppugal/>} />
