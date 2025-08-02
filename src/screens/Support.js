@@ -15,7 +15,7 @@ const Support = () => {
           <a href="mailto:SMARTGEEK596@GMAIL.COM">SMARTGEEK596@GMAIL.COM</a>
         </p>
         <p>
-          <strong>Support Hours:</strong> 9:00 AM – 6:00 PM (Gulf Standard Time),
+          <strong>Support Hours:</strong> 9:00 AM – 6:00 PM (Indianpm insta Standard Time),
           Sunday to Thursday
         </p>
       </div>
