@@ -14,10 +14,7 @@ const Shop = () => {
   const navigate = useNavigate();
   const [CartItem, setCartItems] = useState([]); // Assuming you have products data
   const user = getUser();
-
-  const [couponCode, setCouponCode] = useState("");
-  const [couponDiscount, setCouponDiscount] = useState(0);
-  const [couponMessage, setCouponMessage] = useState("");
+  const [shippingCost, setShippingCost] = useState(50); 
 
   // const userContactId = user.contact_id
 
@@ -39,17 +36,36 @@ const Shop = () => {
     loadCart();
   }, []);
 
-  // const getTotalPrice = () => {
-  //   return CartItem.reduce((total, item) => total + item.price * item.qty, 0);
-  // };
-
   const getTotalPrice = () => {
-    const total = CartItem.reduce(
-      (sum, item) => sum + item.price * item.qty,
-      0
-    );
-    return Math.max(total - couponDiscount, 0); // avoid negative total
+    return CartItem.reduce((total, item) => total + item.price * item.qty, 0);
   };
+
+  const calculateShipping = () => {
+    const subtotal = getTotalPrice();
+    if (subtotal >= 500) {
+      setShippingCost(0);
+      document.getElementById("free_shipping").checked = true;
+    } else {
+      setShippingCost(50);
+      document.getElementById("flat_rate").checked = true;
+    }
+  };
+
+  useEffect(() => {
+    calculateShipping();
+  }, [CartItem]);
+
+  const getGrandTotal = () => {
+    return getTotalPrice() + shippingCost;
+  };
+
+  // const getTotalPrice = () => {
+  //   const total = CartItem.reduce(
+  //     (sum, item) => sum + item.price * item.qty,
+  //     0
+  //   );
+  //   return Math.max(total - couponDiscount, 0); // avoid negative total
+  // };
 
   const handleRemoveItem = (item) => {
     const userConfirmed = window.confirm(
@@ -81,24 +97,6 @@ const Shop = () => {
   const incrementQuantity = (index) => {
     const newQuantity = CartItem[index].qty + 1;
     handleQtyChange(index, newQuantity);
-  };
-
-  const applyCoupon = async () => {
-    try {
-      const res = await api.post("/product/getCouponCode", {
-        code: couponCode,
-      });
-
-      // if (res.data && res.data.status === 200) {
-        setCouponDiscount(10); // e.g., ₹100 off
-        setCouponMessage("Coupon applied successfully!");
-      // } else {
-      //   setCouponDiscount(0);
-      //   setCouponMessage("Invalid or expired coupon.");
-      // }
-    } catch (err) {
-      setCouponMessage("Error applying coupon. Try again.");
-    }
   };
 
   return (
@@ -212,53 +210,7 @@ Cart Area
                     </td>
                   </tr>
                 ))}
-                <tr>
-                  <td colSpan={6} className="actions">
-                    {/* <div className="th-cart-coupon">
-                      <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Coupon Code..."
-                      />
-                      <button type="submit" className="th-btn">
-                        Apply Coupon
-                      </button>
-                    </div> */}
-                    <div className="th-cart-coupon">
-                      <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Coupon Code..."
-                        value={couponCode}
-                        onChange={(e) => setCouponCode(e.target.value)}
-                      />
-                      <button
-                        type="button"
-                        className="th-btn"
-                        onClick={applyCoupon}
-                      >
-                        Apply Coupon
-                      </button>
-                      {couponMessage && (
-                        <p
-                          style={{
-                            color: couponDiscount > 0 ? "green" : "red",
-                            marginTop: "10px",
-                          }}
-                        >
-                          {couponMessage}
-                        </p>
-                      )}
-                    </div>
-
-                    {/* <button type="submit" className="th-btn">
-                      Update cart
-                    </button> */}
-                    <Link to="/ShopList/ShopList" className="th-btn">
-                      Continue Shopping
-                    </Link>
-                  </td>
-                </tr>
+              
               </tbody>
             </table>
           </form>
@@ -278,102 +230,40 @@ Cart Area
                       </span>
                     </td>
                   </tr>
-                  <tr>
-                    <td>Cart Subtotal</td>
-                    <td>
-                      <span className="amount">
-                        <bdi>
-                          ₹
-                          {CartItem.reduce(
-                            (sum, item) => sum + item.price * item.qty,
-                            0
-                          )}
-                        </bdi>
-                      </span>
-                    </td>
-                  </tr>
-                  {couponDiscount > 0 && (
-                    <tr>
-                      <td>Coupon Discount</td>
-                      <td>
-                        <span className="amount" style={{ color: "green" }}>
-                          - ₹{couponDiscount}
-                        </span>
-                      </td>
-                    </tr>
-                  )}
-
                   <tr className="shipping">
-                    <th>Shipping and Handling</th>
-                    <td data-title="Shipping and Handling">
-                      <ul className="woocommerce-shipping-methods list-unstyled">
-                        <li>
-                          <input
-                            type="radio"
-                            id="free_shipping"
-                            name="shipping_method"
-                            className="shipping_method"
-                          />
-                          <label htmlFor="free_shipping">Free shipping</label>
-                        </li>
-                        <li>
-                          <input
-                            type="radio"
-                            id="flat_rate"
-                            name="shipping_method"
-                            className="shipping_method"
-                            defaultChecked="checked"
-                          />
-                          <label htmlFor="flat_rate">Flat rate</label>
-                        </li>
-                      </ul>
-                      <p className="woocommerce-shipping-destination">
-                        Shipping options will be updated during checkout.
-                      </p>
-                      {/* <form action="#" method="post">
-                        <a href="#" className="shipping-calculator-button">
-                          Change address
-                        </a>
-                        <div className="shipping-calculator-form">
-                          <p className="form-row">
-                            <select className="form-select">
-                              <option value="AR">Argentina</option>
-                              <option value="AM">Armenia</option>
-                              <option value="BD" selected="selected">
-                                Bangladesh
-                              </option>
-                            </select>
-                          </p>
-                          <p>
-                            <select className="form-select">
-                              <option value="">Select an option…</option>
-                              <option value="BD-05">Bagerhat</option>
-                              <option value="BD-01">Bandarban</option>
-                              <option value="BD-02">Barguna</option>
-                              <option value="BD-06">Barishal</option>
-                            </select>
-                          </p>
-                          <p className="form-row">
-                            <input
-                              type="text"
-                              className="form-control"
-                              placeholder="Town / City"
-                            />
-                          </p>
-                          <p className="form-row">
-                            <input
-                              type="text"
-                              className="form-control"
-                              placeholder="Postcode / ZIP"
-                            />
-                          </p>
-                          <p>
-                            <button className="th-btn">Update</button>
-                          </p>
-                        </div>
-                      </form> */}
-                    </td>
-                  </tr>
+          <th>Shipping and Handling</th>
+          <td data-title="Shipping and Handling">
+            <ul className="woocommerce-shipping-methods list-unstyled">
+              <li>
+                <input
+                  type="radio"
+                  id="free_shipping"
+                  name="shipping_method"
+                  className="shipping_method"
+                  disabled
+                />
+                <label htmlFor="free_shipping">Free shipping</label>
+              </li>
+              <li>
+                <input
+                  type="radio"
+                  id="flat_rate"
+                  name="shipping_method"
+                  className="shipping_method"
+                  defaultChecked
+                  disabled
+                />
+                <label htmlFor="flat_rate">Shipping rate ₹50</label>
+              </li>
+            </ul>
+            <p className="woocommerce-shipping-destination">
+            {getTotalPrice() >= 500
+    ? "You’ve unlocked free shipping!"
+    : "Add ₹" + (500 - getTotalPrice()) + " more for free shipping."}
+            </p>
+          </td>
+        </tr>
+
                 </tbody>
                 <tfoot>
                   <tr className="order-total">
@@ -383,7 +273,7 @@ Cart Area
                         <span className="amount">
                           <bdi>
                             <span>₹</span>
-                            {getTotalPrice()}
+                            {getGrandTotal()}
                           </bdi>
                         </span>
                       </strong>

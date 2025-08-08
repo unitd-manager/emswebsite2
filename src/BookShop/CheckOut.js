@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import api from "../constants/api";
-import { useLocation,useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { getUser } from "../common/user.js";
 import "../assets/css/style.css";
 import "../assets/css/fontawesome.min.css";
@@ -15,8 +15,79 @@ const Shop = () => {
   const cartData = location.state?.cartData || [];
   const [orderDetail, setOrderDetail] = useState({});
   const [allcountries, setallCountries] = useState();
+  const [shippingCost, setShippingCost] = useState(50);
+  const [couponCode, setCouponCode] = useState("");
+  const [couponDiscount, setCouponDiscount] = useState(0);
+  const [couponDiscountPer, setCouponDiscountPer] = useState("");
+  const [couponMessage, setCouponMessage] = useState("");
 
-  console.log('cartData',cartData)
+  const applyCoupon = async () => {
+    try {
+      const res = await api.post("/product/getCouponCode", {
+        coupon_code: couponCode,
+      });
+
+      if (
+        res.status === 200 &&
+        res.data &&
+        Array.isArray(res.data.data) &&
+        res.data.data.length > 0
+      ) {
+        const coupon = res.data.data[0];
+
+
+        const today = new Date();
+
+        const validFrom = coupon.valid_from ? new Date(coupon.valid_from) : null;
+        const validTo = coupon.valid_to ? new Date(coupon.valid_to) : null;
+  
+        // Check date validity
+        if (
+          (validFrom && today < validFrom) ||
+          (validTo && today > validTo)
+        ) {
+          setCouponDiscount(0);
+          setCouponMessage("This coupon is not valid for today's date.");
+          return;
+        }
+
+        // Check if coupon has reached its max uses
+        if (coupon.times_used >= coupon.max_uses) {
+          // Mark coupon as inactive
+          await api.post("/product/edit-Coupon-is-active", {
+            is_active: 0,
+            coupon_id: coupon.coupon_id,
+          });
+          setCouponDiscount(0);
+          setCouponMessage("Expired coupon!");
+          return;
+        }
+        let discount = 0;
+        const total = cartData.reduce(
+          (sum, item) => sum + item.price * item.qty,
+          0
+        );
+
+        // Determine if it's percentage or fixed
+        if (coupon.discount_type === "percentage") {
+          discount = (total * parseFloat(coupon.discount_value || 0)) / 100;
+          setCouponDiscountPer(`${coupon.discount_value}%`);
+        } else {
+          discount = parseFloat(coupon.discount_value || 0); // fixed amount
+        }
+        setCouponDiscount(discount);
+        setCouponMessage("Coupon applied successfully!");
+      } else {
+        setCouponDiscount(0);
+        setCouponMessage("Invalid or expired coupon.");
+      }
+    } catch (err) {
+      console.error(err);
+      setCouponDiscount(0);
+      setCouponMessage("Error applying coupon. Try again.");
+    }
+  };
+
   const getAllCountries = () => {
     api
       .get("/commonApi/getCountry")
@@ -34,11 +105,40 @@ const Shop = () => {
     setOrderDetail({ ...orderDetail, [e.target.name]: e.target.value });
   };
 
+  // const getTotalPrice = () => {
+  //   return cartData.reduce((total, item) => total + item.price * item.qty, 0);
+  // };
+
   const getTotalPrice = () => {
-    return cartData.reduce((total, item) => total + item.price * item.qty, 0);
+    const total = cartData.reduce(
+      (sum, item) => sum + item.price * item.qty,
+      0
+    );
+
+    return Math.max(total + shippingCost, 0); // avoid negative
   };
 
-  console.log('total',getTotalPrice())
+  // Calculate shipping cost based on total
+  const calculateShipping = () => {
+    const subtotal = getTotalPrice();
+    if (subtotal >= 500) {
+      setShippingCost(0);
+    } else {
+      setShippingCost(50);
+    }
+  };
+
+  // Run calculation when cart or coupon changes
+  useEffect(() => {
+    calculateShipping();
+  }, [cartData, couponDiscount]);
+
+  // Grand total = subtotal + shipping
+  const getGrandTotal = () => {
+    const totalWithShipping = getTotalPrice();
+    return Math.max(totalWithShipping - (couponDiscount || 0), 0);
+  };
+
   const user = getUser();
   const userContactId = user?.contact_id;
   const userfirstname = user?.first_name;
@@ -52,7 +152,6 @@ const Shop = () => {
   const userPoCode = user?.address_po_code;
   const userPhone = user?.mobile;
 
-
   const removeBacket = async () => {
     try {
       await api.post("/orders/deleteBasketContact", {
@@ -62,65 +161,93 @@ const Shop = () => {
       console.error("Error removing item:", error);
     }
   };
-
   const placeOrder = () => {
-    // Validate fields
+    const createOrder = () => {
+      api
+        .post("/orders/insertorders", {
+          ...orderDetail,
+          contact_id: userContactId,
+          amount: getGrandTotal(),
+          discount: couponDiscount,
+          payment_method: "online",
+          cust_first_name: userfirstname,
+          cust_last_name: userlastname,
+          cust_email: useremail,
+          cust_address1: useraddress1,
+          cust_address2: useraddress2,
+          cust_address_city: userCity,
+          cust_address_state: userState,
+          cust_address_country: userCountry,
+          cust_address_po_code: userPoCode,
+          cust_phone: userPhone,
+        })
+        .then((response) => {
+          if (response.status === 200) {
+            const orderId = response.data.data.insertId;
+            Promise.all(
+              cartData.map((item) =>
+                api.post("/orders/insertOrderItem1", {
+                  qty: item.qty,
+                  unit_price: item.price,
+                  contact_id: userContactId,
+                  order_id: orderId,
+                  cost_price: item.qty * item.price,
+                  item_title: item.title,
+                  product_id: item.product_id,
+                })
+              )
+            )
+              .then((responses) => {
+                if (responses.every((res) => res.status === 200)) {
+                  SendEmail();
+                  removeBacket();
+                } else {
+                  console.error("Error placing one or more order items");
+                }
+              })
+              .catch((err) => console.error("Error placing order items:", err));
+          } else {
+            console.error("Error creating order");
+          }
+        })
+        .catch((err) => console.error("Error:", err));
+    };
 
-    api
-      .post("/orders/insertorders", {
-        ...orderDetail,
-        contact_id: userContactId,
-        amount:getTotalPrice(),
-        payment_method:'online',
-        cust_first_name: userfirstname,
-        cust_last_name: userlastname,
-        cust_email: useremail,
-        cust_address1: useraddress1,
-        cust_address2: useraddress2,
-        cust_address_city: userCity,
-        cust_address_state: userState,
-        cust_address_country: userCountry,
-        cust_address_po_code: userPoCode,
-        cust_phone: userPhone,
-      })
-      .then((response) => {
-        if (response.status === 200) {
-          const orderId = response.data.data.insertId;
-          Promise.all(
-            cartData.map((item) => {
-              console.log("orderitem", item);
-              return api.post("/orders/insertOrderItem1", {
-                qty: item.qty,
-                unit_price: item.price,
-                contact_id: userContactId,
-                order_id: orderId,
-                cost_price: item.qty * item.price,
-                item_title: item.title,
-                product_id: item.product_id,
+    if (couponCode) {
+      api
+        .post("/product/getCouponCode", { coupon_code: couponCode })
+        .then((res) => {
+          if (
+            res.data &&
+            Array.isArray(res.data.data) &&
+            res.data.data.length > 0
+          ) {
+            const coupon = res.data.data[0];
+            const timeUsed = (coupon.times_used || 0) + 1;
+            api
+              .post("/product/edit-Coupon-times-used", {
+                times_used: timeUsed,
+                coupon_id: coupon.coupon_id,
+              })
+              .then(() => {
+                createOrder(); // ✅ only create order after coupon usage updated
+              })
+              .catch((err) => {
+                console.error("Error updating coupon usage:", err);
+                createOrder(); // still place order even if coupon update fails
               });
-            })
-          )
-            .then((responses) => {
-              const allInserted = responses.every(
-                (response) => response.status === 200
-              );
-              if (allInserted) {
-                SendEmail();
-                removeBacket();
-              } else {
-                console.error("Error placing one or more order items");
-              }
-            })
-            .catch((error) => {
-              console.error("Error placing order items:", error);
-            });
-        } else {
-          console.error("Error");
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+          } else {
+            console.warn("Coupon not valid, placing order without discount");
+            createOrder();
+          }
+        })
+        .catch((err) => {
+          console.error("Error fetching coupon:", err);
+          createOrder();
+        });
+    } else {
+      createOrder(); // No coupon, directly place order
+    }
   };
 
   const SendEmail = () => {
@@ -132,7 +259,7 @@ const Shop = () => {
     const city = orderDetail.shipping_address_city;
     const state = orderDetail.shipping_address_state;
     const Country = orderDetail.shipping_address_country_code;
-    const TotalAmount = getTotalPrice();
+    const TotalAmount = getGrandTotal();
     const code = orderDetail.shipping_address_po_code;
 
     api
@@ -151,13 +278,15 @@ const Shop = () => {
       .then((response) => {
         if (response.status === 200) {
           window.confirm("Orders Sent successfully on your mail.");
-          navigate("/ShopList/ShopList"); 
+          navigate("/ShopList/ShopList");
         } else {
           console.error("Error");
         }
       });
   };
-
+  const clearCoupon = () => {
+    setCouponCode("");
+  };
   const handlePaymentSuccess = (data) => {
     console.log("Payment Successful:", data);
     placeOrder();
@@ -194,7 +323,7 @@ const Shop = () => {
       return;
     }
 
-    const totalAmount = getTotalPrice();
+    const totalAmount = getGrandTotal();
     const amountInPaise = totalAmount * 100;
 
     const options = {
@@ -226,44 +355,6 @@ const Shop = () => {
 
   return (
     <>
-      {/* <div className="popup-subscribe-area">
-      <div className="container">
-        <div className="popup-subscribe">
-          <div className="box-img">
-            <img src="assets/img/normal/popup_subscribe.jpg" alt="Image" />
-          </div>
-          <div className="box-content">
-            <button className="simple-icon popupClose">
-              <i className="fal fa-times" />
-            </button>
-            <div className="widget newsletter-widget footer-widget">
-              <h3 className="widget_title">Subscribe</h3>
-              <p className="footer-text">
-                Sign up to get update about us. Don't be hasitate your email is
-                safe.
-              </p>
-              <form className="newsletter-form">
-                <input
-                  className="form-control"
-                  type="email"
-                  placeholder="Enter Email"
-                  required=""
-                />
-                <button type="submit" className="icon-btn">
-                  <i className="fa-solid fa-paper-plane" />
-                </button>
-              </form>
-              <div className="mt-30">
-                <input type="checkbox" id="destroyPopup" />
-                <label htmlFor="destroyPopup">
-                  I don't want to see this popup again.
-                </label>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> */}
       <div className="breadcumb-wrapper">
         <div className="container">
           <ul className="breadcumb-menu">
@@ -279,101 +370,8 @@ const Shop = () => {
   ==============================*/}
       <div className="th-checkout-wrapper space-top space-extra-bottom">
         <div className="container">
-          {/* <div className="woocommerce-info">
-            Returning customer?{" "}
-            <a href="#" className="showlogin">
-              Click here to login
-            </a>
-          </div> */}
-
           <form action="#" className="woocommerce-checkout mt-40">
             <div className="row ">
-              {/* <div className="col-lg-6">
-              <h2 className="h4">Billing Details</h2>
-              <div className="row">
-                <div className="col-12 form-group">
-                  <select className="form-select">
-                    <option>United Kingdom (UK)</option>
-                    <option>United State (US)</option>
-                    <option>Equatorial Guinea (GQ)</option>
-                    <option>Australia (AU)</option>
-                    <option>Germany (DE)</option>
-                  </select>
-                </div>
-                <div className="col-md-6 form-group">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="First Name"
-                    value={orderDetail && orderDetail.shipping_first_name}
-                    onChange={handleOrderDetail}
-                  />
-                </div>
-                <div className="col-md-6 form-group">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Last Name"
-                  />
-                </div>
-                <div className="col-12 form-group">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Your Company Name"
-                  />
-                </div>
-                <div className="col-12 form-group">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Street Address"
-                  />
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Apartment, suite, unit etc. (optional)"
-                  />
-                </div>
-                <div className="col-12 form-group">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Town / City"
-                  />
-                </div>
-                <div className="col-md-6 form-group">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Country"
-                  />
-                </div>
-                <div className="col-md-6 form-group">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Postcode / Zip"
-                  />
-                </div>
-                <div className="col-12 form-group">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Email Address"
-                  />
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Phone number"
-                  />
-                </div>
-                <div className="col-12 form-group">
-                  <input type="checkbox" id="accountNewCreate" />
-                  <label htmlFor="accountNewCreate">Create An Account?</label>
-                </div>
-              </div>
-            </div> */}
               <div className="col-lg-12">
                 <h2 className="h4">Billing Details</h2>
                 <div className="shipping_address">
@@ -492,8 +490,8 @@ const Shop = () => {
                         value={orderDetail && orderDetail.shipping_email}
                         onChange={handleOrderDetail}
                       />
-                      </div>
-                      <div className="col-6 form-group">
+                    </div>
+                    <div className="col-6 form-group">
                       <input
                         type="text"
                         className="form-control"
@@ -533,7 +531,7 @@ const Shop = () => {
                 {cartData.map((product, index) => (
                   <tr className="cart_item">
                     <td data-title="Product">
-                      <a className="cart-productimage" href="shop-details.html">
+                      <a className="cart-productimage">
                         <img
                           width={91}
                           height={91}
@@ -582,11 +580,26 @@ const Shop = () => {
                     </span>
                   </td>
                 </tr>
+                {couponDiscount > 0 && (
+                  <tr>
+                    <th>Coupon Discount</th>
+                    <td colSpan={4} data-title="Coupon Discount">
+                      <bdi>
+                        <span className="amount" style={{ color: "red" }}>
+                          {couponDiscountPer}
+                        </span>{" "}
+                        <span className="amount" style={{ color: "green" }}>
+                          ₹{couponDiscount}
+                        </span>
+                      </bdi>
+                    </td>
+                  </tr>
+                )}
                 <tr className="woocommerce-shipping-totals shipping">
                   <th>Shipping</th>
                   <td data-title="Shipping" colSpan={4}>
                     {" "}
-                    ₹0
+                    {shippingCost}
                   </td>
                 </tr>
                 <tr className="order-total">
@@ -598,7 +611,7 @@ const Shop = () => {
                           <span className="woocommerce-Price-currencySymbol">
                             ₹
                           </span>
-                          {getTotalPrice()}
+                          {getGrandTotal()}
                         </bdi>
                       </span>
                     </strong>
@@ -609,38 +622,58 @@ const Shop = () => {
           </form>
           <div className="mt-lg-3 mb-30">
             <div className="woocommerce-checkout-payment">
-              {/* <ul className="wc_payment_methods payment_methods methods">
-                <li className="wc_payment_method payment_method_cod">
-                  <input
-                    id="payment_method_cod"
-                    type="radio"
-                    className="input-radio"
-                    name="payment_method"
-                  />
-                  <label htmlFor="payment_method_cod">Cash On Delivery</label>
-                  <div className="payment_box payment_method_cod">
-                    <p>Pay with cash on delivery.</p>
-                  </div>
-                </li>
-                <li className="wc_payment_method payment_method_paypal">
-                  <input
-                    id="payment_method_paypal"
-                    type="radio"
-                    className="input-radio"
-                    name="payment_method"
-                    defaultValue="Rayzorpay"
-                  />
-                  <label htmlFor="payment_method_paypal">Rayzorpay</label>
-                  <div className="payment_box payment_method_paypal">
-                    <p>you can pay with Rayzorpay.</p>
-                  </div>
-                </li>
-              </ul> */}
-              <div className="form-row place-order">
-                <button type="submit" className="th-btn" onClick={onPaymentPress}>
-                  Place order
+              {/* Flex container to align coupon + button + place order in one line */}
+              <div className="d-flex flex-wrap align-items-center gap-2">
+                {/* Coupon input */}
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Coupon Code..."
+                  style={{ maxWidth: "200px", flex: "1" }}
+                  value={couponCode}
+                  onChange={(e) => setCouponCode(e.target.value)}
+                />
+
+                {/* Apply button */}
+                <button type="button" className="th-btn" onClick={applyCoupon}>
+                  Apply Coupon
+                </button>
+
+                {/* Place Order button */}
+                <button
+                  type="submit"
+                  className="th-btn"
+                  style={{ backgroundColor: "green" }}
+                  onClick={onPaymentPress}
+                >
+                  Place Order
                 </button>
               </div>
+
+              {/* Optional: coupon success or error message */}
+              {couponMessage && (
+                <>
+                  <p
+                    style={{
+                      color: couponDiscount > 0 ? "green" : "red",
+                      marginTop: "10px",
+                    }}
+                  >
+                    {couponMessage}{" "}
+                    <Link
+                      to="#"
+                      onClick={(e) => {
+                        e.preventDefault(); // prevent page reload
+                        clearCoupon();
+                        setCouponDiscount(0);
+                        setCouponMessage("");
+                      }}
+                    >
+                      <u>Clear Coupon</u>
+                    </Link>
+                  </p>
+                </>
+              )}
             </div>
           </div>
         </div>
