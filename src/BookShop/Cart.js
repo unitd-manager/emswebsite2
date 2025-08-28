@@ -234,6 +234,7 @@ Cart Area
           <th>Shipping and Handling</th>
           <td data-title="Shipping and Handling">
             <ul className="woocommerce-shipping-methods list-unstyled">
+            {getTotalPrice() >= 500?
               <li>
                 <input
                   type="radio"
@@ -244,6 +245,7 @@ Cart Area
                 />
                 <label htmlFor="free_shipping">Free shipping</label>
               </li>
+              :
               <li>
                 <input
                   type="radio"
@@ -255,6 +257,7 @@ Cart Area
                 />
                 <label htmlFor="flat_rate">Shipping rate ₹50</label>
               </li>
+}
             </ul>
             <p className="woocommerce-shipping-destination">
             {getTotalPrice() >= 500
